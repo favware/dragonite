@@ -1,0 +1,99 @@
+{
+	"name": "something-secret",
+	"version": "1.0.0",
+	"description": "something-secret",
+	"author": "Jeroen Claassens <support@favware.tech>",
+	"license": "Apache-2.0",
+	"main": "dist/something-secret.js",
+	"private": true,
+	"type": "module",
+	"imports": {
+		"#lib/*": "./dist/lib/*.js",
+		"#root/*": "./dist/*.js",
+		"#utils/*": "./dist/lib/util/*.js",
+		"#gql/*": "./dist/lib/gql/*.js",
+		"#lib/env": "./dist/lib/env/index.js"
+	},
+	"scripts": {
+		"start": "node --enable-source-maps dist/something-secret.js",
+		"lint": "eslint src --ext ts --fix",
+		"format": "prettier --write --loglevel=warn \"src/**/*.ts\"",
+		"build": "tsup",
+		"watch": "tsup --watch",
+		"clean": "node scripts/clean.mjs",
+		"typecheck": "tsc -b src",
+		"dev": "tsup --watch --onSuccess \"yarn start\""
+	},
+	"dependencies": {
+		"@discordjs/builders": "^0.11.0",
+		"@sapphire/decorators": "^3.1.6",
+		"@sapphire/discord-utilities": "^2.5.0",
+		"@sapphire/discord.js-utilities": "^4.2.0",
+		"@sapphire/framework": "next",
+		"@sapphire/plugin-logger": "^2.1.1",
+		"@sapphire/stopwatch": "^1.2.5",
+		"@sapphire/time-utilities": "^1.5.1",
+		"@sapphire/utilities": "^3.2.0",
+		"apollo-boost": "^0.4.9",
+		"bufferutil": "^4.0.6",
+		"colorette": "^2.0.16",
+		"confusables": "^1.1.0",
+		"cross-fetch": "^3.1.4",
+		"discord-api-types": "^0.26.1",
+		"discord.js": "^13.5.1",
+		"dotenv-cra": "^3.0.2",
+		"graphql": "^16.2.0",
+		"graphql-tag": "^2.12.6",
+		"tslib": "^2.3.1",
+		"utf-8-validate": "^5.0.8",
+		"ws": "^8.4.0",
+		"zlib-sync": "^0.1.7"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^16.0.2",
+		"@commitlint/config-conventional": "^16.0.0",
+		"@favware/graphql-pokemon": "^6.2.6",
+		"@sapphire/eslint-config": "^4.0.9",
+		"@sapphire/prettier-config": "^1.2.8",
+		"@sapphire/ts-config": "^3.1.7",
+		"@types/node": "^17.0.8",
+		"@types/ws": "^8.2.2",
+		"@typescript-eslint/eslint-plugin": "^5.9.1",
+		"@typescript-eslint/parser": "^5.9.1",
+		"cz-conventional-changelog": "^3.3.0",
+		"eslint": "^8.6.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"husky": "^7.0.4",
+		"lint-staged": "^12.1.7",
+		"prettier": "^2.5.1",
+		"pretty-quick": "^3.1.3",
+		"tsup": "^5.11.11",
+		"typescript": "^4.5.4"
+	},
+	"engines": {
+		"node": ">=16.6.0",
+		"npm": ">=7.24.2"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/favware/something-secret.git"
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	},
+	"eslintConfig": {
+		"extends": "@sapphire"
+	},
+	"lint-staged": {
+		"*.{mjs,js,ts}": "eslint --fix --ext mjs,js,ts"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	},
+	"packageManager": "yarn@3.1.1"
+}

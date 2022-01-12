@@ -1,0 +1,35 @@
+name: Continuous Delivery
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'Dockerfile'
+      - '.github/workflows/continuous-delivery.yml'
+  workflow_dispatch:
+
+jobs:
+  Publishsomething-secret:
+    name: Publish something-secret image to container registries
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, ' ')" # Always skip because there's always something in the commit message
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 # renovate: tag=v2
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@94ab11c41e45d028884a99163086648e898eed25 # renovate: tag=v1.6.0
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@42d299face0c5c43a0487c477f595ac9cf22f1a7 # renovate: tag=v1.12.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push something-secret Docker image
+        uses: docker/build-push-action@a66e35b9cbcf4ad0ea91ffcaf7bbad63ad9e0229 # renovate: tag=v2.7.0
+        with:
+          push: true
+          context: ./
+          file: Dockerfile
+          tags: ghcr.io/favware/something-secret:latest
