@@ -1,18 +1,18 @@
 export type BooleanString = 'true' | 'false';
 export type IntegerString = `${bigint}`;
 
-export type SomethingSecretEnvAny = keyof SomethingSecretEnv;
-export type SomethingSecretEnvString = {
-  [K in SomethingSecretEnvAny]: SomethingSecretEnv[K] extends BooleanString | IntegerString ? never : K;
-}[SomethingSecretEnvAny];
-export type SomethingSecretEnvBoolean = {
-  [K in SomethingSecretEnvAny]: SomethingSecretEnv[K] extends BooleanString ? K : never;
-}[SomethingSecretEnvAny];
-export type SomethingSecretEnvInteger = {
-  [K in SomethingSecretEnvAny]: SomethingSecretEnv[K] extends IntegerString ? K : never;
-}[SomethingSecretEnvAny];
+export type DragoniteEnvAny = keyof DragoniteEnv;
+export type DragoniteEnvString = {
+  [K in DragoniteEnvAny]: DragoniteEnv[K] extends BooleanString | IntegerString ? never : K;
+}[DragoniteEnvAny];
+export type DragoniteEnvBoolean = {
+  [K in DragoniteEnvAny]: DragoniteEnv[K] extends BooleanString ? K : never;
+}[DragoniteEnvAny];
+export type DragoniteEnvInteger = {
+  [K in DragoniteEnvAny]: DragoniteEnv[K] extends IntegerString ? K : never;
+}[DragoniteEnvAny];
 
-export interface SomethingSecretEnv {
+export interface DragoniteEnv {
   NODE_ENV: 'test' | 'development' | 'production';
   DOTENV_DEBUG_ENABLED: BooleanString;
 

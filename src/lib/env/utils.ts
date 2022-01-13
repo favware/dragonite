@@ -1,13 +1,7 @@
-import type {
-  SomethingSecretEnv,
-  SomethingSecretEnvAny,
-  SomethingSecretEnvBoolean,
-  SomethingSecretEnvInteger,
-  SomethingSecretEnvString
-} from '#lib/env/types';
+import type { DragoniteEnv, DragoniteEnvAny, DragoniteEnvBoolean, DragoniteEnvInteger, DragoniteEnvString } from '#lib/env/types';
 import { isNullishOrEmpty } from '@sapphire/utilities';
 
-export function envParseInteger(key: SomethingSecretEnvInteger, defaultValue?: number): number {
+export function envParseInteger(key: DragoniteEnvInteger, defaultValue?: number): number {
   const value = process.env[key];
   if (isNullishOrEmpty(value)) {
     if (defaultValue === undefined) throw new Error(`[ENV] ${key} - The key must be an integer, but is empty or undefined.`);
@@ -19,7 +13,7 @@ export function envParseInteger(key: SomethingSecretEnvInteger, defaultValue?: n
   throw new Error(`[ENV] ${key} - The key must be an integer, but received '${value}'.`);
 }
 
-export function envParseBoolean(key: SomethingSecretEnvBoolean, defaultValue?: boolean): boolean {
+export function envParseBoolean(key: DragoniteEnvBoolean, defaultValue?: boolean): boolean {
   const value = process.env[key];
   if (isNullishOrEmpty(value)) {
     if (defaultValue === undefined) throw new Error(`[ENV] ${key} - The key must be a boolean, but is empty or undefined.`);
@@ -31,7 +25,7 @@ export function envParseBoolean(key: SomethingSecretEnvBoolean, defaultValue?: b
   throw new Error(`[ENV] ${key} - The key must be a boolean, but received '${value}'.`);
 }
 
-export function envParseString<K extends SomethingSecretEnvString>(key: K, defaultValue?: SomethingSecretEnv[K]): SomethingSecretEnv[K] {
+export function envParseString<K extends DragoniteEnvString>(key: K, defaultValue?: DragoniteEnv[K]): DragoniteEnv[K] {
   const value = process.env[key];
   if (isNullishOrEmpty(value)) {
     if (defaultValue === undefined) throw new Error(`[ENV] ${key} - The key must be a string, but is empty or undefined.`);
@@ -41,7 +35,7 @@ export function envParseString<K extends SomethingSecretEnvString>(key: K, defau
   return value;
 }
 
-export function envParseArray(key: SomethingSecretEnvString, defaultValue?: string[]): string[] {
+export function envParseArray(key: DragoniteEnvString, defaultValue?: string[]): string[] {
   const value = process.env[key];
   if (isNullishOrEmpty(value)) {
     if (defaultValue === undefined) throw new Error(`[ENV] ${key} - The key must be an array, but is empty or undefined.`);
@@ -51,6 +45,6 @@ export function envParseArray(key: SomethingSecretEnvString, defaultValue?: stri
   return value.split(' ');
 }
 
-export function envIsDefined(...keys: readonly SomethingSecretEnvAny[]): boolean {
+export function envIsDefined(...keys: readonly DragoniteEnvAny[]): boolean {
   return keys.every((key) => !isNullishOrEmpty(process.env[key]));
 }

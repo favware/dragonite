@@ -3,7 +3,7 @@ import { ApplyOptions } from '@sapphire/decorators';
 import { ChatInputCommand, Command } from '@sapphire/framework';
 
 @ApplyOptions<ChatInputCommand.Options>({
-  description: 'Provides some information about something-secret.',
+  description: 'Provides some information about dragonite.',
   chatInputCommand: {
     register: true,
     guildIds: getGuildIds(),
@@ -20,10 +20,10 @@ export class UserCommand extends Command {
 
   private get content() {
     return [
-      `something-secret is a idkbotorsomething.`,
+      `dragonite is a Pokémon information Discord bot built around Slash Commands.`,
       'This bot uses the Sapphire Framework build on top of discord.js.',
       '',
-      'something-secret features:',
+      "Dragonite's features:",
       '• Getting information on Pokémon.',
       '• Getting information on Pokémon abilities.',
       '• Getting information on Pokémon items.',

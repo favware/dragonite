@@ -1,4 +1,4 @@
-<div style="text-align:center;"><h1>SOMETHING-SECRET PRIVACY POLICY</h1></div>
+<div style="text-align:center;"><h1>DRAGONITE PRIVACY POLICY</h1></div>
 
 Last updated and effective: January 13, 2022
 

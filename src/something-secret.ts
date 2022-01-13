@@ -1,8 +1,8 @@
 import '#lib/setup';
-import { SomethingSecretClient } from '#lib/extensions/SomethingSecretClient';
+import { DragoniteClient } from '#lib/extensions/DragoniteClient';
 import { green } from 'colorette';
 
-const client = new SomethingSecretClient();
+const client = new DragoniteClient();
 
 try {
   await client.login();

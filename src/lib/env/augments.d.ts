@@ -1,7 +1,7 @@
-import type { SomethingSecretEnv } from './types';
+import type { DragoniteEnv } from './types';
 
 declare global {
   namespace NodeJS {
-    interface ProcessEnv extends SomethingSecretEnv {}
+    interface ProcessEnv extends DragoniteEnv {}
   }
 }

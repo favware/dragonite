@@ -11,8 +11,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  Publishsomething-secret:
-    name: Publish something-secret image to container registries
+  PublishDragonite:
+    name: Publish dragonite image to container registries
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, ' ')" # Always skip because there's always something in the commit message
     steps:
@@ -26,10 +26,10 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build and push something-secret Docker image
+      - name: Build and push dragonite Docker image
         uses: docker/build-push-action@a66e35b9cbcf4ad0ea91ffcaf7bbad63ad9e0229 # renovate: tag=v2.7.0
         with:
           push: true
           context: ./
           file: Dockerfile
-          tags: ghcr.io/favware/something-secret:latest
+          tags: ghcr.io/favware/dragonite:latest

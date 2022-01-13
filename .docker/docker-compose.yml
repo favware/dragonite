@@ -33,17 +33,17 @@ services:
         max-size: '10m'
         max-file: '3'
 
-  something-secret:
+  dragonite:
     build:
       context: ../
-    container_name: something-secret
+    container_name: dragonite
     depends_on:
       - redis
       - influx
     env_file:
       - ../src/.env.development
       - ../src/.env.development.local
-    image: something-secret:latest
+    image: dragonite:latest
     logging:
       options:
         max-size: '1g'
