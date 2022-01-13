@@ -4,7 +4,7 @@
 
 # [Dragonite]
 
-**A Pokémon information Discord bot built around Slash Commands.**
+**A Pokémon information Discord bot built around Discord Interactions.**
 
 <a href="https://github.com/favware/dragonite/blob/main/LICENSE" alt="License"><img src="https://img.shields.io/github/license/favware/dragonite"/></a>
 <a href="https://twitter.com/Favna_/follow" alt="Twitter Follow"><img src="https://img.shields.io/twitter/follow/favna_?label=Follow%20@Favna_&logo=twitter&colorB=1DA1F2&style=flat-square"/></a>

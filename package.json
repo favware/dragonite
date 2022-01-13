@@ -1,7 +1,7 @@
 {
   "name": "dragonite",
   "version": "1.0.0",
-  "description": "A Pokémon information Discord bot built around Slash Commands.",
+  "description": "A Pokémon information Discord bot built around Discord Interactions.",
   "author": "Jeroen Claassens <support@favware.tech>",
   "license": "Apache-2.0",
   "main": "dist/dragonite.js",
@@ -98,5 +98,20 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
+  "keywords": [
+    "bot",
+    "autocomplete",
+    "pokemon",
+    "discord",
+    "buttons",
+    "slash-commands",
+    "slash",
+    "sapphire",
+    "skyra",
+    "favware",
+    "select-menu",
+    "favna",
+    "slashies"
+  ],
   "packageManager": "yarn@3.1.1"
 }

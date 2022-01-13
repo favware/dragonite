@@ -20,7 +20,7 @@ export class UserCommand extends Command {
 
   private get content() {
     return [
-      `dragonite is a Pokémon information Discord bot built around Slash Commands.`,
+      `dragonite is a Pokémon information Discord bot built around Discord Interactions.`,
       'This bot uses the Sapphire Framework build on top of discord.js.',
       '',
       "Dragonite's features:",
