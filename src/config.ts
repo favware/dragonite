@@ -1,9 +1,10 @@
 // Unless explicitly defined, set NODE_ENV as development:
 process.env.NODE_ENV ??= 'development';
 
-import { envParseBoolean, envParseString } from '#lib/env';
+import { envParseBoolean, envParseInteger, envParseString } from '#lib/env';
 import { srcFolder } from '#utils/constants';
 import { LogLevel } from '@sapphire/framework';
+import { ScheduledTaskRedisStrategy } from '@sapphire/plugin-scheduled-tasks/register-redis';
 import type { ActivitiesOptions, ClientOptions, ExcludeEnum, WebhookClientData } from 'discord.js';
 import type { ActivityTypes } from 'discord.js/typings/enums';
 import { config } from 'dotenv-cra';
@@ -40,11 +41,29 @@ function parseWebhookError(): WebhookClientData | null {
   };
 }
 
+export function parseRedisOption() {
+  return {
+    port: envParseInteger('REDIS_PORT'),
+    password: envParseString('REDIS_PASSWORD'),
+    host: envParseString('REDIS_HOST')
+  };
+}
+
 export const WEBHOOK_ERROR = parseWebhookError();
 
 export const CLIENT_OPTIONS: ClientOptions = {
   intents: ['GUILDS'],
   allowedMentions: { users: [], roles: [] },
   presence: { activities: parsePresenceActivity() },
-  logger: { level: envParseString('NODE_ENV') === 'production' ? LogLevel.Info : LogLevel.Debug }
+  logger: { level: envParseString('NODE_ENV') === 'production' ? LogLevel.Info : LogLevel.Debug },
+  tasks: {
+    strategy: new ScheduledTaskRedisStrategy({
+      bull: {
+        redis: {
+          ...parseRedisOption(),
+          db: envParseInteger('REDIS_TASK_DB')
+        }
+      }
+    })
+  }
 };

@@ -1,10 +1,10 @@
 import { AnalyticsListener } from '#lib/structures/AnalyticsListener';
 import { Actions, Points, Tags } from '#lib/types/AnalyticsSchema';
-import { Events } from '#lib/types/Enums';
+import { DragoniteEvents } from '#lib/types/Enums';
 import { Point } from '@influxdata/influxdb-client';
 import { ApplyOptions } from '@sapphire/decorators';
 
-@ApplyOptions<AnalyticsListener.Options>({ event: Events.AnalyticsSync })
+@ApplyOptions<AnalyticsListener.Options>({ event: DragoniteEvents.AnalyticsSync })
 export class UserAnalyticsEvent extends AnalyticsListener {
   public run(guilds: number, users: number) {
     this.writePoints([this.syncGuilds(guilds), this.syncUsers(users)]);

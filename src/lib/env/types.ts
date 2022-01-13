@@ -26,6 +26,12 @@ export interface DragoniteEnv {
 
   DISCORD_TOKEN: string;
 
+  REDIS_PORT: IntegerString;
+  REDIS_PASSWORD: string;
+  REDIS_HOST: string;
+  REDIS_CACHE_DB: IntegerString;
+  REDIS_TASK_DB: IntegerString;
+
   WEBHOOK_ERROR_ENABLED: BooleanString;
   WEBHOOK_ERROR_ID: string;
   WEBHOOK_ERROR_TOKEN: string;

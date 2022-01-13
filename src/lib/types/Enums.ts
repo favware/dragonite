@@ -1,4 +1,4 @@
-export const enum Events {
+export const enum DragoniteEvents {
   AnalyticsSync = 'analyticsSync',
   CommandUsageAnalytics = 'commandUsageAnalytics'
 }

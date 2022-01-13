@@ -16,6 +16,10 @@ declare module '@sapphire/pieces' {
 }
 
 declare module '@sapphire/framework' {
+  interface ScheduledTasks {
+    cron: never;
+  }
+
   interface ChatInputCommandSuccessPayload {
     readonly interaction: GuildCommandInteraction;
   }

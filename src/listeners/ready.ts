@@ -1,5 +1,5 @@
 import { envParseBoolean, envParseString } from '#lib/env';
-import { Events } from '#lib/types/Enums';
+import { DragoniteEvents } from '#lib/types/Enums';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Listener, Store } from '@sapphire/framework';
 import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
@@ -78,7 +78,7 @@ ${line10}${this.isDev ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOP
       const { client } = this.container;
 
       client.emit(
-        Events.AnalyticsSync,
+        DragoniteEvents.AnalyticsSync,
         client.guilds.cache.size,
         client.guilds.cache.reduce((acc, val) => acc + (val.memberCount ?? 0), 0)
       );

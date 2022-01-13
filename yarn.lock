@@ -466,6 +466,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sapphire/plugin-scheduled-tasks@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@sapphire/plugin-scheduled-tasks@npm:2.1.0"
+  dependencies:
+    "@sapphire/time-utilities": ^1.5.1
+    tslib: ^2.3.1
+  checksum: 72625b9310efdae312ec605b091404d8b7834156c88a071b28bfd318ef471af2f3e3ade3bdafd547caecf567ea8ae954e9b65912cd3c90a72306f0219c7472e3
+  languageName: node
+  linkType: hard
+
 "@sapphire/prettier-config@npm:^1.2.8":
   version: 1.2.8
   resolution: "@sapphire/prettier-config@npm:1.2.8"
@@ -1842,6 +1852,7 @@ __metadata:
     "@sapphire/eslint-config": ^4.0.9
     "@sapphire/framework": next
     "@sapphire/plugin-logger": ^2.1.2
+    "@sapphire/plugin-scheduled-tasks": ^2.1.0
     "@sapphire/prettier-config": ^1.2.8
     "@sapphire/stopwatch": ^1.2.5
     "@sapphire/time-utilities": ^1.5.1

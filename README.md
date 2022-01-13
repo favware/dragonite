@@ -20,11 +20,8 @@
 - [ ] Add InfluxDB listeners
 - [ ] Add all Pokémon commands
 - [ ] Add Redis caching (redis-om? ioredis?)
-- [ ] Add invite link to nginx config and update in README
-- [ ] Fix banner in ready event
-- [ ] Add success loggers for interaction handlers
 - [ ] Add fallbacks for autocomplete failures
-- [ ] Poststats task
+- [ ] Make post-stats task POST data to bot lists
 - [ ] Cleanup AnalyticsSchema
 
 ## Developing on Dragonite
