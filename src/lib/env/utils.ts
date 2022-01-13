@@ -1,4 +1,10 @@
-import type { SomethingSecretEnv, SomethingSecretEnvAny, SomethingSecretEnvBoolean, SomethingSecretEnvInteger, SomethingSecretEnvString } from '#lib/env/types';
+import type {
+  SomethingSecretEnv,
+  SomethingSecretEnvAny,
+  SomethingSecretEnvBoolean,
+  SomethingSecretEnvInteger,
+  SomethingSecretEnvString
+} from '#lib/env/types';
 import { isNullishOrEmpty } from '@sapphire/utilities';
 
 export function envParseInteger(key: SomethingSecretEnvInteger, defaultValue?: number): number {
