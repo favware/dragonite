@@ -4,7 +4,7 @@ process.env.NODE_ENV ??= 'development';
 import { envParseBoolean, envParseString } from '#lib/env';
 import { srcFolder } from '#utils/constants';
 import { LogLevel } from '@sapphire/framework';
-import type { ActivitiesOptions, ClientOptions, ExcludeEnum } from 'discord.js';
+import type { ActivitiesOptions, ClientOptions, ExcludeEnum, WebhookClientData } from 'discord.js';
 import type { ActivityTypes } from 'discord.js/typings/enums';
 import { config } from 'dotenv-cra';
 import { join } from 'path';
@@ -15,6 +15,8 @@ config({
   debug: process.env.DOTENV_DEBUG_ENABLED ? envParseBoolean('DOTENV_DEBUG_ENABLED') : undefined,
   path: join(fileURLToPath(srcFolder), '.env')
 });
+
+export const OWNERS = ['268792781713965056'];
 
 function parsePresenceActivity(): ActivitiesOptions[] {
   const { CLIENT_PRESENCE_NAME } = process.env;
@@ -27,6 +29,18 @@ function parsePresenceActivity(): ActivitiesOptions[] {
     }
   ];
 }
+
+function parseWebhookError(): WebhookClientData | null {
+  const { WEBHOOK_ERROR_TOKEN } = process.env;
+  if (!WEBHOOK_ERROR_TOKEN) return null;
+
+  return {
+    id: envParseString('WEBHOOK_ERROR_ID'),
+    token: WEBHOOK_ERROR_TOKEN
+  };
+}
+
+export const WEBHOOK_ERROR = parseWebhookError();
 
 export const CLIENT_OPTIONS: ClientOptions = {
   intents: ['GUILDS'],

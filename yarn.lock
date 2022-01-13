@@ -313,6 +313,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@influxdata/influxdb-client-apis@npm:^1.21.0":
+  version: 1.21.0
+  resolution: "@influxdata/influxdb-client-apis@npm:1.21.0"
+  peerDependencies:
+    "@influxdata/influxdb-client": "*"
+  checksum: 1a656aa5874bf39b778570daf7c79b8bb66fc6e192dd9cc17a1345eb753f9dedf26609b84743cc9ce05dc04382ce157e4c64b372e37540f7294274af76ad7022
+  languageName: node
+  linkType: hard
+
+"@influxdata/influxdb-client@npm:^1.21.0":
+  version: 1.21.0
+  resolution: "@influxdata/influxdb-client@npm:1.21.0"
+  checksum: a7a8f1fda75e64fbcbd470c59e87108c2181267543bc3d7bd70b0d7b358cbfa31e4082a1f267eb0edfbf70645bf3f9821e8ce5c392c4c57f0c5fe53a36c75069
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -1818,6 +1834,8 @@ __metadata:
     "@commitlint/config-conventional": ^16.0.0
     "@discordjs/builders": ^0.11.0
     "@favware/graphql-pokemon": ^6.2.6
+    "@influxdata/influxdb-client": ^1.21.0
+    "@influxdata/influxdb-client-apis": ^1.21.0
     "@sapphire/decorators": ^3.1.6
     "@sapphire/discord-utilities": ^2.5.0
     "@sapphire/discord.js-utilities": ^4.2.0

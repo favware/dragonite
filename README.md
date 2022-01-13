@@ -1,8 +1,6 @@
 <div align="center">
 
-TODO: Icon
-
-<!-- <img height="200" src="https://cdn.favware.tech/img/archangel.png" alt="ArchAngel"/> -->
+<img height="200" src="https://cdn.favware.tech/img/dragonite-avatar.png" alt="Dragonite"/>
 
 # Dragonite
 
@@ -22,11 +20,12 @@ TODO: Icon
 - [ ] Add InfluxDB listeners
 - [ ] Add all Pokémon commands
 - [ ] Add Redis caching (redis-om? ioredis?)
-- [ ] Get logo
 - [ ] Add invite link to nginx config and update in README
 - [ ] Fix banner in ready event
 - [ ] Add success loggers for interaction handlers
 - [ ] Add fallbacks for autocomplete failures
+- [ ] Poststats task
+- [ ] Cleanup AnalyticsSchema
 
 ## Developing on Dragonite
 

@@ -18,10 +18,21 @@ export interface DragoniteEnv {
 
   CLIENT_VERSION: string;
 
+  CLIENT_ID: string;
   CLIENT_PRESENCE_NAME: string;
   CLIENT_PRESENCE_TYPE: string;
 
   COMMAND_GUILD_IDS: string;
 
   DISCORD_TOKEN: string;
+
+  WEBHOOK_ERROR_ENABLED: BooleanString;
+  WEBHOOK_ERROR_ID: string;
+  WEBHOOK_ERROR_TOKEN: string;
+
+  INFLUX_ENABLED: BooleanString;
+  INFLUX_URL: string;
+  INFLUX_TOKEN: string;
+  INFLUX_ORG: string;
+  INFLUX_ORG_ANALYTICS_BUCKET: string;
 }
