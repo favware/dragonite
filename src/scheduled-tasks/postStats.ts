@@ -17,7 +17,7 @@ const header = blueBright('[POST STATS   ]');
 //   BotsOnDiscord = 'bots.ondiscord.xyz'
 // }
 
-export class CronTask extends ScheduledTask {
+export class PostStatsTask extends ScheduledTask {
   public constructor(context: PieceContext) {
     super(context, {
       cron: '*/10 * * * *'

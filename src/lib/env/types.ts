@@ -16,11 +16,12 @@ export interface DragoniteEnv {
   NODE_ENV: 'test' | 'development' | 'production';
   DOTENV_DEBUG_ENABLED: BooleanString;
 
-  CLIENT_VERSION: string;
-
   CLIENT_ID: string;
+  CLIENT_VERSION: string;
   CLIENT_PRESENCE_NAME: string;
   CLIENT_PRESENCE_TYPE: string;
+
+  POKEMON_API_URL: string;
 
   COMMAND_GUILD_IDS: string;
 

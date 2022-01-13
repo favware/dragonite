@@ -1,6 +1,15 @@
 version: '3.8'
 
 services:
+  pokedex:
+    container_name: graphql_pokemon
+    image: ghcr.io/favware/graphql-pokemon:latest
+    restart: always
+    networks:
+      - infi
+    ports:
+      - '4000:4000'
+
   redis:
     command: 'redis-server --port 1424 --requirepass redis'
     container_name: redis

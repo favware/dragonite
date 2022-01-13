@@ -25,6 +25,7 @@
     "dev": "tsup --watch --onSuccess \"yarn start\""
   },
   "dependencies": {
+    "@apollo/client": "^3.5.7",
     "@discordjs/builders": "^0.11.0",
     "@influxdata/influxdb-client": "^1.21.0",
     "@influxdata/influxdb-client-apis": "^1.21.0",
@@ -38,7 +39,6 @@
     "@sapphire/stopwatch": "^1.2.5",
     "@sapphire/time-utilities": "^1.5.1",
     "@sapphire/utilities": "^3.2.0",
-    "apollo-boost": "^0.4.9",
     "bufferutil": "^4.0.6",
     "bull": "^4.2.0",
     "colorette": "^2.0.16",

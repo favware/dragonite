@@ -1,3 +1,4 @@
+import type { DragoniteApolloClient } from '#gql/ApolloClient';
 import type { AnalyticsData } from '#lib/structures/AnalyticsData';
 import type { EnGbHandler } from '#utils/Intl/EnGbHandler';
 import type { Nullish } from '@sapphire/utilities';
@@ -12,12 +13,14 @@ declare module '@sapphire/pieces' {
     analytics: AnalyticsData | Nullish;
     /** The webhook to use for the error event. */
     webhookError: WebhookClient | Nullish;
+    /** The GraphQL client to interact with the Pokémon API */
+    gqlClient: DragoniteApolloClient;
   }
 }
 
 declare module '@sapphire/framework' {
   interface ScheduledTasks {
-    cron: never;
+    postStats: never;
   }
 
   interface ChatInputCommandSuccessPayload {
