@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from './utils';
 
 export const getPokemon = gql`
   fragment flavors on Flavor {

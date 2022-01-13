@@ -1,4 +1,4 @@
-import { DragoniteApolloClient } from '#gql/DragoniteApolloClient';
+import { DragoniteGqlClient } from '#gql/DragoniteGqlClient';
 import { envParseBoolean } from '#lib/env';
 import { AnalyticsData } from '#lib/structures/AnalyticsData';
 import { CLIENT_OPTIONS, WEBHOOK_ERROR } from '#root/config';
@@ -11,6 +11,6 @@ export class DragoniteClient extends SapphireClient {
 
     container.analytics = envParseBoolean('INFLUX_ENABLED') ? new AnalyticsData() : null;
     container.webhookError = WEBHOOK_ERROR ? new WebhookClient(WEBHOOK_ERROR) : null;
-    container.gqlClient = new DragoniteApolloClient();
+    container.gqlClient = new DragoniteGqlClient();
   }
 }

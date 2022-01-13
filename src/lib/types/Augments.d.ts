@@ -1,4 +1,4 @@
-import type { DragoniteApolloClient } from '#gql/DragoniteApolloClient';
+import type { DragoniteGqlClient } from '#gql/DragoniteGqlClient';
 import type { AnalyticsData } from '#lib/structures/AnalyticsData';
 import type { EnGbHandler } from '#utils/Intl/EnGbHandler';
 import type { Nullish } from '@sapphire/utilities';
@@ -14,7 +14,7 @@ declare module '@sapphire/pieces' {
     /** The webhook to use for the error event. */
     webhookError: WebhookClient | Nullish;
     /** The GraphQL client to interact with the Pokémon API */
-    gqlClient: DragoniteApolloClient;
+    gqlClient: DragoniteGqlClient;
   }
 }
 

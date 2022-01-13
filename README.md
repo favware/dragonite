@@ -20,6 +20,7 @@
 - [x] Add InfluxDB listeners
 - [ ] Add all Pokémon commands
 - [ ] Add Redis caching (redis-om? ioredis?)
+- [ ] Add all the fetching commands to `DragoniteGqlClient`
 - [ ] Add fallbacks for autocomplete failures
 - [ ] Make post-stats task POST data to bot lists
 - [ ] Cleanup AnalyticsSchema
