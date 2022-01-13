@@ -19,13 +19,13 @@ TODO: Icon
 
 # TODO List
 
-- [ ]: Add InfluxDB listeners
-- [ ]: Add all Pokémon commands
-- [ ]: Add Redis caching (redis-om? ioredis?)
-- [ ]: Decide on name
-- [ ]: Get logo
-- [ ]: Change all occurrences of `something-secret` and `SomethingSecret`.
-- [ ]: Add invite link to nginx config and update in README
+- [ ] Add InfluxDB listeners
+- [ ] Add all Pokémon commands
+- [ ] Add Redis caching (redis-om? ioredis?)
+- [ ] Decide on name
+- [ ] Get logo
+- [ ] Change all occurrences of `something-secret` and `SomethingSecret`.
+- [ ] Add invite link to nginx config and update in README
 
 ## Developing on something-secret
 
