@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  redis:
+    command: 'redis-server --appendonly yes --port 1424 --requirepass redis'
+    container_name: redis
+    image: 'redis:alpine'
+    networks:
+      - infi
+    ports:
+      - '1424:1424'
+    restart: always
+    volumes:
+      - 'redis-data:/data'
+    logging:
+      options:
+        max-size: "20m"
+        max-file: "3"
+
+  influx:
+    command: 'influxd run --bolt-path /var/lib/influxdb2/influxd.bolt --engine-path /var/lib/influxdb2/engine --store bolt'
+    container_name: influxdb
+    image: 'influxdb:2.1-alpine'
+    networks:
+      - infi
+    ports:
+      - '1425:8086'
+    restart: always
+    volumes:
+      - 'influx-data:/var/lib/influxdb2'
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  something-secret:
+    build:
+      context: ../
+    container_name: something-secret
+    depends_on:
+      - redis
+      - influx
+    env_file:
+      - ../src/.env.development
+      - ../src/.env.development.local
+    image: something-secret:latest
+    logging:
+      options:
+        max-size: "1g"
+        max-file: "3"
+    networks:
+      - infi
+    restart: always
+    tty: true
+
+volumes:
+  influx-data:
+    external: true
+  redis-data:
+    external: true
+
+networks:
+  infi:

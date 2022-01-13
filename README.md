@@ -17,13 +17,27 @@ TODO: Icon
 
 ---
 
+# TODO List
+
+- [ ]: Add InfluxDB listeners
+- [ ]: Add all Pokémon commands
+- [ ]: Add Redis caching (redis-om? ioredis?)
+- [ ]: Decide on name
+- [ ]: Get logo
+- [ ]: Change all occurrences of `something-secret` and `SomethingSecret`.
+- [ ]: Add invite link to nginx config and update in README
+
 ## Developing on something-secret
 
 ### Requirements
 
 - [`Node.js`]: To run the project.
 - [`GraphQL-Pokemon`]: Pokemon API.
+
+### Optional additions
+
 - [`Redis`]: Caching of queries.
+- [`InfluxDB`]: Metrics platform.
 
 ### [Set-Up - Refer to CONTRIBUTING.md]
 
@@ -39,10 +53,11 @@ oversight in order to function and behave properly. These include, but are not l
 
 - [`GraphQL-Pokemon`]: Pokemon API.
 - [`Redis`]: Caching of queries.
+- [`InfluxDB`] in order to keep anonymous metrics on bot usage
 - Other external APIs, each requiring their own individual API keys.
 
-With this in mind, it is also worth noting that Skyra will in no way be capable of running on services such as [Glitch]
-or [Heroku]. A dedicated VPS (Virtual Private Server) is required in order to maintain the proper production
+With this in mind, it is also worth noting that something-secret will in no way be capable of running on services such
+as [Glitch] or [Heroku]. A dedicated VPS (Virtual Private Server) is required in order to maintain the proper production
 environment.
 
 ## Story
@@ -88,8 +103,10 @@ buttons below to donate through your method of choice.
 |    LiteCoin     |       `LZHvBkaJqKJRa8N7Dyu41Jd1PDBAofCik6`        |
 
 [`graphql-pokemon`]: https://github.com/favware/graphql-pokemon
+[`influxdb`]: https://v2.docs.influxdata.com/v2.0/get-started/
 [`node.js`]: https://nodejs.org/en/download/current/
 [`redis`]: https://redis.io
+[dexa]: https://github.com/favware/dexa
 [glitch]: https://glitch.com/
 [heroku]: https://www.heroku.com/
 [patreon]: https://donate.favware.tech/patreon
@@ -98,7 +115,5 @@ buttons below to donate through your method of choice.
 [sapphiredev]: https://github.com/sapphiredev
 [set-up - refer to contributing.md]: /.github/CONTRIBUTING.md
 [skyra]: https://skyra.pw
-[something-secret invite link]: https://invite.skyra.pw
-[support server]: https://join.skyra.pw
-
-[dexa]: [https://github.com/favware/dexa]
+[something-secret invite link]: https://invite.favware.tech/something-secret
+[support server]: https://join.favware.tech
