@@ -31,10 +31,10 @@
 
 - [`Node.js`]: To run the project.
 - [`GraphQL-Pokemon`]: Pokemon API.
+- [`Redis`]: Caching of queries and scheduling tasks.
 
 ### Optional additions
 
-- [`Redis`]: Caching of queries.
 - [`InfluxDB`]: Metrics platform.
 
 ### [Set-Up - Refer to CONTRIBUTING.md]
@@ -50,7 +50,7 @@ In addition, Dragonite was built with a dependence on many services which need c
 order to function and behave properly. These include, but are not limited to,
 
 - [`GraphQL-Pokemon`]: Pokemon API.
-- [`Redis`]: Caching of queries.
+- [`Redis`]: Caching of queries and scheduling tasks.
 - [`InfluxDB`] in order to keep anonymous metrics on bot usage
 - Other external APIs, each requiring their own individual API keys.
 
