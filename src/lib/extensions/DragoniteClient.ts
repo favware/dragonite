@@ -1,4 +1,4 @@
-import { DragoniteApolloClient } from '#gql/ApolloClient';
+import { DragoniteApolloClient } from '#gql/DragoniteApolloClient';
 import { envParseBoolean } from '#lib/env';
 import { AnalyticsData } from '#lib/structures/AnalyticsData';
 import { CLIENT_OPTIONS, WEBHOOK_ERROR } from '#root/config';

@@ -1,4 +1,4 @@
-import type { DragoniteApolloClient } from '#gql/ApolloClient';
+import type { DragoniteApolloClient } from '#gql/DragoniteApolloClient';
 import type { AnalyticsData } from '#lib/structures/AnalyticsData';
 import type { EnGbHandler } from '#utils/Intl/EnGbHandler';
 import type { Nullish } from '@sapphire/utilities';
