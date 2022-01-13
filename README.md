@@ -17,7 +17,7 @@
 
 # TODO List
 
-- [ ] Add InfluxDB listeners
+- [x] Add InfluxDB listeners
 - [ ] Add all Pokémon commands
 - [ ] Add Redis caching (redis-om? ioredis?)
 - [ ] Add fallbacks for autocomplete failures
