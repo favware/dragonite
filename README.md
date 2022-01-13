@@ -26,6 +26,9 @@ TODO: Icon
 - [ ] Get logo
 - [ ] Change all occurrences of `something-secret` and `SomethingSecret`.
 - [ ] Add invite link to nginx config and update in README
+- [ ] Fix banner in ready event
+- [ ] Add success loggers for interaction handlers
+- [ ] Add fallbacks for autocomplete failures
 
 ## Developing on something-secret
 
