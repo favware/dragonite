@@ -1,11 +1,12 @@
 import { envParseString } from '#lib/env';
-import { InMemoryCache, type NormalizedCacheObject } from 'apollo-cache-inmemory';
+// import { InMemoryCache, type NormalizedCacheObject } from 'apollo-cache-inmemory';
 import ApolloClient from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import fetch from 'cross-fetch';
 import os from 'node:os';
+import { EmptyInMemoryCache } from './EmptyInMemoryCache';
 
-export class DragoniteApolloClient extends ApolloClient<NormalizedCacheObject> {
+export class DragoniteApolloClient extends ApolloClient<never> {
   public constructor() {
     super({
       link: new HttpLink({
@@ -17,9 +18,10 @@ export class DragoniteApolloClient extends ApolloClient<NormalizedCacheObject> {
         },
         fetch
       }),
-      cache: new InMemoryCache({
-        resultCaching: false
-      }),
+      // cache: new InMemoryCache({
+      //   resultCaching: false
+      // }),
+      cache: new EmptyInMemoryCache(),
       defaultOptions: {
         watchQuery: {
           fetchPolicy: 'no-cache',
