@@ -428,6 +428,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sapphire/fetch@npm:^2.0.4":
+  version: 2.0.4
+  resolution: "@sapphire/fetch@npm:2.0.4"
+  dependencies:
+    cross-fetch: ^3.1.4
+  checksum: 21bab22916d192326b0ed2d37d026b79447e06975965075011be5e6896a231fe0c56a7e108cf135450e9b11c30035a0590f3f88141ccedbe1096426cbaf7f39f
+  languageName: node
+  linkType: hard
+
 "@sapphire/framework@npm:next":
   version: 3.0.0-next.18259a7.0
   resolution: "@sapphire/framework@npm:3.0.0-next.18259a7.0"
@@ -1916,6 +1925,7 @@ __metadata:
     "@sapphire/discord-utilities": ^2.5.0
     "@sapphire/discord.js-utilities": ^4.2.0
     "@sapphire/eslint-config": ^4.0.9
+    "@sapphire/fetch": ^2.0.4
     "@sapphire/framework": next
     "@sapphire/plugin-logger": ^2.1.2
     "@sapphire/plugin-scheduled-tasks": ^2.1.0
