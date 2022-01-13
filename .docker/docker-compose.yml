@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   redis:
-    command: 'redis-server --appendonly yes --port 1424 --requirepass redis'
+    command: 'redis-server --port 1424 --requirepass redis'
     container_name: redis
     image: 'redis:alpine'
     networks:
@@ -10,8 +10,6 @@ services:
     ports:
       - '1424:1424'
     restart: always
-    volumes:
-      - 'redis-data:/data'
     logging:
       options:
         max-size: '20m'
@@ -55,8 +53,6 @@ services:
 
 volumes:
   influx-data:
-    external: true
-  redis-data:
     external: true
 
 networks:
