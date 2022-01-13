@@ -29,6 +29,7 @@ TODO: Icon
 - [ ] Fix banner in ready event
 - [ ] Add success loggers for interaction handlers
 - [ ] Add fallbacks for autocomplete failures
+- [ ] Disable Redis Disk cache for perf
 
 ## Developing on something-secret
 
