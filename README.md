@@ -2,7 +2,7 @@
 
 <img height="200" src="https://cdn.favware.tech/img/dragonite-avatar.png" alt="Dragonite"/>
 
-# Dragonite
+# [Dragonite]
 
 **A Pokémon information Discord bot built around Slash Commands.**
 
@@ -40,21 +40,21 @@
 
 ## A note to aspiring developers who want to self host Dragonite
 
-The developer team does not support the idea of other self-hosted instances of Dragonite. The team prides itself
-on providing the best experience and support for the end-users. As such, an offshoot or unaffiliated mirror of
-Dragonite may cause ill effects to the reputation and image of Dragonite. If you wish to see new features
-implemented, please refer to the developing guidelines linked above.
+The developer team does not support the idea of other self-hosted instances of Dragonite. The team prides itself on
+providing the best experience and support for the end-users. As such, an offshoot or unaffiliated mirror of Dragonite
+may cause ill effects to the reputation and image of Dragonite. If you wish to see new features implemented, please
+refer to the developing guidelines linked above.
 
-In addition, Dragonite was built with a dependence on many services which need consistent maintenance and
-oversight in order to function and behave properly. These include, but are not limited to,
+In addition, Dragonite was built with a dependence on many services which need consistent maintenance and oversight in
+order to function and behave properly. These include, but are not limited to,
 
 - [`GraphQL-Pokemon`]: Pokemon API.
 - [`Redis`]: Caching of queries.
 - [`InfluxDB`] in order to keep anonymous metrics on bot usage
 - Other external APIs, each requiring their own individual API keys.
 
-With this in mind, it is also worth noting that Dragonite will in no way be capable of running on services such
-as [Glitch] or [Heroku]. A dedicated VPS (Virtual Private Server) is required in order to maintain the proper production
+With this in mind, it is also worth noting that Dragonite will in no way be capable of running on services such as
+[Glitch] or [Heroku]. A dedicated VPS (Virtual Private Server) is required in order to maintain the proper production
 environment.
 
 ## Story
@@ -114,3 +114,4 @@ buttons below to donate through your method of choice.
 [skyra]: https://skyra.pw
 [dragonite invite link]: https://dragonite.favware.tech
 [support server]: https://join.favware.tech
+[dragonite]: https://bulbapedia.bulbagarden.net/wiki/Dragonite_(Pokémon)
