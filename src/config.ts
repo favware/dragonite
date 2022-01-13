@@ -41,7 +41,7 @@ function parseWebhookError(): WebhookClientData | null {
   };
 }
 
-export function parseRedisOption() {
+export function parseRedisOption(): { port: number; password: string; host: string } {
   return {
     port: envParseInteger('REDIS_PORT'),
     password: envParseString('REDIS_PASSWORD'),
