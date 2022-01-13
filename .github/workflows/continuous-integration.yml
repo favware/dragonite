@@ -46,7 +46,7 @@ jobs:
         run: yarn typecheck
 
   Building:
-    name: Compiling TypeScript
+    name: Build code
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Project
