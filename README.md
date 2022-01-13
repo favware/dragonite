@@ -22,7 +22,6 @@ TODO: Icon
 - [ ] Add InfluxDB listeners
 - [ ] Add all Pokémon commands
 - [ ] Add Redis caching (redis-om? ioredis?)
-- [ ] Decide on name
 - [ ] Get logo
 - [ ] Add invite link to nginx config and update in README
 - [ ] Fix banner in ready event
