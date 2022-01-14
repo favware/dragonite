@@ -1,4 +1,5 @@
 import { envParseString } from '#lib/env';
+import { RedisKeys } from '#lib/redis-cache/RedisCacheClient';
 import { hideLinkEmbed, inlineCode } from '@discordjs/builders';
 import type {
   AbilitiesEnum,
@@ -27,6 +28,9 @@ export class GqlClient {
 
   public async getAbility(ability: AbilitiesEnum) {
     const result = await fromAsync(async () => {
+      const abilityFromCache = await container.gqlRedisCache.fetch<RedisKeys.GetAbility>(RedisKeys.GetAbility, ability);
+      if (abilityFromCache) return abilityFromCache;
+
       const apiResult = await this.fetchGraphQLPokemon<'getAbility'>(getAbility, { ability });
       return apiResult.data.getAbility;
     });
@@ -40,6 +44,9 @@ export class GqlClient {
 
   public async getItem(item: ItemsEnum) {
     const result = await fromAsync(async () => {
+      const itemFromCache = await container.gqlRedisCache.fetch<RedisKeys.GetItem>(RedisKeys.GetItem, item);
+      if (itemFromCache) return itemFromCache;
+
       const apiResult = await this.fetchGraphQLPokemon<'getItem'>(getItem, { item });
       return apiResult.data.getItem;
     });
@@ -53,6 +60,9 @@ export class GqlClient {
 
   public async getMove(move: MovesEnum) {
     const result = await fromAsync(async () => {
+      const moveFromCache = await container.gqlRedisCache.fetch<RedisKeys.GetMove>(RedisKeys.GetMove, move);
+      if (moveFromCache) return moveFromCache;
+
       const apiResult = await this.fetchGraphQLPokemon<'getMove'>(getMove, { move });
       return apiResult.data.getMove;
     });
@@ -66,6 +76,9 @@ export class GqlClient {
 
   public async getFlavors(pokemon: PokemonEnum) {
     const result = await fromAsync(async () => {
+      const pokemonFromCache = await container.gqlRedisCache.fetch<RedisKeys.GetFlavors>(RedisKeys.GetFlavors, pokemon);
+      if (pokemonFromCache) return pokemonFromCache;
+
       const apiResult = await this.fetchGraphQLPokemon<'getPokemon'>(getFlavorTexts, { pokemon });
       return apiResult.data.getPokemon;
     });
@@ -80,6 +93,9 @@ export class GqlClient {
 
   public async getPokemon(pokemon: PokemonEnum) {
     const result = await fromAsync(async () => {
+      const pokemonFromCache = await container.gqlRedisCache.fetch<RedisKeys.GetPokemon>(RedisKeys.GetPokemon, pokemon);
+      if (pokemonFromCache) return pokemonFromCache;
+
       const apiResult = await this.fetchGraphQLPokemon<'getPokemon'>(getPokemon, { pokemon });
       return apiResult.data.getPokemon;
     });
@@ -94,6 +110,9 @@ export class GqlClient {
 
   public async getSprites(pokemon: PokemonEnum) {
     const result = await fromAsync(async () => {
+      const pokemonFromCache = await container.gqlRedisCache.fetch<RedisKeys.GetSprites>(RedisKeys.GetSprites, pokemon);
+      if (pokemonFromCache) return pokemonFromCache;
+
       const apiResult = await this.fetchGraphQLPokemon<'getPokemon'>(getPokemonSprites, { pokemon });
       return apiResult.data.getPokemon;
     });
@@ -106,8 +125,14 @@ export class GqlClient {
     return result.value;
   }
 
-  public async getLearnset(pokemon: PokemonEnum, moves: MovesEnum[], generation: number) {
+  public async getLearnset(pokemon: PokemonEnum, moves: MovesEnum[], generation = 8) {
     const result = await fromAsync(async () => {
+      const learnsetFromCache = await container.gqlRedisCache.fetch<RedisKeys.GetLearnset>(
+        RedisKeys.GetLearnset,
+        `${pokemon}|${generation}|${moves.join(',')}`
+      );
+      if (learnsetFromCache) return learnsetFromCache;
+
       const apiResult = await this.fetchGraphQLPokemon<'getLearnset'>(getLearnset, { pokemon, moves, generation });
       return apiResult.data.getLearnset;
     });
@@ -125,8 +150,14 @@ export class GqlClient {
     return result.value;
   }
 
-  public async getTypeMatchup(types: [TypesEnum, TypesEnum]) {
+  public async getTypeMatchup(types: TypesEnum[]) {
     const result = await fromAsync(async () => {
+      const typeMatchupFromCache = await container.gqlRedisCache.fetch<RedisKeys.GetTypeMatchup>(
+        RedisKeys.GetTypeMatchup,
+        types.length === 1 ? types[0] : `${types[0]},${types[1]}`
+      );
+      if (typeMatchupFromCache) return typeMatchupFromCache;
+
       const apiResult = await this.fetchGraphQLPokemon<'getTypeMatchup'>(getTypeMatchup, { types });
       return apiResult.data.getTypeMatchup;
     });

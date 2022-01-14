@@ -82,9 +82,9 @@ type RedisKeyQuery<K extends RedisKeys> = K extends 'getAbility'
   : K extends 'getSprites'
   ? PokemonEnum
   : K extends 'getLearnset'
-  ? `${PokemonEnum}|${string}`
+  ? `${PokemonEnum}|${number}|${string}`
   : K extends 'getTypeMatchup'
-  ? TypesEnum
+  ? `${TypesEnum}` | `${TypesEnum},${TypesEnum}`
   : never;
 
 type RedisData<K extends RedisKeys> = K extends 'getAbility'
