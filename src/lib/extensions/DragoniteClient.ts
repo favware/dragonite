@@ -1,5 +1,6 @@
-import { DragoniteGqlClient } from '#gql/DragoniteGqlClient';
+import { GqlClient } from '#gql/GqlClient';
 import { envParseBoolean } from '#lib/env';
+import { RedisCacheClient } from '#lib/redis-cache/RedisCacheClient';
 import { AnalyticsData } from '#lib/structures/AnalyticsData';
 import { CLIENT_OPTIONS, WEBHOOK_ERROR } from '#root/config';
 import { container, SapphireClient } from '@sapphire/framework';
@@ -11,6 +12,7 @@ export class DragoniteClient extends SapphireClient {
 
     container.analytics = envParseBoolean('INFLUX_ENABLED') ? new AnalyticsData() : null;
     container.webhookError = WEBHOOK_ERROR ? new WebhookClient(WEBHOOK_ERROR) : null;
-    container.gqlClient = new DragoniteGqlClient();
+    container.gqlClient = new GqlClient();
+    container.gqlRedisCache = new RedisCacheClient();
   }
 }

@@ -255,7 +255,7 @@ export const getTypeMatchup = gql`
   }
 `;
 
-export const getPokemonSprite = gql`
+export const getPokemonSprites = gql`
   query getPokemonSprite($pokemon: PokemonEnum!) {
     getPokemon(pokemon: $pokemon) {
       sprite

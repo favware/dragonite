@@ -20,10 +20,11 @@
 - [x] Add InfluxDB listeners
 - [ ] Add all Pokémon commands
 - [ ] Add Redis caching (ioredis)
-- [ ] Add all the fetching commands to `DragoniteGqlClient`
+- [x] Add all the fetching commands to `DragoniteGqlClient`
 - [ ] Add fallbacks for autocomplete failures
 - [ ] Make post-stats task POST data to bot lists
 - [ ] Cleanup AnalyticsSchema
+- [ ] Add class for common pokemon formatters such as enum to species
 
 ## Developing on Dragonite
 

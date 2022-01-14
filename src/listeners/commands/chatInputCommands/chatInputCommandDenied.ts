@@ -6,7 +6,7 @@ export class UserListener extends Listener<typeof Events.ChatInputCommandDenied>
 
     return interaction.reply({
       content,
-      allowedMentions: { users: [interaction.member.user.id], roles: [] },
+      allowedMentions: { users: [interaction.user.id], roles: [] },
       ephemeral: true
     });
   }

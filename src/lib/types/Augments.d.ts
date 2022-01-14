@@ -1,9 +1,9 @@
-import type { DragoniteGqlClient } from '#gql/DragoniteGqlClient';
+import type { GqlClient } from '#gql/GqlClient';
+import type { RedisCacheClient } from '#lib/redis-cache/RedisCacheClient';
 import type { AnalyticsData } from '#lib/structures/AnalyticsData';
 import type { EnGbHandler } from '#utils/Intl/EnGbHandler';
 import type { Nullish } from '@sapphire/utilities';
 import type { WebhookClient } from 'discord.js';
-import type { GuildCommandInteraction, GuildContextMenuInteraction } from './Discord';
 
 declare module '@sapphire/pieces' {
   interface Container {
@@ -14,7 +14,9 @@ declare module '@sapphire/pieces' {
     /** The webhook to use for the error event. */
     webhookError: WebhookClient | Nullish;
     /** The GraphQL client to interact with the Pokémon API */
-    gqlClient: DragoniteGqlClient;
+    gqlClient: GqlClient;
+    /** The Redis Cache connection for GraphQL queries */
+    gqlRedisCache: RedisCacheClient;
   }
 }
 
@@ -23,19 +25,7 @@ declare module '@sapphire/framework' {
     postStats: never;
   }
 
-  interface ChatInputCommandSuccessPayload {
-    readonly interaction: GuildCommandInteraction;
-  }
-
-  interface ChatInputCommandDeniedPayload {
-    readonly interaction: GuildCommandInteraction;
-  }
-
-  interface ContextMenuCommandSuccessPayload {
-    readonly interaction: GuildContextMenuInteraction;
-  }
-
-  interface ContextMenuCommandDeniedPayload {
-    readonly interaction: GuildContextMenuInteraction;
+  interface Preconditions {
+    OwnerOnly: never;
   }
 }

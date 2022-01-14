@@ -22,8 +22,8 @@ function getGuildInfo(guild: Guild) {
 export function getSuccessLoggerData({ interaction, command }: ContextMenuCommandSuccessPayload | ChatInputCommandSuccessPayload) {
   const shard = getShardInfo(interaction.guild?.shardId ?? 0);
   const commandName = getCommandInfo(command);
-  const author = getAuthorInfo(interaction.member.user);
-  const sentAt = getGuildInfo(interaction.guild);
+  const author = getAuthorInfo(interaction.user);
+  const sentAt = interaction.guild ? getGuildInfo(interaction.guild) : '';
 
   return { shard, commandName, author, sentAt };
 }

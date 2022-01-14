@@ -20,7 +20,7 @@ export class UserListener extends Listener<typeof Events.ChatInputCommandError> 
     const { client, logger } = this.container;
     // If the error was an AbortError or an Internal Server Error, tell the user to re-try:
     if (error.name === 'AbortError' || error.message === 'Internal Server Error') {
-      logger.warn(`${this.getWarnError(interaction)} (${interaction.member!.user.id}) | ${error.constructor.name}`);
+      logger.warn(`${this.getWarnError(interaction)} (${interaction.user.id}) | ${error.constructor.name}`);
       return this.alert(interaction, 'I had a small network error when messaging Discord. Please run this command again!');
     }
 
@@ -32,7 +32,7 @@ export class UserListener extends Listener<typeof Events.ChatInputCommandError> 
 
       client.emit(Events.Error, error);
     } else {
-      logger.warn(`${this.getWarnError(interaction)} (${interaction.member!.user.id}) | ${error.constructor.name}`);
+      logger.warn(`${this.getWarnError(interaction)} (${interaction.user.id}) | ${error.constructor.name}`);
     }
 
     // Send a detailed message:
@@ -50,12 +50,12 @@ export class UserListener extends Listener<typeof Events.ChatInputCommandError> 
   }
 
   private generateUnexpectedErrorMessage(interaction: CommandInteraction, error: Error) {
-    if (OWNERS.includes(interaction.member!.user.id)) return codeBlock('js', error.stack!);
+    if (OWNERS.includes(interaction.user.id)) return codeBlock('js', error.stack!);
     return `${Emojis.RedCross} I found an unexpected error, please report the steps you have taken to my developers!`;
   }
 
   private stringError(interaction: CommandInteraction, error: string) {
-    return this.alert(interaction, `${Emojis.RedCross} Dear ${userMention(interaction.member!.user.id)}, ${error}`);
+    return this.alert(interaction, `${Emojis.RedCross} Dear ${userMention(interaction.user.id)}, ${error}`);
   }
 
   private argumentError(interaction: CommandInteraction, error: ArgumentError<unknown>) {
@@ -83,7 +83,7 @@ export class UserListener extends Listener<typeof Events.ChatInputCommandError> 
   private alert(interaction: CommandInteraction, content: string) {
     return interaction.reply({
       content,
-      allowedMentions: { users: interaction.member ? [interaction.member.user.id] : [], roles: [] },
+      allowedMentions: { users: [interaction.user.id], roles: [] },
       ephemeral: true
     });
   }
