@@ -36,8 +36,14 @@ export class GqlClient {
     });
 
     if (isErr(result)) {
-      this.error('AbilityQueryFail', `I am sorry, but that query failed. Are you sure ${ability} is actually an ability in Pokémon?`);
+      return this.error('AbilityQueryFail', `I am sorry, but that query failed. Are you sure ${ability} is actually an ability in Pokémon?`);
     }
+
+    await container.gqlRedisCache.insert<RedisKeys.GetAbility>(
+      RedisKeys.GetAbility, //
+      ability,
+      result.value
+    );
 
     return result.value;
   }
@@ -52,8 +58,14 @@ export class GqlClient {
     });
 
     if (isErr(result)) {
-      this.error('ItemQueryFail', `I am sorry, but that query failed. Are you sure ${item} is actually an item in Pokémon?`);
+      return this.error('ItemQueryFail', `I am sorry, but that query failed. Are you sure ${item} is actually an item in Pokémon?`);
     }
+
+    await container.gqlRedisCache.insert<RedisKeys.GetItem>(
+      RedisKeys.GetItem, //
+      item,
+      result.value
+    );
 
     return result.value;
   }
@@ -68,8 +80,14 @@ export class GqlClient {
     });
 
     if (isErr(result)) {
-      this.error('MoveQueryFail', `I am sorry, but that query failed. Are you sure ${move} is actually a move in Pokémon?`);
+      return this.error('MoveQueryFail', `I am sorry, but that query failed. Are you sure ${move} is actually a move in Pokémon?`);
     }
+
+    await container.gqlRedisCache.insert<RedisKeys.GetMove>(
+      RedisKeys.GetMove, //
+      move,
+      result.value
+    );
 
     return result.value;
   }
@@ -85,8 +103,14 @@ export class GqlClient {
 
     if (isErr(result)) {
       // TODO: Enum entry to species for pokemon
-      this.error('FlavorQueryFail', `I am sorry, but that query failed. Are you sure ${pokemon} is actually a Pokémon?`);
+      return this.error('FlavorQueryFail', `I am sorry, but that query failed. Are you sure ${pokemon} is actually a Pokémon?`);
     }
+
+    await container.gqlRedisCache.insert<RedisKeys.GetFlavors>(
+      RedisKeys.GetFlavors, //
+      pokemon,
+      result.value
+    );
 
     return result.value;
   }
@@ -102,8 +126,14 @@ export class GqlClient {
 
     if (isErr(result)) {
       // TODO: Enum entry to species for pokemon
-      this.error('PokemonQueryFail', `I am sorry, but that query failed. Are you sure ${pokemon} is actually a Pokémon?`);
+      return this.error('PokemonQueryFail', `I am sorry, but that query failed. Are you sure ${pokemon} is actually a Pokémon?`);
     }
+
+    await container.gqlRedisCache.insert<RedisKeys.GetPokemon>(
+      RedisKeys.GetPokemon, //
+      pokemon,
+      result.value
+    );
 
     return result.value;
   }
@@ -119,8 +149,14 @@ export class GqlClient {
 
     if (isErr(result)) {
       // TODO: Enum entry to species for pokemon
-      this.error('SpriteQueryFail', `I am sorry, but that query failed. Are you sure ${pokemon} is actually a Pokémon?`);
+      return this.error('SpriteQueryFail', `I am sorry, but that query failed. Are you sure ${pokemon} is actually a Pokémon?`);
     }
+
+    await container.gqlRedisCache.insert<RedisKeys.GetSprites>(
+      RedisKeys.GetSprites, //
+      pokemon,
+      result.value
+    );
 
     return result.value;
   }
@@ -139,13 +175,19 @@ export class GqlClient {
 
     if (isErr(result)) {
       // TODO: Enum entry to species for pokemon
-      this.error(
+      return this.error(
         'LearnsetQueryFail',
         `I am sorry, but that query failed. Are you sure you ${inlineCode(
           toTitleCase(pokemon)
         )} is actually a Pokémon and ${container.i18n.listAnd.format(moves)} are actually moves?`
       );
     }
+
+    await container.gqlRedisCache.insert<RedisKeys.GetLearnset>(
+      RedisKeys.GetLearnset, //
+      `${pokemon}|${generation}|${moves.join(',')}`,
+      result.value
+    );
 
     return result.value;
   }
@@ -159,17 +201,24 @@ export class GqlClient {
       if (typeMatchupFromCache) return typeMatchupFromCache;
 
       const apiResult = await this.fetchGraphQLPokemon<'getTypeMatchup'>(getTypeMatchup, { types });
+
       return apiResult.data.getTypeMatchup;
     });
 
     if (isErr(result)) {
       const typesMappedWithInlineCode = types.map((type) => inlineCode(toTitleCase(type)));
 
-      this.error(
+      return this.error(
         'LearnsetQueryFail',
         `I am sorry, but that query failed. Are you sure ${container.i18n.listAnd.format(typesMappedWithInlineCode)} are actually types in Pokémon?`
       );
     }
+
+    await container.gqlRedisCache.insert<RedisKeys.GetTypeMatchup>(
+      RedisKeys.GetTypeMatchup, //
+      types.length === 1 ? types[0] : `${types[0]},${types[1]}`,
+      result.value
+    );
 
     return result.value;
   }
