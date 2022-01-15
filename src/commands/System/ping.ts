@@ -1,7 +1,7 @@
 import { Emojis } from '#utils/constants';
 import { getGuildIds, isMessageInstance } from '#utils/utils';
 import { ApplyOptions } from '@sapphire/decorators';
-import { ChatInputCommand, Command } from '@sapphire/framework';
+import { Command, type ChatInputCommand } from '@sapphire/framework';
 import type { CommandInteraction, Message } from 'discord.js';
 
 @ApplyOptions<ChatInputCommand.Options>({

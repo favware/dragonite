@@ -1,6 +1,6 @@
 import { getSuccessLoggerData } from '#utils/functions/successLogger';
 import { ApplyOptions } from '@sapphire/decorators';
-import { ChatInputCommandSuccessPayload, Events, Listener, LogLevel } from '@sapphire/framework';
+import { Events, Listener, LogLevel, type ChatInputCommandSuccessPayload } from '@sapphire/framework';
 import type { Logger } from '@sapphire/plugin-logger';
 
 @ApplyOptions<Listener.Options>({ event: Events.ChatInputCommandSuccess })

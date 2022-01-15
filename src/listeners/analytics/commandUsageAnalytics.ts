@@ -2,7 +2,7 @@ import { AnalyticsListener } from '#lib/structures/AnalyticsListener';
 import { Actions, Points, Tags } from '#lib/types/AnalyticsSchema';
 import { Point } from '@influxdata/influxdb-client';
 import { ApplyOptions } from '@sapphire/decorators';
-import { ChatInputCommandSuccessPayload, Events } from '@sapphire/framework';
+import { Events, type ChatInputCommandSuccessPayload } from '@sapphire/framework';
 
 @ApplyOptions<AnalyticsListener.Options>({ event: Events.ChatInputCommandSuccess })
 export class UserAnalyticsEvent extends AnalyticsListener {

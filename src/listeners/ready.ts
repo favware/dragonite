@@ -1,7 +1,7 @@
 import { envParseBoolean, envParseString } from '#lib/env';
 import { DragoniteEvents } from '#lib/types/Enums';
 import { ApplyOptions } from '@sapphire/decorators';
-import { Listener, Store } from '@sapphire/framework';
+import { Listener, type Store } from '@sapphire/framework';
 import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
 
 @ApplyOptions<Listener.Options>({ once: true })

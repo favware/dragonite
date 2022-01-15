@@ -1,6 +1,6 @@
 import { envParseArray } from '#lib/env';
 import type { APIMessage } from 'discord-api-types';
-import { CommandInteraction, Message } from 'discord.js';
+import { Message, type CommandInteraction } from 'discord.js';
 
 export function getGuildIds(): string[] {
   return envParseArray('COMMAND_GUILD_IDS', []);

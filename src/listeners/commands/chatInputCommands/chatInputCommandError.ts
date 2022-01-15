@@ -2,10 +2,10 @@ import { OWNERS } from '#root/config';
 import { Emojis, rootFolder, ZeroWidthSpace } from '#utils/constants';
 import { isMessageInstance } from '#utils/utils';
 import { bold, hideLinkEmbed, hyperlink, userMention } from '@discordjs/builders';
-import { ArgumentError, ChatInputCommandErrorPayload, Command, Events, Listener, UserError } from '@sapphire/framework';
+import { ArgumentError, Events, Listener, UserError, type ChatInputCommandErrorPayload, type Command } from '@sapphire/framework';
 import { codeBlock, isNullish } from '@sapphire/utilities';
-import { APIMessage, RESTJSONErrorCodes } from 'discord-api-types/v9';
-import { CommandInteraction, DiscordAPIError, HTTPError, Message, MessageEmbed } from 'discord.js';
+import { RESTJSONErrorCodes, type APIMessage } from 'discord-api-types/v9';
+import { DiscordAPIError, HTTPError, MessageEmbed, type CommandInteraction, type Message } from 'discord.js';
 import { fileURLToPath } from 'url';
 
 const ignoredCodes = [RESTJSONErrorCodes.UnknownChannel, RESTJSONErrorCodes.UnknownMessage];

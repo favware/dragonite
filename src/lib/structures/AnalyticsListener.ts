@@ -1,12 +1,12 @@
 import { envParseBoolean } from '#lib/env';
 import { Tags } from '#lib/types/AnalyticsSchema';
 import type { Point } from '@influxdata/influxdb-client';
-import { Listener, ListenerOptions, PieceContext } from '@sapphire/framework';
+import { Listener } from '@sapphire/framework';
 
 export abstract class AnalyticsListener extends Listener {
   public tags: [Tags, string][] = [];
 
-  public constructor(context: PieceContext, options?: AnalyticsListener.Options) {
+  public constructor(context: Listener.Context, options?: AnalyticsListener.Options) {
     super(context, { ...options, enabled: envParseBoolean('INFLUX_ENABLED') });
   }
 
@@ -37,5 +37,5 @@ export abstract class AnalyticsListener extends Listener {
 }
 
 export namespace AnalyticsListener {
-  export type Options = Omit<ListenerOptions, 'enabled'>;
+  export type Options = Omit<Listener.Options, 'enabled'>;
 }

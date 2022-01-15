@@ -1,7 +1,7 @@
 import { BrandingColors } from '#utils/constants';
 import { getGuildIds } from '#utils/utils';
 import { ApplyOptions } from '@sapphire/decorators';
-import { ChatInputCommand, Command, version as sapphireVersion } from '@sapphire/framework';
+import { Command, version as sapphireVersion, type ChatInputCommand } from '@sapphire/framework';
 import { roundNumber } from '@sapphire/utilities';
 import { MessageEmbed, version } from 'discord.js';
 import { cpus, uptime, type CpuInfo } from 'node:os';

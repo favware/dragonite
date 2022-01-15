@@ -1,4 +1,4 @@
-import { Listener, Logger, LogLevel } from '@sapphire/framework';
+import { Listener, LogLevel, type Logger } from '@sapphire/framework';
 
 export class UserListener extends Listener {
   public override run(message: string) {

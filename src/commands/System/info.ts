@@ -1,6 +1,6 @@
 import { getGuildIds } from '#utils/utils';
 import { ApplyOptions } from '@sapphire/decorators';
-import { ChatInputCommand, Command } from '@sapphire/framework';
+import { Command, type ChatInputCommand } from '@sapphire/framework';
 
 @ApplyOptions<ChatInputCommand.Options>({
   description: 'Provides some information about dragonite.',
