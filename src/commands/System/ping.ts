@@ -9,7 +9,7 @@ import type { CommandInteraction, Message } from 'discord.js';
   chatInputCommand: {
     register: true,
     guildIds: getGuildIds(),
-    idHints: []
+    idHints: ['931727501414240316']
   }
 })
 export class UserCommand extends Command {
