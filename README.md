@@ -17,10 +17,8 @@
 
 # TODO List
 
-- [x] Add InfluxDB listeners
 - [ ] Add fallbacks for autocomplete failures
 - [ ] Make post-stats task POST data to bot lists
-- [ ] Cleanup AnalyticsSchema
 
 ## Commands
 
