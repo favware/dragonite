@@ -1,4 +1,5 @@
 import { envParseString } from '#lib/env';
+import { getAbility, getFlavorTexts, getItem, getLearnset, getMove, getPokemon, getPokemonSprites, getTypeMatchup } from '#lib/gql/queries';
 import { RedisKeys } from '#lib/redis-cache/RedisCacheClient';
 import { pokemonEnumToSpecies } from '#utils/functions/pokemonParsers';
 import { hideLinkEmbed, inlineCode } from '@discordjs/builders';
@@ -20,7 +21,6 @@ import { fetch, FetchMethods, FetchResultTypes } from '@sapphire/fetch';
 import { container, fromAsync, isErr, UserError } from '@sapphire/framework';
 import { toTitleCase } from '@sapphire/utilities';
 import os from 'node:os';
-import { getAbility, getFlavorTexts, getItem, getLearnset, getMove, getPokemon, getPokemonSprites, getTypeMatchup } from './queries';
 
 export class GqlClient {
   #uri = envParseString('POKEMON_API_URL');
