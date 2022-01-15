@@ -1,5 +1,6 @@
 import { envParseString } from '#lib/env';
 import { RedisKeys } from '#lib/redis-cache/RedisCacheClient';
+import { pokemonEnumToSpecies } from '#utils/functions/pokemonParsers';
 import { hideLinkEmbed, inlineCode } from '@discordjs/builders';
 import type {
   AbilitiesEnum,
@@ -102,8 +103,10 @@ export class GqlClient {
     });
 
     if (isErr(result)) {
-      // TODO: Enum entry to species for pokemon
-      return this.error('FlavorQueryFail', `I am sorry, but that query failed. Are you sure ${pokemon} is actually a Pokémon?`);
+      return this.error(
+        'FlavorQueryFail',
+        `I am sorry, but that query failed. Are you sure ${inlineCode(pokemonEnumToSpecies(pokemon))} is actually a Pokémon?`
+      );
     }
 
     await container.gqlRedisCache.insert<RedisKeys.GetFlavors>(
@@ -125,8 +128,10 @@ export class GqlClient {
     });
 
     if (isErr(result)) {
-      // TODO: Enum entry to species for pokemon
-      return this.error('PokemonQueryFail', `I am sorry, but that query failed. Are you sure ${pokemon} is actually a Pokémon?`);
+      return this.error(
+        'PokemonQueryFail',
+        `I am sorry, but that query failed. Are you sure ${inlineCode(pokemonEnumToSpecies(pokemon))} is actually a Pokémon?`
+      );
     }
 
     await container.gqlRedisCache.insert<RedisKeys.GetPokemon>(
@@ -148,8 +153,10 @@ export class GqlClient {
     });
 
     if (isErr(result)) {
-      // TODO: Enum entry to species for pokemon
-      return this.error('SpriteQueryFail', `I am sorry, but that query failed. Are you sure ${pokemon} is actually a Pokémon?`);
+      return this.error(
+        'SpriteQueryFail',
+        `I am sorry, but that query failed. Are you sure ${inlineCode(pokemonEnumToSpecies(pokemon))} is actually a Pokémon?`
+      );
     }
 
     await container.gqlRedisCache.insert<RedisKeys.GetSprites>(
@@ -174,11 +181,10 @@ export class GqlClient {
     });
 
     if (isErr(result)) {
-      // TODO: Enum entry to species for pokemon
       return this.error(
         'LearnsetQueryFail',
         `I am sorry, but that query failed. Are you sure you ${inlineCode(
-          toTitleCase(pokemon)
+          pokemonEnumToSpecies(pokemon)
         )} is actually a Pokémon and ${container.i18n.listAnd.format(moves)} are actually moves?`
       );
     }
