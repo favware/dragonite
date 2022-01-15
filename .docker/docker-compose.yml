@@ -11,13 +11,13 @@ services:
       - '4000:4000'
 
   redis:
-    command: 'redis-server --port 1424 --requirepass redis'
+    command: 'redis-server --requirepass redis'
     container_name: redis
     image: 'redis:alpine'
     networks:
       - infi
     ports:
-      - '1424:1424'
+      - '1424:6379'
     restart: always
     logging:
       options:
