@@ -1,8 +1,8 @@
-import { envParseString } from '#lib/env';
 import { getFuzzyAbility, getFuzzyItem, getFuzzyMove, getFuzzyPokemon } from '#gql/fuzzyQueries';
+import { envParseString } from '#lib/env';
 import { getAbility, getFlavorTexts, getItem, getLearnset, getMove, getPokemon, getPokemonSprites, getTypeMatchup } from '#lib/gql/queries';
 import { RedisKeys } from '#lib/redis-cache/RedisCacheClient';
-import { FavouredAbilities } from '#utils/constants';
+import { FavouredAbilities, FavouredItems, FavouredMoves, FavouredPokemon } from '#utils/favouredEntries';
 import { hideLinkEmbed } from '@discordjs/builders';
 import type {
   AbilitiesEnum,
@@ -218,7 +218,7 @@ export class GqlClient {
     });
 
     if (isErr(result)) {
-      return [];
+      return FavouredItems;
     }
 
     return result.value;
@@ -231,7 +231,7 @@ export class GqlClient {
     });
 
     if (isErr(result)) {
-      return [];
+      return FavouredMoves;
     }
 
     return result.value;
@@ -244,7 +244,7 @@ export class GqlClient {
     });
 
     if (isErr(result)) {
-      return [];
+      return FavouredPokemon;
     }
 
     return result.value;
