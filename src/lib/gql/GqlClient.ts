@@ -1,8 +1,9 @@
 import { envParseString } from '#lib/env';
+import { getFuzzyAbility, getFuzzyItem, getFuzzyMove, getFuzzyPokemon } from '#gql/fuzzyQueries';
 import { getAbility, getFlavorTexts, getItem, getLearnset, getMove, getPokemon, getPokemonSprites, getTypeMatchup } from '#lib/gql/queries';
 import { RedisKeys } from '#lib/redis-cache/RedisCacheClient';
-import { pokemonEnumToSpecies } from '#utils/functions/pokemonParsers';
-import { hideLinkEmbed, inlineCode } from '@discordjs/builders';
+import { FavouredAbilities } from '#utils/constants';
+import { hideLinkEmbed } from '@discordjs/builders';
 import type {
   AbilitiesEnum,
   ItemsEnum,
@@ -10,6 +11,10 @@ import type {
   PokemonEnum,
   Query,
   QueryGetAbilityArgs,
+  QueryGetFuzzyAbilityArgs,
+  QueryGetFuzzyItemArgs,
+  QueryGetFuzzyMoveArgs,
+  QueryGetFuzzyPokemonArgs,
   QueryGetItemArgs,
   QueryGetLearnsetArgs,
   QueryGetMoveArgs,
@@ -19,7 +24,6 @@ import type {
 } from '@favware/graphql-pokemon';
 import { fetch, FetchMethods, FetchResultTypes } from '@sapphire/fetch';
 import { container, fromAsync, isErr, UserError } from '@sapphire/framework';
-import { toTitleCase } from '@sapphire/utilities';
 import os from 'node:os';
 
 export class GqlClient {
@@ -36,9 +40,7 @@ export class GqlClient {
       return apiResult.data.getAbility;
     });
 
-    if (isErr(result)) {
-      return this.error('AbilityQueryFail', `I am sorry, but that query failed. Are you sure ${ability} is actually an ability in Pokémon?`);
-    }
+    if (isErr(result)) return;
 
     await container.gqlRedisCache.insert<RedisKeys.GetAbility>(
       RedisKeys.GetAbility, //
@@ -58,9 +60,7 @@ export class GqlClient {
       return apiResult.data.getItem;
     });
 
-    if (isErr(result)) {
-      return this.error('ItemQueryFail', `I am sorry, but that query failed. Are you sure ${item} is actually an item in Pokémon?`);
-    }
+    if (isErr(result)) return;
 
     await container.gqlRedisCache.insert<RedisKeys.GetItem>(
       RedisKeys.GetItem, //
@@ -80,9 +80,7 @@ export class GqlClient {
       return apiResult.data.getMove;
     });
 
-    if (isErr(result)) {
-      return this.error('MoveQueryFail', `I am sorry, but that query failed. Are you sure ${move} is actually a move in Pokémon?`);
-    }
+    if (isErr(result)) return;
 
     await container.gqlRedisCache.insert<RedisKeys.GetMove>(
       RedisKeys.GetMove, //
@@ -102,12 +100,7 @@ export class GqlClient {
       return apiResult.data.getPokemon;
     });
 
-    if (isErr(result)) {
-      return this.error(
-        'FlavorQueryFail',
-        `I am sorry, but that query failed. Are you sure ${inlineCode(pokemonEnumToSpecies(pokemon))} is actually a Pokémon?`
-      );
-    }
+    if (isErr(result)) return;
 
     await container.gqlRedisCache.insert<RedisKeys.GetFlavors>(
       RedisKeys.GetFlavors, //
@@ -127,12 +120,7 @@ export class GqlClient {
       return apiResult.data.getPokemon;
     });
 
-    if (isErr(result)) {
-      return this.error(
-        'PokemonQueryFail',
-        `I am sorry, but that query failed. Are you sure ${inlineCode(pokemonEnumToSpecies(pokemon))} is actually a Pokémon?`
-      );
-    }
+    if (isErr(result)) return;
 
     await container.gqlRedisCache.insert<RedisKeys.GetPokemon>(
       RedisKeys.GetPokemon, //
@@ -152,12 +140,7 @@ export class GqlClient {
       return apiResult.data.getPokemon;
     });
 
-    if (isErr(result)) {
-      return this.error(
-        'SpriteQueryFail',
-        `I am sorry, but that query failed. Are you sure ${inlineCode(pokemonEnumToSpecies(pokemon))} is actually a Pokémon?`
-      );
-    }
+    if (isErr(result)) return;
 
     await container.gqlRedisCache.insert<RedisKeys.GetSprites>(
       RedisKeys.GetSprites, //
@@ -180,14 +163,7 @@ export class GqlClient {
       return apiResult.data.getLearnset;
     });
 
-    if (isErr(result)) {
-      return this.error(
-        'LearnsetQueryFail',
-        `I am sorry, but that query failed. Are you sure you ${inlineCode(
-          pokemonEnumToSpecies(pokemon)
-        )} is actually a Pokémon and ${container.i18n.listAnd.format(moves)} are actually moves?`
-      );
-    }
+    if (isErr(result)) return;
 
     await container.gqlRedisCache.insert<RedisKeys.GetLearnset>(
       RedisKeys.GetLearnset, //
@@ -211,14 +187,7 @@ export class GqlClient {
       return apiResult.data.getTypeMatchup;
     });
 
-    if (isErr(result)) {
-      const typesMappedWithInlineCode = types.map((type) => inlineCode(toTitleCase(type)));
-
-      return this.error(
-        'LearnsetQueryFail',
-        `I am sorry, but that query failed. Are you sure ${container.i18n.listAnd.format(typesMappedWithInlineCode)} are actually types in Pokémon?`
-      );
-    }
+    if (isErr(result)) return;
 
     await container.gqlRedisCache.insert<RedisKeys.GetTypeMatchup>(
       RedisKeys.GetTypeMatchup, //
@@ -229,13 +198,56 @@ export class GqlClient {
     return result.value;
   }
 
-  /**
-   * Throws a new {@link UserError} that will be send to the user as ephemeral message
-   * @param identifier The identifier to throw
-   * @param message The message to send to the user
-   */
-  private error(identifier: string, message: string) {
-    throw new UserError({ identifier, message });
+  public async fuzzilySearchAbilities(ability: string, take = 20) {
+    const result = await fromAsync(async () => {
+      const apiResult = await this.fetchGraphQLPokemon<'getFuzzyAbility'>(getFuzzyAbility, { ability, take });
+      return apiResult.data.getFuzzyAbility;
+    });
+
+    if (isErr(result)) {
+      return FavouredAbilities;
+    }
+
+    return result.value;
+  }
+
+  public async fuzzilySearchItems(item: string, take = 20) {
+    const result = await fromAsync(async () => {
+      const apiResult = await this.fetchGraphQLPokemon<'getFuzzyItem'>(getFuzzyItem, { item, take });
+      return apiResult.data.getFuzzyItem;
+    });
+
+    if (isErr(result)) {
+      return [];
+    }
+
+    return result.value;
+  }
+
+  public async fuzzilySearchMoves(move: string, take = 20) {
+    const result = await fromAsync(async () => {
+      const apiResult = await this.fetchGraphQLPokemon<'getFuzzyMove'>(getFuzzyMove, { move, take });
+      return apiResult.data.getFuzzyMove;
+    });
+
+    if (isErr(result)) {
+      return [];
+    }
+
+    return result.value;
+  }
+
+  public async fuzzilySearchPokemon(pokemon: string, take = 20) {
+    const result = await fromAsync(async () => {
+      const apiResult = await this.fetchGraphQLPokemon<'getFuzzyPokemon'>(getFuzzyPokemon, { pokemon, take });
+      return apiResult.data.getFuzzyPokemon;
+    });
+
+    if (isErr(result)) {
+      return [];
+    }
+
+    return result.value;
   }
 
   private async fetchGraphQLPokemon<R extends PokemonQueryReturnTypes>(
@@ -282,16 +294,36 @@ interface PokemonResponse<K extends keyof Omit<Query, '__typename'>> {
   data: Record<K, Omit<Query[K], '__typename'>>;
 }
 
-type PokemonQueryReturnTypes = keyof Pick<Query, 'getAbility' | 'getItem' | 'getMove' | 'getPokemon' | 'getLearnset' | 'getTypeMatchup'>;
+type PokemonQueryReturnTypes = keyof Pick<
+  Query,
+  | 'getAbility'
+  | 'getFuzzyAbility'
+  | 'getItem'
+  | 'getMove'
+  | 'getPokemon'
+  | 'getLearnset'
+  | 'getTypeMatchup'
+  | 'getFuzzyItem'
+  | 'getFuzzyMove'
+  | 'getFuzzyPokemon'
+>;
 
 type PokemonQueryVariables<R extends PokemonQueryReturnTypes> = R extends 'getAbility'
   ? QueryGetAbilityArgs
+  : R extends 'getFuzzyAbility'
+  ? QueryGetFuzzyAbilityArgs
   : R extends 'getItem'
   ? QueryGetItemArgs
+  : R extends 'getFuzzyItem'
+  ? QueryGetFuzzyItemArgs
   : R extends 'getMove'
   ? QueryGetMoveArgs
+  : R extends 'getFuzzyMove'
+  ? QueryGetFuzzyMoveArgs
   : R extends 'getPokemon'
   ? QueryGetPokemonArgs
+  : R extends 'getFuzzyPokemon'
+  ? QueryGetFuzzyPokemonArgs
   : R extends 'getLearnset'
   ? QueryGetLearnsetArgs
   : R extends 'getTypeMatchup'

@@ -279,14 +279,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@favware/graphql-pokemon@npm:^6.2.6":
-  version: 6.2.6
-  resolution: "@favware/graphql-pokemon@npm:6.2.6"
+"@favware/graphql-pokemon@portal:/F:/dev/favware/graphql-pokemon::locator=dragonite%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "@favware/graphql-pokemon@portal:/F:/dev/favware/graphql-pokemon::locator=dragonite%40workspace%3A."
   dependencies:
+    "@skyra/jaro-winkler": ^1.0.0
     graphql: ^15.8.0
-  checksum: bbe53dadea4b9cab71d0af98d1b0a770aaa109359b92ab9f6400a7fe723efac698f145bb2f8caa1d37b6fe15bbe13b66fd7554ecbb1814ea0a5c4845d0d115ec
   languageName: node
-  linkType: hard
+  linkType: soft
 
 "@gar/promisify@npm:^1.0.1":
   version: 1.1.2
@@ -542,6 +542,13 @@ __metadata:
   version: 4.3.0
   resolution: "@sindresorhus/is@npm:4.3.0"
   checksum: 27dc822fd6962eb174de128fa5212e9a0b4b0672d810d6d5226e922db65ea779143e6cfda8ee10a3e5be7f744af0a65d69a761f3fb3d11ce83587ed1b19c9bf8
+  languageName: node
+  linkType: hard
+
+"@skyra/jaro-winkler@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@skyra/jaro-winkler@npm:1.0.0"
+  checksum: 2fc705ec1c2e22182ec0533382c419961c3d45131eaafccafc0c764cae4a513f7b99952cca94725fd0c6c99512231b654d2413656a978fadc4db35734513b5c3
   languageName: node
   linkType: hard
 
@@ -1816,7 +1823,7 @@ __metadata:
     eslint: ^8.7.0
     eslint-config-prettier: ^8.3.0
     eslint-plugin-prettier: ^4.0.0
-    graphql: ^16.2.0
+    graphql: ^15.8.0
     husky: ^7.0.4
     ioredis: ^4.28.3
     lint-staged: ^12.1.7
@@ -2818,13 +2825,6 @@ __metadata:
   version: 15.8.0
   resolution: "graphql@npm:15.8.0"
   checksum: 423325271db8858428641b9aca01699283d1fe5b40ef6d4ac622569ecca927019fce8196208b91dd1d8eb8114f00263fe661d241d0eb40c10e5bfd650f86ec5e
-  languageName: node
-  linkType: hard
-
-"graphql@npm:^16.2.0":
-  version: 16.2.0
-  resolution: "graphql@npm:16.2.0"
-  checksum: 204b5c9991b82561651a28b13dbb2e0e67514171a6a8c045ca4a527b944087344a14519d0426d661b49f2305584b390591abadc82b942f7b65e64e05cb31a584
   languageName: node
   linkType: hard
 

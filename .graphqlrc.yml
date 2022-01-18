@@ -1,2 +1,2 @@
 schema: 'node_modules/@favware/graphql-pokemon/generated/ts/graphql-pokemon.graphql'
-documents: 'src/lib/gql/queries.ts'
+documents: 'src/lib/gql/*.ts'

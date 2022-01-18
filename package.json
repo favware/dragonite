@@ -15,7 +15,7 @@
     "#lib/env": "./dist/lib/env/index.js"
   },
   "scripts": {
-    "start": "node --enable-source-maps dist/dragonite.js",
+    "start": "node --preserve-symlinks --enable-source-maps dist/dragonite.js",
     "lint": "eslint src --ext ts --fix",
     "format": "prettier --write --loglevel=warn \"src/**/*.ts\"",
     "build": "tsup",
@@ -44,7 +44,7 @@
     "discord-api-types": "^0.26.1",
     "discord.js": "^13.6.0",
     "dotenv-cra": "^3.0.2",
-    "graphql": "^16.2.0",
+    "graphql": "^15.8.0",
     "ioredis": "^4.28.3",
     "tslib": "^2.3.1",
     "utf-8-validate": "^5.0.8",
@@ -114,5 +114,8 @@
     "favna",
     "slashies"
   ],
-  "packageManager": "yarn@3.1.1"
+  "packageManager": "yarn@3.1.1",
+  "resolutions": {
+    "@favware/graphql-pokemon": "portal:/F:/dev/favware/graphql-pokemon"
+  }
 }

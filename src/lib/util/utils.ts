@@ -1,5 +1,5 @@
 import { envParseArray } from '#lib/env';
-import type { APIMessage } from 'discord-api-types';
+import type { APIMessage } from 'discord-api-types/v9';
 import { Message, type CommandInteraction } from 'discord.js';
 
 export function getGuildIds(): string[] {
