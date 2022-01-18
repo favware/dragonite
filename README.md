@@ -17,18 +17,19 @@
 
 # TODO List
 
-- [ ] Make post-stats task POST data to bot lists.
 - [ ] Refactor embed titles from `pokemonResponseBuilder` and `typeMatchupResponseBuilder` to be inline.
 - [ ] Make `PaginatedMessage` compatible with interactions so the message hack is not necessary any more.
+- [ ] Test out BinaryTF for custom id compression
+- [ ] Make post-stats task POST data to bot lists.
 
 ## Commands
 
 - [x] `ability`
 - [x] `item`
 - [x] `move`
-- [ ] `flavors`
+- [x] `flavors`
 - [x] `pokemon`
-- [ ] `sprites`
+- [x] `sprites`
 - [ ] `learnset`
 - [x] `type-matchup`
 - [ ] `clear-learnset-keys` (OwnerOnly)
