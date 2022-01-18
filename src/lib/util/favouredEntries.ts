@@ -104,7 +104,7 @@ export const FavouredPokemon: FavouredEntry<PokemonEnum>[] = [
   },
   {
     key: PokemonEnum.Bidoof,
-    name: '⭐ Bidoof (Peanut Butter)'
+    name: '⭐ Bidoof (Peanutbutter)'
   }
 ];
 

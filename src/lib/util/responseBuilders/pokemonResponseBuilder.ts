@@ -1,11 +1,12 @@
 import { BrandingColors, CdnUrls, Emojis } from '#utils/constants';
-import { parseBulbapediaURL } from '#utils/functions/pokemonParsers';
+import type { FavouredEntry } from '#utils/favouredEntries';
+import { parseBulbapediaURL, pokemonEnumToSpecies } from '#utils/functions/pokemonParsers';
 import type { KeysContaining } from '#utils/utils';
-import type { Abilities, EvYields, Gender, Pokemon, Stats } from '@favware/graphql-pokemon';
+import type { Abilities, EvYields, Gender, Pokemon, PokemonEnum, Stats } from '@favware/graphql-pokemon';
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
 import { filterNullish, isNullish, toTitleCase } from '@sapphire/utilities';
-import { MessageEmbed } from 'discord.js';
+import { ApplicationCommandOptionChoice, MessageEmbed, MessageSelectOptionData } from 'discord.js';
 
 enum StatsEnum {
   hp = 'HP',
@@ -14,6 +15,18 @@ enum StatsEnum {
   specialattack = 'SPA',
   specialdefense = 'SPD',
   speed = 'SPE'
+}
+
+const PageLabels = ['General', 'Growth Information', 'Competitive Battling Information', 'PokéDex Entries'];
+
+export function fuzzyPokemonToSelectOption<L extends 'name' | 'label'>(
+  fuzzyMatch: Pokemon | FavouredEntry<PokemonEnum>,
+  labelLikeKey: L
+): L extends 'name' ? ApplicationCommandOptionChoice : MessageSelectOptionData {
+  const label = isFavouredEntry(fuzzyMatch) ? fuzzyMatch.name : pokemonEnumToSpecies(fuzzyMatch.key);
+
+  // @ts-expect-error TS is not able to infer that `labelLikeKey` is 'name' | 'label'
+  return { [labelLikeKey]: label, value: fuzzyMatch.key };
 }
 
 export function pokemonResponseBuilder(pokeDetails: Omit<Pokemon, '__typename'>, spriteToGet: PokemonSpriteTypes) {
@@ -49,6 +62,10 @@ export function pokemonResponseBuilder(pokeDetails: Omit<Pokemon, '__typename'>,
   return parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, embedTranslations, spriteToGet });
 }
 
+function isFavouredEntry(fuzzyMatch: Pokemon | FavouredEntry<PokemonEnum>): fuzzyMatch is FavouredEntry<PokemonEnum> {
+  return (fuzzyMatch as FavouredEntry<PokemonEnum>).name !== undefined;
+}
+
 function parsePokemon({
   pokeDetails,
   abilities,
@@ -75,52 +92,51 @@ function parsePokemon({
       .setColor(BrandingColors.Primary)
       .setAuthor({ name: `#${pokeDetails.num} - ${toTitleCase(pokeDetails.species)}`, iconURL: CdnUrls.Pokedex })
       .setThumbnail(pokeDetails[spriteToGet])
-  });
+  })
+    .setSelectMenuOptions((pageIndex) => ({ label: PageLabels[pageIndex - 1] }))
+    .addPageEmbed((embed) => {
+      embed
+        .addField(embedTranslations.types, pokeDetails.types.join(', '), true)
+        .addField(embedTranslations.abilities, container.i18n.listAnd.format(abilities), true)
+        .addField(embedTranslations.genderRatio, parseGenderRatio(pokeDetails.gender), true)
+        .addField(embedTranslations.evolutionaryLine, evoChain)
+        .addField(embedTranslations.baseStats, `${baseStats.join(', ')} (*${embedTranslations.baseStatsTotal}*: **${pokeDetails.baseStatsTotal}**)`);
 
-  display.addPageEmbed((embed) => {
-    embed
-      .addField(embedTranslations.types, pokeDetails.types.join(', '), true)
-      .addField(embedTranslations.abilities, container.i18n.listAnd.format(abilities), true)
-      .addField(embedTranslations.genderRatio, parseGenderRatio(pokeDetails.gender), true)
-      .addField(embedTranslations.evolutionaryLine, evoChain)
-      .addField(embedTranslations.baseStats, `${baseStats.join(', ')} (*${embedTranslations.baseStatsTotal}*: **${pokeDetails.baseStatsTotal}**)`);
-
-    if (!isCapPokemon(pokeDetails)) {
-      embed.addField(externalResources, externalResourceData);
-    }
-
-    return embed;
-  });
-
-  display.addPageEmbed((embed) => {
-    embed
-      .addField(embedTranslations.height, `${container.i18n.number.format(pokeDetails.height)}m`, true)
-      .addField(embedTranslations.weight, `${container.i18n.number.format(pokeDetails.weight)}kg`, true);
-
-    if (isRegularPokemon(pokeDetails)) {
-      if (pokeDetails.levellingRate) {
-        embed.addField(embedTranslations.levellingRate, pokeDetails.levellingRate, true);
-      }
-    }
-
-    if (!isMissingno(pokeDetails)) {
-      embed.addField(embedTranslations.eggGroups, pokeDetails.eggGroups?.join(', ') || '', true);
-    }
-
-    if (isRegularPokemon(pokeDetails)) {
-      embed.addField(embedTranslations.isEggObtainable, pokeDetails.isEggObtainable ? 'Yes' : 'No', true);
-
-      if (!isNullish(pokeDetails.minimumHatchTime) && !isNullish(pokeDetails.maximumHatchTime)) {
-        embed
-          .addField(embedTranslations.minimumHatchingTime, container.i18n.number.format(pokeDetails.minimumHatchTime), true)
-          .addField(embedTranslations.maximumHatchTime, container.i18n.number.format(pokeDetails.maximumHatchTime), true);
+      if (!isCapPokemon(pokeDetails)) {
+        embed.addField(externalResources, externalResourceData);
       }
 
-      embed.addField(externalResources, externalResourceData);
-    }
+      return embed;
+    })
+    .addPageEmbed((embed) => {
+      embed
+        .addField(embedTranslations.height, `${container.i18n.number.format(pokeDetails.height)}m`, true)
+        .addField(embedTranslations.weight, `${container.i18n.number.format(pokeDetails.weight)}kg`, true);
 
-    return embed;
-  });
+      if (isRegularPokemon(pokeDetails)) {
+        if (pokeDetails.levellingRate) {
+          embed.addField(embedTranslations.levellingRate, pokeDetails.levellingRate, true);
+        }
+      }
+
+      if (!isMissingno(pokeDetails)) {
+        embed.addField(embedTranslations.eggGroups, pokeDetails.eggGroups?.join(', ') || '', true);
+      }
+
+      if (isRegularPokemon(pokeDetails)) {
+        embed.addField(embedTranslations.isEggObtainable, pokeDetails.isEggObtainable ? 'Yes' : 'No', true);
+
+        if (!isNullish(pokeDetails.minimumHatchTime) && !isNullish(pokeDetails.maximumHatchTime)) {
+          embed
+            .addField(embedTranslations.minimumHatchingTime, container.i18n.number.format(pokeDetails.minimumHatchTime), true)
+            .addField(embedTranslations.maximumHatchTime, container.i18n.number.format(pokeDetails.maximumHatchTime), true);
+        }
+
+        embed.addField(externalResources, externalResourceData);
+      }
+
+      return embed;
+    });
 
   if (!isMissingno(pokeDetails)) {
     display.addPageEmbed((embed) => {
@@ -297,7 +313,7 @@ function isMissingno(pokeDetails: Pokemon) {
   return pokeDetails.num === 0;
 }
 
-type PokemonSpriteTypes = keyof Pick<Pokemon, KeysContaining<Pokemon, 'sprite'>>;
+export type PokemonSpriteTypes = keyof Pick<Pokemon, KeysContaining<Pokemon, 'sprite'>>;
 
 export interface PokemonToDisplayArgs {
   abilities: string[];
