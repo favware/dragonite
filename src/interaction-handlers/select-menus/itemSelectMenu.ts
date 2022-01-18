@@ -1,5 +1,5 @@
 import { SelectMenuCustomIds } from '#utils/constants';
-import { itemResponseBuilder } from '#utils/functions/responseBuilders';
+import { itemResponseBuilder } from '#utils/responseBuilders/itemResponseBuilder';
 import type { ItemsEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import { InteractionHandler, InteractionHandlerTypes, UserError } from '@sapphire/framework';
@@ -9,7 +9,7 @@ import type { SelectMenuInteraction } from 'discord.js';
 @ApplyOptions<InteractionHandler.Options>({
   interactionHandlerType: InteractionHandlerTypes.SelectMenu
 })
-export class ItemSelectMenu extends InteractionHandler {
+export class SelectMenuHandler extends InteractionHandler {
   public override async run(interaction: SelectMenuInteraction, result: InteractionHandler.ParseResult<this>) {
     if (isNullish(result.itemDetails)) {
       throw new UserError({

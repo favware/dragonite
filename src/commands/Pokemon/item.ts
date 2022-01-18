@@ -1,6 +1,6 @@
 import { DragoniteCommand } from '#lib/extensions/DragoniteCommand';
 import { SelectMenuCustomIds } from '#utils/constants';
-import { itemResponseBuilder } from '#utils/functions/responseBuilders';
+import { itemResponseBuilder } from '#utils/responseBuilders/itemResponseBuilder';
 import { getGuildIds } from '#utils/utils';
 import type { ItemsEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
@@ -11,7 +11,7 @@ import { MessageActionRow, MessageSelectMenu, type MessageSelectOptionData } fro
 @ApplyOptions<ChatInputCommand.Options>({
   description: 'Gets data for the chosen Pokémon item.'
 })
-export class ItemCommand extends DragoniteCommand {
+export class SlashCommand extends DragoniteCommand {
   public override registerApplicationCommands(...[registry]: Parameters<ChatInputCommand['registerApplicationCommands']>) {
     registry.registerChatInputCommand(
       (builder) =>

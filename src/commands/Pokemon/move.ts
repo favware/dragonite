@@ -1,15 +1,15 @@
 import { DragoniteCommand } from '#lib/extensions/DragoniteCommand';
-import { SelectMenuCustomIds } from '#utils/constants';
-import { abilityResponseBuilder } from '#utils/responseBuilders/abilityResponseBuilder';
+import { SelectMenuCustomIds, ZeroWidthSpace } from '#utils/constants';
+import { moveResponseBuilder } from '#utils/responseBuilders/moveResponseBuilder';
 import { getGuildIds } from '#utils/utils';
-import type { AbilitiesEnum } from '@favware/graphql-pokemon';
+import type { MovesEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { ChatInputCommand } from '@sapphire/framework';
 import { isNullish } from '@sapphire/utilities';
 import { MessageActionRow, MessageSelectMenu, type MessageSelectOptionData } from 'discord.js';
 
 @ApplyOptions<ChatInputCommand.Options>({
-  description: 'Gets data for the chosen Pokémon ability.'
+  description: 'Gets data for the chosen Pokémon move.'
 })
 export class SlashCommand extends DragoniteCommand {
   public override registerApplicationCommands(...[registry]: Parameters<ChatInputCommand['registerApplicationCommands']>) {
@@ -20,31 +20,31 @@ export class SlashCommand extends DragoniteCommand {
           .setDescription(this.description)
           .addStringOption((option) =>
             option //
-              .setName('ability')
-              .setDescription('The name of the ability about which you want to get information.')
+              .setName('move')
+              .setDescription('The name of the move about which you want to get information.')
               .setRequired(true)
               .setAutocomplete(true)
           ),
-      { guildIds: getGuildIds(), idHints: ['932728216089673798'] }
+      { guildIds: getGuildIds(), idHints: ['933109617364447252'] }
     );
   }
 
   public override async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
     await interaction.deferReply();
 
-    const ability = interaction.options.getString('ability', true);
+    const move = interaction.options.getString('move', true);
 
-    const abilityDetails = await this.container.gqlClient.getAbility(ability as AbilitiesEnum);
+    const moveDetails = await this.container.gqlClient.getMove(move as MovesEnum);
 
-    if (isNullish(abilityDetails)) {
-      const fuzzyAbilities = await this.container.gqlClient.fuzzilySearchAbilities(ability, 25);
-      const options = fuzzyAbilities.map<MessageSelectOptionData>((fuzzyMatch) => ({ label: fuzzyMatch.name, value: fuzzyMatch.key }));
+    if (isNullish(moveDetails)) {
+      const fuzzyMoves = await this.container.gqlClient.fuzzilySearchMoves(move, 25);
+      const options = fuzzyMoves.map<MessageSelectOptionData>((fuzzyMatch) => ({ label: fuzzyMatch.name, value: fuzzyMatch.key }));
 
       const messageActionRow = new MessageActionRow() //
         .setComponents(
           new MessageSelectMenu() //
-            .setCustomId(SelectMenuCustomIds.Ability)
-            .setPlaceholder('Choose the ability you want to get information about.')
+            .setCustomId(SelectMenuCustomIds.Move)
+            .setPlaceholder('Choose the move you want to get information about.')
             .setOptions(options)
         );
 
@@ -56,6 +56,12 @@ export class SlashCommand extends DragoniteCommand {
       });
     }
 
-    return interaction.editReply({ embeds: abilityResponseBuilder(abilityDetails) });
+    const paginatedMessage = moveResponseBuilder(moveDetails);
+
+    await interaction.deleteReply();
+
+    const message = await interaction.channel!.send({ content: ZeroWidthSpace });
+    await paginatedMessage.run(message, interaction.user);
+    return message;
   }
 }

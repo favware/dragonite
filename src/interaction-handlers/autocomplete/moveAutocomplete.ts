@@ -11,12 +11,12 @@ export class AutocompleteHandler extends InteractionHandler {
   }
 
   public override async parse(interaction: AutocompleteInteraction) {
-    if (interaction.commandName !== 'item') return this.none();
+    if (interaction.commandName !== 'move') return this.none();
 
-    const item = interaction.options.getString('item', true);
+    const move = interaction.options.getString('move', true);
 
-    const fuzzyItems = await this.container.gqlClient.fuzzilySearchItems(item);
+    const fuzzyMoves = await this.container.gqlClient.fuzzilySearchMoves(move);
 
-    return this.some(fuzzyItems.map((fuzzyMatch) => ({ name: fuzzyMatch.name, value: fuzzyMatch.key })));
+    return this.some(fuzzyMoves.map((fuzzyMatch) => ({ name: fuzzyMatch.name, value: fuzzyMatch.key })));
   }
 }

@@ -9,3 +9,9 @@ export function getGuildIds(): string[] {
 export function isMessageInstance(message: APIMessage | CommandInteraction | Message): message is Message<true> {
   return message instanceof Message;
 }
+
+export type KeysContaining<O, Str extends string, Keys extends keyof O = keyof O> = Keys extends string
+  ? Lowercase<Keys> extends `${string}${Lowercase<Str>}${string}`
+    ? Keys
+    : never
+  : never;

@@ -17,13 +17,14 @@
 
 # TODO List
 
-- [ ] Add fallbacks for autocomplete failures
-- [ ] Make post-stats task POST data to bot lists
+- [ ] Make post-stats task POST data to bot lists.
+- [ ] Refactor embed titles from `pokemonResponseBuilder` and `typeMatchupResponseBuilder` to be inline.
+- [ ] Make `PaginatedMessage` compatible with interactions so the message hack is not necessary any more.
 
 ## Commands
 
-- [ ] `ability`
-- [ ] `item`
+- [x] `ability`
+- [x] `item`
 - [ ] `move`
 - [ ] `flavors`
 - [ ] `pokemon`
