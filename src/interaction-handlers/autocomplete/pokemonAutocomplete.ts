@@ -12,7 +12,7 @@ export class AutocompleteHandler extends InteractionHandler {
   }
 
   public override async parse(interaction: AutocompleteInteraction) {
-    if (interaction.commandName !== 'pokemon') return this.none();
+    if (interaction.commandName !== 'pokemon' && interaction.commandName !== 'flavor' && interaction.commandName !== 'sprite') return this.none();
 
     const pokemon = interaction.options.getString('pokemon', true);
 

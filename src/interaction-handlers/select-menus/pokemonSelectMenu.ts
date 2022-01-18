@@ -1,10 +1,19 @@
 import { SelectMenuCustomIds, ZeroWidthSpace } from '#utils/constants';
+import { flavorResponseBuilder } from '#utils/responseBuilders/flavorResponseBuilder';
 import { pokemonResponseBuilder, PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
+import { spriteResponseBuilder } from '#utils/responseBuilders/spriteResponseBuilder';
 import type { PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
+import type { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { InteractionHandler, InteractionHandlerTypes, UserError } from '@sapphire/framework';
 import { isNullish } from '@sapphire/utilities';
 import type { SelectMenuInteraction } from 'discord.js';
+
+type ResponseToGenerate = 'pokemon' | 'flavor' | 'sprite';
+
+export type PokemonSelectMenuHandlerCustomIdStructure =
+  | `${SelectMenuCustomIds.Pokemon}|${ResponseToGenerate}`
+  | `${SelectMenuCustomIds.Pokemon}|${ResponseToGenerate}|${PokemonSpriteTypes}`;
 
 @ApplyOptions<InteractionHandler.Options>({
   interactionHandlerType: InteractionHandlerTypes.SelectMenu
@@ -18,7 +27,22 @@ export class SelectMenuHandler extends InteractionHandler {
       });
     }
 
-    const paginatedMessage = pokemonResponseBuilder(result.pokemonDetails, result.spriteToGet);
+    let paginatedMessage: PaginatedMessage;
+
+    switch (result.responseToGenerate) {
+      case 'pokemon': {
+        paginatedMessage = pokemonResponseBuilder(result.pokemonDetails, result.spriteToGet);
+        break;
+      }
+      case 'flavor': {
+        paginatedMessage = flavorResponseBuilder(result.pokemonDetails, result.spriteToGet);
+        break;
+      }
+      case 'sprite': {
+        paginatedMessage = spriteResponseBuilder(result.pokemonDetails);
+        break;
+      }
+    }
 
     await interaction.deleteReply();
 
@@ -31,12 +55,14 @@ export class SelectMenuHandler extends InteractionHandler {
     if (!interaction.customId.startsWith(SelectMenuCustomIds.Pokemon)) return this.none();
 
     const pokemon = interaction.values[0];
-    const spriteToGet: PokemonSpriteTypes = (interaction.customId.split('|')?.[1] as PokemonSpriteTypes | null) ?? 'sprite';
+    const customIdDecrypted = interaction.customId.split('|');
+    const responseToGenerate = customIdDecrypted?.[1] as ResponseToGenerate;
+    const spriteToGet = (customIdDecrypted?.[2] as PokemonSpriteTypes) ?? 'sprite';
 
     await interaction.deferReply();
 
     const pokemonDetails = await this.container.gqlClient.getPokemon(pokemon as PokemonEnum);
 
-    return this.some({ pokemonDetails, pokemon, spriteToGet });
+    return this.some({ pokemonDetails, pokemon, responseToGenerate, spriteToGet });
   }
 }
