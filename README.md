@@ -25,12 +25,12 @@
 
 - [x] `ability`
 - [x] `item`
-- [ ] `move`
+- [x] `move`
 - [ ] `flavors`
-- [ ] `pokemon`
+- [x] `pokemon`
 - [ ] `sprites`
 - [ ] `learnset`
-- [ ] `type`
+- [x] `type-matchup`
 - [ ] `clear-learnset-keys` (OwnerOnly)
 - [ ] `clear-pokedex-keys` (OwnerOnly)
 - [ ] `eval` (OwnerOnly)
