@@ -6,20 +6,6 @@ import { container } from '@sapphire/framework';
 import { MessageEmbed } from 'discord.js';
 
 export function typeMatchupResponseBuilder(types: TypesEnum[], typeMatchups: TypeMatchup) {
-  const embedTranslations: TypeMatchupEmbedTitles = {
-    offensive: 'Offensive',
-    defensive: 'Defensive',
-    superEffectiveAgainst: 'Super effective against',
-    dealsNormalDamageTo: 'Deals normal damage to',
-    doesNotAffect: "Doesn't affect",
-    notVeryEffectiveAgainst: 'Not very effective against',
-    vulnerableTo: 'Vulnerable to',
-    takesNormalDamageFrom: 'Takes normal damage from',
-    resists: 'Resists',
-    notAffectedBy: 'Not affected by',
-    typeEffectivenessFor: `Type effectiveness for ${container.i18n.listAnd.format(types)}`
-  };
-
   const externalResources = 'External Resources';
 
   const externalSources = [
@@ -31,31 +17,21 @@ export function typeMatchupResponseBuilder(types: TypesEnum[], typeMatchups: Typ
   return new PaginatedMessage({
     template: new MessageEmbed()
       .setColor(BrandingColors.Primary) //
-      .setAuthor({ name: `${embedTranslations.typeEffectivenessFor}`, iconURL: CdnUrls.Pokedex }) //
+      .setAuthor({ name: `Type effectiveness for ${container.i18n.listAnd.format(types)}`, iconURL: CdnUrls.Pokedex }) //
   })
-    .setSelectMenuOptions((pageIndex) => ({ label: [embedTranslations.offensive, embedTranslations.defensive][pageIndex - 1] }))
+    .setSelectMenuOptions((pageIndex) => ({ label: ['Offensive', 'Defensive'][pageIndex - 1] }))
     .addPageEmbed((embed) =>
       embed
         .addField(
-          embedTranslations.offensive,
+          'Offensive',
           [
-            `${embedTranslations.superEffectiveAgainst}: ${parseEffectiveMatchup(
-              typeMatchups.attacking.doubleEffectiveTypes,
-              typeMatchups.attacking.effectiveTypes
-            )}`,
+            `Super effective against: ${parseEffectiveMatchup(typeMatchups.attacking.doubleEffectiveTypes, typeMatchups.attacking.effectiveTypes)}`,
             '',
-            `${embedTranslations.dealsNormalDamageTo}: ${parseRegularMatchup(typeMatchups.attacking.normalTypes)}`,
+            `Deals normal damage to: ${parseRegularMatchup(typeMatchups.attacking.normalTypes)}`,
             '',
-            `${embedTranslations.notVeryEffectiveAgainst}: ${parseResistedMatchup(
-              typeMatchups.attacking.doubleResistedTypes,
-              typeMatchups.attacking.resistedTypes
-            )}`,
+            `Not very effective against: ${parseResistedMatchup(typeMatchups.attacking.doubleResistedTypes, typeMatchups.attacking.resistedTypes)}`,
             '',
-            `${
-              typeMatchups.attacking.effectlessTypes.length
-                ? `${embedTranslations.doesNotAffect}: ${parseRegularMatchup(typeMatchups.attacking.effectlessTypes)}`
-                : ''
-            }`
+            `${typeMatchups.attacking.effectlessTypes.length ? `Doesn't affect: ${parseRegularMatchup(typeMatchups.attacking.effectlessTypes)}` : ''}`
           ].join('\n')
         )
         .addField(externalResources, externalSources)
@@ -63,21 +39,16 @@ export function typeMatchupResponseBuilder(types: TypesEnum[], typeMatchups: Typ
     .addPageEmbed((embed) =>
       embed
         .addField(
-          embedTranslations.defensive,
+          'Defensive',
           [
-            `${embedTranslations.vulnerableTo}: ${parseEffectiveMatchup(
-              typeMatchups.defending.doubleEffectiveTypes,
-              typeMatchups.defending.effectiveTypes
-            )}`,
+            `Vulnerable to: ${parseEffectiveMatchup(typeMatchups.defending.doubleEffectiveTypes, typeMatchups.defending.effectiveTypes)}`,
             '',
-            `${embedTranslations.takesNormalDamageFrom}: ${parseRegularMatchup(typeMatchups.defending.normalTypes)}`,
+            `Takes normal damage from: ${parseRegularMatchup(typeMatchups.defending.normalTypes)}`,
             '',
-            `${embedTranslations.resists}: ${parseResistedMatchup(typeMatchups.defending.doubleResistedTypes, typeMatchups.defending.resistedTypes)}`,
+            `Resists: ${parseResistedMatchup(typeMatchups.defending.doubleResistedTypes, typeMatchups.defending.resistedTypes)}`,
             '',
             `${
-              typeMatchups.defending.effectlessTypes.length
-                ? `${embedTranslations.notAffectedBy}: ${parseRegularMatchup(typeMatchups.defending.effectlessTypes)}`
-                : ''
+              typeMatchups.defending.effectlessTypes.length ? `Not affected by: ${parseRegularMatchup(typeMatchups.defending.effectlessTypes)}` : ''
             }`
           ].join('\n')
         )
@@ -103,18 +74,4 @@ function parseResistedMatchup(doubleResistedTypes: Type['doubleResistedTypes'], 
 
 function parseRegularMatchup(regularMatchup: Type['normalTypes'] | Type['effectlessTypes']) {
   return regularMatchup.map((type) => `\`${type}\``).join(', ');
-}
-
-interface TypeMatchupEmbedTitles {
-  offensive: string;
-  defensive: string;
-  superEffectiveAgainst: string;
-  dealsNormalDamageTo: string;
-  doesNotAffect: string;
-  notVeryEffectiveAgainst: string;
-  vulnerableTo: string;
-  takesNormalDamageFrom: string;
-  resists: string;
-  notAffectedBy: string;
-  typeEffectivenessFor: string;
 }

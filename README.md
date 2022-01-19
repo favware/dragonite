@@ -17,8 +17,8 @@
 
 # TODO List
 
-- [ ] Implement remaining [commands](#commands)
-- [ ] Refactor embed titles from `pokemonResponseBuilder` and `typeMatchupResponseBuilder` to be inline.
+- [x] Implement remaining [commands](#commands)
+- [x] Refactor embed titles from `pokemonResponseBuilder` and `typeMatchupResponseBuilder` to be inline.
 - [ ] Make `PaginatedMessage` compatible with interactions so the message hack is not necessary any more.
 - [ ] Test out BinaryTF for custom id compression
 - [ ] Make post-stats task POST data to bot lists.

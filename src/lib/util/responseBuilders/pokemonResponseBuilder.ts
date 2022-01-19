@@ -2,7 +2,7 @@ import { BrandingColors, CdnUrls, Emojis } from '#utils/constants';
 import type { FavouredEntry } from '#utils/favouredEntries';
 import { parseBulbapediaURL, pokemonEnumToSpecies } from '#utils/functions/pokemonParsers';
 import type { KeysContaining } from '#utils/utils';
-import { bold, hideLinkEmbed, hyperlink, inlineCode, italic } from '@discordjs/builders';
+import { bold, inlineCode, italic } from '@discordjs/builders';
 import type { Abilities, EvYields, Gender, Pokemon, PokemonEnum, Stats } from '@favware/graphql-pokemon';
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
@@ -36,46 +36,14 @@ export function pokemonResponseBuilder(pokeDetails: Omit<Pokemon, '__typename'>,
   const evYields = getEvYields(pokeDetails.evYields);
   const evoChain = getEvoChain(pokeDetails);
 
-  const embedTranslations: PokedexEmbedTitles = {
-    types: 'Type(s)',
-    abilities: 'Abilities',
-    genderRatio: 'Gender Ratio',
-    smogonTier: 'Smogon Tier',
-    unknownSmogonTier: 'Unknown / Alt form',
-    height: 'Height',
-    weight: 'Weight',
-    eggGroups: 'Egg group(s)',
-    evolutionaryLine: 'Evolutionary line',
-    baseStats: 'Base stats',
-    baseStatsTotal: 'BST',
-    evYields: 'EV Yields',
-    flavourText: 'Pokédex entry',
-    otherFormesTitle: 'Other forme(s)',
-    cosmeticFormesTitle: 'Cosmetic Formes',
-    otherFormesList: container.i18n.listAnd.format(pokeDetails.otherFormes ?? []),
-    cosmeticFormesList: container.i18n.listAnd.format(pokeDetails.cosmeticFormes ?? []),
-    levellingRate: 'Levelling rate',
-    isEggObtainable: 'Egg can be obtained',
-    minimumHatchingTime: 'Minimum hatching time',
-    maximumHatchTime: 'Maximum hatching time'
-  };
-
-  return parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, embedTranslations, spriteToGet });
+  return parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, spriteToGet });
 }
 
 function isFavouredEntry(fuzzyMatch: Pokemon | FavouredEntry<PokemonEnum>): fuzzyMatch is FavouredEntry<PokemonEnum> {
   return (fuzzyMatch as FavouredEntry<PokemonEnum>).name !== undefined;
 }
 
-function parsePokemon({
-  pokeDetails,
-  abilities,
-  baseStats,
-  evYields,
-  evoChain,
-  embedTranslations,
-  spriteToGet
-}: PokemonToDisplayArgs): PaginatedMessage {
+function parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, spriteToGet }: PokemonToDisplayArgs): PaginatedMessage {
   const externalResources = 'External Resources';
 
   const externalResourceData = [
@@ -97,14 +65,11 @@ function parsePokemon({
     .setSelectMenuOptions((pageIndex) => ({ label: PageLabels[pageIndex - 1] }))
     .addPageEmbed((embed) => {
       embed
-        .addField(embedTranslations.types, pokeDetails.types.join(', '), true)
-        .addField(embedTranslations.abilities, container.i18n.listAnd.format(abilities), true)
-        .addField(embedTranslations.genderRatio, parseGenderRatio(pokeDetails.gender), true)
-        .addField(embedTranslations.evolutionaryLine, evoChain)
-        .addField(
-          embedTranslations.baseStats,
-          `${baseStats.join(', ')} (${italic(embedTranslations.baseStatsTotal)}: ${bold(pokeDetails.baseStatsTotal.toString())})`
-        );
+        .addField('Type(s)', pokeDetails.types.join(', '), true)
+        .addField('Abilities', container.i18n.listAnd.format(abilities), true)
+        .addField('Gender Ratio', parseGenderRatio(pokeDetails.gender), true)
+        .addField('Evolutionary line', evoChain)
+        .addField('Base stats', `${baseStats.join(', ')} (${italic('BST')}: ${bold(pokeDetails.baseStatsTotal.toString())})`);
 
       if (!isCapPokemon(pokeDetails)) {
         embed.addField(externalResources, externalResourceData);
@@ -114,26 +79,26 @@ function parsePokemon({
     })
     .addPageEmbed((embed) => {
       embed
-        .addField(embedTranslations.height, `${container.i18n.number.format(pokeDetails.height)}m`, true)
-        .addField(embedTranslations.weight, `${container.i18n.number.format(pokeDetails.weight)}kg`, true);
+        .addField('Height', `${container.i18n.number.format(pokeDetails.height)}m`, true)
+        .addField('Weight', `${container.i18n.number.format(pokeDetails.weight)}kg`, true);
 
       if (isRegularPokemon(pokeDetails)) {
         if (pokeDetails.levellingRate) {
-          embed.addField(embedTranslations.levellingRate, pokeDetails.levellingRate, true);
+          embed.addField('Levelling rate', pokeDetails.levellingRate, true);
         }
       }
 
       if (!isMissingno(pokeDetails)) {
-        embed.addField(embedTranslations.eggGroups, pokeDetails.eggGroups?.join(', ') || '', true);
+        embed.addField('Egg group(s)', pokeDetails.eggGroups?.join(', ') || '', true);
       }
 
       if (isRegularPokemon(pokeDetails)) {
-        embed.addField(embedTranslations.isEggObtainable, pokeDetails.isEggObtainable ? 'Yes' : 'No', true);
+        embed.addField('Egg can be obtained', pokeDetails.isEggObtainable ? 'Yes' : 'No', true);
 
         if (!isNullish(pokeDetails.minimumHatchTime) && !isNullish(pokeDetails.maximumHatchTime)) {
           embed
-            .addField(embedTranslations.minimumHatchingTime, container.i18n.number.format(pokeDetails.minimumHatchTime), true)
-            .addField(embedTranslations.maximumHatchTime, container.i18n.number.format(pokeDetails.maximumHatchTime), true);
+            .addField('Minimum hatching time', container.i18n.number.format(pokeDetails.minimumHatchTime), true)
+            .addField('Maximum hatching time', container.i18n.number.format(pokeDetails.maximumHatchTime), true);
         }
 
         embed.addField(externalResources, externalResourceData);
@@ -145,8 +110,8 @@ function parsePokemon({
   if (!isMissingno(pokeDetails)) {
     display.addPageEmbed((embed) => {
       embed //
-        .addField(embedTranslations.smogonTier, pokeDetails.smogonTier)
-        .addField(embedTranslations.evYields, `${evYields.join(', ')}`);
+        .addField('Smogon Tier', pokeDetails.smogonTier === 'Undiscovered' ? 'Unknown / Alt form' : pokeDetails.smogonTier)
+        .addField('EV Yields', `${evYields.join(', ')}`);
 
       if (isRegularPokemon(pokeDetails)) {
         embed.addField(externalResources, externalResourceData);
@@ -160,7 +125,7 @@ function parsePokemon({
     if (pokeDetails.flavorTexts.length) {
       display.addPageEmbed((embed) => {
         for (const flavor of pokeDetails.flavorTexts) {
-          embed.addField(embedTranslations.flavourText, `(${inlineCode(flavor.game)}) ${flavor.flavor}`);
+          embed.addField('Pokédex entry', `(${inlineCode(flavor.game)}) ${flavor.flavor}`);
         }
 
         return embed.addField(externalResources, externalResourceData);
@@ -175,12 +140,12 @@ function parsePokemon({
       display.addPageEmbed((embed) => {
         // If the pokémon has other formes
         if (pokeDetails.otherFormes) {
-          embed.addField(embedTranslations.otherFormesTitle, embedTranslations.otherFormesList);
+          embed.addField('Other forme(s)', container.i18n.listAnd.format(pokeDetails.otherFormes ?? []));
         }
 
         // If the pokémon has cosmetic formes
         if (pokeDetails.cosmeticFormes) {
-          embed.addField(embedTranslations.cosmeticFormesTitle, embedTranslations.cosmeticFormesList);
+          embed.addField('Cosmetic Formes', container.i18n.listAnd.format(pokeDetails.cosmeticFormes ?? []));
         }
 
         // Add the external resource field
@@ -324,8 +289,6 @@ export interface PokemonToDisplayArgs {
 
   baseStats: string[];
 
-  embedTranslations: PokedexEmbedTitles;
-
   evoChain: string;
 
   evYields: string[];
@@ -333,48 +296,4 @@ export interface PokemonToDisplayArgs {
   pokeDetails: Pokemon;
 
   spriteToGet: PokemonSpriteTypes;
-}
-
-export interface PokedexEmbedTitles {
-  abilities: string;
-
-  baseStats: string;
-
-  baseStatsTotal: string;
-
-  cosmeticFormesList: string;
-
-  cosmeticFormesTitle: string;
-
-  eggGroups: string;
-
-  evolutionaryLine: string;
-
-  evYields: string;
-
-  flavourText: string;
-
-  genderRatio: string;
-
-  height: string;
-
-  isEggObtainable: string;
-
-  levellingRate: string;
-
-  maximumHatchTime: string;
-
-  minimumHatchingTime: string;
-
-  otherFormesList: string;
-
-  otherFormesTitle: string;
-
-  smogonTier: string;
-
-  types: string;
-
-  unknownSmogonTier: string;
-
-  weight: string;
 }
