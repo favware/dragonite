@@ -18,7 +18,13 @@ export class AutocompleteHandler extends InteractionHandler {
       if (focusedOption.name !== 'move-1' && focusedOption.name !== 'move-2' && focusedOption.name !== 'move-3') return this.none();
     }
 
-    const move = interaction.options.getString('move', true);
+    const move =
+      interaction.options.getString('move') ??
+      interaction.options.getString('move-1') ??
+      interaction.options.getString('move-2') ??
+      interaction.options.getString('move-3');
+
+    if (!move) return this.none();
 
     const fuzzyMoves = await this.container.gqlClient.fuzzilySearchMoves(move);
 
