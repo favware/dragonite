@@ -87,13 +87,13 @@ export class SlashCommand extends DragoniteCommand {
     const move1 = interaction.options.getString('move-1', true);
     const move2 = interaction.options.getString('move-2');
     const move3 = interaction.options.getString('move-3');
-    const generation = interaction.options.getInteger('generation');
+    const generation = interaction.options.getInteger('generation') ?? 8;
     const spriteToGet: PokemonSpriteTypes = (interaction.options.getString('sprite') as PokemonSpriteTypes | null) ?? 'sprite';
 
     const learnsetDetails = await this.container.gqlClient.getLearnset(
       pokemon as PokemonEnum,
-      [move1 as MovesEnum, move2 as MovesEnum, move3 as MovesEnum],
-      generation ?? 8
+      [move1 as MovesEnum, move2 as MovesEnum, move3 as MovesEnum].filter(filterNullish),
+      generation
     );
 
     if (isNullish(learnsetDetails)) {
