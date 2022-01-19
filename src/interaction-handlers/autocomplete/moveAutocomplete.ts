@@ -13,21 +13,19 @@ export class AutocompleteHandler extends InteractionHandler {
   public override async parse(interaction: AutocompleteInteraction) {
     if (interaction.commandName !== 'move' && interaction.commandName !== 'learn') return this.none();
 
-    if (interaction.commandName === 'learn') {
-      const focusedOption = interaction.options.getFocused(true);
-      if (focusedOption.name !== 'move-1' && focusedOption.name !== 'move-2' && focusedOption.name !== 'move-3') return this.none();
+    const focusedOption = interaction.options.getFocused(true);
+
+    switch (focusedOption.name) {
+      case 'move':
+      case 'move-1':
+      case 'move-2':
+      case 'move-3': {
+        const fuzzyMoves = await this.container.gqlClient.fuzzilySearchMoves(focusedOption.value as string);
+
+        return this.some(fuzzyMoves.map((fuzzyMatch) => ({ name: fuzzyMatch.name, value: fuzzyMatch.key })));
+      }
+      default:
+        return this.none();
     }
-
-    const move =
-      interaction.options.getString('move') ??
-      interaction.options.getString('move-1') ??
-      interaction.options.getString('move-2') ??
-      interaction.options.getString('move-3');
-
-    if (!move) return this.none();
-
-    const fuzzyMoves = await this.container.gqlClient.fuzzilySearchMoves(move);
-
-    return this.some(fuzzyMoves.map((fuzzyMatch) => ({ name: fuzzyMatch.name, value: fuzzyMatch.key })));
   }
 }

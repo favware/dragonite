@@ -13,10 +13,16 @@ export class AutocompleteHandler extends InteractionHandler {
   public override async parse(interaction: AutocompleteInteraction) {
     if (interaction.commandName !== 'ability') return this.none();
 
-    const ability = interaction.options.getString('ability', true);
+    const focusedOption = interaction.options.getFocused(true);
 
-    const fuzzyAbilities = await this.container.gqlClient.fuzzilySearchAbilities(ability);
+    switch (focusedOption.name) {
+      case 'ability': {
+        const fuzzyAbilities = await this.container.gqlClient.fuzzilySearchAbilities(focusedOption.value as string);
 
-    return this.some(fuzzyAbilities.map((fuzzyMatch) => ({ name: fuzzyMatch.name, value: fuzzyMatch.key })));
+        return this.some(fuzzyAbilities.map((fuzzyMatch) => ({ name: fuzzyMatch.name, value: fuzzyMatch.key })));
+      }
+      default:
+        return this.none();
+    }
   }
 }
