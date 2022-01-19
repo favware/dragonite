@@ -68,8 +68,8 @@ export class SelectMenuHandler extends InteractionHandler {
     const customIdDecrypted = interaction.customId.split('|');
     const responseToGenerate = customIdDecrypted?.[1] as ResponseToGenerate;
     const spriteToGet = (customIdDecrypted?.[2] as PokemonSpriteTypes) ?? 'sprite';
-    const stringifiedMoves = customIdDecrypted?.[3];
-    const generation = parseInt(customIdDecrypted?.[4] ?? '8', 10);
+    const generation = parseInt(customIdDecrypted?.[3], 10);
+    const stringifiedMoves = customIdDecrypted?.[4];
     let moves: MovesEnum[] = [];
 
     if (!isNullishOrEmpty(stringifiedMoves)) {
@@ -77,7 +77,7 @@ export class SelectMenuHandler extends InteractionHandler {
     }
 
     if (!isNullishOrEmpty(moves)) {
-      moves = moves.filter((move) => (move as string) !== 'undefined');
+      moves = moves.filter((move) => (move as string) !== 'undefined' && (move as string) !== 'null');
     }
 
     let pokemonDetails: Omit<Pokemon, '__typename'> | Omit<Learnset, '__typename'> | undefined;
