@@ -12,7 +12,8 @@
     "#root/*": "./dist/*.js",
     "#utils/*": "./dist/lib/util/*.js",
     "#gql/*": "./dist/lib/gql/*.js",
-    "#lib/env": "./dist/lib/env/index.js"
+    "#lib/env": "./dist/lib/env/index.js",
+    "#lib/PaginatedMessages": "./dist/lib/PaginatedMessages/index.js"
   },
   "scripts": {
     "start": "node --preserve-symlinks --enable-source-maps dist/dragonite.js",
