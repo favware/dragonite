@@ -1,10 +1,10 @@
+import { PaginatedMessage } from '#lib/PaginatedMessages/PaginatedMessage';
 import { BrandingColors, CdnUrls, Emojis } from '#utils/constants';
 import type { FavouredEntry } from '#utils/favouredEntries';
 import { parseBulbapediaURL, pokemonEnumToSpecies } from '#utils/functions/pokemonParsers';
 import type { KeysContaining } from '#utils/utils';
 import { bold, inlineCode, italic } from '@discordjs/builders';
 import type { Abilities, EvYields, Gender, Pokemon, PokemonEnum, Stats } from '@favware/graphql-pokemon';
-import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
 import { filterNullish, isNullish } from '@sapphire/utilities';
 import { ApplicationCommandOptionChoice, MessageEmbed, MessageSelectOptionData } from 'discord.js';

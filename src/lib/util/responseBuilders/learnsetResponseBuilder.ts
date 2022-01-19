@@ -1,8 +1,8 @@
+import { PaginatedMessage } from '#lib/PaginatedMessages/PaginatedMessage';
 import { BrandingColors, CdnUrls } from '#utils/constants';
 import { pokemonEnumToSpecies } from '#utils/functions/pokemonParsers';
 import { bold, underscore } from '@discordjs/builders';
 import type { Learnset, LearnsetLevelUpMove, Maybe } from '@favware/graphql-pokemon';
-import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
 import { isNullish, toTitleCase } from '@sapphire/utilities';
 import { MessageEmbed } from 'discord.js';

@@ -1,13 +1,13 @@
 import { DragoniteCommand } from '#lib/extensions/DragoniteCommand';
 import type { PokemonSelectMenuHandlerCustomIdStructure } from '#root/interaction-handlers/select-menus/pokemonSelectMenu';
-import { SelectMenuCustomIds, ZeroWidthSpace } from '#utils/constants';
+import { SelectMenuCustomIds } from '#utils/constants';
 import { learnsetResponseBuilder } from '#utils/responseBuilders/learnsetResponseBuilder';
 import { fuzzyPokemonToSelectOption, PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
 import { getGuildIds } from '#utils/utils';
 import type { MovesEnum, PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { ChatInputCommand } from '@sapphire/framework';
-import { isNullish } from '@sapphire/utilities';
+import { filterNullish, isNullish } from '@sapphire/utilities';
 import { MessageActionRow, MessageSelectMenu, type MessageSelectOptionData } from 'discord.js';
 
 @ApplyOptions<ChatInputCommand.Options>({
@@ -125,10 +125,6 @@ export class SlashCommand extends DragoniteCommand {
       spriteToGet
     );
 
-    await interaction.deleteReply();
-
-    const message = await interaction.channel!.send({ content: ZeroWidthSpace });
-    await paginatedMessage.run(message, interaction.user);
-    return message;
+    return paginatedMessage.run(interaction);
   }
 }

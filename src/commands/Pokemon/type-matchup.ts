@@ -1,5 +1,4 @@
 import { DragoniteCommand } from '#lib/extensions/DragoniteCommand';
-import { ZeroWidthSpace } from '#utils/constants';
 import { typeMatchupResponseBuilder } from '#utils/responseBuilders/typeMatchupResponseBuilder';
 import { getGuildIds } from '#utils/utils';
 import type { TypesEnum } from '@favware/graphql-pokemon';
@@ -75,10 +74,6 @@ export class SlashCommand extends DragoniteCommand {
 
     const paginatedMessage = typeMatchupResponseBuilder(types, typeMatchup);
 
-    await interaction.deleteReply();
-
-    const message = await interaction.channel!.send({ content: ZeroWidthSpace });
-    await paginatedMessage.run(message, interaction.user);
-    return message;
+    return paginatedMessage.run(interaction);
   }
 }

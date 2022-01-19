@@ -1,11 +1,11 @@
-import { SelectMenuCustomIds, ZeroWidthSpace } from '#utils/constants';
+import type { PaginatedMessage } from '#lib/PaginatedMessages/PaginatedMessage';
+import { SelectMenuCustomIds } from '#utils/constants';
 import { flavorResponseBuilder } from '#utils/responseBuilders/flavorResponseBuilder';
 import { learnsetResponseBuilder } from '#utils/responseBuilders/learnsetResponseBuilder';
 import { pokemonResponseBuilder, PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
 import { spriteResponseBuilder } from '#utils/responseBuilders/spriteResponseBuilder';
 import type { Learnset, MovesEnum, Pokemon, PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
-import type { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { InteractionHandler, InteractionHandlerTypes, UserError } from '@sapphire/framework';
 import { isNullish, isNullishOrEmpty } from '@sapphire/utilities';
 import type { SelectMenuInteraction } from 'discord.js';
@@ -19,7 +19,7 @@ export type PokemonSelectMenuHandlerCustomIdStructure =
   interactionHandlerType: InteractionHandlerTypes.SelectMenu
 })
 export class SelectMenuHandler extends InteractionHandler {
-  public override async run(interaction: SelectMenuInteraction, result: InteractionHandler.ParseResult<this>) {
+  public override run(interaction: SelectMenuInteraction, result: InteractionHandler.ParseResult<this>) {
     if (isNullish(result.pokemonDetails)) {
       throw new UserError({
         identifier: 'PokemonQueryFail',
@@ -52,11 +52,7 @@ export class SelectMenuHandler extends InteractionHandler {
       }
     }
 
-    await interaction.deleteReply();
-
-    const message = await interaction.channel!.send({ content: ZeroWidthSpace });
-    await paginatedMessage.run(message, interaction.user);
-    return message;
+    return paginatedMessage.run(interaction, interaction.user);
   }
 
   public override async parse(interaction: SelectMenuInteraction) {

@@ -1,5 +1,5 @@
 import { DragoniteCommand } from '#lib/extensions/DragoniteCommand';
-import { SelectMenuCustomIds, ZeroWidthSpace } from '#utils/constants';
+import { SelectMenuCustomIds } from '#utils/constants';
 import { moveResponseBuilder } from '#utils/responseBuilders/moveResponseBuilder';
 import { getGuildIds } from '#utils/utils';
 import type { MovesEnum } from '@favware/graphql-pokemon';
@@ -58,10 +58,6 @@ export class SlashCommand extends DragoniteCommand {
 
     const paginatedMessage = moveResponseBuilder(moveDetails);
 
-    await interaction.deleteReply();
-
-    const message = await interaction.channel!.send({ content: ZeroWidthSpace });
-    await paginatedMessage.run(message, interaction.user);
-    return message;
+    return paginatedMessage.run(interaction);
   }
 }
