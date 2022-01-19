@@ -31,11 +31,11 @@
 - [x] `flavors`
 - [x] `pokemon`
 - [x] `sprites`
-- [ ] `learnset`
+- [x] `learnset`
 - [x] `type-matchup`
-- [ ] `clear-learnset-keys` (OwnerOnly)
-- [ ] `clear-pokedex-keys` (OwnerOnly)
-- [ ] `eval` (OwnerOnly)
+- [x] `clear-learnset-keys` (OwnerOnly)
+- [x] `clear-pokedex-keys` (OwnerOnly)
+- [x] `eval` (OwnerOnly)
 
 ## Developing on Dragonite
 
