@@ -21,15 +21,16 @@ export class AutocompleteHandler extends InteractionHandler {
       return this.none();
     }
 
-    if (interaction.commandName === 'learn') {
-      const focusedOption = interaction.options.getFocused(true);
-      if (focusedOption.name !== 'pokemon') return this.none();
+    const focusedOption = interaction.options.getFocused(true);
+
+    switch (focusedOption.name) {
+      case 'pokemon': {
+        const fuzzyPokemon = await this.container.gqlClient.fuzzilySearchPokemon(focusedOption.value as string);
+
+        return this.some(fuzzyPokemon.map((fuzzyEntry) => fuzzyPokemonToSelectOption(fuzzyEntry, 'name')));
+      }
+      default:
+        return this.none();
     }
-
-    const pokemon = interaction.options.getString('pokemon', true);
-
-    const fuzzyPokemon = await this.container.gqlClient.fuzzilySearchPokemon(pokemon);
-
-    return this.some(fuzzyPokemon.map((fuzzyEntry) => fuzzyPokemonToSelectOption(fuzzyEntry, 'name')));
   }
 }
