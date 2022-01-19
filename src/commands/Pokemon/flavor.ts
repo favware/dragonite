@@ -1,6 +1,6 @@
 import { DragoniteCommand } from '#lib/extensions/DragoniteCommand';
 import type { PokemonSelectMenuHandlerCustomIdStructure } from '#root/interaction-handlers/select-menus/pokemonSelectMenu';
-import { SelectMenuCustomIds, ZeroWidthSpace } from '#utils/constants';
+import { SelectMenuCustomIds } from '#utils/constants';
 import { flavorResponseBuilder } from '#utils/responseBuilders/flavorResponseBuilder';
 import { fuzzyPokemonToSelectOption, PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
 import { getGuildIds } from '#utils/utils';
@@ -74,10 +74,6 @@ export class SlashCommand extends DragoniteCommand {
 
     const paginatedMessage = flavorResponseBuilder(pokemonDetails, spriteToGet);
 
-    await interaction.deleteReply();
-
-    const message = await interaction.channel!.send({ content: ZeroWidthSpace });
-    await paginatedMessage.run(message, interaction.user);
-    return message;
+    return paginatedMessage.run(interaction);
   }
 }

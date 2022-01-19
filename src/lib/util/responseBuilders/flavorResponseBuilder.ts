@@ -1,7 +1,7 @@
+import { PaginatedMessage } from '#lib/PaginatedMessages/PaginatedMessage';
 import { BrandingColors, CdnUrls } from '#utils/constants';
 import { pokemonEnumToSpecies } from '#utils/functions/pokemonParsers';
 import type { Pokemon } from '@favware/graphql-pokemon';
-import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { MessageEmbed } from 'discord.js';
 import type { PokemonSpriteTypes } from './pokemonResponseBuilder';
 
