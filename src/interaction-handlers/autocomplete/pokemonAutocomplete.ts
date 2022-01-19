@@ -12,7 +12,19 @@ export class AutocompleteHandler extends InteractionHandler {
   }
 
   public override async parse(interaction: AutocompleteInteraction) {
-    if (interaction.commandName !== 'pokemon' && interaction.commandName !== 'flavor' && interaction.commandName !== 'sprite') return this.none();
+    if (
+      interaction.commandName !== 'pokemon' &&
+      interaction.commandName !== 'flavor' &&
+      interaction.commandName !== 'sprite' &&
+      interaction.commandName !== 'learn'
+    ) {
+      return this.none();
+    }
+
+    if (interaction.commandName === 'learn') {
+      const focusedOption = interaction.options.getFocused(true);
+      if (focusedOption.name !== 'pokemon') return this.none();
+    }
 
     const pokemon = interaction.options.getString('pokemon', true);
 

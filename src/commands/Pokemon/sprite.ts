@@ -45,7 +45,7 @@ export class SlashCommand extends DragoniteCommand {
       const messageActionRow = new MessageActionRow() //
         .setComponents(
           new MessageSelectMenu() //
-            .setCustomId(`${SelectMenuCustomIds.Pokemon}|sprite` as PokemonSelectMenuHandlerCustomIdStructure)
+            .setCustomId(`${SelectMenuCustomIds.Pokemon}|sprite|||` as PokemonSelectMenuHandlerCustomIdStructure)
             .setPlaceholder('Choose the Pokémon you want to get information about.')
             .setOptions(options)
         );

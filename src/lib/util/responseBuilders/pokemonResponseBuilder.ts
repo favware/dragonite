@@ -2,10 +2,11 @@ import { BrandingColors, CdnUrls, Emojis } from '#utils/constants';
 import type { FavouredEntry } from '#utils/favouredEntries';
 import { parseBulbapediaURL, pokemonEnumToSpecies } from '#utils/functions/pokemonParsers';
 import type { KeysContaining } from '#utils/utils';
+import { bold, hideLinkEmbed, hyperlink, inlineCode, italic } from '@discordjs/builders';
 import type { Abilities, EvYields, Gender, Pokemon, PokemonEnum, Stats } from '@favware/graphql-pokemon';
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
-import { filterNullish, isNullish, toTitleCase } from '@sapphire/utilities';
+import { filterNullish, isNullish } from '@sapphire/utilities';
 import { ApplicationCommandOptionChoice, MessageEmbed, MessageSelectOptionData } from 'discord.js';
 
 enum StatsEnum {
@@ -90,7 +91,7 @@ function parsePokemon({
   const display = new PaginatedMessage({
     template: new MessageEmbed()
       .setColor(BrandingColors.Primary)
-      .setAuthor({ name: `#${pokeDetails.num} - ${toTitleCase(pokeDetails.species)}`, iconURL: CdnUrls.Pokedex })
+      .setAuthor({ name: `#${pokeDetails.num} - ${pokemonEnumToSpecies(pokeDetails.key)}`, iconURL: CdnUrls.Pokedex })
       .setThumbnail(pokeDetails[spriteToGet])
   })
     .setSelectMenuOptions((pageIndex) => ({ label: PageLabels[pageIndex - 1] }))
@@ -100,7 +101,10 @@ function parsePokemon({
         .addField(embedTranslations.abilities, container.i18n.listAnd.format(abilities), true)
         .addField(embedTranslations.genderRatio, parseGenderRatio(pokeDetails.gender), true)
         .addField(embedTranslations.evolutionaryLine, evoChain)
-        .addField(embedTranslations.baseStats, `${baseStats.join(', ')} (*${embedTranslations.baseStatsTotal}*: **${pokeDetails.baseStatsTotal}**)`);
+        .addField(
+          embedTranslations.baseStats,
+          `${baseStats.join(', ')} (${italic(embedTranslations.baseStatsTotal)}: ${bold(pokeDetails.baseStatsTotal.toString())})`
+        );
 
       if (!isCapPokemon(pokeDetails)) {
         embed.addField(externalResources, externalResourceData);
@@ -156,7 +160,7 @@ function parsePokemon({
     if (pokeDetails.flavorTexts.length) {
       display.addPageEmbed((embed) => {
         for (const flavor of pokeDetails.flavorTexts) {
-          embed.addField(embedTranslations.flavourText, `\`(${flavor.game})\` ${flavor.flavor}`);
+          embed.addField(embedTranslations.flavourText, `(${inlineCode(flavor.game)}) ${flavor.flavor}`);
         }
 
         return embed.addField(externalResources, externalResourceData);
@@ -192,16 +196,16 @@ function parsePokemon({
 
 /**
  * Constructs a link in the evolution chain
- * @param species Name of the pokemon that the evolution goes to
+ * @param key Enum key of the pokemon that the evolution goes to
  * @param level Level the evolution happens
  * @param evoChain The current evolution chain
  * @param isEvo Whether this is an evolution or pre-evolution
  */
-function constructEvoLink(species: Pokemon['species'], level: Pokemon['evolutionLevel'], evoChain: string, isEvo = true) {
+function constructEvoLink(key: Pokemon['key'], level: Pokemon['evolutionLevel'], evoChain: string, isEvo = true) {
   if (isEvo) {
-    return `${evoChain} → \`${toTitleCase(species)}\` ${level ? `(${level})` : ''}`;
+    return `${evoChain} → ${inlineCode(pokemonEnumToSpecies(key))} ${level ? `(${level})` : ''}`;
   }
-  return `\`${toTitleCase(species)}\` ${level ? `(${level})` : ''} → ${evoChain}`;
+  return `${inlineCode(pokemonEnumToSpecies(key))} ${level ? `(${level})` : ''} → ${evoChain}`;
 }
 
 /**
@@ -224,7 +228,7 @@ function getAbilities(abilitiesData: Abilities): string[] {
   const abilities: string[] = [];
   for (const [type, ability] of Object.entries(abilitiesData)) {
     if (!ability) continue;
-    abilities.push(type === 'hidden' ? `*${ability}*` : ability);
+    abilities.push(type === 'hidden' ? `${italic(ability)}` : ability);
   }
 
   return abilities;
@@ -237,7 +241,7 @@ function getAbilities(abilitiesData: Abilities): string[] {
 function getBaseStats(statsData: Stats): string[] {
   const baseStats: string[] = [];
   for (const [stat, value] of Object.entries(statsData)) {
-    baseStats.push(`${StatsEnum[stat as keyof Omit<Stats, '__typename'>]}: **${value}**`);
+    baseStats.push(`${StatsEnum[stat as keyof Omit<Stats, '__typename'>]}: ${bold(value.toString())}`);
   }
 
   return baseStats;
@@ -250,7 +254,7 @@ function getBaseStats(statsData: Stats): string[] {
 function getEvYields(evYieldsData: EvYields): string[] {
   const evYields: string[] = [];
   for (const [stat, value] of Object.entries(evYieldsData)) {
-    evYields.push(`${StatsEnum[stat as keyof Omit<EvYields, '__typename'>]}: **${value}**`);
+    evYields.push(`${StatsEnum[stat as keyof Omit<EvYields, '__typename'>]}: ${bold(value.toString())}`);
   }
 
   return evYields;
@@ -262,7 +266,7 @@ function getEvYields(evYieldsData: EvYields): string[] {
  */
 function getEvoChain(pokeDetails: Pokemon): string {
   // Set evochain if there are no evolutions
-  let evoChain = `**${toTitleCase(pokeDetails.species)} ${pokeDetails.evolutionLevel ? `(${pokeDetails.evolutionLevel})` : ''}**` as string;
+  let evoChain = bold(`${pokemonEnumToSpecies(pokeDetails.key)} ${pokeDetails.evolutionLevel ? `(${pokeDetails.evolutionLevel})` : ''}`) as string;
   if (!pokeDetails.evolutions?.length && !pokeDetails.preevolutions?.length) {
     evoChain += ' (No Evolutions)';
   }
@@ -270,28 +274,28 @@ function getEvoChain(pokeDetails: Pokemon): string {
   // Parse pre-evolutions and add to evochain
   if (pokeDetails.preevolutions?.length) {
     const { evolutionLevel } = pokeDetails.preevolutions[0];
-    evoChain = constructEvoLink(pokeDetails.preevolutions[0].species, evolutionLevel, evoChain, false);
+    evoChain = constructEvoLink(pokeDetails.preevolutions[0].key, evolutionLevel, evoChain, false);
 
     // If the direct pre-evolution has another pre-evolution (charizard -> charmeleon -> charmander)
     if (pokeDetails.preevolutions[0].preevolutions?.length) {
-      evoChain = constructEvoLink(pokeDetails.preevolutions[0].preevolutions[0].species, null, evoChain, false);
+      evoChain = constructEvoLink(pokeDetails.preevolutions[0].preevolutions[0].key, null, evoChain, false);
     }
   }
 
   // Parse evolution chain and add to evochain
   if (pokeDetails.evolutions?.length) {
-    evoChain = constructEvoLink(pokeDetails.evolutions[0].species, pokeDetails.evolutions[0].evolutionLevel, evoChain);
+    evoChain = constructEvoLink(pokeDetails.evolutions[0].key, pokeDetails.evolutions[0].evolutionLevel, evoChain);
 
     // In case there are multiple evolutionary paths
     const otherFormeEvos = pokeDetails.evolutions.slice(1);
     if (otherFormeEvos.length) {
-      evoChain = `${evoChain}, ${otherFormeEvos.map((oevo) => `\`${oevo.species}\` (${oevo.evolutionLevel})`).join(', ')}`;
+      evoChain = `${evoChain}, ${otherFormeEvos.map((oevo) => `${inlineCode(oevo.species)} (${oevo.evolutionLevel})`).join(', ')}`;
     }
 
     // If the direct evolution has another evolution (charmander -> charmeleon -> charizard)
     if (pokeDetails.evolutions[0].evolutions?.length) {
       evoChain = constructEvoLink(
-        pokeDetails.evolutions[0].evolutions[0].species, //
+        pokeDetails.evolutions[0].evolutions[0].key, //
         pokeDetails.evolutions[0].evolutions[0].evolutionLevel,
         evoChain
       );

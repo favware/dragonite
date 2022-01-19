@@ -37,6 +37,7 @@ export const getPokemon = gql`
   }
 
   fragment pokemon on Pokemon {
+    key
     num
     species
     types
@@ -82,6 +83,7 @@ export const getPokemon = gql`
   }
 
   fragment evolutionsData on Pokemon {
+    key
     species
     evolutionLevel
   }
@@ -112,6 +114,7 @@ export const getPokemon = gql`
 export const getFlavorTexts = gql`
   query getFlavorTexts($pokemon: PokemonEnum!) {
     getPokemon(pokemon: $pokemon, takeFlavorTexts: 25) {
+      key
       sprite
       shinySprite
       backSprite
@@ -130,6 +133,7 @@ export const getFlavorTexts = gql`
 export const getAbility = gql`
   query getAbility($ability: AbilitiesEnum!) {
     getAbility(ability: $ability) {
+      key
       desc
       shortDesc
       name
@@ -144,6 +148,7 @@ export const getAbility = gql`
 export const getItem = gql`
   query getItem($item: ItemsEnum!) {
     getItem(item: $item) {
+      key
       desc
       name
       bulbapediaPage
@@ -171,6 +176,7 @@ export const getLearnset = gql`
   fragment learnset on Learnset {
     num
     species
+    pokemonKey
     sprite
     shinySprite
     backSprite
@@ -209,6 +215,7 @@ export const getLearnset = gql`
 export const getMove = gql`
   query getMove($move: MovesEnum!) {
     getMove(move: $move) {
+      key
       name
       shortDesc
       type
@@ -258,6 +265,7 @@ export const getTypeMatchup = gql`
 export const getPokemonSprites = gql`
   query getPokemonSprite($pokemon: PokemonEnum!) {
     getPokemon(pokemon: $pokemon) {
+      key
       sprite
       shinySprite
       backSprite

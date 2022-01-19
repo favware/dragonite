@@ -1,5 +1,5 @@
 import { PokemonEnum } from '@favware/graphql-pokemon';
-import { toTitleCase } from '@sapphire/utilities';
+import { isNullishOrEmpty, toTitleCase } from '@sapphire/utilities';
 
 const megaRegex = /^(?<name>[a-z]+)(?:mega)$/;
 const gmaxRegex = /^(?<name>[a-z]+)(?:gmax)$/;
@@ -11,6 +11,10 @@ const typeLikeRegex = /^(?<name>(?:arceus|silvally|genesect))(?<type>[a-z]+)?$/;
 const pumpkinRegex = /^(?<name>(?:pumpkaboo|gourgeist))(?<size>(?:small|large|super))$/g;
 
 export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
+  if (isNullishOrEmpty(pokemon)) {
+    return pokemon;
+  }
+
   switch (pokemon) {
     // Some exclusions that cannot be handled easily by the regex
     case PokemonEnum.Yanmega:

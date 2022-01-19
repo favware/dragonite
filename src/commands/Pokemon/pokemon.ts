@@ -13,7 +13,7 @@ import { MessageActionRow, MessageSelectMenu, type MessageSelectOptionData } fro
   description: 'Gets data for the chosen Pokémon.'
 })
 export class SlashCommand extends DragoniteCommand {
-  readonly #spriteOptions: [name: string, value: PokemonSpriteTypes][] = [
+  readonly #spriteChoices: [name: string, value: PokemonSpriteTypes][] = [
     ['Regular Sprite', 'sprite'],
     ['Regular Back Sprite', 'backSprite'],
     ['Shiny Sprite', 'shinySprite'],
@@ -37,7 +37,7 @@ export class SlashCommand extends DragoniteCommand {
             option //
               .setName('sprite')
               .setDescription('The sprite that you want the result to show.')
-              .setChoices(this.#spriteOptions)
+              .setChoices(this.#spriteChoices)
           ),
       { guildIds: getGuildIds(), idHints: ['933123556689195109'] }
     );
@@ -58,7 +58,7 @@ export class SlashCommand extends DragoniteCommand {
       const messageActionRow = new MessageActionRow() //
         .setComponents(
           new MessageSelectMenu() //
-            .setCustomId(`${SelectMenuCustomIds.Pokemon}|pokemon|${spriteToGet}` as PokemonSelectMenuHandlerCustomIdStructure)
+            .setCustomId(`${SelectMenuCustomIds.Pokemon}|pokemon|${spriteToGet}||` as PokemonSelectMenuHandlerCustomIdStructure)
             .setPlaceholder('Choose the Pokémon you want to get information about.')
             .setOptions(options)
         );

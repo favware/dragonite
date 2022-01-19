@@ -1,19 +1,19 @@
 import { SelectMenuCustomIds, ZeroWidthSpace } from '#utils/constants';
 import { flavorResponseBuilder } from '#utils/responseBuilders/flavorResponseBuilder';
+import { learnsetResponseBuilder } from '#utils/responseBuilders/learnsetResponseBuilder';
 import { pokemonResponseBuilder, PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
 import { spriteResponseBuilder } from '#utils/responseBuilders/spriteResponseBuilder';
-import type { PokemonEnum } from '@favware/graphql-pokemon';
+import type { Learnset, MovesEnum, Pokemon, PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { InteractionHandler, InteractionHandlerTypes, UserError } from '@sapphire/framework';
-import { isNullish } from '@sapphire/utilities';
+import { isNullish, isNullishOrEmpty } from '@sapphire/utilities';
 import type { SelectMenuInteraction } from 'discord.js';
 
-type ResponseToGenerate = 'pokemon' | 'flavor' | 'sprite';
+type ResponseToGenerate = 'pokemon' | 'flavor' | 'learn' | 'sprite';
 
 export type PokemonSelectMenuHandlerCustomIdStructure =
-  | `${SelectMenuCustomIds.Pokemon}|${ResponseToGenerate}`
-  | `${SelectMenuCustomIds.Pokemon}|${ResponseToGenerate}|${PokemonSpriteTypes}`;
+  `${SelectMenuCustomIds.Pokemon}|${ResponseToGenerate}|${PokemonSpriteTypes}|${number}|${string}`;
 
 @ApplyOptions<InteractionHandler.Options>({
   interactionHandlerType: InteractionHandlerTypes.SelectMenu
@@ -31,16 +31,24 @@ export class SelectMenuHandler extends InteractionHandler {
 
     switch (result.responseToGenerate) {
       case 'pokemon': {
-        paginatedMessage = pokemonResponseBuilder(result.pokemonDetails, result.spriteToGet);
+        paginatedMessage = pokemonResponseBuilder(result.pokemonDetails as Omit<Pokemon, '__typename'>, result.spriteToGet);
         break;
       }
       case 'flavor': {
-        paginatedMessage = flavorResponseBuilder(result.pokemonDetails, result.spriteToGet);
+        paginatedMessage = flavorResponseBuilder(result.pokemonDetails as Omit<Pokemon, '__typename'>, result.spriteToGet);
         break;
       }
       case 'sprite': {
-        paginatedMessage = spriteResponseBuilder(result.pokemonDetails);
+        paginatedMessage = spriteResponseBuilder(result.pokemonDetails as Omit<Pokemon, '__typename'>);
         break;
+      }
+      case 'learn': {
+        paginatedMessage = learnsetResponseBuilder(
+          result.pokemonDetails as Omit<Learnset, '__typename'>,
+          result.moves,
+          result.generation,
+          result.spriteToGet
+        );
       }
     }
 
@@ -54,15 +62,48 @@ export class SelectMenuHandler extends InteractionHandler {
   public override async parse(interaction: SelectMenuInteraction) {
     if (!interaction.customId.startsWith(SelectMenuCustomIds.Pokemon)) return this.none();
 
+    await interaction.deferReply();
+
     const pokemon = interaction.values[0];
     const customIdDecrypted = interaction.customId.split('|');
     const responseToGenerate = customIdDecrypted?.[1] as ResponseToGenerate;
     const spriteToGet = (customIdDecrypted?.[2] as PokemonSpriteTypes) ?? 'sprite';
+    const stringifiedMoves = customIdDecrypted?.[3];
+    const generation = parseInt(customIdDecrypted?.[4] ?? '8', 10);
+    let moves: MovesEnum[] = [];
 
-    await interaction.deferReply();
+    if (!isNullishOrEmpty(stringifiedMoves)) {
+      moves.push(...(stringifiedMoves.split(',') as MovesEnum[]));
+    }
 
-    const pokemonDetails = await this.container.gqlClient.getPokemon(pokemon as PokemonEnum);
+    if (!isNullishOrEmpty(moves)) {
+      moves = moves.filter((move) => (move as string) !== 'undefined');
+    }
 
-    return this.some({ pokemonDetails, pokemon, responseToGenerate, spriteToGet });
+    let pokemonDetails: Omit<Pokemon, '__typename'> | Omit<Learnset, '__typename'> | undefined;
+
+    switch (responseToGenerate) {
+      case 'pokemon': {
+        pokemonDetails = await this.container.gqlClient.getPokemon(pokemon as PokemonEnum);
+        break;
+      }
+      case 'flavor': {
+        pokemonDetails = await this.container.gqlClient.getFlavors(pokemon as PokemonEnum);
+        break;
+      }
+      case 'sprite': {
+        pokemonDetails = await this.container.gqlClient.getSprites(pokemon as PokemonEnum);
+        break;
+      }
+      case 'learn': {
+        pokemonDetails = await this.container.gqlClient.getLearnset(pokemon as PokemonEnum, moves, generation);
+      }
+    }
+
+    if (isNullish(pokemonDetails)) {
+      return this.none();
+    }
+
+    return this.some({ pokemonDetails, pokemon, responseToGenerate, spriteToGet, generation, moves });
   }
 }
