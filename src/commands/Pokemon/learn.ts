@@ -120,8 +120,8 @@ export class SlashCommand extends DragoniteCommand {
 
     const paginatedMessage = learnsetResponseBuilder(
       learnsetDetails,
-      [move1 as MovesEnum, move2 as MovesEnum, move3 as MovesEnum],
-      generation ?? 8,
+      [move1 as MovesEnum, move2 as MovesEnum, move3 as MovesEnum].filter(filterNullish),
+      generation,
       spriteToGet
     );
 
