@@ -5,7 +5,28 @@ import type {
   PaginatedMessageActionMenu
 } from '#lib/PaginatedMessages/PaginatedMessageTypes';
 import { chunk, partition } from '@sapphire/utilities';
-import { Constants, InteractionButtonOptions, MessageActionRow, MessageButton, MessageSelectMenu, MessageSelectMenuOptions } from 'discord.js';
+import {
+  CommandInteraction,
+  Constants,
+  MessageActionRow,
+  SelectMenuInteraction,
+  type InteractionButtonOptions,
+  type Message,
+  type MessageButton,
+  type MessageSelectMenu,
+  type MessageSelectMenuOptions
+} from 'discord.js';
+
+/**
+ * Checks whether the PaginatedMessage runs on an {@link CommandInteraction}, {@link SelectMenuInteraction} or {@link Message}
+ * @param messageOrInteraction The message or interaction that the PaginatedMessage runs on
+ * @returns `true` if the PaginatedMessage runs on an an {@link CommandInteraction} or {@link SelectMenuInteraction}, `false` if it runs on a {@link Message}
+ */
+export function runsOnInteraction(
+  messageOrInteraction: Message | CommandInteraction | SelectMenuInteraction
+): messageOrInteraction is CommandInteraction | SelectMenuInteraction {
+  return messageOrInteraction instanceof CommandInteraction || messageOrInteraction instanceof SelectMenuInteraction;
+}
 
 export function actionIsButtonOrMenu(action: PaginatedMessageAction): action is PaginatedMessageActionButton | PaginatedMessageActionMenu {
   return (
