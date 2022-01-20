@@ -24,9 +24,9 @@ export class SelectMenuHandler extends InteractionHandler {
   public override async parse(interaction: SelectMenuInteraction) {
     if (interaction.customId !== SelectMenuCustomIds.Item) return this.none();
 
-    const item = interaction.values[0];
-
     await interaction.deferReply();
+
+    const item = interaction.values[0];
 
     const itemDetails = await this.container.gqlClient.getItem(item as ItemsEnum);
 
