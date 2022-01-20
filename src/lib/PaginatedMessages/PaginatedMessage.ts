@@ -137,9 +137,9 @@ export class PaginatedMessage {
   public index = 0;
 
   /**
-   * The amount of milliseconds to idle before the paginator is closed. Defaults to 20 minutes.
+   * The amount of milliseconds to idle before the paginator is closed. Defaults to 14.5 minutes, this is to ensure it is a bit before interactions expire.
    */
-  public idle = Time.Minute * 20;
+  public idle = Time.Minute * 14.5;
 
   /**
    * The template for this {@link PaginatedMessage}.
@@ -733,7 +733,7 @@ export class PaginatedMessage {
       const paginatedMessage = PaginatedMessage.handlers.get(target.id);
 
       // If a PaginatedMessage was found then stop it
-      if (paginatedMessage) paginatedMessage.collector!.stop();
+      paginatedMessage?.collector?.stop();
 
       // If the message was sent by a bot, then set the response as this one
       if (runsOnInteraction(messageOrInteraction)) {
@@ -756,7 +756,7 @@ export class PaginatedMessage {
       const messageId = this.response!.id;
 
       if (this.collector) {
-        this.collector!.once('end', () => {
+        this.collector.once('end', () => {
           PaginatedMessage.messages.delete(messageId);
           PaginatedMessage.handlers.delete(target!.id);
         });
@@ -881,7 +881,7 @@ export class PaginatedMessage {
     if (this.pages.length > 1) {
       this.collector = new InteractionCollector(targetUser.client, {
         filter: (interaction) => this.actions.has((interaction as ButtonInteraction | SelectMenuInteraction).customId),
-        idle: this.idle,
+        time: this.idle,
         guild: isDMChannel(channel) ? undefined : channel.guild,
         channel,
         interactionType: Constants.InteractionTypes.MESSAGE_COMPONENT
@@ -970,16 +970,18 @@ export class PaginatedMessage {
     // Remove all listeners from the collector:
     this.collector?.removeAllListeners();
 
-    // Do not remove reactions if the message, channel, or guild, was deleted:
+    // Do not remove components if the message, channel, or guild, was deleted:
     if (this.response && !PaginatedMessage.deletionStopReasons.includes(reason)) {
       if (runsOnInteraction(this.response)) {
         if (this.response.replied || this.response.deferred) {
-          void this.response?.editReply({ components: [] });
+          void this.response.editReply({ components: [] });
+        } else if (this.response.isSelectMenu()) {
+          void this.response.update({ components: [] });
         } else {
-          void this.response?.reply({ components: [] });
+          void this.response.reply({ components: [] });
         }
       } else {
-        void this.response?.edit({ components: [] });
+        void this.response.edit({ components: [] });
       }
     }
   }
@@ -1124,6 +1126,8 @@ export class PaginatedMessage {
         if (runsOnInteraction(response)) {
           if (response.replied || response.deferred) {
             await response.editReply({ components: [] });
+          } else if (response.isSelectMenu()) {
+            await response.update({ components: [] });
           } else {
             await response.reply({ components: [] });
           }
