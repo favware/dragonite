@@ -114,7 +114,7 @@ export class PaginatedMessage {
   /**
    * The response message used to edit on page changes.
    */
-  public response: Message | CommandInteraction | SelectMenuInteraction | null = null;
+  public response: Message | CommandInteraction | SelectMenuInteraction | ButtonInteraction | null = null;
 
   /**
    * The collector used for handling button clicks.
@@ -716,14 +716,15 @@ export class PaginatedMessage {
    * The handler will start collecting button interactions.
    *
    * @param messageOrInteraction The message or interaction that triggered this {@link PaginatedMessage}.
-   * Generally this will be the command message or an interaction (either a {@link CommandInteraction} or a {@link SelectMenuInteraction}),
+   * Generally this will be the command message or an interaction
+   * (either a {@link CommandInteraction}, a {@link SelectMenuInteraction} or a {@link ButtonInteraction}),
    * but it can also be another message from your client, i.e. to indicate a loading state.
    *
    * @param target The user who will be able to interact with the buttons of this {@link PaginatedMessage}.
    * If `messageOrInteraction` is an instance of {@link Message} then this defaults to {@link Message.author messageOrInteraction.author},
    * and if it is an instance of {@link CommandInteraction} then it defaults to {@link CommandInteraction.user messageOrInteraction.user}.
    */
-  public async run(messageOrInteraction: Message | CommandInteraction | SelectMenuInteraction, target?: User): Promise<this> {
+  public async run(messageOrInteraction: Message | CommandInteraction | SelectMenuInteraction | ButtonInteraction, target?: User): Promise<this> {
     // Only execute if there is a channel to send the reply to
     if (messageOrInteraction.channel) {
       // Assign the target based on whether a Message or CommandInteraction was passed in
@@ -809,12 +810,16 @@ export class PaginatedMessage {
    * Sets up the message.
    *
    * @param messageOrInteraction The message or interaction that triggered this {@link PaginatedMessage}.
-   * Generally this will be the command message or an interaction (either a {@link CommandInteraction} or a {@link SelectMenuInteraction}),
+   * Generally this will be the command message or an interaction
+   * (either a {@link CommandInteraction}, a {@link SelectMenuInteraction} or a {@link ButtonInteraction}),
    * but it can also be another message from your client, i.e. to indicate a loading state.
    *
    * @param author The author the handler is for.
    */
-  protected async setUpMessage(messageOrInteraction: Message | CommandInteraction | SelectMenuInteraction, targetUser: User): Promise<void> {
+  protected async setUpMessage(
+    messageOrInteraction: Message | CommandInteraction | SelectMenuInteraction | ButtonInteraction,
+    targetUser: User
+  ): Promise<void> {
     // Get the current page
     let page = this.messages[this.index]!;
 
