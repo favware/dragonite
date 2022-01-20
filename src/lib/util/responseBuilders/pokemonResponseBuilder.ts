@@ -18,7 +18,7 @@ enum StatsEnum {
   speed = 'SPE'
 }
 
-const PageLabels = ['General', 'Growth Information', 'Competitive Battling Information', 'PokéDex Entries'];
+const PageLabels = ['General', 'Growth Information', 'Competitive Battling Information', 'PokéDex Entries', 'Forme information'];
 
 export function fuzzyPokemonToSelectOption<L extends 'name' | 'label'>(
   fuzzyMatch: Pokemon | FavouredEntry<PokemonEnum>,
