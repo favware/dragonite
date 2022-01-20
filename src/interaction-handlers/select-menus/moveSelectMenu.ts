@@ -1,4 +1,4 @@
-import { SelectMenuCustomIds, ZeroWidthSpace } from '#utils/constants';
+import { SelectMenuCustomIds } from '#utils/constants';
 import { moveResponseBuilder } from '#utils/responseBuilders/moveResponseBuilder';
 import type { MovesEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
@@ -10,7 +10,7 @@ import type { SelectMenuInteraction } from 'discord.js';
   interactionHandlerType: InteractionHandlerTypes.SelectMenu
 })
 export class SelectMenuHandler extends InteractionHandler {
-  public override async run(interaction: SelectMenuInteraction, result: InteractionHandler.ParseResult<this>) {
+  public override run(interaction: SelectMenuInteraction, result: InteractionHandler.ParseResult<this>) {
     if (isNullish(result.moveDetails)) {
       throw new UserError({
         identifier: 'MoveQueryFail',
@@ -20,11 +20,7 @@ export class SelectMenuHandler extends InteractionHandler {
 
     const paginatedMessage = moveResponseBuilder(result.moveDetails);
 
-    await interaction.deleteReply();
-
-    const message = await interaction.channel!.send({ content: ZeroWidthSpace });
-    await paginatedMessage.run(message, interaction.user);
-    return message;
+    return paginatedMessage.run(interaction, interaction.user);
   }
 
   public override async parse(interaction: SelectMenuInteraction) {
