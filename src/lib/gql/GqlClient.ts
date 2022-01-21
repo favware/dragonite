@@ -237,7 +237,7 @@ export class GqlClient {
     return result.value;
   }
 
-  public async fuzzilySearchPokemon(pokemon: string, take = 20) {
+  public async fuzzilySearchPokemon(pokemon: string, take = 20, includeSpecialPokemon = true) {
     const result = await fromAsync(async () => {
       const apiResult = await this.fetchGraphQLPokemon<'getFuzzyPokemon'>(getFuzzyPokemon, { pokemon, take });
       return apiResult.data.getFuzzyPokemon;
@@ -245,6 +245,13 @@ export class GqlClient {
 
     if (isErr(result)) {
       return FavouredPokemon;
+    }
+
+    if (!includeSpecialPokemon) {
+      const filteredPokemon = result.value.filter((pokemon) => !pokemon.forme && pokemon.num >= 0);
+
+      if (!filteredPokemon.length) return FavouredPokemon;
+      return filteredPokemon;
     }
 
     return result.value;
