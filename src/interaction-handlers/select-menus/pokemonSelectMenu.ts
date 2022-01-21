@@ -2,18 +2,14 @@ import type { PaginatedMessage } from '#lib/PaginatedMessages/PaginatedMessage';
 import { SelectMenuCustomIds } from '#utils/constants';
 import { flavorResponseBuilder } from '#utils/responseBuilders/flavorResponseBuilder';
 import { learnsetResponseBuilder } from '#utils/responseBuilders/learnsetResponseBuilder';
-import { pokemonResponseBuilder, PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
+import { pokemonResponseBuilder } from '#utils/responseBuilders/pokemonResponseBuilder';
 import { spriteResponseBuilder } from '#utils/responseBuilders/spriteResponseBuilder';
-import type { Learnset, MovesEnum, Pokemon, PokemonEnum } from '@favware/graphql-pokemon';
+import { decompressPokemonCustomIdMetadata } from '#utils/utils';
+import type { Learnset, Pokemon, PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import { InteractionHandler, InteractionHandlerTypes, UserError } from '@sapphire/framework';
-import { isNullish, isNullishOrEmpty } from '@sapphire/utilities';
+import { isNullish } from '@sapphire/utilities';
 import type { SelectMenuInteraction } from 'discord.js';
-
-type ResponseToGenerate = 'pokemon' | 'flavor' | 'learn' | 'sprite';
-
-export type PokemonSelectMenuHandlerCustomIdStructure =
-  `${SelectMenuCustomIds.Pokemon}|${ResponseToGenerate}|${PokemonSpriteTypes}|${number}|${string}`;
 
 @ApplyOptions<InteractionHandler.Options>({
   interactionHandlerType: InteractionHandlerTypes.SelectMenu
@@ -61,20 +57,13 @@ export class SelectMenuHandler extends InteractionHandler {
     await interaction.deferReply();
 
     const pokemon = interaction.values[0];
-    const customIdDecrypted = interaction.customId.split('|');
-    const responseToGenerate = customIdDecrypted?.[1] as ResponseToGenerate;
-    const spriteToGet = (customIdDecrypted?.[2] as PokemonSpriteTypes) ?? 'sprite';
-    const generation = parseInt(customIdDecrypted?.[3], 10);
-    const stringifiedMoves = customIdDecrypted?.[4];
-    let moves: MovesEnum[] = [];
+    const splitCustomId = interaction.customId.split('|');
+    const data = decompressPokemonCustomIdMetadata(splitCustomId[1]);
 
-    if (!isNullishOrEmpty(stringifiedMoves)) {
-      moves.push(...(stringifiedMoves.split(',') as MovesEnum[]));
-    }
-
-    if (!isNullishOrEmpty(moves)) {
-      moves = moves.filter((move) => (move as string) !== 'undefined' && (move as string) !== 'null');
-    }
+    const responseToGenerate = data.type;
+    const spriteToGet = data.spriteToGet ?? 'sprite';
+    const generation = data.generation ?? 8;
+    const moves = data.moves ?? [];
 
     let pokemonDetails: Omit<Pokemon, '__typename'> | Omit<Learnset, '__typename'> | undefined;
 

@@ -20,8 +20,9 @@
 - [x] Implement remaining [commands](#commands)
 - [x] Refactor embed titles from `pokemonResponseBuilder` and `typeMatchupResponseBuilder` to be inline.
 - [x] Make `PaginatedMessage` compatible with interactions so the message hack is not necessary any more.
-- [ ] Test out BinaryTF for custom id compression
+- [x] Test out BinaryTF for custom id compression (IT WORKS!)
 - [ ] Make post-stats task POST data to bot lists.
+- [ ] Switch from BinaryTF to @sapphire/string-store (stalled on the package being finished by @kyranet)
 
 ## Commands
 
