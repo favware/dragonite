@@ -81,6 +81,13 @@ export class UserListener extends Listener<typeof Events.ChatInputCommandError> 
   }
 
   private alert(interaction: CommandInteraction, content: string) {
+    if (interaction.replied || interaction.deferred) {
+      return interaction.editReply({
+        content,
+        allowedMentions: { users: [interaction.user.id], roles: [] }
+      });
+    }
+
     return interaction.reply({
       content,
       allowedMentions: { users: [interaction.user.id], roles: [] },
