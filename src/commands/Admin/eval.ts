@@ -1,4 +1,5 @@
 import { DragoniteCommand } from '#lib/extensions/DragoniteCommand';
+import { seconds } from '#utils/functions/time';
 import { clean } from '#utils/Sanitizer/clean';
 import { getGuildIds } from '#utils/utils';
 import { bold, hideLinkEmbed } from '@discordjs/builders';
@@ -7,9 +8,8 @@ import { canSendMessages } from '@sapphire/discord.js-utilities';
 import { fetch, FetchMethods, FetchResultTypes } from '@sapphire/fetch';
 import { ChatInputCommand, RegisterBehavior } from '@sapphire/framework';
 import { Stopwatch } from '@sapphire/stopwatch';
-import { Time } from '@sapphire/time-utilities';
 import Type from '@sapphire/type';
-import { codeBlock, filterNullAndUndefinedAndEmpty, isThenable, roundNumber } from '@sapphire/utilities';
+import { codeBlock, filterNullAndUndefinedAndEmpty, isThenable } from '@sapphire/utilities';
 import type { APIMessage } from 'discord-api-types/v9';
 import type { CommandInteraction, Message } from 'discord.js';
 import { setTimeout as sleep } from 'node:timers/promises';
@@ -142,7 +142,7 @@ export class SlashCommand extends DragoniteCommand {
 
     return Promise.race([
       sleep(timeout).then(() => ({
-        result: `TIMEOUT: Took longer than ${this.millisecondsToSeconds(timeout)} seconds.`,
+        result: `TIMEOUT: Took longer than ${seconds.fromMilliseconds(timeout)} seconds.`,
         success: false,
         time: '⏱ ...',
         type: 'EvalTimeoutError'
@@ -315,10 +315,6 @@ export class SlashCommand extends DragoniteCommand {
 
   private formatTime(syncTime: string, asyncTime?: string) {
     return asyncTime ? `⏱ ${asyncTime}<${syncTime}>` : `⏱ ${syncTime}`;
-  }
-
-  private millisecondsToSeconds(milliseconds: number) {
-    return roundNumber(milliseconds / Time.Second);
   }
 
   private async getHaste(result: string, language = 'js') {
