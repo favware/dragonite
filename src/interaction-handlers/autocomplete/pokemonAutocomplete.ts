@@ -25,7 +25,11 @@ export class AutocompleteHandler extends InteractionHandler {
 
     switch (focusedOption.name) {
       case 'pokemon': {
-        const fuzzyPokemon = await this.container.gqlClient.fuzzilySearchPokemon(focusedOption.value as string);
+        const fuzzyPokemon = await this.container.gqlClient.fuzzilySearchPokemon(
+          focusedOption.value as string,
+          20,
+          interaction.commandName !== 'learn'
+        );
 
         return this.some(fuzzyPokemon.map((fuzzyEntry) => fuzzyPokemonToSelectOption(fuzzyEntry, 'name')));
       }

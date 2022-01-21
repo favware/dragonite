@@ -32,6 +32,9 @@ export const getFuzzyPokemon = gql`
     getFuzzyPokemon(pokemon: $pokemon, take: $take) {
       key
       species
+      num
+      forme
+      formeLetter
     }
   }
 `;
