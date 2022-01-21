@@ -1,12 +1,11 @@
 import { DragoniteCommand } from '#lib/extensions/DragoniteCommand';
-import type { PokemonSelectMenuHandlerCustomIdStructure } from '#root/interaction-handlers/select-menus/pokemonSelectMenu';
 import { SelectMenuCustomIds } from '#utils/constants';
 import { learnsetResponseBuilder } from '#utils/responseBuilders/learnsetResponseBuilder';
 import { fuzzyPokemonToSelectOption, PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
-import { getGuildIds } from '#utils/utils';
+import { compressPokemonCustomIdMetadata, getGuildIds } from '#utils/utils';
 import type { MovesEnum, PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
-import type { ChatInputCommand } from '@sapphire/framework';
+import { ChatInputCommand, UserError } from '@sapphire/framework';
 import { filterNullish, isNullish } from '@sapphire/utilities';
 import { MessageActionRow, MessageSelectMenu, type MessageSelectOptionData } from 'discord.js';
 
@@ -90,22 +89,35 @@ export class SlashCommand extends DragoniteCommand {
     const generation = interaction.options.getInteger('generation') ?? 8;
     const spriteToGet: PokemonSpriteTypes = (interaction.options.getString('sprite') as PokemonSpriteTypes | null) ?? 'sprite';
 
-    const learnsetDetails = await this.container.gqlClient.getLearnset(
-      pokemon as PokemonEnum,
-      [move1 as MovesEnum, move2 as MovesEnum, move3 as MovesEnum].filter(filterNullish),
-      generation
-    );
+    const actuallyChosenMoves = [move1 as MovesEnum, move2 as MovesEnum, move3 as MovesEnum].filter(filterNullish);
+
+    const learnsetDetails = await this.container.gqlClient.getLearnset(pokemon as PokemonEnum, actuallyChosenMoves, generation);
 
     if (isNullish(learnsetDetails)) {
-      const fuzzyPokemon = await this.container.gqlClient.fuzzilySearchPokemon(pokemon, 25);
+      const fuzzyPokemon = await this.container.gqlClient.fuzzilySearchPokemon(pokemon, 25, false);
       const options = fuzzyPokemon.map<MessageSelectOptionData>((fuzzyEntry) => fuzzyPokemonToSelectOption(fuzzyEntry, 'label'));
+
+      const metadata = compressPokemonCustomIdMetadata({
+        type: 'learn',
+        spriteToGet,
+        generation,
+        moves: actuallyChosenMoves
+      });
+
+      const customIdStringified = `${SelectMenuCustomIds.Pokemon}|${metadata}`;
+
+      if (customIdStringified.length > 100) {
+        throw new UserError({
+          identifier: 'LearnQueryCausedTooLongCustomId',
+          message:
+            'Due to Discord API limitations I was unable to resolve that request. Please try with fewer, or different moves. This issue will be fixed in the future.'
+        });
+      }
 
       const messageActionRow = new MessageActionRow() //
         .setComponents(
           new MessageSelectMenu() //
-            .setCustomId(
-              `${SelectMenuCustomIds.Pokemon}|learn|${spriteToGet}|${generation}|${move1},${move2},${move3}` as PokemonSelectMenuHandlerCustomIdStructure
-            )
+            .setCustomId(customIdStringified)
             .setPlaceholder('Choose the Pokémon you want to check these moves for.')
             .setOptions(options)
         );
@@ -118,12 +130,7 @@ export class SlashCommand extends DragoniteCommand {
       });
     }
 
-    const paginatedMessage = learnsetResponseBuilder(
-      learnsetDetails,
-      [move1 as MovesEnum, move2 as MovesEnum, move3 as MovesEnum].filter(filterNullish),
-      generation,
-      spriteToGet
-    );
+    const paginatedMessage = learnsetResponseBuilder(learnsetDetails, actuallyChosenMoves, generation, spriteToGet);
 
     return paginatedMessage.run(interaction);
   }

@@ -1,12 +1,12 @@
 import { PaginatedMessage } from '#lib/PaginatedMessages/PaginatedMessage';
 import { BrandingColors, CdnUrls } from '#utils/constants';
 import { pokemonEnumToSpecies } from '#utils/functions/pokemonParsers';
+import type { PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
 import { bold, underscore } from '@discordjs/builders';
 import type { Learnset, LearnsetLevelUpMove, Maybe } from '@favware/graphql-pokemon';
 import { container } from '@sapphire/framework';
 import { isNullish, toTitleCase } from '@sapphire/utilities';
 import { MessageEmbed } from 'discord.js';
-import type { PokemonSpriteTypes } from './pokemonResponseBuilder';
 
 export function learnsetResponseBuilder(
   learnsetData: Omit<Learnset, '__typename'>,
