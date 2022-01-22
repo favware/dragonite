@@ -1,7 +1,7 @@
 import { envParseString } from '#lib/env';
 import { DragoniteEvents } from '#lib/types/Enums';
 import { fetch, FetchResultTypes, type QueryError } from '@sapphire/fetch';
-import { fromAsync, isErr, PieceContext } from '@sapphire/framework';
+import type { PieceContext } from '@sapphire/framework';
 import { ScheduledTask } from '@sapphire/plugin-scheduled-tasks';
 import { filterNullish, isNullishOrEmpty } from '@sapphire/utilities';
 import { blueBright, green, red } from 'colorette';
@@ -110,8 +110,6 @@ export class PostStatsTask extends ScheduledTask {
     if (results.length) {
       this.container.logger.info(`${header} [ ${guilds} [G] ] [ ${users} [U] ] | ${results.join(' | ')}`);
     }
-
-    return null;
   }
 
   private async query(url: string, body: string, token: string | null, list: Lists) {
@@ -120,7 +118,7 @@ export class PostStatsTask extends ScheduledTask {
       return null;
     }
 
-    const result = await fromAsync(async () => {
+    try {
       await fetch(
         url,
         {
@@ -130,12 +128,10 @@ export class PostStatsTask extends ScheduledTask {
         },
         FetchResultTypes.Result
       );
-    });
 
-    if (isErr(result)) {
-      return `${red(list)} [${red((result.error as QueryError).code.toString())}]`;
+      return green(list);
+    } catch (error) {
+      return `${red(list)} [${red((error as QueryError).code.toString())}]`;
     }
-
-    return green(list);
   }
 }
