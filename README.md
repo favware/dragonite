@@ -58,13 +58,13 @@ environment.
 
 **A bit of story**: For many years before making Dragonite I've been working on a great variety of Discord bots,
 libraries and frameworks. I've started and finished many projects, and I've been lucky enough to see many people being
-happy with the results. Among these many projects one of my pride and joys is [`GraphQL-Pokemon`]. This is a highly
-detailed Pokémon API, which is used to provide a variety of information about Pokémon, and other Pokémon related data.
-It is currently serving several projects, among which [Skyra discord bot][skyra] and [Dexa].
+happy with the results. Among these many projects, one of my pride and joys is [`GraphQL-Pokemon`]. This is a highly
+detailed Pokémon API, which is used to provide a variety of information about Pokémon and other Pokémon-related data. It
+is currently serving several projects, among which [Skyra discord bot][skyra] and [Dexa].
 
 However, as proud as I am for the work that I have been and will be doing for [Skyra][skyra], I have also wanted to
-split off its Pokémon module into a separate project to give it more expose to the Discord community. And that's exactly
-what this project is. Dragonite will provide top notch Pokémon data for all your Pokémon needs.
+split off its Pokémon module into a separate project to give it more exposure to the Discord community. And that's
+exactly what this project is. Dragonite will provide top-notch Pokémon data for all your Pokémon needs.
 
 ## Links
 
