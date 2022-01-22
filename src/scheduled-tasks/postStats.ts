@@ -26,25 +26,18 @@ export class PostStatsTask extends ScheduledTask {
   }
 
   public override async run() {
-    const { client, logger } = this.container;
-
-    logger.info('Running postStats task');
-
     // If the websocket isn't ready, skip for now
-    if (client.ws.status !== Constants.Status.READY) {
+    if (this.container.client.ws.status !== Constants.Status.READY) {
       return;
     }
 
-    logger.info('Passed the postStats readiness check');
-
-    const rawGuilds = client.guilds.cache.size;
-    const rawUsers = client.guilds.cache.reduce((acc, val) => acc + (val.memberCount ?? 0), 0);
+    const rawGuilds = this.container.client.guilds.cache.size;
+    const rawUsers = this.container.client.guilds.cache.reduce((acc, val) => acc + (val.memberCount ?? 0), 0);
 
     this.processAnalytics(rawGuilds, rawUsers);
 
     // If in production then post stats to bot lists
     if (envParseString('NODE_ENV') === 'production') {
-      logger.info('Posting stats to bot lists');
       await this.processBotListStats(rawGuilds, rawUsers);
     }
   }
@@ -84,28 +77,26 @@ export class PostStatsTask extends ScheduledTask {
         //   envParseString('DISCORDLABS_TOKEN'),
         //   Lists.Discords
         // ),
-        this.query(
-          `https://api.bladelist.gg/bots/${envParseString('CLIENT_ID')}`,
-          JSON.stringify({ server_count: guilds }),
-          envParseString('BLADELIST_GG_TOKEN'),
-          Lists.BladelistGG
-        ),
+        // this.query(
+        //   `https://api.bladelist.gg/bots/${envParseString('CLIENT_ID')}`,
+        //   JSON.stringify({ server_count: guilds }),
+        //   envParseString('BLADELIST_GG_TOKEN'),
+        //   Lists.BladelistGG
+        // ),
         this.query(
           `https://discordbotlist.com/api/v1/bots/${envParseString('CLIENT_ID')}/stats`,
           JSON.stringify({ guilds, users }),
           `Bot ${envParseString('DISCORD_BOT_LIST_TOKEN')}`,
           Lists.DiscordBotList
-        ),
-        this.query(
-          `https://api.discordlist.space/v1/bots/${envParseString('CLIENT_ID')}`,
-          JSON.stringify({ server_count: guilds }),
-          envParseString('DISCORDLIST_SPACE_TOKEN'),
-          Lists.BotListSpace
         )
+        // this.query(
+        //   `https://api.discordlist.space/v1/bots/${envParseString('CLIENT_ID')}`,
+        //   JSON.stringify({ server_count: guilds }),
+        //   envParseString('DISCORDLIST_SPACE_TOKEN'),
+        //   Lists.BotListSpace
+        // )
       ])
     ).filter(filterNullish);
-
-    this.container.logger.info('Processed stats with results: ', results);
 
     if (results.length) {
       this.container.logger.info(`${header} [ ${guilds} [G] ] [ ${users} [U] ] | ${results.join(' | ')}`);
@@ -114,7 +105,6 @@ export class PostStatsTask extends ScheduledTask {
 
   private async query(url: string, body: string, token: string | null, list: Lists) {
     if (isNullishOrEmpty(token)) {
-      this.container.logger.info(`For botlist ${list} received no token`);
       return null;
     }
 
