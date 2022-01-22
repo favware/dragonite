@@ -16,8 +16,6 @@ enum Lists {
   TopGG = 'top.gg',
   DiscordBotsGG = 'discord.bots.gg',
   BladelistGG = 'bladelist.gg'
-  // TODO: bots.ondiscord.xyz is currently not accepting new bots
-  // BotsOnDiscord = 'bots.ondiscord.xyz'
 }
 
 export class PostStatsTask extends ScheduledTask {
@@ -50,21 +48,27 @@ export class PostStatsTask extends ScheduledTask {
     const results: (string | null)[] = (
       await Promise.all([
         // this.query(
-        //   `https://top.gg/api/bots/${process.env.CLIENT_ID}/stats`,
-        //   `{"server_count":${guilds}}`,
+        //   `https://top.gg/api/bots/${envParseString('CLIENT_ID')}/stats`,
+        //   JSON.stringify({ server_count: guilds }),
         //   envParseString('TOP_GG_TOKEN'),
         //   Lists.TopGG
         // ),
         // this.query(
-        //   `https://discord.bots.gg/api/v1/bots/${process.env.CLIENT_ID}/stats`,
-        //   `{"guildCount":${guilds}}`,
+        //   `https://discord.bots.gg/api/v1/bots/${envParseString('CLIENT_ID')}/stats`,
+        //   JSON.stringify({ guildCount: guilds }),
         //   envParseString('DISCORD_BOTS_GG_TOKEN'),
         //   Lists.DiscordBotsGG
         // ),
         // this.query(
-        //   `https://discords.com/bots/api/bot/${process.env.CLIENT_ID}`,
-        //   `{"server_count":${guilds}}`,
+        //   `https://discords.com/bots/api/bot/${envParseString('CLIENT_ID')}`,
+        //   JSON.stringify({ server_count: guilds }),
         //   envParseString('DISCORDS_TOKEN'),
+        //   Lists.Discords
+        // ),
+        // this.query(
+        //   `https://bots.discordlabs.org/v2/bot/${envParseString('CLIENT_ID')}/stats,
+        //   JSON.stringify({ server_count: guilds }),
+        //   envParseString('DISCORDLABS_TOKEN'),
         //   Lists.Discords
         // ),
         this.query(
