@@ -1,7 +1,7 @@
-import { PaginatedMessage } from '#lib/PaginatedMessages/PaginatedMessage';
 import { BrandingColors, CdnUrls } from '#utils/constants';
 import { parseBulbapediaURL } from '#utils/functions/pokemonParsers';
 import type { Move } from '@favware/graphql-pokemon';
+import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
 import { toTitleCase } from '@sapphire/utilities';
 import { MessageEmbed } from 'discord.js';

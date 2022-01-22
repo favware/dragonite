@@ -1,5 +1,5 @@
-import { PaginatedMessage } from '#lib/PaginatedMessages/PaginatedMessage';
 import type { Pokemon } from '@favware/graphql-pokemon';
+import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 
 const PageLabels = ['Regular Sprite', 'Regular Back Sprite', 'Shiny Sprite', 'Shiny Back Sprite'];
 

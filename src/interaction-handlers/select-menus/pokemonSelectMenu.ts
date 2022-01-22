@@ -1,4 +1,3 @@
-import type { PaginatedMessage } from '#lib/PaginatedMessages/PaginatedMessage';
 import { SelectMenuCustomIds } from '#utils/constants';
 import { flavorResponseBuilder } from '#utils/responseBuilders/flavorResponseBuilder';
 import { learnsetResponseBuilder } from '#utils/responseBuilders/learnsetResponseBuilder';
@@ -7,6 +6,7 @@ import { spriteResponseBuilder } from '#utils/responseBuilders/spriteResponseBui
 import { decompressPokemonCustomIdMetadata } from '#utils/utils';
 import type { Learnset, Pokemon, PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
+import type { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { InteractionHandler, InteractionHandlerTypes, UserError } from '@sapphire/framework';
 import { isNullish } from '@sapphire/utilities';
 import type { SelectMenuInteraction } from 'discord.js';
