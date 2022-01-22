@@ -21,7 +21,11 @@ enum Lists {
 export class PostStatsTask extends ScheduledTask {
   public constructor(context: PieceContext) {
     super(context, {
-      cron: '*/10 * * * *'
+      cron: '*/10 * * * *',
+      bullJobOptions: {
+        removeOnComplete: true,
+        removeOnFail: true
+      }
     });
   }
 

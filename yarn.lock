@@ -494,13 +494,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/plugin-scheduled-tasks@npm:next":
-  version: 2.1.1-next.b614a9a.0
-  resolution: "@sapphire/plugin-scheduled-tasks@npm:2.1.1-next.b614a9a.0"
+"@sapphire/plugin-scheduled-tasks@npm:pr-232":
+  version: 2.2.0-pr-232.1c7c921.0
+  resolution: "@sapphire/plugin-scheduled-tasks@npm:2.2.0-pr-232.1c7c921.0"
   dependencies:
     "@sapphire/time-utilities": ^1.5.1
     tslib: ^2.3.1
-  checksum: a66ce4d8abb62565c8fb5b08afa40c89e42d49746fe3861cdf0cb2b62adbcc7944108cfcf475c4001dfe9a1269bbab480f4bfc7500c7d8ad1d0f90a4f3fc67a4
+  checksum: 2b70da1d9ea599dd5a24ffac6de1748c3db7c140becac36e6233baedc760dbfc37472d1c456acecf8f44d6441149655dc73746c104dfd4c7369f6dda7321737b
   languageName: node
   linkType: hard
 
@@ -1840,7 +1840,7 @@ __metadata:
     "@sapphire/fetch": ^2.0.4
     "@sapphire/framework": next
     "@sapphire/plugin-logger": ^2.1.2
-    "@sapphire/plugin-scheduled-tasks": next
+    "@sapphire/plugin-scheduled-tasks": pr-232
     "@sapphire/prettier-config": ^1.2.9
     "@sapphire/stopwatch": ^1.2.5
     "@sapphire/time-utilities": ^1.5.2
