@@ -92,7 +92,7 @@ export class PostStatsTask extends ScheduledTask {
       ])
     ).filter(filterNullish);
 
-    if (results.length) logger.trace(`${header} [ ${guilds} [G] ] [ ${users} [U] ] | ${results.join(' | ')}`);
+    if (results.length) logger.info(`${header} [ ${guilds} [G] ] [ ${users} [U] ] | ${results.join(' | ')}`);
     return null;
   }
 
