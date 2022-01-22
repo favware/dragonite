@@ -38,7 +38,7 @@ export class SlashCommand extends DragoniteCommand {
               .setDescription('The sprite that you want the result to show.')
               .setChoices(this.#spriteChoices)
           ),
-      { guildIds: getGuildIds(), idHints: ['933123556689195109'] }
+      { guildIds: getGuildIds(), idHints: ['933123556689195109', '934269891404521544'] }
     );
   }
 

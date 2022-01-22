@@ -6,7 +6,7 @@ import { bold, hideLinkEmbed } from '@discordjs/builders';
 import { ApplyOptions } from '@sapphire/decorators';
 import { canSendMessages } from '@sapphire/discord.js-utilities';
 import { fetch, FetchMethods, FetchResultTypes } from '@sapphire/fetch';
-import { ChatInputCommand, RegisterBehavior } from '@sapphire/framework';
+import type { ChatInputCommand } from '@sapphire/framework';
 import { Stopwatch } from '@sapphire/stopwatch';
 import Type from '@sapphire/type';
 import { codeBlock, filterNullAndUndefinedAndEmpty, isThenable } from '@sapphire/utilities';
@@ -87,7 +87,7 @@ export class SlashCommand extends DragoniteCommand {
               .setName('show-hidden')
               .setDescription('Whether to show hidden JSON properties when stringifying.')
           ),
-      { guildIds: getGuildIds(), idHints: ['933468204053954680'], behaviorWhenNotIdentical: RegisterBehavior.LogToConsole }
+      { guildIds: getGuildIds(), idHints: ['933468204053954680', '934269978021077072'] }
     );
   }
 
