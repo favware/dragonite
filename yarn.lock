@@ -298,13 +298,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@favware/graphql-pokemon@portal:/F:/dev/favware/graphql-pokemon::locator=dragonite%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "@favware/graphql-pokemon@portal:/F:/dev/favware/graphql-pokemon::locator=dragonite%40workspace%3A."
+"@favware/graphql-pokemon@npm:^6.3.0":
+  version: 6.3.0
+  resolution: "@favware/graphql-pokemon@npm:6.3.0"
   dependencies:
     graphql: ^15.8.0
+  checksum: c6b4af44e607f88804af1a7aa3d0eb4b5a3445ab9b8d5a976e67be195595d26b64a5ddd33232295cf90c00acdc015cf89dbf0fa8e3a9e08edfc1ce991f343177
   languageName: node
-  linkType: soft
+  linkType: hard
 
 "@gar/promisify@npm:^1.0.1":
   version: 1.1.2
@@ -1829,7 +1830,7 @@ __metadata:
     "@commitlint/cli": ^16.1.0
     "@commitlint/config-conventional": ^16.0.0
     "@discordjs/builders": ^0.11.0
-    "@favware/graphql-pokemon": ^6.2.6
+    "@favware/graphql-pokemon": ^6.3.0
     "@influxdata/influxdb-client": ^1.22.0
     "@influxdata/influxdb-client-apis": ^1.22.0
     "@sapphire/decorators": ^4.0.2
@@ -1863,7 +1864,6 @@ __metadata:
     eslint: ^8.7.0
     eslint-config-prettier: ^8.3.0
     eslint-plugin-prettier: ^4.0.0
-    graphql: ^15.8.0
     husky: ^7.0.4
     ioredis: ^4.28.3
     lint-staged: ^12.2.2
