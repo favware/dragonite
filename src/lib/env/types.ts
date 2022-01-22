@@ -26,6 +26,11 @@ export interface DragoniteEnv {
   COMMAND_GUILD_IDS: string;
 
   DISCORD_TOKEN: string;
+  DISCORD_BOT_LIST_TOKEN: string;
+  DISCORDLIST_SPACE_TOKEN: string;
+  TOP_GG_TOKEN: never;
+  DISCORD_BOTS_GG_TOKEN: never;
+  DISCORDS_TOKEN: never;
 
   REDIS_PORT: IntegerString;
   REDIS_PASSWORD: string;

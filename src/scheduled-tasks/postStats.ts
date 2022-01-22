@@ -1,21 +1,23 @@
 import { envParseString } from '#lib/env';
 import { DragoniteEvents } from '#lib/types/Enums';
-import type { PieceContext } from '@sapphire/framework';
+import { fetch, FetchResultTypes, type QueryError } from '@sapphire/fetch';
+import { fromAsync, isErr, PieceContext } from '@sapphire/framework';
 import { ScheduledTask } from '@sapphire/plugin-scheduled-tasks';
-import { filterNullish } from '@sapphire/utilities';
-import { blueBright } from 'colorette';
+import { filterNullish, isNullishOrEmpty } from '@sapphire/utilities';
+import { blueBright, green, red } from 'colorette';
 import { Constants } from 'discord.js';
 
 const header = blueBright('[POST STATS   ]');
 
-// enum Lists {
-//   BotListSpace = 'botlist.space',
-//   Discords = 'discords.com',
-//   DiscordBotList = 'discordbotlist.com',
-//   TopGG = 'top.gg',
-//   DiscordBotsGG = 'discord.bots.gg',
-//   BotsOnDiscord = 'bots.ondiscord.xyz'
-// }
+enum Lists {
+  BotListSpace = 'botlist.space',
+  Discords = 'discords.com',
+  DiscordBotList = 'discordbotlist.com',
+  TopGG = 'top.gg',
+  DiscordBotsGG = 'discord.bots.gg'
+  // TODO: bots.ondiscord.xyz is currently not accepting new bots
+  // BotsOnDiscord = 'bots.ondiscord.xyz'
+}
 
 export class PostStatsTask extends ScheduledTask {
   public constructor(context: PieceContext) {
@@ -24,7 +26,7 @@ export class PostStatsTask extends ScheduledTask {
     });
   }
 
-  public run() {
+  public override async run() {
     const { client, logger } = this.container;
 
     // If the websocket isn't ready, skip for now
@@ -43,11 +45,69 @@ export class PostStatsTask extends ScheduledTask {
     const guilds = rawGuilds.toString();
     const users = rawUsers.toString();
 
-    // TODO: Post stats to botlists
-    const results: (string | null)[] = [].filter(filterNullish);
+    // TODO: Post stats to other bot lists after approvals
+    const results: (string | null)[] = (
+      await Promise.all([
+        // this.query(
+        //   `https://top.gg/api/bots/${process.env.CLIENT_ID}/stats`,
+        //   `{"server_count":${guilds}}`,
+        //   envParseString('TOP_GG_TOKEN'),
+        //   Lists.TopGG
+        // ),
+        // this.query(
+        //   `https://discord.bots.gg/api/v1/bots/${process.env.CLIENT_ID}/stats`,
+        //   `{"guildCount":${guilds}}`,
+        //   envParseString('DISCORD_BOTS_GG_TOKEN'),
+        //   Lists.DiscordBotsGG
+        // ),
+        // this.query(
+        //   `https://discords.com/bots/api/bot/${process.env.CLIENT_ID}`,
+        //   `{"server_count":${guilds}}`,
+        //   envParseString('DISCORDS_TOKEN'),
+        //   Lists.Discords
+        // ),
+
+        this.query(
+          `https://discordbotlist.com/api/v1/bots/${envParseString('CLIENT_ID')}/stats`,
+          `{"guilds":${guilds},"users":${users}}`,
+          `Bot ${envParseString('DISCORD_BOT_LIST_TOKEN')}`,
+          Lists.DiscordBotList
+        ),
+        this.query(
+          `https://api.discordlist.space/v1/bots/${envParseString('CLIENT_ID')}`,
+          `{"server_count":${guilds}}`,
+          envParseString('DISCORDLIST_SPACE_TOKEN'),
+          Lists.BotListSpace
+        )
+      ])
+    ).filter(filterNullish);
 
     if (results.length) logger.trace(`${header} [ ${guilds} [G] ] [ ${users} [U] ] | ${results.join(' | ')}`);
     return null;
+  }
+
+  public async query(url: string, body: string, token: string | null, list: Lists) {
+    if (isNullishOrEmpty(token)) return null;
+
+    const result = await fromAsync(async () => {
+      await fetch(
+        url,
+        {
+          body,
+          headers: { 'content-type': 'application/json', authorization: token },
+          method: 'POST'
+        },
+        FetchResultTypes.Result
+      );
+
+      return green(list);
+    });
+
+    if (isErr(result)) {
+      return `${red(list)} [${red((result.error as QueryError).code.toString())}]`;
+    }
+
+    return result.value;
   }
 
   private processAnalytics(guilds: number, users: number) {
