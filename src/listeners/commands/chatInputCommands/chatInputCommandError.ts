@@ -1,12 +1,13 @@
 import { OWNERS } from '#root/config';
 import { Emojis, rootFolder, ZeroWidthSpace } from '#utils/constants';
+import { getCodeLine, getErrorLine, getPathLine } from '#utils/functions/errorHelpers';
 import { isMessageInstance } from '#utils/utils';
 import { bold, hideLinkEmbed, hyperlink, userMention } from '@discordjs/builders';
 import { ArgumentError, Events, Listener, UserError, type ChatInputCommandErrorPayload, type Command } from '@sapphire/framework';
 import { codeBlock, isNullish } from '@sapphire/utilities';
 import { RESTJSONErrorCodes, type APIMessage } from 'discord-api-types/v9';
 import { DiscordAPIError, HTTPError, MessageEmbed, type CommandInteraction, type Message } from 'discord.js';
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'node:url';
 
 const ignoredCodes = [RESTJSONErrorCodes.UnknownChannel, RESTJSONErrorCodes.UnknownMessage];
 
@@ -102,15 +103,15 @@ export class UserListener extends Listener<typeof Events.ChatInputCommandError> 
     const interactionReply = await interaction.fetchReply();
 
     const lines = [
-      this.getLinkLine(interactionReply),
+      this.getLinkLine(interactionReply), //
       this.getCommandLine(command),
       this.getOptionsLine(interaction.options),
-      this.getErrorLine(error)
+      getErrorLine(error)
     ];
 
     // If it's a DiscordAPIError or a HTTPError, add the HTTP path and code lines after the second one.
     if (error instanceof DiscordAPIError || error instanceof HTTPError) {
-      lines.splice(2, 0, this.getPathLine(error), this.getCodeLine(error));
+      lines.splice(2, 0, getPathLine(error), getCodeLine(error));
     }
 
     const embed = new MessageEmbed() //
@@ -146,22 +147,6 @@ export class UserListener extends Listener<typeof Events.ChatInputCommandError> 
   }
 
   /**
-   * Formats an error path line.
-   * @param error The error to format.
-   */
-  private getPathLine(error: DiscordAPIError | HTTPError): string {
-    return `**Path**: ${error.method.toUpperCase()} ${error.path}`;
-  }
-
-  /**
-   * Formats an error code line.
-   * @param error The error to format.
-   */
-  private getCodeLine(error: DiscordAPIError | HTTPError): string {
-    return `**Code**: ${error.code}`;
-  }
-
-  /**
    * Formats an options line.
    * @param options The options the user used when running the command.
    */
@@ -180,14 +165,6 @@ export class UserListener extends Listener<typeof Events.ChatInputCommandError> 
     if (mappedOptions.length === 0) return '**Options**: Not Supplied';
 
     return `**Options**: ${mappedOptions.join('\n')}`;
-  }
-
-  /**
-   * Formats an error codeblock.
-   * @param error The error to format.
-   */
-  private getErrorLine(error: Error): string {
-    return `**Error**: ${codeBlock('js', error.stack || error)}`;
   }
 
   private getWarnError(interaction: CommandInteraction) {
