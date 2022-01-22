@@ -23,3 +23,6 @@ package-lock.json
 .env.development.local
 .env.test.local
 .env.production.local
+
+# File that I run locally to configure Permissions v1
+scripts/configure-command-permissions.mjs
