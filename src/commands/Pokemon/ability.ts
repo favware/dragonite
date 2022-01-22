@@ -1,7 +1,6 @@
 import { DragoniteCommand } from '#lib/extensions/DragoniteCommand';
-import { SelectMenuCustomIds } from '#utils/constants';
 import { abilityResponseBuilder } from '#utils/responseBuilders/abilityResponseBuilder';
-import { getGuildIds } from '#utils/utils';
+import { compressPokemonCustomIdMetadata, getGuildIds } from '#utils/utils';
 import type { AbilitiesEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { ChatInputCommand } from '@sapphire/framework';
@@ -43,7 +42,11 @@ export class SlashCommand extends DragoniteCommand {
       const messageActionRow = new MessageActionRow() //
         .setComponents(
           new MessageSelectMenu() //
-            .setCustomId(SelectMenuCustomIds.Ability)
+            .setCustomId(
+              compressPokemonCustomIdMetadata({
+                type: 'ability'
+              })
+            )
             .setPlaceholder('Choose the ability you want to get information about.')
             .setOptions(options)
         );

@@ -1,5 +1,5 @@
-import { SelectMenuCustomIds } from '#utils/constants';
 import { moveResponseBuilder } from '#utils/responseBuilders/moveResponseBuilder';
+import { decompressPokemonCustomIdMetadata } from '#utils/utils';
 import type { MovesEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import { InteractionHandler, InteractionHandlerTypes, UserError } from '@sapphire/framework';
@@ -24,7 +24,9 @@ export class SelectMenuHandler extends InteractionHandler {
   }
 
   public override async parse(interaction: SelectMenuInteraction) {
-    if (interaction.customId !== SelectMenuCustomIds.Move) return this.none();
+    const data = decompressPokemonCustomIdMetadata(interaction.customId);
+
+    if (data.type !== 'move') return this.none();
 
     await interaction.deferReply();
 

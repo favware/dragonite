@@ -1,5 +1,4 @@
 import { DragoniteCommand } from '#lib/extensions/DragoniteCommand';
-import { SelectMenuCustomIds } from '#utils/constants';
 import { fuzzyPokemonToSelectOption } from '#utils/responseBuilders/pokemonResponseBuilder';
 import { spriteResponseBuilder } from '#utils/responseBuilders/spriteResponseBuilder';
 import { compressPokemonCustomIdMetadata, getGuildIds } from '#utils/utils';
@@ -41,16 +40,14 @@ export class SlashCommand extends DragoniteCommand {
       const fuzzyPokemon = await this.container.gqlClient.fuzzilySearchPokemon(pokemon, 25);
       const options = fuzzyPokemon.map<MessageSelectOptionData>((fuzzyEntry) => fuzzyPokemonToSelectOption(fuzzyEntry, 'label'));
 
-      const metadata = compressPokemonCustomIdMetadata({
-        type: 'sprite'
-      });
-
-      const customIdStringified = `${SelectMenuCustomIds.Pokemon}|${metadata}`;
-
       const messageActionRow = new MessageActionRow() //
         .setComponents(
           new MessageSelectMenu() //
-            .setCustomId(customIdStringified)
+            .setCustomId(
+              compressPokemonCustomIdMetadata({
+                type: 'sprite'
+              })
+            )
             .setPlaceholder('Choose the Pokémon you want to get information about.')
             .setOptions(options)
         );

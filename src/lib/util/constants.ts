@@ -5,13 +5,6 @@ export const srcFolder = new URL('src/', rootFolder);
 
 export const ZeroWidthSpace = '\u200B';
 
-export const enum SelectMenuCustomIds {
-  Ability = 'ability-select-menu',
-  Item = 'item-select-menu',
-  Move = 'move-select-menu',
-  Pokemon = 'pokemon-select-menu'
-}
-
 export const enum CdnUrls {
   Pokedex = 'https://cdn.favware.tech/img/pokedex.png'
 }

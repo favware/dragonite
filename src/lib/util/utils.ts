@@ -3,7 +3,6 @@ import type { MovesEnum } from '@favware/graphql-pokemon';
 import { deserialize, serialize } from 'binarytf';
 import type { APIMessage } from 'discord-api-types/v9';
 import { Message, type CommandInteraction } from 'discord.js';
-import { brotliCompressSync, brotliDecompressSync } from 'node:zlib';
 import type { PokemonSpriteTypes } from './responseBuilders/pokemonResponseBuilder';
 
 export function getGuildIds(): string[] {
@@ -20,8 +19,8 @@ export function isMessageInstance(message: APIMessage | CommandInteraction | Mes
  * @param __namedParameter The data to serialize and compress
  * @returns A stringified version of the data using `binary` encoding
  */
-export function compressPokemonCustomIdMetadata({ type, generation, moves, spriteToGet }: PokemonSelectMenuData) {
-  return brotliCompressSync(
+export function compressPokemonCustomIdMetadata({ type, generation, moves, spriteToGet }: PokemonSelectMenuData): string {
+  return Buffer.from(
     serialize<PokemonSelectMenuData>({
       type,
       spriteToGet,
@@ -31,8 +30,8 @@ export function compressPokemonCustomIdMetadata({ type, generation, moves, sprit
   ).toString('binary');
 }
 
-export function decompressPokemonCustomIdMetadata(content: string) {
-  return deserialize<PokemonSelectMenuData>(brotliDecompressSync(content));
+export function decompressPokemonCustomIdMetadata(content: string): PokemonSelectMenuData {
+  return deserialize<PokemonSelectMenuData>(Buffer.from(content, 'binary'));
 }
 
 export interface PokemonSelectMenuData {
@@ -42,7 +41,7 @@ export interface PokemonSelectMenuData {
   moves?: MovesEnum[];
 }
 
-type ResponseToGenerate = 'pokemon' | 'flavor' | 'learn' | 'sprite';
+type ResponseToGenerate = 'pokemon' | 'flavor' | 'learn' | 'sprite' | 'move' | 'item' | 'ability';
 
 export type KeysContaining<O, Str extends string, Keys extends keyof O = keyof O> = Keys extends string
   ? Lowercase<Keys> extends `${string}${Lowercase<Str>}${string}`

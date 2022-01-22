@@ -1,5 +1,4 @@
 import { DragoniteCommand } from '#lib/extensions/DragoniteCommand';
-import { SelectMenuCustomIds } from '#utils/constants';
 import { learnsetResponseBuilder } from '#utils/responseBuilders/learnsetResponseBuilder';
 import { fuzzyPokemonToSelectOption, PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
 import { compressPokemonCustomIdMetadata, getGuildIds } from '#utils/utils';
@@ -97,16 +96,14 @@ export class SlashCommand extends DragoniteCommand {
       const fuzzyPokemon = await this.container.gqlClient.fuzzilySearchPokemon(pokemon, 25, false);
       const options = fuzzyPokemon.map<MessageSelectOptionData>((fuzzyEntry) => fuzzyPokemonToSelectOption(fuzzyEntry, 'label'));
 
-      const metadata = compressPokemonCustomIdMetadata({
+      const customId = compressPokemonCustomIdMetadata({
         type: 'learn',
         spriteToGet,
         generation,
         moves: actuallyChosenMoves
       });
 
-      const customIdStringified = `${SelectMenuCustomIds.Pokemon}|${metadata}`;
-
-      if (customIdStringified.length > 100) {
+      if (customId.length > 100) {
         throw new UserError({
           identifier: 'LearnQueryCausedTooLongCustomId',
           message:
@@ -117,7 +114,7 @@ export class SlashCommand extends DragoniteCommand {
       const messageActionRow = new MessageActionRow() //
         .setComponents(
           new MessageSelectMenu() //
-            .setCustomId(customIdStringified)
+            .setCustomId(customId)
             .setPlaceholder('Choose the Pokémon you want to check these moves for.')
             .setOptions(options)
         );
