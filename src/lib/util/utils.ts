@@ -1,5 +1,6 @@
 import { envParseArray } from '#lib/env';
 import type { MovesEnum } from '@favware/graphql-pokemon';
+import { UserError } from '@sapphire/framework';
 import { deserialize, serialize } from 'binarytf';
 import type { APIMessage } from 'discord-api-types/v9';
 import { Message, type CommandInteraction } from 'discord.js';
@@ -19,8 +20,8 @@ export function isMessageInstance(message: APIMessage | CommandInteraction | Mes
  * @param __namedParameter The data to serialize and compress
  * @returns A stringified version of the data using `binary` encoding
  */
-export function compressPokemonCustomIdMetadata({ type, generation, moves, spriteToGet }: PokemonSelectMenuData): string {
-  return Buffer.from(
+export function compressPokemonCustomIdMetadata({ type, generation, moves, spriteToGet }: PokemonSelectMenuData, customMessagePart?: string): string {
+  const serializedId = Buffer.from(
     serialize<PokemonSelectMenuData>({
       type,
       spriteToGet,
@@ -28,6 +29,15 @@ export function compressPokemonCustomIdMetadata({ type, generation, moves, sprit
       moves
     })
   ).toString('binary');
+
+  if (serializedId.length > 100) {
+    throw new UserError({
+      identifier: 'QueryCausedTooLongCustomId',
+      message: `Due to Discord API limitations I was unable to resolve that request. ${customMessagePart}This issue will be fixed in the future.`
+    });
+  }
+
+  return serializedId;
 }
 
 export function decompressPokemonCustomIdMetadata(content: string): PokemonSelectMenuData {

@@ -4,7 +4,7 @@ import { fuzzyPokemonToSelectOption, PokemonSpriteTypes } from '#utils/responseB
 import { compressPokemonCustomIdMetadata, getGuildIds } from '#utils/utils';
 import type { MovesEnum, PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
-import { ChatInputCommand, UserError } from '@sapphire/framework';
+import type { ChatInputCommand } from '@sapphire/framework';
 import { filterNullish, isNullish } from '@sapphire/utilities';
 import { MessageActionRow, MessageSelectMenu, type MessageSelectOptionData } from 'discord.js';
 
@@ -96,20 +96,15 @@ export class SlashCommand extends DragoniteCommand {
       const fuzzyPokemon = await this.container.gqlClient.fuzzilySearchPokemon(pokemon, 25, false);
       const options = fuzzyPokemon.map<MessageSelectOptionData>((fuzzyEntry) => fuzzyPokemonToSelectOption(fuzzyEntry, 'label'));
 
-      const customId = compressPokemonCustomIdMetadata({
-        type: 'learn',
-        spriteToGet,
-        generation,
-        moves: actuallyChosenMoves
-      });
-
-      if (customId.length > 100) {
-        throw new UserError({
-          identifier: 'LearnQueryCausedTooLongCustomId',
-          message:
-            'Due to Discord API limitations I was unable to resolve that request. Please try with fewer, or different moves. This issue will be fixed in the future.'
-        });
-      }
+      const customId = compressPokemonCustomIdMetadata(
+        {
+          type: 'learn',
+          spriteToGet,
+          generation,
+          moves: actuallyChosenMoves
+        },
+        'Please try with fewer, or different moves. '
+      );
 
       const messageActionRow = new MessageActionRow() //
         .setComponents(
