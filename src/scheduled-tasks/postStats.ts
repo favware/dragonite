@@ -28,14 +28,14 @@ export class PostStatsTask extends ScheduledTask {
   public override async run() {
     const { client, logger } = this.container;
 
-    logger.debug('Running postStats task');
+    logger.info('Running postStats task');
 
     // If the websocket isn't ready, skip for now
     if (client.ws.status !== Constants.Status.READY) {
       return;
     }
 
-    logger.debug('Passed the postStats readiness check');
+    logger.info('Passed the postStats readiness check');
 
     const rawGuilds = client.guilds.cache.size;
     const rawUsers = client.guilds.cache.reduce((acc, val) => acc + (val.memberCount ?? 0), 0);
@@ -44,7 +44,7 @@ export class PostStatsTask extends ScheduledTask {
 
     // If in production then post stats to bot lists
     if (envParseString('NODE_ENV') === 'production') {
-      logger.debug('Posting stats to bot lists');
+      logger.info('Posting stats to bot lists');
       await this.processBotListStats(rawGuilds, rawUsers);
     }
   }
@@ -114,7 +114,7 @@ export class PostStatsTask extends ScheduledTask {
 
   private async query(url: string, body: string, token: string | null, list: Lists) {
     if (isNullishOrEmpty(token)) {
-      this.container.logger.debug(`For botlist ${list} received no token`);
+      this.container.logger.info(`For botlist ${list} received no token`);
       return null;
     }
 
