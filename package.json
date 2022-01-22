@@ -40,7 +40,7 @@
     "@sapphire/time-utilities": "^1.5.2",
     "@sapphire/type": "^2.1.2",
     "@sapphire/utilities": "^3.2.1",
-    "binarytf": "^2.0.0",
+    "binarytf": "^2.1.0",
     "bufferutil": "^4.0.6",
     "bull": "^4.2.1",
     "colorette": "^2.0.16",

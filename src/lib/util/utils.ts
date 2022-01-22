@@ -22,7 +22,7 @@ export function isMessageInstance(message: APIMessage | CommandInteraction | Mes
  */
 export function compressPokemonCustomIdMetadata({ type, generation, moves, spriteToGet }: PokemonSelectMenuData) {
   return brotliCompressSync(
-    serialize({
+    serialize<PokemonSelectMenuData>({
       type,
       spriteToGet,
       generation,

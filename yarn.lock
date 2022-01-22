@@ -1089,10 +1089,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"binarytf@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "binarytf@npm:2.0.0"
-  checksum: b239eae0cfe79e8f0eb2945173adcd914885cea3034120335a8115273bd722527a856a9b0f4e1639628171f612ca107782e5ca8056babd8c1c5ab5a3a5ec6894
+"binarytf@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "binarytf@npm:2.1.0"
+  checksum: 4b608db8a9965e8013f7552b0070826fefc0ca2107a4bf8bf650a5c4fa2b204d642c5182d0aed0ce41da4585b92b01d793061e281b3adab63b7d5e0a2805fd22
   languageName: node
   linkType: hard
 
@@ -1853,7 +1853,7 @@ __metadata:
     "@types/ws": ^8.2.2
     "@typescript-eslint/eslint-plugin": ^5.10.0
     "@typescript-eslint/parser": ^5.10.0
-    binarytf: ^2.0.0
+    binarytf: ^2.1.0
     bufferutil: ^4.0.6
     bull: ^4.2.1
     colorette: ^2.0.16
