@@ -28,19 +28,32 @@ export class PostStatsTask extends ScheduledTask {
   public override async run() {
     const { client, logger } = this.container;
 
+    logger.debug('Running postStats task');
+
     // If the websocket isn't ready, skip for now
     if (client.ws.status !== Constants.Status.READY) {
-      return null;
+      return;
     }
+
+    logger.debug('Passed the postStats readiness check');
 
     const rawGuilds = client.guilds.cache.size;
     const rawUsers = client.guilds.cache.reduce((acc, val) => acc + (val.memberCount ?? 0), 0);
 
     this.processAnalytics(rawGuilds, rawUsers);
 
-    // If in development mode then stop here
-    if (envParseString('NODE_ENV') === 'development') return null;
+    // If in production then post stats to bot lists
+    if (envParseString('NODE_ENV') === 'production') {
+      logger.debug('Posting stats to bot lists');
+      await this.processBotListStats(rawGuilds, rawUsers);
+    }
+  }
 
+  private processAnalytics(guilds: number, users: number) {
+    this.container.client.emit(DragoniteEvents.AnalyticsSync, guilds, users);
+  }
+
+  private async processBotListStats(rawGuilds: number, rawUsers: number) {
     const guilds = rawGuilds.toString();
     const users = rawUsers.toString();
 
@@ -59,12 +72,12 @@ export class PostStatsTask extends ScheduledTask {
         //   envParseString('DISCORD_BOTS_GG_TOKEN'),
         //   Lists.DiscordBotsGG
         // ),
-        // this.query(
-        //   `https://discords.com/bots/api/bot/${envParseString('CLIENT_ID')}`,
-        //   JSON.stringify({ server_count: guilds }),
-        //   envParseString('DISCORDS_TOKEN'),
-        //   Lists.Discords
-        // ),
+        this.query(
+          `https://discords.com/bots/api/bot/${envParseString('CLIENT_ID')}`,
+          JSON.stringify({ server_count: guilds }),
+          envParseString('DISCORDS_TOKEN'),
+          Lists.Discords
+        ),
         // this.query(
         //   `https://bots.discordlabs.org/v2/bot/${envParseString('CLIENT_ID')}/stats,
         //   JSON.stringify({ server_count: guilds }),
@@ -92,12 +105,20 @@ export class PostStatsTask extends ScheduledTask {
       ])
     ).filter(filterNullish);
 
-    if (results.length) logger.info(`${header} [ ${guilds} [G] ] [ ${users} [U] ] | ${results.join(' | ')}`);
+    this.container.logger.info('Processed stats with results: ', results);
+
+    if (results.length) {
+      this.container.logger.info(`${header} [ ${guilds} [G] ] [ ${users} [U] ] | ${results.join(' | ')}`);
+    }
+
     return null;
   }
 
-  public async query(url: string, body: string, token: string | null, list: Lists) {
-    if (isNullishOrEmpty(token)) return null;
+  private async query(url: string, body: string, token: string | null, list: Lists) {
+    if (isNullishOrEmpty(token)) {
+      this.container.logger.debug(`For botlist ${list} received no token`);
+      return null;
+    }
 
     const result = await fromAsync(async () => {
       await fetch(
@@ -109,18 +130,12 @@ export class PostStatsTask extends ScheduledTask {
         },
         FetchResultTypes.Result
       );
-
-      return green(list);
     });
 
     if (isErr(result)) {
       return `${red(list)} [${red((result.error as QueryError).code.toString())}]`;
     }
 
-    return result.value;
-  }
-
-  private processAnalytics(guilds: number, users: number) {
-    this.container.client.emit(DragoniteEvents.AnalyticsSync, guilds, users);
+    return green(list);
   }
 }

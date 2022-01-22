@@ -31,7 +31,7 @@ export interface DragoniteEnv {
   BLADELIST_GG_TOKEN: string;
   TOP_GG_TOKEN: never;
   DISCORD_BOTS_GG_TOKEN: never;
-  DISCORDS_TOKEN: never;
+  DISCORDS_TOKEN: string;
   DISCORDLABS_TOKEN: never;
 
   REDIS_PORT: IntegerString;

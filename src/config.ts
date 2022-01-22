@@ -56,7 +56,7 @@ export const CLIENT_OPTIONS: ClientOptions = {
   intents: ['GUILDS'],
   allowedMentions: { users: [], roles: [] },
   presence: { activities: parsePresenceActivity() },
-  logger: { level: envParseString('NODE_ENV') === 'production' ? LogLevel.Info : LogLevel.Debug },
+  logger: { level: envParseString('NODE_ENV') === 'production' ? LogLevel.Debug : LogLevel.Debug },
   sweepers: {
     ...Options.defaultSweeperSettings,
     messages: {
