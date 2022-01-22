@@ -14,7 +14,8 @@ enum Lists {
   Discords = 'discords.com',
   DiscordBotList = 'discordbotlist.com',
   TopGG = 'top.gg',
-  DiscordBotsGG = 'discord.bots.gg'
+  DiscordBotsGG = 'discord.bots.gg',
+  BladelistGG = 'bladelist.gg'
   // TODO: bots.ondiscord.xyz is currently not accepting new bots
   // BotsOnDiscord = 'bots.ondiscord.xyz'
 }
@@ -66,16 +67,21 @@ export class PostStatsTask extends ScheduledTask {
         //   envParseString('DISCORDS_TOKEN'),
         //   Lists.Discords
         // ),
-
+        this.query(
+          `https://api.bladelist.gg/bots/${envParseString('CLIENT_ID')}`,
+          JSON.stringify({ server_count: guilds }),
+          envParseString('BLADELIST_GG_TOKEN'),
+          Lists.BladelistGG
+        ),
         this.query(
           `https://discordbotlist.com/api/v1/bots/${envParseString('CLIENT_ID')}/stats`,
-          `{"guilds":${guilds},"users":${users}}`,
+          JSON.stringify({ guilds, users }),
           `Bot ${envParseString('DISCORD_BOT_LIST_TOKEN')}`,
           Lists.DiscordBotList
         ),
         this.query(
           `https://api.discordlist.space/v1/bots/${envParseString('CLIENT_ID')}`,
-          `{"server_count":${guilds}}`,
+          JSON.stringify({ server_count: guilds }),
           envParseString('DISCORDLIST_SPACE_TOKEN'),
           Lists.BotListSpace
         )

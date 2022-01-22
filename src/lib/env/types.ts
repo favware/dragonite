@@ -28,6 +28,7 @@ export interface DragoniteEnv {
   DISCORD_TOKEN: string;
   DISCORD_BOT_LIST_TOKEN: string;
   DISCORDLIST_SPACE_TOKEN: string;
+  BLADELIST_GG_TOKEN: string;
   TOP_GG_TOKEN: never;
   DISCORD_BOTS_GG_TOKEN: never;
   DISCORDS_TOKEN: never;
