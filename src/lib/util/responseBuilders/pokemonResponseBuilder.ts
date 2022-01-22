@@ -6,7 +6,7 @@ import { bold, inlineCode, italic } from '@discordjs/builders';
 import type { Abilities, EvYields, Gender, Pokemon, PokemonEnum, Stats } from '@favware/graphql-pokemon';
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
-import { filterNullish, isNullish } from '@sapphire/utilities';
+import { filterNullish, isNullish, isNullishOrEmpty } from '@sapphire/utilities';
 import { ApplicationCommandOptionChoice, MessageEmbed, MessageSelectOptionData } from 'discord.js';
 
 enum StatsEnum {
@@ -136,16 +136,18 @@ function parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, s
   if (!isMissingno(pokeDetails)) {
     // If there are any cosmetic formes or other formes then add a page for them
     // If the pokémon doesn't have the formes then the API will default them to `null`
-    if (pokeDetails.cosmeticFormes || pokeDetails.otherFormes) {
+    if (!isNullishOrEmpty(pokeDetails.otherFormes) || !isNullishOrEmpty(pokeDetails.cosmeticFormes)) {
       display.addPageEmbed((embed) => {
         // If the pokémon has other formes
-        if (pokeDetails.otherFormes) {
-          embed.addField('Other forme(s)', container.i18n.listAnd.format(pokeDetails.otherFormes ?? []));
+        if (!isNullishOrEmpty(pokeDetails.otherFormes)) {
+          const formes = pokeDetails.otherFormes.map((forme) => inlineCode(pokemonEnumToSpecies(forme as PokemonEnum)));
+          embed.addField('Other forme(s)', container.i18n.listAnd.format(formes));
         }
 
         // If the pokémon has cosmetic formes
-        if (pokeDetails.cosmeticFormes) {
-          embed.addField('Cosmetic Formes', container.i18n.listAnd.format(pokeDetails.cosmeticFormes ?? []));
+        if (!isNullishOrEmpty(pokeDetails.cosmeticFormes)) {
+          const formes = pokeDetails.cosmeticFormes.map((forme) => inlineCode(pokemonEnumToSpecies(forme as PokemonEnum)));
+          embed.addField('Cosmetic Formes', container.i18n.listAnd.format(formes));
         }
 
         // Add the external resource field
