@@ -46,7 +46,7 @@ RUN yarn run build
 FROM base AS runner
 
 ENV NODE_ENV="production"
-ENV NODE_OPTIONS="--enable-source-maps --max_old_space_size=4096"
+ENV NODE_OPTIONS="--enable-source-maps"
 
 COPY --chown=node:node src/.env src/.env
 COPY --chown=node:node --from=builder /usr/src/app/dist dist
