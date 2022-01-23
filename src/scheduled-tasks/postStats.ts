@@ -1,7 +1,8 @@
 import { envParseString } from '#lib/env';
 import { DragoniteEvents } from '#lib/types/Enums';
+import { ApplyOptions } from '@sapphire/decorators';
 import { fetch, FetchResultTypes, type QueryError } from '@sapphire/fetch';
-import { fromAsync, isErr, PieceContext } from '@sapphire/framework';
+import { fromAsync, isErr } from '@sapphire/framework';
 import { ScheduledTask } from '@sapphire/plugin-scheduled-tasks';
 import { filterNullish, isNullishOrEmpty } from '@sapphire/utilities';
 import { blueBright, green, red } from 'colorette';
@@ -18,17 +19,13 @@ enum Lists {
   BladelistGG = 'bladelist.gg'
 }
 
-export class PostStatsTask extends ScheduledTask {
-  public constructor(context: PieceContext) {
-    super(context, {
-      cron: '*/10 * * * *',
-      bullJobOptions: {
-        removeOnComplete: true,
-        removeOnFail: true
-      }
-    });
+@ApplyOptions<ScheduledTask.Options>({
+  cron: '*/10 * * * *',
+  bullJobOptions: {
+    removeOnComplete: true
   }
-
+})
+export class PostStatsTask extends ScheduledTask {
   public override async run() {
     // If the websocket isn't ready, skip for now
     if (this.container.client.ws.status !== Constants.Status.READY) {
