@@ -1,4 +1,5 @@
 import { DragoniteCommand } from '#lib/extensions/DragoniteCommand';
+import { SelectMenuCustomIds } from '#utils/constants';
 import { learnsetResponseBuilder } from '#utils/responseBuilders/learnsetResponseBuilder';
 import { fuzzyPokemonToSelectOption, PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
 import { compressPokemonCustomIdMetadata, getGuildIds } from '#utils/utils';
@@ -96,7 +97,7 @@ export class SlashCommand extends DragoniteCommand {
       const fuzzyPokemon = await this.container.gqlClient.fuzzilySearchPokemon(pokemon, 25, false);
       const options = fuzzyPokemon.map<MessageSelectOptionData>((fuzzyEntry) => fuzzyPokemonToSelectOption(fuzzyEntry, 'label'));
 
-      const customId = compressPokemonCustomIdMetadata(
+      const metadata = compressPokemonCustomIdMetadata(
         {
           type: 'learn',
           spriteToGet,
@@ -106,10 +107,12 @@ export class SlashCommand extends DragoniteCommand {
         'Please try with fewer, or different moves. '
       );
 
+      const customIdStringified = `${SelectMenuCustomIds.Pokemon}|${metadata}`;
+
       const messageActionRow = new MessageActionRow() //
         .setComponents(
           new MessageSelectMenu() //
-            .setCustomId(customId)
+            .setCustomId(customIdStringified)
             .setPlaceholder('Choose the Pokémon you want to check these moves for.')
             .setOptions(options)
         );

@@ -23,3 +23,10 @@ export const enum BrandingColors {
   Primary = 0x355270,
   Secondary = 0xc85864
 }
+
+export const enum SelectMenuCustomIds {
+  Ability = 'ability-select-menu',
+  Item = 'item-select-menu',
+  Move = 'move-select-menu',
+  Pokemon = 'pokemon-select-menu'
+}

@@ -1,5 +1,5 @@
+import { SelectMenuCustomIds } from '#utils/constants';
 import { itemResponseBuilder } from '#utils/responseBuilders/itemResponseBuilder';
-import { decompressPokemonCustomIdMetadata } from '#utils/utils';
 import type { ItemsEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import { InteractionHandler, InteractionHandlerTypes, UserError } from '@sapphire/framework';
@@ -22,9 +22,7 @@ export class SelectMenuHandler extends InteractionHandler {
   }
 
   public override async parse(interaction: SelectMenuInteraction) {
-    const data = decompressPokemonCustomIdMetadata(interaction.customId, { interaction, handler: this });
-
-    if (data.type !== 'item') return this.none();
+    if (interaction.customId !== SelectMenuCustomIds.Item) return this.none();
 
     await interaction.deferReply();
 

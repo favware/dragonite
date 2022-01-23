@@ -30,7 +30,7 @@ export function compressPokemonCustomIdMetadata({ type, generation, moves, sprit
     })
   ).toString('binary');
 
-  if (serializedId.length > 100) {
+  if (serializedId.length > 80) {
     throw new UserError({
       identifier: 'QueryCausedTooLongCustomId',
       message: `Due to Discord API limitations I was unable to resolve that request. ${customMessagePart}This issue will be fixed in the future.`
@@ -67,7 +67,7 @@ interface PokemonSelectMenuData {
   moves?: MovesEnum[];
 }
 
-type ResponseToGenerate = 'pokemon' | 'flavor' | 'learn' | 'sprite' | 'move' | 'item' | 'ability';
+type ResponseToGenerate = 'pokemon' | 'flavor' | 'learn' | 'sprite';
 
 export type KeysContaining<O, Str extends string, Keys extends keyof O = keyof O> = Keys extends string
   ? Lowercase<Keys> extends `${string}${Lowercase<Str>}${string}`

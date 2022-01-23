@@ -1,3 +1,4 @@
+import { SelectMenuCustomIds } from '#utils/constants';
 import { flavorResponseBuilder } from '#utils/responseBuilders/flavorResponseBuilder';
 import { learnsetResponseBuilder } from '#utils/responseBuilders/learnsetResponseBuilder';
 import { pokemonResponseBuilder } from '#utils/responseBuilders/pokemonResponseBuilder';
@@ -51,13 +52,13 @@ export class SelectMenuHandler extends InteractionHandler {
   }
 
   public override async parse(interaction: SelectMenuInteraction) {
-    const data = decompressPokemonCustomIdMetadata(interaction.customId, { interaction, handler: this });
-
-    if (data.type !== 'pokemon' && data.type !== 'flavor' && data.type !== 'learn' && data.type !== 'sprite') return this.none();
+    if (!interaction.customId.startsWith(SelectMenuCustomIds.Pokemon)) return this.none();
 
     await interaction.deferReply();
 
     const pokemon = interaction.values[0];
+    const splitCustomId = interaction.customId.split('|');
+    const data = decompressPokemonCustomIdMetadata(splitCustomId[1], { interaction, handler: this });
 
     const responseToGenerate = data.type;
     const spriteToGet = data.spriteToGet ?? 'sprite';

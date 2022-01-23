@@ -1,6 +1,7 @@
 import { DragoniteCommand } from '#lib/extensions/DragoniteCommand';
+import { SelectMenuCustomIds } from '#utils/constants';
 import { itemResponseBuilder } from '#utils/responseBuilders/itemResponseBuilder';
-import { compressPokemonCustomIdMetadata, getGuildIds } from '#utils/utils';
+import { getGuildIds } from '#utils/utils';
 import type { ItemsEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { ChatInputCommand } from '@sapphire/framework';
@@ -42,11 +43,7 @@ export class SlashCommand extends DragoniteCommand {
       const messageActionRow = new MessageActionRow() //
         .setComponents(
           new MessageSelectMenu() //
-            .setCustomId(
-              compressPokemonCustomIdMetadata({
-                type: 'item'
-              })
-            )
+            .setCustomId(SelectMenuCustomIds.Item)
             .setPlaceholder('Choose the item you want to get information about.')
             .setOptions(options)
         );
