@@ -4,6 +4,7 @@ import { container, Events, from, InteractionHandler, isErr, UserError } from '@
 import { deserialize, serialize } from 'binarytf';
 import type { APIMessage } from 'discord-api-types/v9';
 import { Interaction, Message, type CommandInteraction } from 'discord.js';
+import { brotliCompressSync, brotliDecompressSync } from 'node:zlib';
 import type { PokemonSpriteTypes } from './responseBuilders/pokemonResponseBuilder';
 
 export function getGuildIds(): string[] {
@@ -21,7 +22,7 @@ export function isMessageInstance(message: APIMessage | CommandInteraction | Mes
  * @returns A stringified version of the data using `binary` encoding
  */
 export function compressPokemonCustomIdMetadata({ type, generation, moves, spriteToGet }: PokemonSelectMenuData, customMessagePart?: string): string {
-  const serializedId = Buffer.from(
+  const serializedId = brotliCompressSync(
     serialize<PokemonSelectMenuData>({
       type,
       spriteToGet,
@@ -44,7 +45,10 @@ export function decompressPokemonCustomIdMetadata(
   content: string,
   { handler, interaction }: { interaction: Interaction; handler: InteractionHandler }
 ): PokemonSelectMenuData {
-  const result = from(() => deserialize<PokemonSelectMenuData>(Buffer.from(content, 'binary')));
+  const result = from(() =>
+    //
+    deserialize<PokemonSelectMenuData>(brotliDecompressSync(Buffer.from(content, 'binary')))
+  );
 
   if (isErr(result)) {
     // Emit the error
