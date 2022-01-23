@@ -1,7 +1,7 @@
 import { envParseString } from '#lib/env';
 import { DragoniteEvents } from '#lib/types/Enums';
 import { fetch, FetchResultTypes, type QueryError } from '@sapphire/fetch';
-import type { PieceContext } from '@sapphire/framework';
+import { fromAsync, isErr, PieceContext } from '@sapphire/framework';
 import { ScheduledTask } from '@sapphire/plugin-scheduled-tasks';
 import { filterNullish, isNullishOrEmpty } from '@sapphire/utilities';
 import { blueBright, green, red } from 'colorette';
@@ -112,7 +112,7 @@ export class PostStatsTask extends ScheduledTask {
       return null;
     }
 
-    try {
+    const result = await fromAsync(async () => {
       await fetch(
         url,
         {
@@ -124,8 +124,12 @@ export class PostStatsTask extends ScheduledTask {
       );
 
       return green(list);
-    } catch (error) {
-      return `${red(list)} [${red((error as QueryError).code.toString())}]`;
+    });
+
+    if (isErr(result)) {
+      return `${red(list)} [${red((result.error as QueryError).code.toString())}]`;
     }
+
+    return result.value;
   }
 }

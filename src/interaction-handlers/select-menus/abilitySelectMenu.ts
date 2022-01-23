@@ -22,7 +22,7 @@ export class SelectMenuHandler extends InteractionHandler {
   }
 
   public override async parse(interaction: SelectMenuInteraction) {
-    const data = decompressPokemonCustomIdMetadata(interaction.customId);
+    const data = decompressPokemonCustomIdMetadata(interaction.customId, { interaction, handler: this });
 
     if (data.type !== 'ability') return this.none();
 

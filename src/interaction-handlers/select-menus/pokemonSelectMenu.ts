@@ -51,7 +51,7 @@ export class SelectMenuHandler extends InteractionHandler {
   }
 
   public override async parse(interaction: SelectMenuInteraction) {
-    const data = decompressPokemonCustomIdMetadata(interaction.customId);
+    const data = decompressPokemonCustomIdMetadata(interaction.customId, { interaction, handler: this });
 
     if (data.type !== 'pokemon' && data.type !== 'flavor' && data.type !== 'learn' && data.type !== 'sprite') return this.none();
 

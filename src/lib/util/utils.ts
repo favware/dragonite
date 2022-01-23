@@ -1,9 +1,9 @@
 import { envParseArray } from '#lib/env';
 import type { MovesEnum } from '@favware/graphql-pokemon';
-import { UserError } from '@sapphire/framework';
+import { container, Events, from, InteractionHandler, isErr, UserError } from '@sapphire/framework';
 import { deserialize, serialize } from 'binarytf';
 import type { APIMessage } from 'discord-api-types/v9';
-import { Message, type CommandInteraction } from 'discord.js';
+import { Interaction, Message, type CommandInteraction } from 'discord.js';
 import type { PokemonSpriteTypes } from './responseBuilders/pokemonResponseBuilder';
 
 export function getGuildIds(): string[] {
@@ -40,11 +40,27 @@ export function compressPokemonCustomIdMetadata({ type, generation, moves, sprit
   return serializedId;
 }
 
-export function decompressPokemonCustomIdMetadata(content: string): PokemonSelectMenuData {
-  return deserialize<PokemonSelectMenuData>(Buffer.from(content, 'binary'));
+export function decompressPokemonCustomIdMetadata(
+  content: string,
+  { handler, interaction }: { interaction: Interaction; handler: InteractionHandler }
+): PokemonSelectMenuData {
+  const result = from(() => deserialize<PokemonSelectMenuData>(Buffer.from(content, 'binary')));
+
+  if (isErr(result)) {
+    // Emit the error
+    container.client.emit(Events.InteractionHandlerParseError, result.error as Error, { interaction, handler });
+
+    throw new UserError({
+      identifier: 'CustomIdFailedToDeserialize',
+      message:
+        'I am sorry, but that query failed. Please try again. If the problem persists, then please join the support server (use the /info command)'
+    });
+  }
+
+  return result.value;
 }
 
-export interface PokemonSelectMenuData {
+interface PokemonSelectMenuData {
   type: ResponseToGenerate;
   spriteToGet?: PokemonSpriteTypes;
   generation?: number;
