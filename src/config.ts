@@ -57,6 +57,12 @@ export const CLIENT_OPTIONS: ClientOptions = {
   allowedMentions: { users: [], roles: [] },
   presence: { activities: parsePresenceActivity() },
   logger: { level: envParseString('NODE_ENV') === 'production' ? LogLevel.Info : LogLevel.Debug },
+  preventFailedToFetchLogForGuildIds: [
+    // Discord Bots
+    '110373943822540800',
+    // Discords.com: Bots For Discord
+    '374071874222686211'
+  ],
   sweepers: {
     ...Options.defaultSweeperSettings,
     messages: {
