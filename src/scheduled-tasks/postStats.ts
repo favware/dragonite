@@ -100,7 +100,7 @@ export class PostStatsTask extends ScheduledTask {
     ).filter(filterNullish);
 
     if (results.length) {
-      this.container.logger.info(`${header} [ ${guilds} [G] ] [ ${users} [U] ] | ${results.join(' | ')}`);
+      this.container.logger.debug(`${header} [ ${guilds} [G] ] [ ${users} [U] ] | ${results.join(' | ')}`);
     }
   }
 
