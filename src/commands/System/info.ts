@@ -1,4 +1,5 @@
 import { getGuildIds } from '#utils/utils';
+import { hideLinkEmbed, hyperlink } from '@discordjs/builders';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command, type ChatInputCommand } from '@sapphire/framework';
 
@@ -20,8 +21,11 @@ export class UserCommand extends Command {
 
   private get content() {
     return [
-      `dragonite is a Pokémon information Discord bot built around Discord Interactions.`,
-      'This bot uses the Sapphire Framework build on top of discord.js.',
+      `Dragonite is a Pokémon information Discord bot built around Discord Interactions.`,
+      `This bot uses the ${hyperlink('Sapphire Framework', hideLinkEmbed('https://sapphirejs.dev'))} build on top of ${hyperlink(
+        'discord.js',
+        hideLinkEmbed('https://discord.js.org')
+      )}.`,
       '',
       "Dragonite's features:",
       '• Getting information on Pokémon.',
@@ -31,7 +35,9 @@ export class UserCommand extends Command {
       '• Getting information on Pokémon moves.',
       '• Getting information on Pokémon types.',
       '• Getting information on Pokémon flavor texts.',
-      '• Getting Pokémon sprites.'
+      '• Getting Pokémon sprites.',
+      '',
+      'Want to join the Dragonite community? You can join through <https://join.favware.tech>'
     ].join('\n');
   }
 }
