@@ -12,7 +12,7 @@ import { cpus, uptime, type CpuInfo } from 'node:os';
   chatInputCommand: {
     register: true,
     guildIds: getGuildIds(),
-    idHints: ['931727501946937385', '934269803722575882']
+    idHints: ['936023682072055858', '934269803722575882']
   }
 })
 export class UserCommand extends Command {
