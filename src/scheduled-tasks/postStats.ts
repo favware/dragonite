@@ -78,12 +78,12 @@ export class PostStatsTask extends ScheduledTask {
         //   envParseString('DISCORDLABS_TOKEN'),
         //   Lists.Discords
         // ),
-        // this.query(
-        //   `https://api.bladelist.gg/bots/${envParseString('CLIENT_ID')}`,
-        //   JSON.stringify({ server_count: guilds }),
-        //   envParseString('BLADELIST_GG_TOKEN'),
-        //   Lists.BladelistGG
-        // ),
+        this.query(
+          `https://api.bladelist.gg/bots/${envParseString('CLIENT_ID')}`,
+          JSON.stringify({ server_count: guilds }),
+          `Token ${envParseString('BLADELIST_GG_TOKEN')}`,
+          Lists.BladelistGG
+        ),
         this.query(
           `https://discordbotlist.com/api/v1/bots/${envParseString('CLIENT_ID')}/stats`,
           JSON.stringify({ guilds, users }),
