@@ -31,7 +31,6 @@
 
 ### TODO List
 
-- [ ] Fix ready banner
 - [ ] Make post-stats task POST data to bot lists.
 - [ ] Switch from BinaryTF to @sapphire/string-store (stalled on the package being finished by @kyranet)
 
