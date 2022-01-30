@@ -2,7 +2,7 @@
 #    Base Stage    #
 # ================ #
 
-FROM node:17-bullseye as base
+FROM node:17-bullseye-slim as base
 
 WORKDIR /usr/src/app
 
