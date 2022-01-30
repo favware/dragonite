@@ -1891,7 +1891,7 @@ __metadata:
     lint-staged: ^12.3.2
     prettier: ^2.5.1
     pretty-quick: ^3.1.3
-    tsup: ^5.11.12
+    tsup: ^5.11.13
     typescript: ^4.5.5
     utf-8-validate: ^5.0.8
     ws: ^8.4.2
@@ -5112,9 +5112,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsup@npm:^5.11.12":
-  version: 5.11.12
-  resolution: "tsup@npm:5.11.12"
+"tsup@npm:^5.11.13":
+  version: 5.11.13
+  resolution: "tsup@npm:5.11.13"
   dependencies:
     bundle-require: ^3.0.2
     cac: ^6.7.12
@@ -5138,7 +5138,7 @@ __metadata:
   bin:
     tsup: dist/cli-default.js
     tsup-node: dist/cli-node.js
-  checksum: fc99d363b7d693f5816e5df3b2ce72ca16ac88879fb925cb96c8524991bb7ff2f671644bf95995f7936cc6f5b655499b73c67917e570d656bee54cea2381bea3
+  checksum: 431db4b521f77f2bad0521fc236055c3a3a6665f396ec445b2b264bea6cb506c2a4ef9dd693b91c4ad250b19843b68aef8724a97fe1530b88eb0cbf5081f2937
   languageName: node
   linkType: hard
 
