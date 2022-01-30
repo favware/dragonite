@@ -54,12 +54,12 @@ export class PostStatsTask extends ScheduledTask {
     // TODO: Post stats to other bot lists after approvals
     const results: (string | null)[] = (
       await Promise.all([
-        // this.query(
-        //   `https://top.gg/api/bots/${envParseString('CLIENT_ID')}/stats`,
-        //   JSON.stringify({ server_count: guilds }),
-        //   envParseString('TOP_GG_TOKEN'),
-        //   Lists.TopGG
-        // ),
+        this.query(
+          `https://top.gg/api/bots/${envParseString('CLIENT_ID')}/stats`,
+          JSON.stringify({ server_count: guilds }),
+          envParseString('TOP_GG_TOKEN'),
+          Lists.TopGG
+        ),
         // this.query(
         //   `https://discord.bots.gg/api/v1/bots/${envParseString('CLIENT_ID')}/stats`,
         //   JSON.stringify({ guildCount: guilds }),
