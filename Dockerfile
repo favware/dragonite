@@ -11,6 +11,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends build-essential python3 dumb-init locales && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
+    apt-get autoremove && \
     locale-gen en_GB.utf-8 && \
     dpkg-reconfigure --frontend noninteractive locales
 
