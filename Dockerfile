@@ -6,14 +6,19 @@ FROM node:17-buster-slim as base
 
 WORKDIR /usr/src/app
 
-ENV HUSKY=0
-ENV CI=true
-
 RUN apt-get update && \
     apt-get upgrade -y --no-install-recommends && \
-    apt-get install -y --no-install-recommends build-essential python3 dumb-init && \
+    apt-get install -y --no-install-recommends build-essential python3 dumb-init locales && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    locale-gen en_GB.utf-8 && \
+    dpkg-reconfigure --frontend noninteractive locales
+
+ENV HUSKY=0
+ENV CI=true
+ENV LANG=en_GB.UTF-8
+ENV LANGUAGE=en_GB:en
+ENV LC_ALL=en_GB.UTF-8
 
 COPY --chown=node:node yarn.lock .
 COPY --chown=node:node package.json .
