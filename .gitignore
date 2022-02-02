@@ -10,6 +10,7 @@ node_modules/
 
 # Ignore the dist output
 dist/
+.swc/
 
 # Ignore heapsnapshot and log files
 *.heapsnapshot
