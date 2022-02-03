@@ -16,7 +16,8 @@ enum Lists {
   DiscordBotList = 'discordbotlist.com',
   TopGG = 'top.gg',
   DiscordBotsGG = 'discord.bots.gg',
-  BladelistGG = 'bladelist.gg'
+  BladelistGG = 'bladelist.gg',
+  BotListMe = 'botlist.me'
 }
 
 @ApplyOptions<ScheduledTask.Options>({
@@ -89,6 +90,12 @@ export class PostStatsTask extends ScheduledTask {
           JSON.stringify({ guilds, users }),
           `Bot ${envParseString('DISCORD_BOT_LIST_TOKEN')}`,
           Lists.DiscordBotList
+        ),
+        this.query(
+          `https://api.botlist.me/api/v1/bots/${envParseString('CLIENT_ID')}/stats`,
+          JSON.stringify({ server_count: guilds }),
+          `Bot ${envParseString('BOTLIST_ME_TOKEN')}`,
+          Lists.BotListMe
         )
         // this.query(
         //   `https://api.discordlist.space/v1/bots/${envParseString('CLIENT_ID')}`,
