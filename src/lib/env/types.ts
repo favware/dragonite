@@ -32,7 +32,7 @@ export interface DragoniteEnv {
   TOP_GG_TOKEN: string;
   DISCORD_BOTS_GG_TOKEN: never;
   DISCORDS_TOKEN: string;
-  DISCORDLABS_TOKEN: never;
+  DISCORDLABS_TOKEN: string;
   BOTLIST_ME_TOKEN: string;
 
   REDIS_PORT: IntegerString;
