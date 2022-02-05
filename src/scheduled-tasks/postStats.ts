@@ -52,7 +52,6 @@ export class PostStatsTask extends ScheduledTask {
     const guilds = rawGuilds.toString();
     const users = rawUsers.toString();
 
-    // TODO: Post stats to other bot lists after approvals
     const results: (string | null)[] = (
       await Promise.all([
         this.query(
