@@ -402,12 +402,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/decorators@npm:^4.2.1":
-  version: 4.2.1
-  resolution: "@sapphire/decorators@npm:4.2.1"
+"@sapphire/decorators@npm:^4.2.2":
+  version: 4.2.2
+  resolution: "@sapphire/decorators@npm:4.2.2"
   dependencies:
     tslib: ^2.3.1
-  checksum: 15b4caee407b3355705485d908fdec6c379b6db57d4f9819da038179f7ed3eb3b1d3efbe2c308870e41f4737012787ce2db5032a4833a8fcc80479cb0a405668
+  checksum: 3cfb8ba4c2d92d09f529f1de351e245efac4b18105ec4ac91b25d06768e73ab63defd9a1f726f851a45ea37343509919b2c883e31fae87044bdba862a12c4b51
   languageName: node
   linkType: hard
 
@@ -420,15 +420,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/discord.js-utilities@npm:^4.6.0, @sapphire/discord.js-utilities@npm:^4.6.1":
-  version: 4.6.1
-  resolution: "@sapphire/discord.js-utilities@npm:4.6.1"
+"@sapphire/discord.js-utilities@npm:^4.6.0, @sapphire/discord.js-utilities@npm:^4.6.2":
+  version: 4.6.2
+  resolution: "@sapphire/discord.js-utilities@npm:4.6.2"
   dependencies:
     "@sapphire/discord-utilities": ^2.7.0
     "@sapphire/time-utilities": ^1.6.0
     "@sapphire/utilities": ^3.3.0
     tslib: ^2.3.1
-  checksum: a4c3ca527c7cc05811d4ef0033b3e859e23023a4267b08d19df710a1b97df74df7da3f445bc3bfdc419cc06514f913590bcf979c69d4c30cf260c5071eb98075
+  checksum: 5fb5a0d23b4684aae0fead66fb20578d9babf4581c774965a0609825840a229d14ab6cde87f6a1056c7116a9c1c4e6df80ec9f08f63c808c84ddd3419550946b
   languageName: node
   linkType: hard
 
@@ -817,9 +817,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:^17.0.15":
-  version: 17.0.15
-  resolution: "@types/node@npm:17.0.15"
-  checksum: aa64ecf4fbcf9888e794dcdc20e98c49cdcb102b17e57c44ca56943904732d6cc250e766f8448a3cd71d6a40a4b597bd83c565e5bd9b982733fa3f9813d5c291
+  version: 17.0.16
+  resolution: "@types/node@npm:17.0.16"
+  checksum: 2d452a9e0ee7ec83d447d66dd2baf4dd05ef2fbcda39b06f73d86b36d5150d86c43a733d534d77467e7782104756944d42a35ed4b64113bda341b8334ee4d01d
   languageName: node
   linkType: hard
 
@@ -1972,9 +1972,9 @@ __metadata:
     "@favware/graphql-pokemon": ^6.3.0
     "@influxdata/influxdb-client": ^1.22.0
     "@influxdata/influxdb-client-apis": ^1.22.0
-    "@sapphire/decorators": ^4.2.1
+    "@sapphire/decorators": ^4.2.2
     "@sapphire/discord-utilities": ^2.7.0
-    "@sapphire/discord.js-utilities": ^4.6.1
+    "@sapphire/discord.js-utilities": ^4.6.2
     "@sapphire/eslint-config": ^4.2.0
     "@sapphire/fetch": ^2.1.0
     "@sapphire/framework": next
@@ -5512,8 +5512,8 @@ __metadata:
   linkType: hard
 
 "ws@npm:^8.4.0, ws@npm:^8.4.2":
-  version: 8.4.2
-  resolution: "ws@npm:8.4.2"
+  version: 8.5.0
+  resolution: "ws@npm:8.5.0"
   peerDependencies:
     bufferutil: ^4.0.1
     utf-8-validate: ^5.0.2
@@ -5522,7 +5522,7 @@ __metadata:
       optional: true
     utf-8-validate:
       optional: true
-  checksum: 4369caaac8d1092a73871f5cf1d87fcbb995dc4183a1bc48e4f451bc2d02d0a8bf7c17edf1da18e2be3c773b09262275356b256d1c55bc7ca096154293ba2a8c
+  checksum: 76f2f90e40344bf18fd544194e7067812fb1372b2a37865678d8f12afe4b478ff2ebc0c7c0aff82cd5e6b66fc43d889eec0f1865c2365d8f7a66d92da7744a77
   languageName: node
   linkType: hard
 
