@@ -58,7 +58,7 @@ export class SelectMenuHandler extends InteractionHandler {
 
     const pokemon = interaction.values[0];
     const splitCustomId = interaction.customId.split('|');
-    const data = decompressPokemonCustomIdMetadata(splitCustomId[1], { interaction, handler: this });
+    const data = decompressPokemonCustomIdMetadata(splitCustomId.slice(1).join('|'), { interaction, handler: this });
 
     const responseToGenerate = data.type;
     const spriteToGet = data.spriteToGet ?? 'sprite';
