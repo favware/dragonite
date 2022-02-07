@@ -2,7 +2,15 @@ import { OWNERS } from '#root/config';
 import { Emojis, rootFolder } from '#utils/constants';
 import { isMessageInstance } from '#utils/utils';
 import { bold, hideLinkEmbed, hyperlink, userMention } from '@discordjs/builders';
-import { ArgumentError, container, Events, UserError, type InteractionHandler, type InteractionHandlerError } from '@sapphire/framework';
+import {
+  ArgumentError,
+  container,
+  Events,
+  UserError,
+  type InteractionHandler,
+  type InteractionHandlerError,
+  type InteractionHandlerParseError
+} from '@sapphire/framework';
 import { codeBlock, isNullish } from '@sapphire/utilities';
 import { RESTJSONErrorCodes, type APIMessage } from 'discord-api-types/v9';
 import { DiscordAPIError, HTTPError, Interaction, MessageEmbed, type Message } from 'discord.js';
@@ -10,7 +18,7 @@ import { fileURLToPath } from 'url';
 
 const ignoredCodes = [RESTJSONErrorCodes.UnknownChannel, RESTJSONErrorCodes.UnknownMessage];
 
-export async function handleInteractionError(error: Error, { handler, interaction }: InteractionHandlerError) {
+export async function handleInteractionError(error: Error, { handler, interaction }: InteractionHandlerError | InteractionHandlerParseError) {
   // If the error was a string or an UserError, send it to the user:
   if (typeof error === 'string') return stringError(interaction, error);
   if (error instanceof ArgumentError) return argumentError(interaction, error);
@@ -81,6 +89,13 @@ function userError(interaction: Interaction, error: UserError) {
 
 function alert(interaction: Interaction, content: string) {
   if (!interaction.isSelectMenu() && !interaction.isButton()) return;
+
+  if (interaction.replied || interaction.deferred) {
+    return interaction.editReply({
+      content,
+      allowedMentions: { users: [interaction.user.id], roles: [] }
+    });
+  }
 
   return interaction.reply({
     content,
