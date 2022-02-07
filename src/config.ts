@@ -61,7 +61,9 @@ export const CLIENT_OPTIONS: ClientOptions = {
     // Discord Bots
     '110373943822540800',
     // Discords.com: Bots For Discord
-    '374071874222686211'
+    '374071874222686211',
+    // Discord Labs
+    '608711879858192479'
   ],
   sweepers: {
     ...Options.defaultSweeperSettings,
