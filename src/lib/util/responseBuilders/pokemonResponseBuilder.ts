@@ -1,6 +1,6 @@
-import { BrandingColors, CdnUrls, Emojis } from '#utils/constants';
+import { CdnUrls, Emojis } from '#utils/constants';
 import type { FavouredEntry } from '#utils/favouredEntries';
-import { parseBulbapediaURL, pokemonEnumToSpecies } from '#utils/functions/pokemonParsers';
+import { parseBulbapediaURL, pokemonEnumToSpecies, resolveColour } from '#utils/functions/pokemonParsers';
 import type { KeysContaining } from '#utils/utils';
 import { bold, inlineCode, italic } from '@discordjs/builders';
 import type { Abilities, EvYields, Gender, Pokemon, PokemonEnum, Stats } from '@favware/graphql-pokemon';
@@ -58,7 +58,7 @@ function parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, s
 
   const display = new PaginatedMessage({
     template: new MessageEmbed()
-      .setColor(BrandingColors.Primary)
+      .setColor(resolveColour(pokeDetails.color))
       .setAuthor({ name: `#${pokeDetails.num} - ${pokemonEnumToSpecies(pokeDetails.key)}`, iconURL: CdnUrls.Pokedex })
       .setThumbnail(pokeDetails[spriteToGet])
   })

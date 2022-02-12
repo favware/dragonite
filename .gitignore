@@ -27,3 +27,4 @@ package-lock.json
 
 # File that I run locally to configure Permissions v1
 scripts/configure-command-permissions.mjs
+scripts/prune-global-commands.mjs

@@ -1,5 +1,5 @@
-import { BrandingColors, CdnUrls } from '#utils/constants';
-import { pokemonEnumToSpecies } from '#utils/functions/pokemonParsers';
+import { CdnUrls } from '#utils/constants';
+import { pokemonEnumToSpecies, resolveColour } from '#utils/functions/pokemonParsers';
 import type { PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
 import { bold, underscore } from '@discordjs/builders';
 import type { Learnset, LearnsetLevelUpMove, Maybe } from '@favware/graphql-pokemon';
@@ -16,7 +16,7 @@ export function learnsetResponseBuilder(
 ) {
   const display = new PaginatedMessage({
     template: new MessageEmbed()
-      .setColor(BrandingColors.Primary)
+      .setColor(resolveColour(learnsetData.color))
       .setAuthor({ name: `#${learnsetData.num} - ${pokemonEnumToSpecies(learnsetData.pokemonKey)}`, iconURL: CdnUrls.Pokedex })
       .setTitle(`Learnset data for ${pokemonEnumToSpecies(learnsetData.pokemonKey)} in generation ${generation}`)
       .setThumbnail(learnsetData[spriteToGet])
