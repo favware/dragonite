@@ -168,6 +168,6 @@ export class UserListener extends Listener<typeof Events.ChatInputCommandError> 
   }
 
   private getWarnError(interaction: CommandInteraction) {
-    return `ERROR: /${interaction.guild!.id}/${interaction.channel!.id}/${interaction.id}`;
+    return `ERROR: /${interaction.guildId}/${interaction.channelId}/${interaction.id}`;
   }
 }
