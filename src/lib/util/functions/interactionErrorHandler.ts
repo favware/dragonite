@@ -1,7 +1,7 @@
 import { OWNERS } from '#root/config';
 import { Emojis, rootFolder } from '#utils/constants';
-import { isMessageInstance } from '#utils/utils';
 import { bold, hideLinkEmbed, hyperlink, userMention } from '@discordjs/builders';
+import { isMessageInstance } from '@sapphire/discord.js-utilities';
 import {
   ArgumentError,
   container,

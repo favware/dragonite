@@ -2,17 +2,12 @@ import { envParseArray } from '#lib/env';
 import type { MovesEnum } from '@favware/graphql-pokemon';
 import { container, Events, from, InteractionHandler, isErr, UserError } from '@sapphire/framework';
 import { deserialize, serialize } from 'binarytf';
-import type { APIMessage } from 'discord-api-types/v9';
-import { Interaction, Message, type CommandInteraction } from 'discord.js';
+import type { Interaction } from 'discord.js';
 import { brotliCompressSync, brotliDecompressSync } from 'node:zlib';
 import type { PokemonSpriteTypes } from './responseBuilders/pokemonResponseBuilder';
 
 export function getGuildIds(): string[] {
   return envParseArray('COMMAND_GUILD_IDS', []);
-}
-
-export function isMessageInstance(message: APIMessage | CommandInteraction | Message): message is Message<true> {
-  return message instanceof Message;
 }
 
 /**

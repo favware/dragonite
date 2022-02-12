@@ -6,6 +6,7 @@ import { srcFolder } from '#utils/constants';
 import { minutes } from '#utils/functions/time';
 import { LogLevel } from '@sapphire/framework';
 import { ScheduledTaskRedisStrategy } from '@sapphire/plugin-scheduled-tasks/register-redis';
+import { GatewayIntentBits } from 'discord-api-types/v9';
 import { ActivitiesOptions, ClientOptions, ExcludeEnum, Options, WebhookClientData } from 'discord.js';
 import type { ActivityTypes } from 'discord.js/typings/enums';
 import { config } from 'dotenv-cra';
@@ -53,7 +54,7 @@ export function parseRedisOption(): { port: number; password: string; host: stri
 export const WEBHOOK_ERROR = parseWebhookError();
 
 export const CLIENT_OPTIONS: ClientOptions = {
-  intents: ['GUILDS'],
+  intents: [GatewayIntentBits.Guilds],
   allowedMentions: { users: [], roles: [] },
   presence: { activities: parsePresenceActivity() },
   logger: { level: envParseString('NODE_ENV') === 'production' ? LogLevel.Info : LogLevel.Debug },
@@ -65,6 +66,7 @@ export const CLIENT_OPTIONS: ClientOptions = {
     // Discord Labs
     '608711879858192479'
   ],
+  partials: ['CHANNEL'],
   sweepers: {
     ...Options.defaultSweeperSettings,
     messages: {

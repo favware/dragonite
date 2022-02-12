@@ -1,8 +1,8 @@
 import { OWNERS } from '#root/config';
 import { Emojis, rootFolder, ZeroWidthSpace } from '#utils/constants';
 import { getCodeLine, getErrorLine, getPathLine } from '#utils/functions/errorHelpers';
-import { isMessageInstance } from '#utils/utils';
 import { bold, hideLinkEmbed, hyperlink, userMention } from '@discordjs/builders';
+import { isMessageInstance } from '@sapphire/discord.js-utilities';
 import { ArgumentError, Events, Listener, UserError, type ChatInputCommandErrorPayload, type Command } from '@sapphire/framework';
 import { codeBlock, isNullish } from '@sapphire/utilities';
 import { RESTJSONErrorCodes, type APIMessage } from 'discord-api-types/v9';
