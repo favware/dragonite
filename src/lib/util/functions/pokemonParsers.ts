@@ -5,6 +5,7 @@ const megaRegex = /^(?<name>[a-z]+)(?:mega)$/;
 const gmaxRegex = /^(?<name>[a-z]+)(?:gmax)$/;
 const alolanTotemRegex = /^(?<name>[a-z]+)(?:alolatotem)$/;
 const alolanRegex = /^(?<name>[a-z]+)(?:alola)$/;
+const hisuianRegex = /^(?<name>[a-z]+)(?:hisui)$/;
 const galarianRegex = /^(?<name>[a-z]+)(?:galar)$/;
 const totemRegex = /^(?<name>[a-z]+)(?:totem)$/;
 const typeLikeRegex = /^(?<name>(?:arceus|silvally|genesect))(?<type>[a-z]+)?$/;
@@ -88,12 +89,19 @@ export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
 
     case PokemonEnum.Giratinaorigin:
       return 'Giratina Origin';
+    case PokemonEnum.Dialgaorigin:
+      return 'Dialga Origin';
+    case PokemonEnum.Palkiaorigin:
+      return 'Palkia Origin';
 
     case PokemonEnum.Shayminsky:
       return 'Shaymin Sky';
 
     case PokemonEnum.Basculinbluestriped:
       return 'Basculin Blue-Striped';
+
+    case PokemonEnum.Basculegionf:
+      return 'basculegion (Female)';
 
     case PokemonEnum.Darmanitanzen:
       return 'Darmanitan Zen';
@@ -355,6 +363,12 @@ export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
 
       if (galarianResult && galarianResult.groups?.name) {
         return `Galarian ${toTitleCase(galarianResult.groups.name)}`;
+      }
+
+      const hisuianResult = hisuianRegex.exec(pokemon);
+
+      if (hisuianResult && hisuianResult.groups?.name) {
+        return `Hisuian ${toTitleCase(hisuianResult.groups.name)}`;
       }
 
       const typeLikeResult = typeLikeRegex.exec(pokemon);
