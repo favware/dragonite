@@ -12,7 +12,7 @@ import { Command, type ChatInputCommand } from '@sapphire/framework';
   }
 })
 export class UserCommand extends Command {
-  public override async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
+  public override async chatInputRun(interaction: ChatInputCommand.Interaction) {
     return interaction.reply({
       content: this.content,
       ephemeral: true

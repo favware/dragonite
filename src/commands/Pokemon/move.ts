@@ -12,7 +12,7 @@ import { MessageActionRow, MessageSelectMenu, type MessageSelectOptionData } fro
   description: 'Gets data for the chosen Pokémon move.'
 })
 export class SlashCommand extends DragoniteCommand {
-  public override registerApplicationCommands(...[registry]: Parameters<ChatInputCommand['registerApplicationCommands']>) {
+  public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
     registry.registerChatInputCommand(
       (builder) =>
         builder //
@@ -29,7 +29,7 @@ export class SlashCommand extends DragoniteCommand {
     );
   }
 
-  public override async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
+  public override async chatInputRun(interaction: ChatInputCommand.Interaction) {
     await interaction.deferReply();
 
     const move = interaction.options.getString('move', true);

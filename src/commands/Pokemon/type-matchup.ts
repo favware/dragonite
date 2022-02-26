@@ -33,7 +33,7 @@ export class SlashCommand extends DragoniteCommand {
 
   readonly #choices = this.#pokemonTypes.map<[name: string, value: string]>((type) => [toTitleCase(type), type]);
 
-  public override registerApplicationCommands(...[registry]: Parameters<ChatInputCommand['registerApplicationCommands']>) {
+  public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
     registry.registerChatInputCommand(
       (builder) =>
         builder //
@@ -56,7 +56,7 @@ export class SlashCommand extends DragoniteCommand {
     );
   }
 
-  public override async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
+  public override async chatInputRun(interaction: ChatInputCommand.Interaction) {
     await interaction.deferReply();
 
     const firstType = interaction.options.getString('first-type', true) as TypesEnum;

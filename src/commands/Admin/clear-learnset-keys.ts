@@ -14,7 +14,7 @@ import type { ChatInputCommand } from '@sapphire/framework';
   }
 })
 export class SlashCommand extends DragoniteCommand {
-  public override async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
+  public override async chatInputRun(interaction: ChatInputCommand.Interaction) {
     await interaction.deferReply({ ephemeral: true });
 
     await this.container.gqlRedisCache.clearLearnsetKeys();

@@ -15,7 +15,7 @@ import type { CommandInteraction, Message } from 'discord.js';
   }
 })
 export class UserCommand extends Command {
-  public override async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
+  public override async chatInputRun(interaction: ChatInputCommand.Interaction) {
     const msg = await interaction.reply({ content: `${Emojis.Loading} Ping?`, ephemeral: true, fetchReply: true });
 
     const { diff, ping } = this.getPing(msg, interaction);

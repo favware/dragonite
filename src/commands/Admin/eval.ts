@@ -37,7 +37,7 @@ export class SlashCommand extends DragoniteCommand {
     ['Abort', 'none']
   ];
 
-  public override registerApplicationCommands(...[registry]: Parameters<ChatInputCommand['registerApplicationCommands']>) {
+  public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
     registry.registerChatInputCommand(
       (builder) =>
         builder //
@@ -91,7 +91,7 @@ export class SlashCommand extends DragoniteCommand {
     );
   }
 
-  public override async chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>): Promise<APIMessage | Message<boolean> | null> {
+  public override async chatInputRun(interaction: ChatInputCommand.Interaction): Promise<APIMessage | Message<boolean> | null> {
     const message = await interaction.deferReply({ ephemeral: true, fetchReply: true });
 
     const code = interaction.options.getString('code', true);

@@ -18,7 +18,7 @@ import { cpus, uptime, type CpuInfo } from 'node:os';
   }
 })
 export class UserCommand extends Command {
-  public override chatInputRun(...[interaction]: Parameters<ChatInputCommand['chatInputRun']>) {
+  public override chatInputRun(interaction: ChatInputCommand.Interaction) {
     return interaction.reply({ embeds: [this.buildEmbed()], ephemeral: true });
   }
 
