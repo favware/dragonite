@@ -43,6 +43,7 @@ export interface RegisterContextMenuReturnType {
 export namespace DragoniteCommand {
   // DragoniteCommand unique types
   export type RegisterChatInput = RegisterChatInputReturnType;
+  export type RegisterContextMenu = RegisterContextMenuReturnType;
 
   // Duplicates from Command, here for short-cutting on imports
   export type Options = Command.Options;
