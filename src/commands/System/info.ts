@@ -21,16 +21,6 @@ import { cpus, uptime, type CpuInfo } from 'node:os';
 export class UserCommand extends Command {
   readonly #sapphireNextVersionRegex = /-next\.[a-z0-9]+\.\d{1,}/i;
 
-  readonly #inviteLink = this.container.client.generateInvite({
-    scopes: ['bot', 'applications.commands'],
-    permissions: new Permissions([
-      PermissionFlagsBits.ViewChannel,
-      PermissionFlagsBits.ReadMessageHistory,
-      PermissionFlagsBits.SendMessages,
-      PermissionFlagsBits.EmbedLinks
-    ])
-  });
-
   readonly #descriptionContent = [
     `Dragonite is a Pokémon information Discord bot built around Discord Interactions.`,
     `This bot uses the ${hyperlink('Sapphire Framework', hideLinkEmbed('https://sapphirejs.dev'))} build on top of ${hyperlink(
@@ -53,7 +43,7 @@ export class UserCommand extends Command {
       new MessageActionRow().addComponents(
         new MessageButton() //
           .setStyle('LINK')
-          .setURL(this.#inviteLink)
+          .setURL(this.inviteLink)
           .setLabel('Add me to your server!')
           .setEmoji('🎉'),
         new MessageButton() //
@@ -75,6 +65,18 @@ export class UserCommand extends Command {
           .setEmoji('🧡')
       )
     ];
+  }
+
+  private get inviteLink() {
+    return this.container.client.generateInvite({
+      scopes: ['bot', 'applications.commands'],
+      permissions: new Permissions([
+        PermissionFlagsBits.ViewChannel,
+        PermissionFlagsBits.ReadMessageHistory,
+        PermissionFlagsBits.SendMessages,
+        PermissionFlagsBits.EmbedLinks
+      ])
+    });
   }
 
   private get embed(): MessageEmbed {
