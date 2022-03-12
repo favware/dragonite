@@ -3,7 +3,7 @@ import { seconds } from '#utils/functions/time';
 import { getGuildIds } from '#utils/utils';
 import { hideLinkEmbed, hyperlink, time, TimestampStyles } from '@discordjs/builders';
 import { ApplyOptions } from '@sapphire/decorators';
-import { Command, RegisterBehavior, version as sapphireVersion, type ChatInputCommand } from '@sapphire/framework';
+import { Command, version as sapphireVersion, type ChatInputCommand } from '@sapphire/framework';
 import { roundNumber } from '@sapphire/utilities';
 import { PermissionFlagsBits } from 'discord-api-types/v9';
 import { MessageActionRow, MessageButton, MessageEmbed, Permissions, version } from 'discord.js';
@@ -14,8 +14,7 @@ import { cpus, uptime, type CpuInfo } from 'node:os';
   chatInputCommand: {
     register: true,
     guildIds: getGuildIds(),
-    idHints: ['936023680704741426', '942137399180402770'],
-    behaviorWhenNotIdentical: RegisterBehavior.Overwrite
+    idHints: ['936023680704741426', '942137399180402770']
   }
 })
 export class UserCommand extends Command {
