@@ -50,7 +50,7 @@
     "dotenv-cra": "^3.0.2",
     "figlet": "^1.5.2",
     "gradient-string": "^2.0.0",
-    "ioredis": "^4.28.5",
+    "ioredis": "^5.0.1",
     "utf-8-validate": "^5.0.9",
     "ws": "^8.5.0",
     "zlib-sync": "^0.1.7"
