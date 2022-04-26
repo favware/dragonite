@@ -84,12 +84,12 @@ export class PostStatsTask extends ScheduledTask {
           `Token ${envParseString('BLADELIST_GG_TOKEN')}`,
           Lists.BladelistGG
         ),
-        this.query(
-          `https://discordbotlist.com/api/v1/bots/${envParseString('CLIENT_ID')}/stats`,
-          JSON.stringify({ guilds, users, voice_connections: 0 }),
-          `Bot ${envParseString('DISCORD_BOT_LIST_TOKEN')}`,
-          Lists.DiscordBotList
-        ),
+        // this.query(
+        //   `https://discordbotlist.com/api/v1/bots/${envParseString('CLIENT_ID')}/stats`,
+        //   JSON.stringify({ guilds, users, voice_connections: 0 }),
+        //   `Bot ${envParseString('DISCORD_BOT_LIST_TOKEN')}`,
+        //   Lists.DiscordBotList
+        // ),
         this.query(
           `https://api.botlist.me/api/v1/bots/${envParseString('CLIENT_ID')}/stats`,
           JSON.stringify({ server_count: guilds, shard_count: 1 }),
