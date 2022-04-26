@@ -1,7 +1,7 @@
 import { envParseString } from '#lib/env';
 import { DragoniteEvents } from '#lib/types/Enums';
 import { ApplyOptions } from '@sapphire/decorators';
-import { fetch, FetchResultTypes, type QueryError } from '@sapphire/fetch';
+import { fetch, FetchResultTypes, QueryError } from '@sapphire/fetch';
 import { fromAsync, isErr } from '@sapphire/framework';
 import { ScheduledTask } from '@sapphire/plugin-scheduled-tasks';
 import { filterNullish, isNullishOrEmpty } from '@sapphire/utilities';
@@ -106,7 +106,7 @@ export class PostStatsTask extends ScheduledTask {
     ).filter(filterNullish);
 
     if (results.length) {
-      this.container.logger.debug(`${header} [ ${guilds} [G] ] [ ${users} [U] ] | ${results.join(' | ')}`);
+      this.container.logger.info(`${header} [ ${guilds} [G] ] [ ${users} [U] ] | ${results.join(' | ')}`);
     }
   }
 
@@ -130,7 +130,26 @@ export class PostStatsTask extends ScheduledTask {
     });
 
     if (isErr(result)) {
-      return `${red(list)} [${red((result.error as QueryError).code.toString())}]`;
+      const errorMessage =
+        result.error instanceof QueryError
+          ? JSON.stringify({
+              body: result.error.toJSON(),
+              code: result.error.code,
+              response: result.error.response,
+              url: result.error.url,
+              cause: result.error.cause,
+              message: result.error.message
+            })
+          : result.error instanceof Error
+          ? JSON.stringify({
+              message: result.error.message,
+              stack: result.error.stack,
+              cause: result.error.cause,
+              name: result.error.name
+            }) //
+          : 'Unknown error occurred!!';
+
+      return `${red(list)} [${red(errorMessage)}]`;
     }
 
     return result.value;
