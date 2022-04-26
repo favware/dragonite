@@ -133,7 +133,7 @@ export class PostStatsTask extends ScheduledTask {
       const errorMessage =
         result.error instanceof QueryError
           ? JSON.stringify({
-              body: result.error.toJSON(),
+              body: result.error.body,
               code: result.error.code,
               response: result.error.response,
               url: result.error.url,
