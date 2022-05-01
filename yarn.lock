@@ -300,11 +300,11 @@ __metadata:
   linkType: hard
 
 "@favware/graphql-pokemon@npm:^6.5.9":
-  version: 6.5.9
-  resolution: "@favware/graphql-pokemon@npm:6.5.9"
+  version: 6.5.10
+  resolution: "@favware/graphql-pokemon@npm:6.5.10"
   dependencies:
     graphql: ^15.8.0
-  checksum: 2f53445506e930100bf14f08ad55584cda0a33d0c7d919cb0a7237c11922b8ff9dc276569de442b49741e83e814854be332009dfb2919e8a115fda45016a34e0
+  checksum: 49cc0ee17efee30d42751f87d9b6bf549cb22df334bc9dd31985845370485922d68d00d3726e35402c0455b2dfa7796e793b451217b743c265152ae55a8b6c54
   languageName: node
   linkType: hard
 
@@ -421,15 +421,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/discord.js-utilities@npm:^4.9.5, @sapphire/discord.js-utilities@npm:^4.9.7":
-  version: 4.9.7
-  resolution: "@sapphire/discord.js-utilities@npm:4.9.7"
+"@sapphire/discord.js-utilities@npm:^4.9.7":
+  version: 4.10.0
+  resolution: "@sapphire/discord.js-utilities@npm:4.10.0"
   dependencies:
     "@sapphire/discord-utilities": ^2.10.3
     "@sapphire/time-utilities": ^1.7.4
     "@sapphire/utilities": ^3.6.2
     tslib: ^2.4.0
-  checksum: c174b512c283216c3382fea518ba01ceda5ade39cd7ae8988bc4a9bb1fe37d0a7f7b7a578cd0053c3bcf6230ede2f7cee50810f08082186b311e220117b9ec50
+  checksum: 7794e35aa500aa7fbe7c2a1528124c5f70642b071cb3821d23909d40a3625adf51ebbca4cd3871806eb2b501d73c31758f21d8fef57a7af5fec8562e517611fb
   languageName: node
   linkType: hard
 
@@ -458,11 +458,11 @@ __metadata:
   linkType: hard
 
 "@sapphire/framework@npm:next":
-  version: 3.0.0-next.9e16888.0
-  resolution: "@sapphire/framework@npm:3.0.0-next.9e16888.0"
+  version: 3.0.0-next.1f048e3.0
+  resolution: "@sapphire/framework@npm:3.0.0-next.1f048e3.0"
   dependencies:
     "@sapphire/discord-utilities": ^2.10.3
-    "@sapphire/discord.js-utilities": ^4.9.5
+    "@sapphire/discord.js-utilities": ^4.9.7
     "@sapphire/pieces": ^3.3.1
     "@sapphire/ratelimits": ^2.4.4
     "@sapphire/result": ^1.1.1
@@ -470,7 +470,7 @@ __metadata:
     "@sapphire/utilities": ^3.6.2
     lexure: ^0.17.0
     tslib: ^2.4.0
-  checksum: d87781d5866171e2a7c94d845c577502ea36174217f024251f281059763edd2537acfb777a56baeef0b848f49e29f18016cd6f4cab01c8fa1c86035c73cde3c4
+  checksum: a9576d31e325c4023f0bd8b9aebc71e8011e8cb94f478a673e205c7587b12e00aa96a7c8cdb0f0e0fd538db1e1a1e8cd2da392c43c7759fec2d16b97d09021b9
   languageName: node
   linkType: hard
 
@@ -1739,11 +1739,11 @@ __metadata:
   linkType: hard
 
 "cron-parser@npm:^4.2.1":
-  version: 4.3.0
-  resolution: "cron-parser@npm:4.3.0"
+  version: 4.4.0
+  resolution: "cron-parser@npm:4.4.0"
   dependencies:
     luxon: ^1.28.0
-  checksum: 3559edba22f9f62b7eb72f406bb023dd325b882f50d0becbfd092e4fdcb3899ae49238ad56f440b8f17fb99c96e9ed7c2dc38027eba87ee34b05121a024421c7
+  checksum: 4fd4d1bd46ae49c277bf5f0bc522187211a47c08371d7245a10c331d3254c40bb7a95f52e231f40fcf2b5aa687043cde4f480f4e973975b3edc1053f76e521c1
   languageName: node
   linkType: hard
 
