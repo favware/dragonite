@@ -1,10 +1,10 @@
-import { envParseString } from '#lib/env';
 import { DragoniteEvents } from '#lib/types/Enums';
 import { ApplyOptions } from '@sapphire/decorators';
 import { fetch, FetchResultTypes, QueryError } from '@sapphire/fetch';
 import { fromAsync, isErr } from '@sapphire/framework';
 import { ScheduledTask } from '@sapphire/plugin-scheduled-tasks';
 import { filterNullish, isNullishOrEmpty } from '@sapphire/utilities';
+import { envParseString } from '@skyra/env-utilities';
 import { blueBright, green, red } from 'colorette';
 import { Constants } from 'discord.js';
 

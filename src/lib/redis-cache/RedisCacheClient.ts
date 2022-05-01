@@ -1,4 +1,3 @@
-import { envParseInteger } from '#lib/env';
 import { parseRedisOption } from '#root/config';
 import type {
   AbilitiesEnum,
@@ -15,6 +14,7 @@ import type {
 } from '@favware/graphql-pokemon';
 import { fromAsync, isErr } from '@sapphire/framework';
 import { isNullish } from '@sapphire/utilities';
+import { envParseInteger } from '@skyra/env-utilities';
 import Redis from 'ioredis';
 
 export const enum RedisKeys {

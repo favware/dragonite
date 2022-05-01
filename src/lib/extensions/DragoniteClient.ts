@@ -1,10 +1,10 @@
 import { GqlClient } from '#gql/GqlClient';
-import { envParseBoolean } from '#lib/env';
 import { RedisCacheClient } from '#lib/redis-cache/RedisCacheClient';
 import { AnalyticsData } from '#lib/structures/AnalyticsData';
 import { CLIENT_OPTIONS, WEBHOOK_ERROR } from '#root/config';
 import { EnGbHandler } from '#utils/Intl/EnGbHandler';
 import { container, SapphireClient } from '@sapphire/framework';
+import { envParseBoolean } from '@skyra/env-utilities';
 import { WebhookClient } from 'discord.js';
 
 export class DragoniteClient extends SapphireClient {

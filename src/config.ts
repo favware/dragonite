@@ -1,23 +1,16 @@
 // Unless explicitly defined, set NODE_ENV as development:
 process.env.NODE_ENV ??= 'development';
 
-import { envParseBoolean, envParseInteger, envParseString } from '#lib/env';
 import { srcFolder } from '#utils/constants';
 import { minutes } from '#utils/functions/time';
 import { LogLevel } from '@sapphire/framework';
 import { ScheduledTaskRedisStrategy } from '@sapphire/plugin-scheduled-tasks/register-redis';
+import { envParseInteger, envParseString, setup } from '@skyra/env-utilities';
 import { GatewayIntentBits } from 'discord-api-types/v9';
 import { ActivitiesOptions, ClientOptions, ExcludeEnum, Options, WebhookClientData } from 'discord.js';
 import type { ActivityTypes } from 'discord.js/typings/enums';
-import { config } from 'dotenv-cra';
-import { join } from 'path';
-import { fileURLToPath } from 'url';
 
-// Read config:
-config({
-  debug: process.env.DOTENV_DEBUG_ENABLED ? envParseBoolean('DOTENV_DEBUG_ENABLED') : undefined,
-  path: join(fileURLToPath(srcFolder), '.env')
-});
+setup(new URL('.env', srcFolder));
 
 export const OWNERS = ['268792781713965056'];
 

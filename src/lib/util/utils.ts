@@ -1,6 +1,6 @@
-import { envParseArray } from '#lib/env';
 import type { MovesEnum } from '@favware/graphql-pokemon';
 import { container, Events, from, InteractionHandler, isErr, UserError } from '@sapphire/framework';
+import { envParseArray } from '@skyra/env-utilities';
 import { deserialize, serialize } from 'binarytf';
 import type { Interaction } from 'discord.js';
 import { brotliCompressSync, brotliDecompressSync } from 'node:zlib';

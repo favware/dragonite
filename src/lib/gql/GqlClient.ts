@@ -1,5 +1,4 @@
 import { getFuzzyAbility, getFuzzyItem, getFuzzyMove, getFuzzyPokemon } from '#gql/fuzzyQueries';
-import { envParseString } from '#lib/env';
 import { getAbility, getFlavorTexts, getItem, getLearnset, getMove, getPokemon, getPokemonSprites, getTypeMatchup } from '#lib/gql/queries';
 import { RedisKeys } from '#lib/redis-cache/RedisCacheClient';
 import { FavouredAbilities, FavouredItems, FavouredMoves, FavouredPokemon } from '#utils/favouredEntries';
@@ -24,6 +23,7 @@ import type {
 } from '@favware/graphql-pokemon';
 import { fetch, FetchMethods, FetchResultTypes } from '@sapphire/fetch';
 import { container, fromAsync, isErr, UserError } from '@sapphire/framework';
+import { envParseString } from '@skyra/env-utilities';
 import os from 'node:os';
 
 export class GqlClient {

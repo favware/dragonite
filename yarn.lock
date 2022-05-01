@@ -591,6 +591,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@skyra/env-utilities@npm:^0.0.7":
+  version: 0.0.7
+  resolution: "@skyra/env-utilities@npm:0.0.7"
+  dependencies:
+    dotenv-cra: ^3.0.2
+  checksum: 1aa83387feabf4732a4437a2b65ce21551d9b5d14aef4a755b12a57cd6aee22d4e14aef5789bf646fb2e4bff17c0e6a8ce8daf40a0a3555cad0f8d4ac395c389
+  languageName: node
+  linkType: hard
+
+"@skyra/start-banner@npm:^0.0.4":
+  version: 0.0.4
+  resolution: "@skyra/start-banner@npm:0.0.4"
+  checksum: a0708f85507368ace009e933a6092f96690c09b10a0b29b26e96b8dcd332e6cfd5789fa958add7141eb4511c1672711a77d41b74aa9ba46b9844e8c80fe33fe8
+  languageName: node
+  linkType: hard
+
 "@swc/core-android-arm-eabi@npm:1.2.171":
   version: 1.2.171
   resolution: "@swc/core-android-arm-eabi@npm:1.2.171"
@@ -2002,6 +2018,8 @@ __metadata:
     "@sapphire/ts-config": ^3.3.4
     "@sapphire/type": ^2.2.0
     "@sapphire/utilities": ^3.6.2
+    "@skyra/env-utilities": ^0.0.7
+    "@skyra/start-banner": ^0.0.4
     "@swc/core": ^1.2.171
     "@types/bull": ^3.15.8
     "@types/figlet": ^1.5.4
@@ -2018,7 +2036,6 @@ __metadata:
     cz-conventional-changelog: ^3.3.0
     discord-api-types: 0.26.1
     discord.js: ^13.6.0
-    dotenv-cra: ^3.0.2
     eslint: ^8.14.0
     eslint-config-prettier: ^8.5.0
     eslint-plugin-prettier: ^4.0.0

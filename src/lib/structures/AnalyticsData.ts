@@ -1,5 +1,5 @@
-import { envParseBoolean, envParseString } from '#lib/env';
 import { InfluxDB, type ConnectionOptions, type QueryApi, type WriteApi } from '@influxdata/influxdb-client';
+import { envParseBoolean, envParseString } from '@skyra/env-utilities';
 
 export class AnalyticsData {
   public influx: InfluxDB | null = envParseBoolean('INFLUX_ENABLED') ? new InfluxDB(parseAnalytics()) : null;
