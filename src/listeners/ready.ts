@@ -2,6 +2,7 @@ import { DragoniteEvents } from '#lib/types/Enums';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Listener, type Store } from '@sapphire/framework';
 import { envParseBoolean, envParseString } from '@skyra/env-utilities';
+import { createBanner } from '@skyra/start-banner';
 import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
 import figlet from 'figlet';
 import gradient from 'gradient-string';
@@ -31,16 +32,15 @@ export class UserListener extends Listener {
     const llc = this.isDev ? magentaBright : white;
     const blc = this.isDev ? magenta : blue;
 
-    // Offset Pad
-    const pad = ' '.repeat(2);
-
     console.log(
-      String.raw`
-${gradient.pastel.multiline(figlet.textSync('Dragonite'))}
-${pad}${blc(envParseString('CLIENT_VERSION'))}
-${pad}[${success}] Gateway
-${this.isDev ? ` ${pad}${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MODE')}` : ''}
-		`.trim()
+      createBanner({
+        name: [gradient.pastel.multiline(figlet.textSync('Dragonite'))],
+        extra: [
+          blc(envParseString('CLIENT_VERSION')), //
+          `[${success}] Gateway`,
+          this.isDev ? ` ${blc('<')}${llc('/')}${blc('>')} ${llc('DEVELOPMENT MODE')}` : ''
+        ]
+      })
     );
   }
 
