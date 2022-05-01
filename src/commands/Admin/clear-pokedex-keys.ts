@@ -9,7 +9,7 @@ import type { ChatInputCommand } from '@sapphire/framework';
   chatInputCommand: {
     register: true,
     guildIds: getGuildIds(),
-    idHints: ['936023507060531270', '942137573831221290'],
+    idHints: ['970121155451166762', '942137573831221290'],
     defaultPermission: false
   }
 })

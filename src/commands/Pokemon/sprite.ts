@@ -26,7 +26,7 @@ export class SlashCommand extends DragoniteCommand {
               .setRequired(true)
               .setAutocomplete(true)
           ),
-      { guildIds: getGuildIds(), idHints: ['936023596432781442', '942137402300981268'] }
+      { guildIds: getGuildIds(), idHints: ['970121245691625492', '942137402300981268'] }
     );
   }
 

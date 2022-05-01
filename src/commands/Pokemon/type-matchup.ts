@@ -52,7 +52,7 @@ export class SlashCommand extends DragoniteCommand {
               .setDescription('The second type to include in the type matchup.')
               .setChoices(this.#choices)
           ),
-      { guildIds: getGuildIds(), idHints: ['936023679853293688', '942137487571173376'] }
+      { guildIds: getGuildIds(), idHints: ['970121328692703355', '942137487571173376'] }
     );
   }
 
