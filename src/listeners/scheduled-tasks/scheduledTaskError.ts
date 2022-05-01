@@ -1,4 +1,4 @@
-import { getErrorLine, getPathLine, getCodeLine } from '#utils/functions/errorHelpers';
+import { getCodeLine, getErrorLine, getPathLine } from '#utils/functions/errorHelpers';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Listener } from '@sapphire/framework';
 import { ScheduledTaskEvents } from '@sapphire/plugin-scheduled-tasks';

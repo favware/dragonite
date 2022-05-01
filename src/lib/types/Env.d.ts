@@ -1,4 +1,4 @@
-import type { BooleanString, IntegerString, ArrayString } from '@skyra/env-utilities';
+import type { ArrayString, BooleanString, IntegerString } from '@skyra/env-utilities';
 
 export default undefined;
 
