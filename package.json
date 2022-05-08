@@ -41,7 +41,7 @@
     "@sapphire/time-utilities": "^1.7.4",
     "@sapphire/type": "^2.2.4",
     "@sapphire/utilities": "^3.6.2",
-    "@skyra/env-utilities": "^0.0.7",
+    "@skyra/env-utilities": "^1.0.0",
     "@skyra/start-banner": "^0.0.4",
     "binarytf": "^2.1.1",
     "bufferutil": "^4.0.6",
