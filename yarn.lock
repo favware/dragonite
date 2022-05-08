@@ -617,10 +617,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@skyra/start-banner@npm:^0.0.4":
-  version: 0.0.4
-  resolution: "@skyra/start-banner@npm:0.0.4"
-  checksum: a0708f85507368ace009e933a6092f96690c09b10a0b29b26e96b8dcd332e6cfd5789fa958add7141eb4511c1672711a77d41b74aa9ba46b9844e8c80fe33fe8
+"@skyra/start-banner@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@skyra/start-banner@npm:1.0.0"
+  checksum: 14d240d418b072412527d7d0fc1fa7d5ddd0874a7e778c76c3659476097bade931717ea2e610224a2e7fad66c81d88a37a446b2d3fb887b878932026f8c7b076
   languageName: node
   linkType: hard
 
@@ -2153,7 +2153,7 @@ __metadata:
     "@sapphire/type": ^2.2.4
     "@sapphire/utilities": ^3.6.2
     "@skyra/env-utilities": ^1.0.0
-    "@skyra/start-banner": ^0.0.4
+    "@skyra/start-banner": ^1.0.0
     "@swc/core": ^1.2.179
     "@types/bull": ^3.15.8
     "@types/figlet": ^1.5.4
