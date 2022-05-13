@@ -35,7 +35,7 @@ export class SlashCommand extends DragoniteCommand {
 
     const pokemon = interaction.options.getString('pokemon', true);
 
-    const pokemonDetails = await this.container.gqlClient.getFlavors(pokemon as PokemonEnum);
+    const pokemonDetails = await this.container.gqlClient.getSprites(pokemon as PokemonEnum);
 
     if (isNullish(pokemonDetails)) {
       const fuzzyPokemon = await this.container.gqlClient.fuzzilySearchPokemon(pokemon, 25);
