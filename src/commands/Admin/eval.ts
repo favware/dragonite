@@ -10,7 +10,7 @@ import type { ChatInputCommand } from '@sapphire/framework';
 import { Stopwatch } from '@sapphire/stopwatch';
 import Type from '@sapphire/type';
 import { codeBlock, filterNullAndUndefinedAndEmpty, isThenable } from '@sapphire/utilities';
-import type { APIMessage } from 'discord-api-types/v9';
+import type { APIApplicationCommandOptionChoice, APIMessage } from 'discord-api-types/v9';
 import type { CommandInteraction, Message } from 'discord.js';
 import { setTimeout as sleep } from 'node:timers/promises';
 import { inspect } from 'node:util';
@@ -22,19 +22,19 @@ import { inspect } from 'node:util';
 export class SlashCommand extends DragoniteCommand {
   readonly #timeout = 60000;
 
-  readonly #languageChoices: [name: string, value: string][] = [
-    ['JavaScript', 'js'],
-    ['TypeScript', 'ts'],
-    ['JSON', 'json'],
-    ['Raw text', 'txt']
+  readonly #languageChoices: APIApplicationCommandOptionChoice<string>[] = [
+    { name: 'JavaScript', value: 'js' },
+    { name: 'TypeScript', value: 'ts' },
+    { name: 'JSON', value: 'json' },
+    { name: 'Raw text', value: 'txt' }
   ];
 
-  readonly #outputChoices: [name: string, value: string][] = [
-    ['Reply', 'reply'],
-    ['File', 'file'],
-    ['Hastebin', 'hastebin'],
-    ['Console', 'console'],
-    ['Abort', 'none']
+  readonly #outputChoices: APIApplicationCommandOptionChoice<string>[] = [
+    { name: 'Reply', value: 'reply' },
+    { name: 'File', value: 'file' },
+    { name: 'Hastebin', value: 'hastebin' },
+    { name: 'Console', value: 'console' },
+    { name: 'Abort', value: 'none' }
   ];
 
   public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
@@ -59,13 +59,13 @@ export class SlashCommand extends DragoniteCommand {
             builder //
               .setName('language')
               .setDescription('The language of the output codeblock.')
-              .setChoices(this.#languageChoices)
+              .setChoices(...this.#languageChoices)
           )
           .addStringOption((builder) =>
             builder //
               .setName('output-to')
               .setDescription('The location to send the output to.')
-              .setChoices(this.#outputChoices)
+              .setChoices(...this.#outputChoices)
           )
           .addBooleanOption((builder) =>
             builder //

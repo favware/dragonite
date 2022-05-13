@@ -25,7 +25,7 @@
     "dev": "tsup --watch --onSuccess \"yarn start\""
   },
   "dependencies": {
-    "@discordjs/builders": "0.12.0",
+    "@discordjs/builders": "^0.13.0",
     "@favware/graphql-pokemon": "^6.5.10",
     "@influxdata/influxdb-client": "^1.25.0",
     "@influxdata/influxdb-client-apis": "^1.25.0",
@@ -45,10 +45,10 @@
     "@skyra/start-banner": "^1.0.0",
     "binarytf": "^2.1.1",
     "bufferutil": "^4.0.6",
-    "bull": "^4.8.2",
+    "bull": "^4.8.3",
     "colorette": "^2.0.16",
-    "discord-api-types": "0.26.1",
-    "discord.js": "^13.6.0",
+    "discord-api-types": "^0.30.0",
+    "discord.js": "^13.7.0",
     "figlet": "^1.5.2",
     "gradient-string": "^2.0.1",
     "ioredis": "^4.28.5",
@@ -84,8 +84,7 @@
   },
   "resolutions": {
     "ansi-regex": "^5.0.1",
-    "minimist": "^1.2.6",
-    "@discordjs/builders": "0.12.0"
+    "minimist": "^1.2.6"
   },
   "engines": {
     "node": ">=16.6.0",

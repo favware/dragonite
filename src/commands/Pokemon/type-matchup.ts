@@ -5,6 +5,7 @@ import type { TypesEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import { ChatInputCommand, UserError } from '@sapphire/framework';
 import { filterNullish, isNullish, toTitleCase } from '@sapphire/utilities';
+import type { APIApplicationCommandOptionChoice } from 'discord-api-types/v9';
 
 @ApplyOptions<ChatInputCommand.Options>({
   description: 'Gets data for the chosen type matchup.'
@@ -31,7 +32,7 @@ export class SlashCommand extends DragoniteCommand {
     'water'
   ];
 
-  readonly #choices = this.#pokemonTypes.map<[name: string, value: string]>((type) => [toTitleCase(type), type]);
+  readonly #choices = this.#pokemonTypes.map<APIApplicationCommandOptionChoice<string>>((type) => ({ name: toTitleCase(type), value: type }));
 
   public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
     registry.registerChatInputCommand(
@@ -44,13 +45,13 @@ export class SlashCommand extends DragoniteCommand {
               .setName('first-type')
               .setDescription('The first type to include in the type matchup.')
               .setRequired(true)
-              .setChoices(this.#choices)
+              .setChoices(...this.#choices)
           )
           .addStringOption((option) =>
             option //
               .setName('second-type')
               .setDescription('The second type to include in the type matchup.')
-              .setChoices(this.#choices)
+              .setChoices(...this.#choices)
           ),
       { guildIds: getGuildIds(), idHints: ['970121328692703355', '942137487571173376'] }
     );

@@ -7,7 +7,7 @@ import type { Abilities, EvYields, Gender, Pokemon, PokemonEnum, Stats } from '@
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
 import { filterNullish, isNullish, isNullishOrEmpty } from '@sapphire/utilities';
-import { ApplicationCommandOptionChoice, MessageEmbed, MessageSelectOptionData } from 'discord.js';
+import { ApplicationCommandOptionChoiceData, MessageEmbed, MessageSelectOptionData } from 'discord.js';
 
 enum StatsEnum {
   hp = 'HP',
@@ -23,7 +23,7 @@ const PageLabels = ['General', 'Growth Information', 'Competitive Battling Infor
 export function fuzzyPokemonToSelectOption<L extends 'name' | 'label'>(
   fuzzyMatch: Pokemon | FavouredEntry<PokemonEnum>,
   labelLikeKey: L
-): L extends 'name' ? ApplicationCommandOptionChoice : MessageSelectOptionData {
+): L extends 'name' ? ApplicationCommandOptionChoiceData : MessageSelectOptionData {
   const label = isFavouredEntry(fuzzyMatch) ? fuzzyMatch.name : pokemonEnumToSpecies(fuzzyMatch.key);
 
   // @ts-expect-error TS is not able to infer that `labelLikeKey` is 'name' | 'label'

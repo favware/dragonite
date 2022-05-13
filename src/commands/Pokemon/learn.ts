@@ -7,28 +7,29 @@ import type { MovesEnum, PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { ChatInputCommand } from '@sapphire/framework';
 import { filterNullish, isNullish } from '@sapphire/utilities';
+import type { APIApplicationCommandOptionChoice } from 'discord-api-types/v9';
 import { MessageActionRow, MessageSelectMenu, type MessageSelectOptionData } from 'discord.js';
 
 @ApplyOptions<ChatInputCommand.Options>({
   description: 'Tells you whether the chosen Pokémon can learn the chosen move or moves.'
 })
 export class SlashCommand extends DragoniteCommand {
-  readonly #spriteChoices: [name: string, value: PokemonSpriteTypes][] = [
-    ['Regular Sprite', 'sprite'],
-    ['Regular Back Sprite', 'backSprite'],
-    ['Shiny Sprite', 'shinySprite'],
-    ['Shiny Back Sprite', 'shinyBackSprite']
+  readonly #spriteChoices: APIApplicationCommandOptionChoice<PokemonSpriteTypes>[] = [
+    { name: 'Regular Sprite', value: 'sprite' },
+    { name: 'Regular Back Sprite', value: 'backSprite' },
+    { name: 'Shiny Sprite', value: 'shinySprite' },
+    { name: 'Shiny Back Sprite', value: 'shinyBackSprite' }
   ];
 
-  readonly #generationChoices: [name: string, value: number][] = [
-    ['Generation 1', 1],
-    ['Generation 2', 2],
-    ['Generation 3', 3],
-    ['Generation 4', 4],
-    ['Generation 5', 5],
-    ['Generation 6', 6],
-    ['Generation 7', 7],
-    ['Generation 8', 8]
+  readonly #generationChoices: APIApplicationCommandOptionChoice<number>[] = [
+    { name: 'Generation 1', value: 1 },
+    { name: 'Generation 2', value: 2 },
+    { name: 'Generation 3', value: 3 },
+    { name: 'Generation 4', value: 4 },
+    { name: 'Generation 5', value: 5 },
+    { name: 'Generation 6', value: 6 },
+    { name: 'Generation 7', value: 7 },
+    { name: 'Generation 8', value: 8 }
   ];
 
   public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
@@ -67,13 +68,13 @@ export class SlashCommand extends DragoniteCommand {
             option //
               .setName('generation')
               .setDescription('The Pokémon generation that you want to check in if the Pokémon learns the move.')
-              .setChoices(this.#generationChoices)
+              .setChoices(...this.#generationChoices)
           )
           .addStringOption((option) =>
             option //
               .setName('sprite')
               .setDescription('The sprite that you want the result to show.')
-              .setChoices(this.#spriteChoices)
+              .setChoices(...this.#spriteChoices)
           ),
       { guildIds: getGuildIds(), idHints: ['970121242696884304', '942137402686857248'] }
     );

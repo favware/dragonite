@@ -7,17 +7,18 @@ import type { PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { ChatInputCommand } from '@sapphire/framework';
 import { isNullish } from '@sapphire/utilities';
+import type { APIApplicationCommandOptionChoice } from 'discord-api-types/v9';
 import { MessageActionRow, MessageSelectMenu, type MessageSelectOptionData } from 'discord.js';
 
 @ApplyOptions<ChatInputCommand.Options>({
   description: 'Gets PokéDex entries for the chosen Pokémon.'
 })
 export class SlashCommand extends DragoniteCommand {
-  readonly #spriteChoices: [name: string, value: PokemonSpriteTypes][] = [
-    ['Regular Sprite', 'sprite'],
-    ['Regular Back Sprite', 'backSprite'],
-    ['Shiny Sprite', 'shinySprite'],
-    ['Shiny Back Sprite', 'shinyBackSprite']
+  readonly #spriteChoices: APIApplicationCommandOptionChoice<PokemonSpriteTypes>[] = [
+    { name: 'Regular Sprite', value: 'sprite' },
+    { name: 'Regular Back Sprite', value: 'backSprite' },
+    { name: 'Shiny Sprite', value: 'shinySprite' },
+    { name: 'Shiny Back Sprite', value: 'shinyBackSprite' }
   ];
 
   public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
@@ -37,7 +38,7 @@ export class SlashCommand extends DragoniteCommand {
             option //
               .setName('sprite')
               .setDescription('The sprite that you want the result to show.')
-              .setChoices(this.#spriteChoices)
+              .setChoices(...this.#spriteChoices)
           ),
       { guildIds: getGuildIds(), idHints: ['970121158953414706', '942137488883978251'] }
     );
