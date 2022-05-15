@@ -31,7 +31,7 @@
     "@influxdata/influxdb-client-apis": "^1.25.0",
     "@sapphire/decorators": "^4.3.4",
     "@sapphire/discord-utilities": "^2.10.3",
-    "@sapphire/discord.js-utilities": "^4.10.0",
+    "@sapphire/discord.js-utilities": "^4.11.0",
     "@sapphire/fetch": "^2.3.1",
     "@sapphire/framework": "next",
     "@sapphire/plugin-logger": "^2.2.1",
@@ -59,7 +59,7 @@
   "devDependencies": {
     "@commitlint/cli": "^16.3.0",
     "@commitlint/config-conventional": "^16.2.4",
-    "@sapphire/eslint-config": "^4.3.4",
+    "@sapphire/eslint-config": "^4.3.5",
     "@sapphire/prettier-config": "^1.4.3",
     "@sapphire/ts-config": "^3.3.4",
     "@swc/core": "^1.2.183",
