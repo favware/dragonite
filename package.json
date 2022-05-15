@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@discordjs/builders": "^0.13.0",
-    "@favware/graphql-pokemon": "^6.5.10",
+    "@favware/graphql-pokemon": "^6.5.11",
     "@influxdata/influxdb-client": "^1.25.0",
     "@influxdata/influxdb-client-apis": "^1.25.0",
     "@sapphire/decorators": "^4.3.4",
@@ -57,20 +57,20 @@
     "zlib-sync": "^0.1.7"
   },
   "devDependencies": {
-    "@commitlint/cli": "^16.2.4",
+    "@commitlint/cli": "^16.3.0",
     "@commitlint/config-conventional": "^16.2.4",
     "@sapphire/eslint-config": "^4.3.4",
     "@sapphire/prettier-config": "^1.4.3",
     "@sapphire/ts-config": "^3.3.4",
-    "@swc/core": "^1.2.179",
+    "@swc/core": "^1.2.183",
     "@types/bull": "^3.15.8",
     "@types/figlet": "^1.5.4",
     "@types/gradient-string": "^1.1.2",
     "@types/ioredis": "^4.28.10",
     "@types/node": "^17.0.30",
     "@types/ws": "^8.5.3",
-    "@typescript-eslint/eslint-plugin": "^5.22.0",
-    "@typescript-eslint/parser": "^5.22.0",
+    "@typescript-eslint/eslint-plugin": "^5.23.0",
+    "@typescript-eslint/parser": "^5.23.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.15.0",
     "eslint-config-prettier": "^8.5.0",
@@ -125,5 +125,5 @@
     "favna",
     "slashies"
   ],
-  "packageManager": "yarn@3.2.0"
+  "packageManager": "yarn@3.2.1"
 }
