@@ -46,7 +46,7 @@
     "binarytf": "^2.1.1",
     "bufferutil": "^4.0.6",
     "bull": "^4.8.3",
-    "colorette": "^2.0.16",
+    "colorette": "^2.0.17",
     "discord-api-types": "^0.30.0",
     "discord.js": "^13.7.0",
     "figlet": "^1.5.2",
@@ -57,8 +57,8 @@
     "zlib-sync": "^0.1.7"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.0.1",
-    "@commitlint/config-conventional": "^17.0.0",
+    "@commitlint/cli": "^17.0.2",
+    "@commitlint/config-conventional": "^17.0.2",
     "@sapphire/eslint-config": "^4.3.6",
     "@sapphire/prettier-config": "^1.4.3",
     "@sapphire/ts-config": "^3.3.4",
@@ -72,7 +72,7 @@
     "@typescript-eslint/eslint-plugin": "^5.27.0",
     "@typescript-eslint/parser": "^5.27.0",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.16.0",
+    "eslint": "^8.17.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^8.0.1",
@@ -80,7 +80,7 @@
     "prettier": "^2.6.2",
     "pretty-quick": "^3.1.3",
     "tsup": "^6.0.1",
-    "typescript": "^4.7.2"
+    "typescript": "^4.7.3"
   },
   "resolutions": {
     "ansi-regex": "^5.0.1",
