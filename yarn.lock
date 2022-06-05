@@ -32,9 +32,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/cli@npm:^17.0.1":
-  version: 17.0.1
-  resolution: "@commitlint/cli@npm:17.0.1"
+"@commitlint/cli@npm:^17.0.2":
+  version: 17.0.2
+  resolution: "@commitlint/cli@npm:17.0.2"
   dependencies:
     "@commitlint/format": ^17.0.0
     "@commitlint/lint": ^17.0.0
@@ -48,16 +48,16 @@ __metadata:
     yargs: ^17.0.0
   bin:
     commitlint: cli.js
-  checksum: 7a69ce6eeb1a8c2b573d73d92790cea8e36392edf76687e409d890ab6f67176566dc21b4ea2cd26d32adad3b25bf6c1ac7827030354af1ed57e809f866feb4df
+  checksum: 1f8a00da69fbc7ac6e2c4126a594a50e649c97b0516cd1504b28b7e3b5308ba3a0394465d1752d8544d70be4beb183fde5924d2e1ec9ae4ee395ae05f2f96574
   languageName: node
   linkType: hard
 
-"@commitlint/config-conventional@npm:^17.0.0":
-  version: 17.0.0
-  resolution: "@commitlint/config-conventional@npm:17.0.0"
+"@commitlint/config-conventional@npm:^17.0.2":
+  version: 17.0.2
+  resolution: "@commitlint/config-conventional@npm:17.0.2"
   dependencies:
-    conventional-changelog-conventionalcommits: ^4.3.1
-  checksum: d2a8973c65de53bfc283795480c2d12d61507cb13e7e2be129de693c966cf39601e5ebf9b0928508a379f287487fc5ae022ba16868186edf98b5e0a9d73ee96f
+    conventional-changelog-conventionalcommits: ^5.0.0
+  checksum: 6effb4f68d7bc24baebb65c57801b416e108ac4dfcc7a349dfc03cf4f3250f87520835934e474d2fd3c9e978a5435e606d1605038ebdc94dcd914a1818a5f54d
   languageName: node
   linkType: hard
 
@@ -466,33 +466,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/discord-utilities@npm:^2.10.3, @sapphire/discord-utilities@npm:^2.11.0":
-  version: 2.11.0
-  resolution: "@sapphire/discord-utilities@npm:2.11.0"
-  dependencies:
-    twemoji-parser: ^14.0.0
-  checksum: 46eca9521ccf13a05968769840c103910941258b184c23ca603cef8c4ce45ce19ff76328e239537d0626cc661a0fcd9a21846ebe257aa9bfc6e939dbff29ccbc
-  languageName: node
-  linkType: hard
-
 "@sapphire/discord-utilities@npm:^2.11.1":
   version: 2.11.1
   resolution: "@sapphire/discord-utilities@npm:2.11.1"
   dependencies:
     twemoji-parser: ^14.0.0
   checksum: 65f62b30ced40424ff968715751f53259641e30e84292306aecd039dee1705f8fd1105d061474df4d247ab9be2ee23db0f898d615bcd46c3d2e2597f7f467cb0
-  languageName: node
-  linkType: hard
-
-"@sapphire/discord.js-utilities@npm:^4.11.0":
-  version: 4.11.0
-  resolution: "@sapphire/discord.js-utilities@npm:4.11.0"
-  dependencies:
-    "@sapphire/discord-utilities": ^2.10.3
-    "@sapphire/time-utilities": ^1.7.4
-    "@sapphire/utilities": ^3.6.2
-    tslib: ^2.4.0
-  checksum: 93f72b75297e5fa5edd60eef9e0455e808a2322865b03911b875ca62b265af9a49448357e9110ea77ce3556d39d2ce3701549b15eb28739a65345a58dd9e8bc9
   languageName: node
   linkType: hard
 
@@ -533,11 +512,11 @@ __metadata:
   linkType: hard
 
 "@sapphire/framework@npm:next":
-  version: 3.0.0-next.b7485a2.0
-  resolution: "@sapphire/framework@npm:3.0.0-next.b7485a2.0"
+  version: 3.0.0-next.0d9551e.0
+  resolution: "@sapphire/framework@npm:3.0.0-next.0d9551e.0"
   dependencies:
-    "@sapphire/discord-utilities": ^2.11.0
-    "@sapphire/discord.js-utilities": ^4.11.0
+    "@sapphire/discord-utilities": ^2.11.1
+    "@sapphire/discord.js-utilities": ^4.11.1
     "@sapphire/pieces": ^3.3.3
     "@sapphire/ratelimits": ^2.4.4
     "@sapphire/result": ^1.1.1
@@ -545,7 +524,7 @@ __metadata:
     "@sapphire/utilities": ^3.6.2
     lexure: ^0.17.0
     tslib: ^2.4.0
-  checksum: 812cfcb3557dc3de51306f7e68c19e58aaf2c39d2d6fa023e270c405a64a808535d42ea65e397d98f22152212d89a2352c4d1d2f9e6926a535c050afd80b9f32
+  checksum: bc774f4997ae290e8a79b07a96bafe4901185deb349de16cc4b40960d49f6afa34a303477238606b8c08d01e112eac173f7cf9ff0c14eba3222dd6b208082ff1
   languageName: node
   linkType: hard
 
@@ -932,9 +911,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:>=12, @types/node@npm:^17.0.30":
-  version: 17.0.36
-  resolution: "@types/node@npm:17.0.36"
-  checksum: 11055fde0a1e1421113849b5e32c7022911efc0be670729947bf0162970e79962d804b1eb8a9afb291380cac97cf0e684511415d586ae5fe1560322c940fe188
+  version: 17.0.40
+  resolution: "@types/node@npm:17.0.40"
+  checksum: e3b2fe876672fbe4be84ce17773944eb2f5eaba50e2c6c0536bdf6d4972ed6488581580581f154183fdc8f2d56fa42a42e3d6e83b9b71ee25adea16a84765e92
   languageName: node
   linkType: hard
 
@@ -1430,8 +1409,8 @@ __metadata:
   linkType: hard
 
 "cacache@npm:^16.1.0":
-  version: 16.1.0
-  resolution: "cacache@npm:16.1.0"
+  version: 16.1.1
+  resolution: "cacache@npm:16.1.1"
   dependencies:
     "@npmcli/fs": ^2.1.0
     "@npmcli/move-file": ^2.0.0
@@ -1451,7 +1430,7 @@ __metadata:
     ssri: ^9.0.0
     tar: ^6.1.11
     unique-filename: ^1.1.1
-  checksum: ddfcf92f079f24ccecef4e2ca1e4428443787b61429b921803b020fd0f33d9ac829ac47837b74b40868d8ae4f1b2ed82e164cdaa5508fbd790eee005a9d88469
+  checksum: 488524617008b793f0249b0c4ea2c330c710ca997921376e15650cc2415a8054491ae2dee9f01382c2015602c0641f3f977faf2fa7361aa33d2637dcfb03907a
   languageName: node
   linkType: hard
 
@@ -1662,10 +1641,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"colorette@npm:^2.0.16":
-  version: 2.0.16
-  resolution: "colorette@npm:2.0.16"
-  checksum: cd55596a3a2d1071c1a28eee7fd8a5387593ff1bd10a3e8d0a6221499311fe34a9f2b9272d77c391e0e003dcdc8934fb2f8d106e7ef1f7516f8060c901d41a27
+"colorette@npm:^2.0.16, colorette@npm:^2.0.17":
+  version: 2.0.17
+  resolution: "colorette@npm:2.0.17"
+  checksum: 693a56d816846e0e213f92c8061b65eb5025030b28a113f90c539fe34c860abc41132c03599af26bcbc213170a31bac1bf2d4c535ccad5ac7b5cb3248f9d98a8
   languageName: node
   linkType: hard
 
@@ -1752,14 +1731,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"conventional-changelog-conventionalcommits@npm:^4.3.1":
-  version: 4.6.3
-  resolution: "conventional-changelog-conventionalcommits@npm:4.6.3"
+"conventional-changelog-conventionalcommits@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "conventional-changelog-conventionalcommits@npm:5.0.0"
   dependencies:
     compare-func: ^2.0.0
     lodash: ^4.17.15
     q: ^1.5.1
-  checksum: 7b8e8a21ebb56f9aaa510e12917b7c609202072c3e71089e0a09630c37c2e8146cdb04364809839b0e3eb55f807fe84d03b2079500b37f6186d505848be5c562
+  checksum: b67d12e4e0fdde5baa32c3d77af472de38646a18657b26f5543eecce041a318103092fbfcef247e2319a16957c9ac78c6ea78acc11a5db6acf74be79a28c561f
   languageName: node
   linkType: hard
 
@@ -2086,8 +2065,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "dragonite@workspace:."
   dependencies:
-    "@commitlint/cli": ^17.0.1
-    "@commitlint/config-conventional": ^17.0.0
+    "@commitlint/cli": ^17.0.2
+    "@commitlint/config-conventional": ^17.0.2
     "@discordjs/builders": ^0.13.0
     "@favware/graphql-pokemon": ^6.5.11
     "@influxdata/influxdb-client": ^1.26.0
@@ -2121,11 +2100,11 @@ __metadata:
     binarytf: ^2.1.1
     bufferutil: ^4.0.6
     bull: ^4.8.3
-    colorette: ^2.0.16
+    colorette: ^2.0.17
     cz-conventional-changelog: ^3.3.0
     discord-api-types: ^0.30.0
     discord.js: ^13.7.0
-    eslint: ^8.16.0
+    eslint: ^8.17.0
     eslint-config-prettier: ^8.5.0
     eslint-plugin-prettier: ^4.0.0
     figlet: ^1.5.2
@@ -2136,7 +2115,7 @@ __metadata:
     prettier: ^2.6.2
     pretty-quick: ^3.1.3
     tsup: ^6.0.1
-    typescript: ^4.7.2
+    typescript: ^4.7.3
     utf-8-validate: ^5.0.9
     ws: ^8.7.0
     zlib-sync: ^0.1.7
@@ -2508,9 +2487,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.16.0":
-  version: 8.16.0
-  resolution: "eslint@npm:8.16.0"
+"eslint@npm:^8.16.0, eslint@npm:^8.17.0":
+  version: 8.17.0
+  resolution: "eslint@npm:8.17.0"
   dependencies:
     "@eslint/eslintrc": ^1.3.0
     "@humanwhocodes/config-array": ^0.9.2
@@ -2549,7 +2528,7 @@ __metadata:
     v8-compile-cache: ^2.0.3
   bin:
     eslint: bin/eslint.js
-  checksum: 654a0200b49dc07280673fee13cdfb04326466790e031dfa9660b69fba3b1cf766a51504328f9de56bd18e6b5eb7578985cf29dc7f016c5ec851220ff9db95eb
+  checksum: b484c96681c6b19f5b437f664623f1cd310d3ee9be88400d8450e086e664cd968a9dc202f0b0678578fd50e7a445b92586efe8c787de5073ff2f83213b00bb7b
   languageName: node
   linkType: hard
 
@@ -3831,8 +3810,8 @@ __metadata:
   linkType: hard
 
 "make-fetch-happen@npm:^10.0.3":
-  version: 10.1.6
-  resolution: "make-fetch-happen@npm:10.1.6"
+  version: 10.1.7
+  resolution: "make-fetch-happen@npm:10.1.7"
   dependencies:
     agentkeepalive: ^4.2.1
     cacache: ^16.1.0
@@ -3848,9 +3827,9 @@ __metadata:
     minipass-pipeline: ^1.2.4
     negotiator: ^0.6.3
     promise-retry: ^2.0.1
-    socks-proxy-agent: ^6.1.1
+    socks-proxy-agent: ^7.0.0
     ssri: ^9.0.0
-  checksum: e75fb1209222404a803e0432cabf20dfccf35e78b32340a4f1ac18eb6faf9e42b2e600a3488261d71f455773581af8e1d615a881f50e5bd5d5efc2ae6ec7a8ee
+  checksum: 2b7301256e18a2f825c1c3cad14e11492428531ecdea04d846dc12c2d69658d65832746ce965e67c7f98b0d0506115674cf43676c3322709278620bfc886cf4a
   languageName: node
   linkType: hard
 
@@ -4890,8 +4869,8 @@ __metadata:
   linkType: hard
 
 "rollup@npm:^2.74.1":
-  version: 2.75.3
-  resolution: "rollup@npm:2.75.3"
+  version: 2.75.5
+  resolution: "rollup@npm:2.75.5"
   dependencies:
     fsevents: ~2.3.2
   dependenciesMeta:
@@ -4899,7 +4878,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: ac33a2336df049f21dea64e4c9faee2551bddf2920944ea6214b2ed214f3861c9a4e1a8b7a32d2af6632f649a25a2bf4da8fad9f84f5093f2bf4d7e77933756b
+  checksum: fa3e61959efbc88cda75315dc22f035489be9dda3ae7d45a3a474f19efc3661ef6f9849486c7ca51e1a3e2aedef91f4e3223e8123bbeaf155913533d071994d1
   languageName: node
   linkType: hard
 
@@ -5056,14 +5035,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"socks-proxy-agent@npm:^6.1.1":
-  version: 6.2.0
-  resolution: "socks-proxy-agent@npm:6.2.0"
+"socks-proxy-agent@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "socks-proxy-agent@npm:7.0.0"
   dependencies:
     agent-base: ^6.0.2
     debug: ^4.3.3
     socks: ^2.6.2
-  checksum: 6723fd64fb50334e2b340fd0a80fd8488ffc5bc43d85b7cf1d25612044f814dd7d6ea417fd47602159941236f7f4bd15669fa5d7e1f852598a31288e1a43967b
+  checksum: 720554370154cbc979e2e9ce6a6ec6ced205d02757d8f5d93fe95adae454fc187a5cbfc6b022afab850a5ce9b4c7d73e0f98e381879cf45f66317a4895953846
   languageName: node
   linkType: hard
 
@@ -5459,8 +5438,8 @@ __metadata:
   linkType: hard
 
 "ts-node@npm:^10.8.0":
-  version: 10.8.0
-  resolution: "ts-node@npm:10.8.0"
+  version: 10.8.1
+  resolution: "ts-node@npm:10.8.1"
   dependencies:
     "@cspotcode/source-map-support": ^0.8.0
     "@tsconfig/node10": ^1.0.7
@@ -5492,7 +5471,7 @@ __metadata:
     ts-node-script: dist/bin-script.js
     ts-node-transpile-only: dist/bin-transpile.js
     ts-script: dist/bin-script-deprecated.js
-  checksum: 1c22dc8dd80d0ba4dd4250b82cc032b63f6fbe8c87f8197cef43e7f9e2d43f5b333b445ed712e3006e24119257b4bff2c46605f7da61ab6f5e9514885d296f0c
+  checksum: 7d1aa7aa3ae1c0459c4922ed0dbfbade442cfe0c25aebaf620cdf1774f112c8d7a9b14934cb6719274917f35b2c503ba87bcaf5e16a0d39ba0f68ce3e7728363
   languageName: node
   linkType: hard
 
@@ -5608,23 +5587,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.6.3, typescript@npm:^4.6.4, typescript@npm:^4.7.2":
-  version: 4.7.2
-  resolution: "typescript@npm:4.7.2"
+"typescript@npm:^4.6.3, typescript@npm:^4.6.4, typescript@npm:^4.7.2, typescript@npm:^4.7.3":
+  version: 4.7.3
+  resolution: "typescript@npm:4.7.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 5163585e6b56410f77d5483b698d9489bbee8902c99029eb70cf6d21525a186530ce19a00951af84eefd4a131cc51d0959f5118e25e70ab61f45ac4057dbd1ef
+  checksum: fd13a1ce53790a36bb8350e1f5e5e384b5f6cb9b0635114a6d01d49cb99916abdcfbc13c7521cdae2f2d3f6d8bc4a8ae7625edf645a04ee940588cd5e7597b2f
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.6.3#~builtin<compat/typescript>, typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.2#~builtin<compat/typescript>":
-  version: 4.7.2
-  resolution: "typescript@patch:typescript@npm%3A4.7.2#~builtin<compat/typescript>::version=4.7.2&hash=7ad353"
+"typescript@patch:typescript@^4.6.3#~builtin<compat/typescript>, typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.2#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.3#~builtin<compat/typescript>":
+  version: 4.7.3
+  resolution: "typescript@patch:typescript@npm%3A4.7.3#~builtin<compat/typescript>::version=4.7.3&hash=7ad353"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 7e2b9a9f4a70fb7616f1b0d986977f8e34a74f046202fa7f24fdee79589598277810fa216b3776c20c0683a9235872c73be34fdb93f67f98c1efaca40999422f
+  checksum: 137d18a77f52254a284960b16ab53d0619f57b69b5d585804b8413f798a1175ce3e774fb95e6a101868577aafe357d8fcfc9171f0dc9fc0c210e9ae59d107cc0
   languageName: node
   linkType: hard
 
