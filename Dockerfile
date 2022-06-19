@@ -8,6 +8,7 @@ WORKDIR /usr/src/app
 
 ENV HUSKY=0
 ENV CI=true
+ENV FORCE_COLOR=true
 
 RUN apt-get update && \
     apt-get upgrade -y --no-install-recommends && \
@@ -21,7 +22,7 @@ COPY --chown=node:node package.json .
 COPY --chown=node:node .yarnrc.yml .
 COPY --chown=node:node .yarn/ .yarn/
 
-RUN sed -i 's/"prepare": "husky install .github\/husky"/"prepare": ""/' ./package.json
+RUN sed -i 's/"postinstall": "husky install .github\/husky"/"prepare": ""/' ./package.json
 
 ENTRYPOINT ["dumb-init", "--"]
 
