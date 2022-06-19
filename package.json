@@ -22,7 +22,8 @@
     "watch": "tsup --watch",
     "clean": "node scripts/clean.mjs",
     "typecheck": "tsc -b src",
-    "dev": "tsup --watch --onSuccess \"yarn start\""
+    "dev": "tsup --watch --onSuccess \"yarn start\"",
+    "postinstall": "husky install .github/husky"
   },
   "dependencies": {
     "@discordjs/builders": "^0.15.0",
