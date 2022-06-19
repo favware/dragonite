@@ -30,3 +30,7 @@ export const enum SelectMenuCustomIds {
   Move = 'move-select-menu',
   Pokemon = 'pokemon-select-menu'
 }
+
+export const enum ModalCustomIds {
+  Eval = 'eval-modal'
+}
