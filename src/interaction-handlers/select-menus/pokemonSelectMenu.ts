@@ -1,9 +1,9 @@
 import { SelectMenuCustomIds } from '#utils/constants';
+import { decompressPokemonCustomIdMetadata } from '#utils/pokemonCustomIdCompression';
 import { flavorResponseBuilder } from '#utils/responseBuilders/flavorResponseBuilder';
 import { learnsetResponseBuilder } from '#utils/responseBuilders/learnsetResponseBuilder';
 import { pokemonResponseBuilder } from '#utils/responseBuilders/pokemonResponseBuilder';
 import { spriteResponseBuilder } from '#utils/responseBuilders/spriteResponseBuilder';
-import { decompressPokemonCustomIdMetadata } from '#utils/utils';
 import type { Learnset, Pokemon, PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { PaginatedMessage } from '@sapphire/discord.js-utilities';
@@ -58,7 +58,10 @@ export class SelectMenuHandler extends InteractionHandler {
 
     const pokemon = interaction.values[0];
     const splitCustomId = interaction.customId.split('|');
-    const data = decompressPokemonCustomIdMetadata(splitCustomId.slice(1).join('|'), { interaction, handler: this });
+    const data = decompressPokemonCustomIdMetadata(splitCustomId.slice(1).join('|'), {
+      interaction,
+      handler: this
+    });
 
     const responseToGenerate = data.type;
     const spriteToGet = data.spriteToGet ?? 'sprite';
