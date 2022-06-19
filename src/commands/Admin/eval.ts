@@ -36,7 +36,7 @@ export class SlashCommand extends DragoniteCommand {
         builder //
           .setName(this.name)
           .setDescription(this.description)
-          .setDefaultPermission(true)
+          .setDefaultPermission(false)
           .addIntegerOption((option) =>
             option //
               .setName('depth')
