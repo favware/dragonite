@@ -3,7 +3,7 @@ import { ModalCustomIds } from '#utils/constants';
 import { compressEvalCustomIdMetadata } from '#utils/evalCustomIdCompression';
 import { getGuildIds } from '#utils/utils';
 import { ApplyOptions } from '@sapphire/decorators';
-import { ChatInputCommand, RegisterBehavior } from '@sapphire/framework';
+import type { ChatInputCommand } from '@sapphire/framework';
 import { Time } from '@sapphire/time-utilities';
 import type { APIApplicationCommandOptionChoice } from 'discord-api-types/v9';
 import { MessageActionRow, Modal, ModalActionRowComponent, TextInputComponent } from 'discord.js';
@@ -74,7 +74,7 @@ export class SlashCommand extends DragoniteCommand {
               .setName('show-hidden')
               .setDescription('Whether to show hidden JSON properties when stringifying.')
           ),
-      { guildIds: getGuildIds(), idHints: ['970121156722053120', '942137574871420938'], behaviorWhenNotIdentical: RegisterBehavior.Overwrite }
+      { guildIds: getGuildIds(), idHints: ['970121156722053120', '942137574871420938'] }
     );
   }
 
