@@ -530,6 +530,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sapphire/discord-utilities@npm:^2.11.4":
+  version: 2.11.4
+  resolution: "@sapphire/discord-utilities@npm:2.11.4"
+  checksum: 3c79c0a83f028c44d3a0020209a8e0502a4d0dfba1fe9720bfe4f433d37cdb280c72d5529f08e361ae06ce19d6fab59a3d92992a7216af4e4920166e9b1502cb
+  languageName: node
+  linkType: hard
+
 "@sapphire/discord.js-utilities@npm:^4.11.3":
   version: 4.11.3
   resolution: "@sapphire/discord.js-utilities@npm:4.11.3"
@@ -698,6 +705,13 @@ __metadata:
   version: 3.6.2
   resolution: "@sapphire/utilities@npm:3.6.2"
   checksum: 71210753b446f3f2835dd9d28fb10767f4c6f005b465eea179082d9f2c071acb7dcd2aebdf7c4974b26aad3ab2374a1dd168a66371b06bd65f248bbca4a90cda
+  languageName: node
+  linkType: hard
+
+"@sapphire/utilities@npm:^3.7.0":
+  version: 3.7.0
+  resolution: "@sapphire/utilities@npm:3.7.0"
+  checksum: 3b574586242f015859e913123a5311774ad2d6cb79241c2a3d447a585282bdb04cddcd8e086f757a8ae5d2c49f4a25b4f848d63cebe605c7641364b51c3cfa11
   languageName: node
   linkType: hard
 
@@ -2250,7 +2264,7 @@ __metadata:
     "@influxdata/influxdb-client": ^1.27.0
     "@influxdata/influxdb-client-apis": ^1.27.0
     "@sapphire/decorators": ^4.3.6
-    "@sapphire/discord-utilities": ^2.11.2
+    "@sapphire/discord-utilities": ^2.11.4
     "@sapphire/discord.js-utilities": ^4.11.3
     "@sapphire/eslint-config": ^4.3.7
     "@sapphire/fetch": ^2.4.0
@@ -2263,7 +2277,7 @@ __metadata:
     "@sapphire/time-utilities": ^1.7.4
     "@sapphire/ts-config": ^3.3.4
     "@sapphire/type": ^2.2.4
-    "@sapphire/utilities": ^3.6.2
+    "@sapphire/utilities": ^3.7.0
     "@skyra/env-utilities": ^1.0.1
     "@skyra/start-banner": ^1.0.1
     "@swc/core": ^1.2.208
