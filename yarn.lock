@@ -514,12 +514,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/decorators@npm:^4.3.6":
-  version: 4.3.6
-  resolution: "@sapphire/decorators@npm:4.3.6"
+"@sapphire/decorators@npm:^4.3.8":
+  version: 4.3.8
+  resolution: "@sapphire/decorators@npm:4.3.8"
   dependencies:
     tslib: ^2.4.0
-  checksum: 4a9b273e1dc2a86895df07c7ef169db293b15f331ecda10a9c15f96c2f50be94adb2896564944eacb0a99128fbe30c2e126128518b788df2c49bcc8e95617388
+  checksum: 1642d102959fe81313c30a180d4bbbdc8ace51c6fb41710e03c5ec971b889aa0e845660c4bdaae4a2f16611bfefd09966c30e6d46fe39c59a0deaaa493f3a54d
   languageName: node
   linkType: hard
 
@@ -564,12 +564,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/fetch@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "@sapphire/fetch@npm:2.4.0"
+"@sapphire/fetch@npm:^2.4.1":
+  version: 2.4.1
+  resolution: "@sapphire/fetch@npm:2.4.1"
   dependencies:
     cross-fetch: ^3.1.5
-  checksum: be03ec367ef1b49b38bfe06c3cf7fa507eefb4635bcccf3c5330857bddefd40c7a98c15e102deae8d78ebfbd816a94b5c9040d77b30a7742fd17506186f993b7
+  checksum: f8ab0baa59dfcb931729a46957073e4e26377b6b5e3bdbbed921ae793c0848a240545ed157efd5db13342d68eed84dc73c6fe83038a5e62af9daa3715326c4a9
   languageName: node
   linkType: hard
 
@@ -602,24 +602,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/plugin-logger@npm:^2.2.1":
-  version: 2.2.1
-  resolution: "@sapphire/plugin-logger@npm:2.2.1"
+"@sapphire/plugin-logger@npm:^2.2.3":
+  version: 2.2.3
+  resolution: "@sapphire/plugin-logger@npm:2.2.3"
   dependencies:
-    "@sapphire/time-utilities": ^1.7.3
-    colorette: ^2.0.16
-    tslib: ^2.3.1
-  checksum: 7c5e72a8fa762dfce35cc76d1265f678e0fbd4b899853a2fd80b7b4191192636c5de2bea74d16e980a3a3a19d82df7875934b6d0c4b20621d07f4c0534979fbb
+    "@sapphire/time-utilities": ^1.7.4
+    colorette: ^2.0.19
+    tslib: ^2.4.0
+  checksum: 90d4fdffccae8ab777601a322d0e32aba7ae415837298f176122620600f2b48a8235f746dfd292fdf9f2af1229f576e736870b394e368a3ed7e91791fddaacca
   languageName: node
   linkType: hard
 
-"@sapphire/plugin-scheduled-tasks@npm:^2.3.3":
-  version: 2.3.3
-  resolution: "@sapphire/plugin-scheduled-tasks@npm:2.3.3"
+"@sapphire/plugin-scheduled-tasks@npm:^2.3.5":
+  version: 2.3.5
+  resolution: "@sapphire/plugin-scheduled-tasks@npm:2.3.5"
   dependencies:
     "@sapphire/time-utilities": ^1.7.4
     tslib: ^2.4.0
-  checksum: d84f6114533aeae9160ff9807ca827dac8d2927b29532ca4808e142b20ec33e7828304855df51c2611498ccc4b783bb1ac52d18b1b4b3c1faaec818dde234ab1
+  checksum: 6673d199e6b23249cad773b15a7cd36aac421b6cc36d401fd298389de86411a1150a58c7fb462206edc6811ca238331878e04cf7a0505431368f3493a44aeb66
   languageName: node
   linkType: hard
 
@@ -671,12 +671,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/time-utilities@npm:^1.7.3, @sapphire/time-utilities@npm:^1.7.4":
+"@sapphire/time-utilities@npm:^1.7.4":
   version: 1.7.4
   resolution: "@sapphire/time-utilities@npm:1.7.4"
   dependencies:
     "@sapphire/utilities": ^3.6.2
   checksum: fb4a32d81fd99966297912cd41c751a8bb792f401e92d538c2611922c535da79683d1918ed897e7daf0880f7c139a03100922fb128ca27a596163e6c5bcead8c
+  languageName: node
+  linkType: hard
+
+"@sapphire/time-utilities@npm:^1.7.5":
+  version: 1.7.5
+  resolution: "@sapphire/time-utilities@npm:1.7.5"
+  dependencies:
+    "@sapphire/utilities": ^3.7.0
+  checksum: a83f505ff0e5eac7b8b316c7fa207f52ae2c07dd223f651d7dcb3f9a3e61b86b6168dac746455d1d1a2a4732d4865ab7526332f3f463db31048d8b1e5ba9d6cb
   languageName: node
   linkType: hard
 
@@ -2263,18 +2272,18 @@ __metadata:
     "@favware/graphql-pokemon": ^6.5.12
     "@influxdata/influxdb-client": ^1.27.0
     "@influxdata/influxdb-client-apis": ^1.27.0
-    "@sapphire/decorators": ^4.3.6
+    "@sapphire/decorators": ^4.3.8
     "@sapphire/discord-utilities": ^2.11.4
     "@sapphire/discord.js-utilities": ^4.11.3
     "@sapphire/eslint-config": ^4.3.7
-    "@sapphire/fetch": ^2.4.0
+    "@sapphire/fetch": ^2.4.1
     "@sapphire/framework": next
-    "@sapphire/plugin-logger": ^2.2.1
-    "@sapphire/plugin-scheduled-tasks": ^2.3.3
+    "@sapphire/plugin-logger": ^2.2.3
+    "@sapphire/plugin-scheduled-tasks": ^2.3.5
     "@sapphire/prettier-config": ^1.4.3
     "@sapphire/snowflake": ^3.2.2
     "@sapphire/stopwatch": ^1.4.1
-    "@sapphire/time-utilities": ^1.7.4
+    "@sapphire/time-utilities": ^1.7.5
     "@sapphire/ts-config": ^3.3.4
     "@sapphire/type": ^2.2.4
     "@sapphire/utilities": ^3.7.0
