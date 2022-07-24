@@ -36,7 +36,7 @@
     "@sapphire/fetch": "^2.4.1",
     "@sapphire/framework": "next",
     "@sapphire/plugin-logger": "^2.2.3",
-    "@sapphire/plugin-scheduled-tasks": "^2.3.5",
+    "@sapphire/plugin-scheduled-tasks": "^3.0.0",
     "@sapphire/snowflake": "^3.2.2",
     "@sapphire/stopwatch": "^1.4.1",
     "@sapphire/time-utilities": "^1.7.5",
