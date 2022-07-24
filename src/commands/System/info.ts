@@ -10,12 +10,7 @@ import { MessageActionRow, MessageButton, MessageEmbed, Permissions, version } f
 import { cpus, uptime, type CpuInfo } from 'node:os';
 
 @ApplyOptions<ChatInputCommand.Options>({
-  description: 'Provides information about Dragonite, and links for adding the bot and joining the support server',
-  chatInputCommand: {
-    register: true,
-    guildIds: getGuildIds(),
-    idHints: ['970121330504634418', '942137399180402770']
-  }
+  description: 'Provides information about Dragonite, and links for adding the bot and joining the support server'
 })
 export class UserCommand extends Command {
   readonly #sapphireNextVersionRegex = /-next\.[a-z0-9]+\.\d{1,}/i;
@@ -27,6 +22,16 @@ export class UserCommand extends Command {
       hideLinkEmbed('https://discord.js.org')
     )}.`
   ].join('\n');
+
+  public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
+    registry.registerChatInputCommand(
+      (builder) =>
+        builder //
+          .setName(this.name)
+          .setDescription(this.description),
+      { guildIds: getGuildIds(), idHints: ['970121330504634418', '942137399180402770'] }
+    );
+  }
 
   public override chatInputRun(interaction: ChatInputCommand.Interaction) {
     return interaction.reply({

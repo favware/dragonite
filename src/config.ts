@@ -6,6 +6,7 @@ import { minutes } from '#utils/functions/time';
 import { LogLevel } from '@sapphire/framework';
 import { ScheduledTaskRedisStrategy } from '@sapphire/plugin-scheduled-tasks/register-redis';
 import { envParseInteger, envParseString, setup } from '@skyra/env-utilities';
+import type { ConnectionOptions } from 'bullmq';
 import { GatewayIntentBits } from 'discord-api-types/v9';
 import { ActivitiesOptions, ClientOptions, ExcludeEnum, Options, WebhookClientData } from 'discord.js';
 import type { ActivityTypes } from 'discord.js/typings/enums';
@@ -36,7 +37,7 @@ function parseWebhookError(): WebhookClientData | null {
   };
 }
 
-export function parseRedisOption(): { port: number; password: string; host: string } {
+export function parseRedisOption(): ConnectionOptions {
   return {
     port: envParseInteger('REDIS_PORT'),
     password: envParseString('REDIS_PASSWORD'),
@@ -51,7 +52,7 @@ export const CLIENT_OPTIONS: ClientOptions = {
   allowedMentions: { users: [], roles: [] },
   presence: { activities: parsePresenceActivity() },
   logger: { level: envParseString('NODE_ENV') === 'production' ? LogLevel.Info : LogLevel.Debug },
-  preventFailedToFetchLogForGuildIds: [
+  preventFailedToFetchLogForGuilds: [
     // Discord Bots
     '110373943822540800',
     // Discords.com: Bots For Discord
@@ -70,7 +71,7 @@ export const CLIENT_OPTIONS: ClientOptions = {
   tasks: {
     strategy: new ScheduledTaskRedisStrategy({
       bull: {
-        redis: {
+        connection: {
           ...parseRedisOption(),
           db: envParseInteger('REDIS_TASK_DB')
         }
