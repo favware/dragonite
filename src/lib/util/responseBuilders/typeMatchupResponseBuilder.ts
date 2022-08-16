@@ -1,6 +1,6 @@
 import { BrandingColors, CdnUrls } from '#utils/constants';
 import { parseBulbapediaURL } from '#utils/functions/pokemonParsers';
-import type { Type, TypeMatchup, TypesEnum } from '@favware/graphql-pokemon';
+import type { TypeEffectiveness, TypeMatchup, TypesEnum } from '@favware/graphql-pokemon';
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
 import { MessageEmbed } from 'discord.js';
@@ -56,7 +56,7 @@ export function typeMatchupResponseBuilder(types: TypesEnum[], typeMatchups: Typ
     );
 }
 
-function parseEffectiveMatchup(doubleEffectiveTypes: Type['doubleEffectiveTypes'], effectiveTypes: Type['effectiveTypes']) {
+function parseEffectiveMatchup(doubleEffectiveTypes: TypeEffectiveness['doubleEffectiveTypes'], effectiveTypes: TypeEffectiveness['effectiveTypes']) {
   return doubleEffectiveTypes
     .map((type): string => `${type} (x4)`)
     .concat(effectiveTypes.map((type) => `${type} (x2)`))
@@ -64,7 +64,7 @@ function parseEffectiveMatchup(doubleEffectiveTypes: Type['doubleEffectiveTypes'
     .join(', ');
 }
 
-function parseResistedMatchup(doubleResistedTypes: Type['doubleResistedTypes'], resistedTypes: Type['resistedTypes']) {
+function parseResistedMatchup(doubleResistedTypes: TypeEffectiveness['doubleResistedTypes'], resistedTypes: TypeEffectiveness['resistedTypes']) {
   return doubleResistedTypes
     .map((type): string => `${type} (x0.25)`)
     .concat(resistedTypes.map((type) => `${type} (x0.5)`))
@@ -72,6 +72,6 @@ function parseResistedMatchup(doubleResistedTypes: Type['doubleResistedTypes'], 
     .join(', ');
 }
 
-function parseRegularMatchup(regularMatchup: Type['normalTypes'] | Type['effectlessTypes']) {
+function parseRegularMatchup(regularMatchup: TypeEffectiveness['normalTypes'] | TypeEffectiveness['effectlessTypes']) {
   return regularMatchup.map((type) => `\`${type}\``).join(', ');
 }

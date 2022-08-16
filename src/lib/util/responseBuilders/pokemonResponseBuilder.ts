@@ -195,7 +195,7 @@ function getAbilities(abilitiesData: Abilities): string[] {
   const abilities: string[] = [];
   for (const [type, ability] of Object.entries(abilitiesData)) {
     if (!ability) continue;
-    abilities.push(type === 'hidden' ? `${italic(ability)}` : ability);
+    abilities.push(type === 'hidden' ? `${italic(ability.name)}` : ability.name);
   }
 
   return abilities;
