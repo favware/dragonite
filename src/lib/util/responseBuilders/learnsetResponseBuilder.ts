@@ -37,10 +37,10 @@ export function learnsetResponseBuilder(
   }
 
   for (const [methodName, methodData] of learnableMethods) {
-    const methods = methodData.map((move) => {
-      const methodTypes = learnMethodTypes(move.level);
+    const methods = methodData.map((moveData) => {
+      const methodTypes = learnMethodTypes(moveData.level);
       return `In generation ${generation} ${pokemonEnumToSpecies(learnsetData.pokemonKey)} ${underscore(bold('can'))} learn ${bold(
-        move.move.name!
+        moveData.move.name!
       )} ${methodTypes[methodName]}`;
     });
 
