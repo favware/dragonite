@@ -19,9 +19,22 @@ export function itemResponseBuilder(item: Omit<Item, '__typename'>) {
     .setAuthor({ name: `Item - ${toTitleCase(item.name)}`, iconURL: CdnUrls.Pokedex })
     .setThumbnail(item.sprite)
     .setDescription(item.desc)
-    .addField('Generation introduced', container.i18n.number.format(item.generationIntroduced), true)
-    .addField('Available in generation 8', item.isNonstandard === 'Past' ? 'No' : 'Yes', true)
-    .addField('External Resources', externalResources);
+    .addFields(
+      {
+        name: 'Generation introduced',
+        value: container.i18n.number.format(item.generationIntroduced),
+        inline: true
+      },
+      {
+        name: 'Available in generation 8',
+        value: item.isNonstandard === 'Past' ? 'No' : 'Yes',
+        inline: true
+      },
+      {
+        name: 'External Resources',
+        value: externalResources
+      }
+    );
 
   return [embed];
 }

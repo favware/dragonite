@@ -64,44 +64,93 @@ function parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, s
   })
     .setSelectMenuOptions((pageIndex) => ({ label: PageLabels[pageIndex - 1] }))
     .addPageEmbed((embed) => {
-      embed
-        .addField('Type(s)', pokeDetails.types.join(', '), true)
-        .addField('Abilities', container.i18n.listAnd.format(abilities), true)
-        .addField('Gender Ratio', parseGenderRatio(pokeDetails.gender), true)
-        .addField('Evolutionary line', evoChain)
-        .addField('Base stats', `${baseStats.join(', ')} (${italic('BST')}: ${bold(pokeDetails.baseStatsTotal.toString())})`);
+      embed.addFields(
+        {
+          name: 'Type(s)',
+          value: pokeDetails.types.map((type) => type.name).join(', '),
+          inline: true
+        },
+        {
+          name: 'Abilities',
+          value: container.i18n.listAnd.format(abilities),
+          inline: true
+        },
+        {
+          name: 'Gender Ratio',
+          value: parseGenderRatio(pokeDetails.gender),
+          inline: true
+        },
+        {
+          name: 'Evolutionary line',
+          value: evoChain
+        },
+        {
+          name: 'Base Stats',
+          value: `${baseStats.join(', ')} (${italic('BST')}: ${bold(pokeDetails.baseStatsTotal.toString())})`
+        }
+      );
 
       if (!isCapPokemon(pokeDetails)) {
-        embed.addField(externalResources, externalResourceData);
+        embed.addFields({ name: externalResources, value: externalResourceData });
       }
 
       return embed;
     })
     .addPageEmbed((embed) => {
-      embed
-        .addField('Height', `${container.i18n.number.format(pokeDetails.height)}m`, true)
-        .addField('Weight', `${container.i18n.number.format(pokeDetails.weight)}kg`, true);
+      embed.addFields(
+        {
+          name: 'Height',
+          value: `${container.i18n.number.format(pokeDetails.height)}m`,
+          inline: true
+        },
+        {
+          name: 'Weight',
+          value: `${container.i18n.number.format(pokeDetails.weight)}kg`,
+          inline: true
+        }
+      );
 
       if (isRegularPokemon(pokeDetails)) {
         if (pokeDetails.levellingRate) {
-          embed.addField('Levelling rate', pokeDetails.levellingRate, true);
+          embed.addFields({
+            name: 'Levelling rate',
+            value: pokeDetails.levellingRate,
+            inline: true
+          });
         }
       }
 
       if (!isMissingno(pokeDetails)) {
-        embed.addField('Egg group(s)', pokeDetails.eggGroups?.join(', ') || '', true);
+        embed.addFields({
+          name: 'Egg group(s)',
+          value: pokeDetails.eggGroups?.join(', ') || '',
+          inline: true
+        });
       }
 
       if (isRegularPokemon(pokeDetails)) {
-        embed.addField('Egg can be obtained', pokeDetails.isEggObtainable ? 'Yes' : 'No', true);
+        embed.addFields({
+          name: 'Egg can be obtained',
+          value: pokeDetails.isEggObtainable ? 'Yes' : 'No',
+          inline: true
+        });
 
         if (!isNullish(pokeDetails.minimumHatchTime) && !isNullish(pokeDetails.maximumHatchTime)) {
-          embed
-            .addField('Minimum hatching time', container.i18n.number.format(pokeDetails.minimumHatchTime), true)
-            .addField('Maximum hatching time', container.i18n.number.format(pokeDetails.maximumHatchTime), true);
+          embed.addFields(
+            {
+              name: 'Minimum hatching time',
+              value: container.i18n.number.format(pokeDetails.minimumHatchTime),
+              inline: true
+            },
+            {
+              name: 'Maximum hatching time',
+              value: container.i18n.number.format(pokeDetails.maximumHatchTime),
+              inline: true
+            }
+          );
         }
 
-        embed.addField(externalResources, externalResourceData);
+        embed.addFields({ name: externalResources, value: externalResourceData });
       }
 
       return embed;
@@ -110,11 +159,19 @@ function parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, s
   if (!isMissingno(pokeDetails)) {
     display.addPageEmbed((embed) => {
       embed //
-        .addField('Smogon Tier', pokeDetails.smogonTier === 'Undiscovered' ? 'Unknown / Alt form' : pokeDetails.smogonTier)
-        .addField('EV Yields', `${evYields.join(', ')}`);
+        .addFields(
+          {
+            name: 'Smogon Tier',
+            value: pokeDetails.smogonTier === 'Undiscovered' ? 'Unknown / Alt form' : pokeDetails.smogonTier
+          },
+          {
+            name: 'EV Yields',
+            value: `${evYields.join(', ')}`
+          }
+        );
 
       if (isRegularPokemon(pokeDetails)) {
-        embed.addField(externalResources, externalResourceData);
+        embed.addFields({ name: externalResources, value: externalResourceData });
       }
 
       return embed;
@@ -125,10 +182,10 @@ function parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, s
     if (pokeDetails.flavorTexts.length) {
       display.addPageEmbed((embed) => {
         for (const flavor of pokeDetails.flavorTexts) {
-          embed.addField('Pokédex entry', `(${inlineCode(flavor.game)}) ${flavor.flavor}`);
+          embed.addFields({ name: 'Pokédex entry', value: `(${inlineCode(flavor.game)}) ${flavor.flavor}` });
         }
 
-        return embed.addField(externalResources, externalResourceData);
+        return embed.addFields({ name: externalResources, value: externalResourceData });
       });
     }
   }
@@ -141,17 +198,17 @@ function parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, s
         // If the pokémon has other formes
         if (!isNullishOrEmpty(pokeDetails.otherFormes)) {
           const formes = pokeDetails.otherFormes.map((forme) => inlineCode(pokemonEnumToSpecies(forme as PokemonEnum)));
-          embed.addField('Other forme(s)', container.i18n.listAnd.format(formes));
+          embed.addFields({ name: 'Other forme(s)', value: container.i18n.listAnd.format(formes) });
         }
 
         // If the pokémon has cosmetic formes
         if (!isNullishOrEmpty(pokeDetails.cosmeticFormes)) {
           const formes = pokeDetails.cosmeticFormes.map((forme) => inlineCode(pokemonEnumToSpecies(forme as PokemonEnum)));
-          embed.addField('Cosmetic Formes', container.i18n.listAnd.format(formes));
+          embed.addFields({ name: 'Cosmetic Formes', value: container.i18n.listAnd.format(formes) });
         }
 
         // Add the external resource field
-        embed.addField(externalResources, externalResourceData);
+        embed.addFields({ name: externalResources, value: externalResourceData });
 
         return embed;
       });
