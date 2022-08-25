@@ -1,7 +1,7 @@
 import { DragoniteEvents } from '#lib/types/Enums';
 import { ApplyOptions } from '@sapphire/decorators';
 import { fetch, FetchResultTypes, QueryError } from '@sapphire/fetch';
-import { fromAsync, isErr } from '@sapphire/framework';
+import { Result } from '@sapphire/framework';
 import { ScheduledTask } from '@sapphire/plugin-scheduled-tasks';
 import { filterNullish, isNullishOrEmpty } from '@sapphire/utilities';
 import { envParseString } from '@skyra/env-utilities';
@@ -115,7 +115,7 @@ export class PostStatsTask extends ScheduledTask {
       return null;
     }
 
-    const result = await fromAsync(async () => {
+    const result = await Result.fromAsync(async () => {
       await fetch(
         url,
         {
@@ -129,29 +129,30 @@ export class PostStatsTask extends ScheduledTask {
       return green(list);
     });
 
-    if (isErr(result)) {
-      const errorMessage =
-        result.error instanceof QueryError
-          ? JSON.stringify({
-              body: result.error.body,
-              code: result.error.code,
-              response: result.error.response,
-              url: result.error.url,
-              cause: result.error.cause,
-              message: result.error.message
-            })
-          : result.error instanceof Error
-          ? JSON.stringify({
-              message: result.error.message,
-              stack: result.error.stack,
-              cause: result.error.cause,
-              name: result.error.name
-            }) //
-          : 'Unknown error occurred!!';
+    return result.match({
+      ok: (data) => data,
+      err: (error) => {
+        const errorMessage =
+          error instanceof QueryError
+            ? JSON.stringify({
+                body: error.body,
+                code: error.code,
+                response: error.response,
+                url: error.url,
+                cause: error.cause,
+                message: error.message
+              })
+            : error instanceof Error
+            ? JSON.stringify({
+                message: error.message,
+                stack: error.stack,
+                cause: error.cause,
+                name: error.name
+              }) //
+            : 'Unknown error occurred!!';
 
-      return `${red(list)} [${red(errorMessage)}]`;
-    }
-
-    return result.value;
+        return `${red(list)} [${red(errorMessage)}]`;
+      }
+    });
   }
 }

@@ -12,7 +12,7 @@ import type {
   TypeMatchup,
   TypesEnum
 } from '@favware/graphql-pokemon';
-import { fromAsync, isErr } from '@sapphire/framework';
+import { Result } from '@sapphire/framework';
 import { isNullish } from '@sapphire/utilities';
 import { envParseInteger } from '@skyra/env-utilities';
 import Redis from 'ioredis';
@@ -37,7 +37,7 @@ export class RedisCacheClient extends Redis {
   }
 
   public async fetch<K extends RedisKeys>(key: K, query: RedisKeyQuery<K>) {
-    const result = await fromAsync(async () => {
+    const result = await Result.fromAsync(async () => {
       const raw = await this.get(`${key}:${query}`);
 
       if (isNullish(raw)) return raw;
@@ -45,11 +45,10 @@ export class RedisCacheClient extends Redis {
       return JSON.parse(raw) as RedisData<K>;
     });
 
-    if (isErr(result) || result.value === null) {
-      return null;
-    }
-
-    return result.value;
+    return result.match({
+      ok: (data) => data,
+      err: () => null
+    });
   }
 
   public insert<K extends RedisKeys>(key: K, query: RedisKeyQuery<K>, data: RedisData<K>) {

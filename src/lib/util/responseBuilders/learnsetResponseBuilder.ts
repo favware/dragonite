@@ -37,11 +37,11 @@ export function learnsetResponseBuilder(
   }
 
   for (const [methodName, methodData] of learnableMethods) {
-    const methods = methodData.map((move) => {
-      const methodTypes = learnMethodTypes(move.level);
-      return `In generation ${generation} ${pokemonEnumToSpecies(learnsetData.pokemonKey)} ${underscore(bold('can'))} learn ${bold(move.name!)} ${
-        methodTypes[methodName]
-      }`;
+    const methods = methodData.map((moveData) => {
+      const methodTypes = learnMethodTypes(moveData.level);
+      return `In generation ${generation} ${pokemonEnumToSpecies(learnsetData.pokemonKey)} ${underscore(bold('can'))} learn ${bold(
+        moveData.move.name!
+      )} ${methodTypes[methodName]}`;
     });
 
     display.addPageEmbed((embed) => embed.setDescription(methods.join('\n')));

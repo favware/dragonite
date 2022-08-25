@@ -64,7 +64,7 @@ export class SlashCommand extends DragoniteCommand {
     const secondtype = interaction.options.getString('second-type', false) as TypesEnum | null;
     const types = [firstType, secondtype].filter(filterNullish);
 
-    const typeMatchup = await this.container.gqlClient.getTypeMatchup(types);
+    const typeMatchup = await this.container.gqlClient.getTypeMatchup(firstType, secondtype ?? undefined);
 
     if (isNullish(typeMatchup)) {
       throw new UserError({

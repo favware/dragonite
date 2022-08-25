@@ -15,7 +15,7 @@ export function abilityResponseBuilder(ability: Omit<Ability, '__typename'>) {
     .setColor(BrandingColors.Primary)
     .setAuthor({ name: `Ability - ${toTitleCase(ability.name)}`, iconURL: CdnUrls.Pokedex })
     .setDescription(ability.desc || ability.shortDesc)
-    .addField('External Resources', externalResources);
+    .addFields({ name: 'External Resources', value: externalResources });
 
   if (ability.isFieldAbility) {
     embed.spliceFields(0, 0, { name: 'Effect outside of battle', value: ability.isFieldAbility, inline: false });

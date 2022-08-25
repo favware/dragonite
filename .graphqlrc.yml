@@ -1,2 +1,4 @@
-schema: 'node_modules/@favware/graphql-pokemon/generated/ts/graphql-pokemon.graphql'
-documents: 'src/lib/gql/*.ts'
+schema: 'https://graphqlpokemon.favware.tech/v7'
+documents:
+  - ./src/lib/gql/queries.ts
+  - ./src/lib/gql/fuzzyQueries.ts

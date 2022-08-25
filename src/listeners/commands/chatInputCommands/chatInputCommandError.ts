@@ -62,7 +62,7 @@ export class UserListener extends Listener<typeof Events.ChatInputCommandError> 
   private argumentError(interaction: CommandInteraction, error: ArgumentError<unknown>) {
     return this.alert(
       interaction,
-      error.message ??
+      error.message ||
         `An error occurred that I was not able to identify. Please try again. If the issue keeps showing up, you can get in touch with the developers by joining my support server through ${hideLinkEmbed(
           'https://join.favware.tech'
         )}`
@@ -74,7 +74,7 @@ export class UserListener extends Listener<typeof Events.ChatInputCommandError> 
 
     return this.alert(
       interaction,
-      error.message ??
+      error.message ||
         `An error occurred that I was not able to identify. Please try again. If the issue keeps showing up, you can get in touch with the developers by joining my support server through ${hideLinkEmbed(
           'https://join.favware.tech'
         )}`

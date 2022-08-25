@@ -1,6 +1,6 @@
 import { BrandingColors, CdnUrls } from '#utils/constants';
 import { parseBulbapediaURL } from '#utils/functions/pokemonParsers';
-import type { Type, TypeMatchup, TypesEnum } from '@favware/graphql-pokemon';
+import type { TypeEffectiveness, TypeMatchup, TypesEnum } from '@favware/graphql-pokemon';
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
 import { MessageEmbed } from 'discord.js';
@@ -21,10 +21,10 @@ export function typeMatchupResponseBuilder(types: TypesEnum[], typeMatchups: Typ
   })
     .setSelectMenuOptions((pageIndex) => ({ label: ['Offensive', 'Defensive'][pageIndex - 1] }))
     .addPageEmbed((embed) =>
-      embed
-        .addField(
-          'Offensive',
-          [
+      embed.addFields(
+        {
+          name: 'Offensive',
+          value: [
             `Super effective against: ${parseEffectiveMatchup(typeMatchups.attacking.doubleEffectiveTypes, typeMatchups.attacking.effectiveTypes)}`,
             '',
             `Deals normal damage to: ${parseRegularMatchup(typeMatchups.attacking.normalTypes)}`,
@@ -33,14 +33,18 @@ export function typeMatchupResponseBuilder(types: TypesEnum[], typeMatchups: Typ
             '',
             `${typeMatchups.attacking.effectlessTypes.length ? `Doesn't affect: ${parseRegularMatchup(typeMatchups.attacking.effectlessTypes)}` : ''}`
           ].join('\n')
-        )
-        .addField(externalResources, externalSources)
+        },
+        {
+          name: externalResources,
+          value: externalSources
+        }
+      )
     )
     .addPageEmbed((embed) =>
-      embed
-        .addField(
-          'Defensive',
-          [
+      embed.addFields(
+        {
+          name: 'Defensive',
+          value: [
             `Vulnerable to: ${parseEffectiveMatchup(typeMatchups.defending.doubleEffectiveTypes, typeMatchups.defending.effectiveTypes)}`,
             '',
             `Takes normal damage from: ${parseRegularMatchup(typeMatchups.defending.normalTypes)}`,
@@ -51,12 +55,16 @@ export function typeMatchupResponseBuilder(types: TypesEnum[], typeMatchups: Typ
               typeMatchups.defending.effectlessTypes.length ? `Not affected by: ${parseRegularMatchup(typeMatchups.defending.effectlessTypes)}` : ''
             }`
           ].join('\n')
-        )
-        .addField(externalResources, externalSources)
+        },
+        {
+          name: externalResources,
+          value: externalSources
+        }
+      )
     );
 }
 
-function parseEffectiveMatchup(doubleEffectiveTypes: Type['doubleEffectiveTypes'], effectiveTypes: Type['effectiveTypes']) {
+function parseEffectiveMatchup(doubleEffectiveTypes: TypeEffectiveness['doubleEffectiveTypes'], effectiveTypes: TypeEffectiveness['effectiveTypes']) {
   return doubleEffectiveTypes
     .map((type): string => `${type} (x4)`)
     .concat(effectiveTypes.map((type) => `${type} (x2)`))
@@ -64,7 +72,7 @@ function parseEffectiveMatchup(doubleEffectiveTypes: Type['doubleEffectiveTypes'
     .join(', ');
 }
 
-function parseResistedMatchup(doubleResistedTypes: Type['doubleResistedTypes'], resistedTypes: Type['resistedTypes']) {
+function parseResistedMatchup(doubleResistedTypes: TypeEffectiveness['doubleResistedTypes'], resistedTypes: TypeEffectiveness['resistedTypes']) {
   return doubleResistedTypes
     .map((type): string => `${type} (x0.25)`)
     .concat(resistedTypes.map((type) => `${type} (x0.5)`))
@@ -72,6 +80,6 @@ function parseResistedMatchup(doubleResistedTypes: Type['doubleResistedTypes'], 
     .join(', ');
 }
 
-function parseRegularMatchup(regularMatchup: Type['normalTypes'] | Type['effectlessTypes']) {
+function parseRegularMatchup(regularMatchup: TypeEffectiveness['normalTypes'] | TypeEffectiveness['effectlessTypes']) {
   return regularMatchup.map((type) => `\`${type}\``).join(', ');
 }

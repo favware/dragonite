@@ -6,11 +6,23 @@ export const getPokemon = gql`
     flavor
   }
 
+  fragment ability on Ability {
+    name
+  }
+
   fragment abilities on Abilities {
-    first
-    second
-    hidden
-    special
+    first {
+      ...ability
+    }
+    second {
+      ...ability
+    }
+    hidden {
+      ...ability
+    }
+    special {
+      ...ability
+    }
   }
 
   fragment stats on Stats {
@@ -40,7 +52,9 @@ export const getPokemon = gql`
     key
     num
     species
-    types
+    types {
+      name
+    }
     evYields {
       ...evYields
     }
@@ -103,7 +117,7 @@ export const getPokemon = gql`
     }
   }
 
-  query getPokemon($pokemon: PokemonEnum!) {
+  query GetPokemon($pokemon: PokemonEnum!) {
     getPokemon(pokemon: $pokemon, takeFlavorTexts: 2) {
       ...pokemon
       ...evolutions
@@ -163,13 +177,17 @@ export const getItem = gql`
 
 export const getLearnset = gql`
   fragment learnsetLevelupMove on LearnsetLevelUpMove {
-    name
+    move {
+      name
+    }
     generation
     level
   }
 
   fragment learnsetMove on LearnsetMove {
-    name
+    move {
+      name
+    }
     generation
   }
 
@@ -241,7 +259,7 @@ export const getMove = gql`
 `;
 
 export const getTypeMatchup = gql`
-  fragment type on Type {
+  fragment type on TypeEffectiveness {
     doubleEffectiveTypes
     effectiveTypes
     normalTypes
@@ -250,8 +268,8 @@ export const getTypeMatchup = gql`
     effectlessTypes
   }
 
-  query getTypeMatchups($types: [TypesEnum!]!) {
-    getTypeMatchup(types: $types) {
+  query GetTypeMatchup($primaryType: TypesEnum!, $secondaryType: TypesEnum) {
+    getTypeMatchup(primaryType: $primaryType, secondaryType: $secondaryType) {
       attacking {
         ...type
       }
