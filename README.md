@@ -29,11 +29,6 @@
 
 ### [Set-Up - Refer to CONTRIBUTING.md]
 
-### TODO List
-
-- [ ] Make post-stats task POST data to bot lists.
-- [ ] Switch from BinaryTF to @sapphire/string-store (stalled on the package being finished by @kyranet)
-
 ## A note to aspiring developers who want to self host Dragonite
 
 The developer team does not support the idea of other self-hosted instances of Dragonite. The team prides itself on
