@@ -13,9 +13,7 @@ const header = blueBright('[POST STATS   ]');
 enum Lists {
   BotListSpace = 'botlist.space',
   Discords = 'discords.com',
-  DiscordBotList = 'discordbotlist.com',
   TopGG = 'top.gg',
-  DiscordBotsGG = 'discord.bots.gg',
   BladelistGG = 'bladelist.gg',
   BotListMe = 'botlist.me'
 }
@@ -60,36 +58,18 @@ export class PostStatsTask extends ScheduledTask {
           envParseString('TOP_GG_TOKEN'),
           Lists.TopGG
         ),
-        // this.query(
-        //   `https://discord.bots.gg/api/v1/bots/${envParseString('CLIENT_ID')}/stats`,
-        //   JSON.stringify({ guildCount: guilds }),
-        //   envParseString('DISCORD_BOTS_GG_TOKEN'),
-        //   Lists.DiscordBotsGG
-        // ),
         this.query(
           `https://discords.com/bots/api/bot/${envParseString('CLIENT_ID')}`,
           JSON.stringify({ server_count: guilds }),
           envParseString('DISCORDS_TOKEN'),
           Lists.Discords
         ),
-        // this.query(
-        //   `https://bots.discordlabs.org/v2/bot/${envParseString('CLIENT_ID')}/stats`,
-        //   JSON.stringify({ server_count: guilds, shard_count: 1 }),
-        //   envParseString('DISCORDLABS_TOKEN'),
-        //   Lists.Discords
-        // ),
         this.query(
           `https://api.bladelist.gg/bots/${envParseString('CLIENT_ID')}`,
           JSON.stringify({ server_count: guilds, shard_count: 1 }),
           `Token ${envParseString('BLADELIST_GG_TOKEN')}`,
           Lists.BladelistGG
         ),
-        // this.query(
-        //   `https://discordbotlist.com/api/v1/bots/${envParseString('CLIENT_ID')}/stats`,
-        //   JSON.stringify({ guilds, users, voice_connections: 0 }),
-        //   `Bot ${envParseString('DISCORD_BOT_LIST_TOKEN')}`,
-        //   Lists.DiscordBotList
-        // ),
         this.query(
           `https://api.botlist.me/api/v1/bots/${envParseString('CLIENT_ID')}/stats`,
           JSON.stringify({ server_count: guilds, shard_count: 1 }),
