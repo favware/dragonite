@@ -1,6 +1,6 @@
 import { OWNERS } from '#root/config';
 import { AllFlowsPrecondition } from '@sapphire/framework';
-import type { Snowflake } from 'discord-api-types/v9';
+import type { Snowflake } from 'discord-api-types/v10';
 import type { CommandInteraction, ContextMenuInteraction, Message } from 'discord.js';
 
 export class UserPrecondition extends AllFlowsPrecondition {

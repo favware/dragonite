@@ -1,5 +1,5 @@
 import { Command } from '@sapphire/framework';
-import { PermissionFlagsBits } from 'discord-api-types/v9';
+import { PermissionFlagsBits } from 'discord-api-types/v10';
 import { Permissions } from 'discord.js';
 
 export abstract class DragoniteCommand extends Command {

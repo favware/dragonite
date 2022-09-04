@@ -1,6 +1,6 @@
 import type { ChatInputCommandSuccessPayload, Command } from '@sapphire/framework';
 import { cyan } from 'colorette';
-import type { APIUser } from 'discord-api-types/v9';
+import type { APIUser } from 'discord-api-types/v10';
 import type { Guild, User } from 'discord.js';
 
 function getShardInfo(id: number) {

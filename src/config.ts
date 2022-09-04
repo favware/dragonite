@@ -7,7 +7,7 @@ import { LogLevel } from '@sapphire/framework';
 import { ScheduledTaskRedisStrategy } from '@sapphire/plugin-scheduled-tasks/register-redis';
 import { envParseInteger, envParseString, setup } from '@skyra/env-utilities';
 import type { RedisOptions } from 'bullmq';
-import { GatewayIntentBits } from 'discord-api-types/v9';
+import { GatewayIntentBits } from 'discord-api-types/v10';
 import { ActivitiesOptions, ClientOptions, ExcludeEnum, Options, WebhookClientData } from 'discord.js';
 import type { ActivityTypes } from 'discord.js/typings/enums';
 

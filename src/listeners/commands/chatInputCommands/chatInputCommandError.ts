@@ -5,7 +5,7 @@ import { bold, hideLinkEmbed, hyperlink, userMention } from '@discordjs/builders
 import { isMessageInstance } from '@sapphire/discord.js-utilities';
 import { ArgumentError, Events, Listener, UserError, type ChatInputCommandErrorPayload, type Command } from '@sapphire/framework';
 import { codeBlock, isNullish } from '@sapphire/utilities';
-import { RESTJSONErrorCodes, type APIMessage } from 'discord-api-types/v9';
+import { RESTJSONErrorCodes, type APIMessage } from 'discord-api-types/v10';
 import { DiscordAPIError, HTTPError, MessageEmbed, type CommandInteraction, type Message } from 'discord.js';
 import { fileURLToPath } from 'node:url';
 

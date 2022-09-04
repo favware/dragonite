@@ -8,7 +8,7 @@ import type { MovesEnum, PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { ChatInputCommand } from '@sapphire/framework';
 import { filterNullish, isNullish } from '@sapphire/utilities';
-import type { APIApplicationCommandOptionChoice } from 'discord-api-types/v9';
+import type { APIApplicationCommandOptionChoice } from 'discord-api-types/v10';
 import { MessageActionRow, MessageSelectMenu, type MessageSelectOptionData } from 'discord.js';
 
 @ApplyOptions<ChatInputCommand.Options>({

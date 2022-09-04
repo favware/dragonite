@@ -5,7 +5,7 @@ import { hideLinkEmbed, hyperlink, time, TimestampStyles } from '@discordjs/buil
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command, version as sapphireVersion, type ChatInputCommand } from '@sapphire/framework';
 import { roundNumber } from '@sapphire/utilities';
-import { PermissionFlagsBits } from 'discord-api-types/v9';
+import { PermissionFlagsBits } from 'discord-api-types/v10';
 import { MessageActionRow, MessageButton, MessageEmbed, Permissions, version } from 'discord.js';
 import { cpus, uptime, type CpuInfo } from 'node:os';
 

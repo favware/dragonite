@@ -8,7 +8,7 @@ import { fetch, FetchMethods, FetchResultTypes } from '@sapphire/fetch';
 import { Stopwatch } from '@sapphire/stopwatch';
 import Type from '@sapphire/type';
 import { codeBlock, filterNullAndUndefinedAndEmpty, isNullish, isThenable } from '@sapphire/utilities';
-import type { APIMessage } from 'discord-api-types/v9';
+import type { APIMessage } from 'discord-api-types/v10';
 import type { Message, ModalSubmitInteraction } from 'discord.js';
 import { setTimeout as sleep } from 'node:timers/promises';
 import { inspect } from 'node:util';
