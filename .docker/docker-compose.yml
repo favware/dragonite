@@ -17,7 +17,7 @@ services:
     networks:
       - infi
     ports:
-      - '1424:6379'
+      - '6379:6379'
     restart: always
     logging:
       options:

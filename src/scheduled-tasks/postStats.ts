@@ -11,7 +11,6 @@ import { Constants } from 'discord.js';
 const header = blueBright('[POST STATS   ]');
 
 enum Lists {
-  BotListSpace = 'botlist.space',
   Discords = 'discords.com',
   TopGG = 'top.gg',
   BladelistGG = 'bladelist.gg',
@@ -75,12 +74,6 @@ export class PostStatsTask extends ScheduledTask {
           JSON.stringify({ server_count: guilds, shard_count: 1 }),
           `Bot ${envParseString('BOTLIST_ME_TOKEN')}`,
           Lists.BotListMe
-        ),
-        this.query(
-          `https://api.discordlist.space/v2/bots/${envParseString('CLIENT_ID')}`,
-          JSON.stringify({ serverCount: guilds }),
-          envParseString('DISCORDLIST_SPACE_TOKEN'),
-          Lists.BotListSpace
         )
       ])
     ).filter(filterNullish);
