@@ -39,7 +39,7 @@
     "@sapphire/plugin-scheduled-tasks": "^4.0.1",
     "@sapphire/snowflake": "^3.2.2",
     "@sapphire/stopwatch": "^1.4.1",
-    "@sapphire/time-utilities": "^1.7.7",
+    "@sapphire/time-utilities": "^1.7.8",
     "@sapphire/type": "^2.2.4",
     "@sapphire/utilities": "^3.9.3",
     "@skyra/env-utilities": "^1.0.2",

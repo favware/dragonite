@@ -723,15 +723,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/time-utilities@npm:^1.7.7":
-  version: 1.7.7
-  resolution: "@sapphire/time-utilities@npm:1.7.7"
+"@sapphire/time-utilities@npm:^1.7.8":
+  version: 1.7.8
+  resolution: "@sapphire/time-utilities@npm:1.7.8"
   dependencies:
     "@sapphire/cron": ^1.0.0
     "@sapphire/duration": ^1.0.0
     "@sapphire/timer-manager": ^1.0.0
     "@sapphire/timestamp": ^1.0.0
-  checksum: 6ce1f0bfd03e056c2181a9ffc7814d7b7444766546808f97d0c54f9f045e0784a46f24bbb532e002cd2e724198792537b7fe8686f99ac893becdb22abb806383
+  checksum: 8867770bea845705a55d18e737366c089a27a87c52fb2e3900de2362c7460ff7cdf4adae0c23dd06db8c6427458c22c7ebc7fe553904a6027ca4ee94c7a9a949
   languageName: node
   linkType: hard
 
@@ -2375,7 +2375,7 @@ __metadata:
     "@sapphire/prettier-config": ^1.4.4
     "@sapphire/snowflake": ^3.2.2
     "@sapphire/stopwatch": ^1.4.1
-    "@sapphire/time-utilities": ^1.7.7
+    "@sapphire/time-utilities": ^1.7.8
     "@sapphire/ts-config": ^3.3.4
     "@sapphire/type": ^2.2.4
     "@sapphire/utilities": ^3.9.3
