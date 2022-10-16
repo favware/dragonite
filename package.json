@@ -83,7 +83,7 @@
   },
   "resolutions": {
     "ansi-regex": "^5.0.1",
-    "minimist": "^1.2.6"
+    "minimist": "^1.2.7"
   },
   "engines": {
     "node": ">=16.6.0",
