@@ -46,7 +46,7 @@
     "@skyra/start-banner": "^1.0.2",
     "binarytf": "^2.1.2",
     "bufferutil": "^4.0.7",
-    "bullmq": "^2.4.0",
+    "bullmq": "^3.0.0",
     "colorette": "^2.0.19",
     "discord-api-types": "^0.33.5",
     "discord.js": "^13.12.0",
