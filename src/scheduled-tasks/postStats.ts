@@ -18,7 +18,7 @@ enum Lists {
 }
 
 @ApplyOptions<ScheduledTask.Options>({
-  cron: '*/10 * * * *',
+  pattern: '*/10 * * * *',
   bullJobsOptions: {
     removeOnComplete: true
   }
