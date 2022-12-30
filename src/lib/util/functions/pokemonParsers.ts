@@ -6,6 +6,7 @@ const gmaxRegex = /^(?<name>[a-z]+)(?:gmax)$/;
 const alolanTotemRegex = /^(?<name>[a-z]+)(?:alolatotem)$/;
 const alolanRegex = /^(?<name>[a-z]+)(?:alola)$/;
 const hisuianRegex = /^(?<name>[a-z]+)(?:hisui)$/;
+const paldeanRegex = /^(?<name>[a-z]+)(?:paldea)$/;
 const galarianRegex = /^(?<name>[a-z]+)(?:galar)$/;
 const totemRegex = /^(?<name>[a-z]+)(?:totem)$/;
 const typeLikeRegex = /^(?<name>(?:arceus|silvally|genesect))(?<type>[a-z]+)?$/;
@@ -328,6 +329,56 @@ export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
       return 'Spiky Eared Pichu';
     case PokemonEnum.Eeveestarter:
       return "Eevee (Let's Go)";
+
+    // All the Paradox Pokémon
+    case PokemonEnum.Greattusk:
+      return 'Great Tusk';
+    case PokemonEnum.Screamtail:
+      return 'Scream Tail';
+    case PokemonEnum.Brutebonnet:
+      return 'Brute Bonnet';
+    case PokemonEnum.Fluttermane:
+      return 'Flutter Mane';
+    case PokemonEnum.Slitherwing:
+      return 'Slither Wing';
+    case PokemonEnum.Sandyshocks:
+      return 'Sandy Shocks';
+    case PokemonEnum.Irontreads:
+      return 'Iron Treads';
+    case PokemonEnum.Ironbundle:
+      return 'Iron Bundle';
+    case PokemonEnum.Ironhands:
+      return 'Iron Hands';
+    case PokemonEnum.Ironjugulis:
+      return 'Iron Jugulis';
+    case PokemonEnum.Ironmoth:
+      return 'Iron Moth';
+    case PokemonEnum.Ironthorns:
+      return 'Iron Thorns';
+    case PokemonEnum.Roaringmoon:
+      return 'Roaring Moon';
+    case PokemonEnum.Ironvaliant:
+      return 'Iron Valiant';
+
+    // The Ruination Pokémon
+    case PokemonEnum.Wochien:
+      return 'Wo-Chien';
+    case PokemonEnum.Chienpao:
+      return 'Chien-Pao';
+    case PokemonEnum.Tinglu:
+      return 'Ting-Lu';
+    case PokemonEnum.Chiyu:
+      return 'Chi-Yu';
+
+    // Special Paldean Forms
+    case PokemonEnum.Taurospaldea:
+      return 'Paldean Tauros (Combat Breed)';
+    case PokemonEnum.Taurospaldeawater:
+      return 'Paldean Tauros (Aqua Breed)';
+    case PokemonEnum.Taurospaldeafire:
+      return 'Paldean Tauros (Blaze Breed)';
+
+    // All other cases
     default: {
       const megaResult = megaRegex.exec(pokemon);
 
@@ -369,6 +420,12 @@ export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
 
       if (hisuianResult && hisuianResult.groups?.name) {
         return `Hisuian ${toTitleCase(hisuianResult.groups.name)}`;
+      }
+
+      const paldeanResult = paldeanRegex.exec(pokemon);
+
+      if (paldeanResult && paldeanResult.groups?.name) {
+        return `Paldean ${toTitleCase(paldeanResult.groups.name)}`;
       }
 
       const typeLikeResult = typeLikeRegex.exec(pokemon);

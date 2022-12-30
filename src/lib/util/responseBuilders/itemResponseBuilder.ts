@@ -26,7 +26,7 @@ export function itemResponseBuilder(item: Omit<Item, '__typename'>) {
         inline: true
       },
       {
-        name: 'Available in generation 8',
+        name: 'Available in generation 9',
         value: item.isNonstandard === 'Past' ? 'No' : 'Yes',
         inline: true
       },

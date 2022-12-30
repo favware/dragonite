@@ -67,7 +67,7 @@ export function moveResponseBuilder(move: Omit<Move, '__typename'>) {
     embed.addFields(
       { name: 'Z-Crystal', value: move.isZ ?? 'None', inline: true },
       { name: 'G-MAX Pokémon', value: move.isGMax ?? 'None', inline: true },
-      { name: 'Available in Generation 8', value: move.isNonstandard === 'Past' ? 'No' : 'Yes', inline: true },
+      { name: 'Available in Generation 9', value: move.isNonstandard === 'Past' ? 'No' : 'Yes', inline: true },
       { name: 'External Resources', value: externalSources }
     )
   );

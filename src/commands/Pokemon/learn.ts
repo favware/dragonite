@@ -30,7 +30,8 @@ export class SlashCommand extends DragoniteCommand {
     { name: 'Generation 5', value: 5 },
     { name: 'Generation 6', value: 6 },
     { name: 'Generation 7', value: 7 },
-    { name: 'Generation 8', value: 8 }
+    { name: 'Generation 8', value: 8 },
+    { name: 'Generation 9', value: 9 }
   ];
 
   public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
@@ -88,7 +89,7 @@ export class SlashCommand extends DragoniteCommand {
     const move1 = interaction.options.getString('move-1', true);
     const move2 = interaction.options.getString('move-2');
     const move3 = interaction.options.getString('move-3');
-    const generation = interaction.options.getInteger('generation') ?? 8;
+    const generation = interaction.options.getInteger('generation') ?? 9;
     const spriteToGet: PokemonSpriteTypes = (interaction.options.getString('sprite') as PokemonSpriteTypes | null) ?? 'sprite';
 
     const actuallyChosenMoves = [move1 as MovesEnum, move2 as MovesEnum, move3 as MovesEnum].filter(filterNullish);

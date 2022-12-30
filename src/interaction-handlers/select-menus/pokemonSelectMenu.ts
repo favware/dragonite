@@ -65,7 +65,7 @@ export class SelectMenuHandler extends InteractionHandler {
 
     const responseToGenerate = data.type;
     const spriteToGet = data.spriteToGet ?? 'sprite';
-    const generation = data.generation ?? 8;
+    const generation = data.generation ?? 9;
     const moves = data.moves ?? [];
 
     let pokemonDetails: Omit<Pokemon, '__typename'> | Omit<Learnset, '__typename'> | undefined;

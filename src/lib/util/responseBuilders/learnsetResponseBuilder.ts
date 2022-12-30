@@ -62,8 +62,6 @@ function learnMethodTypes(level: Maybe<number> | undefined): LearnMethodTypesRet
   };
 }
 
-export type PokemonGenerations = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
-
 interface LearnMethodTypesReturn {
   dreamworldMoves: string;
 

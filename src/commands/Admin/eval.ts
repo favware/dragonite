@@ -5,7 +5,7 @@ import { getGuildIds } from '#utils/utils';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { ChatInputCommand } from '@sapphire/framework';
 import { Time } from '@sapphire/time-utilities';
-import type { APIApplicationCommandOptionChoice } from 'discord-api-types/v10';
+import { APIApplicationCommandOptionChoice, PermissionFlagsBits } from 'discord-api-types/v10';
 import { MessageActionRow, Modal, ModalActionRowComponent, TextInputComponent } from 'discord.js';
 
 @ApplyOptions<ChatInputCommand.Options>({
@@ -36,7 +36,8 @@ export class SlashCommand extends DragoniteCommand {
         builder //
           .setName(this.name)
           .setDescription(this.description)
-          .setDefaultPermission(false)
+          .setDMPermission(false)
+          .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
           .addIntegerOption((option) =>
             option //
               .setName('depth')

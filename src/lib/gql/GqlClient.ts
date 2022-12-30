@@ -151,7 +151,7 @@ export class GqlClient {
     return result.unwrap();
   }
 
-  public async getLearnset(pokemon: PokemonEnum, moves: MovesEnum[], generation = 8) {
+  public async getLearnset(pokemon: PokemonEnum, moves: MovesEnum[], generation = 9) {
     const result = await Result.fromAsync(async () => {
       const learnsetFromCache = await container.gqlRedisCache.fetch<RedisKeys.GetLearnset>(
         RedisKeys.GetLearnset,
