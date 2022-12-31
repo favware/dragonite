@@ -13,7 +13,6 @@ const header = blueBright('[POST STATS   ]');
 enum Lists {
   Discords = 'discords.com',
   TopGG = 'top.gg',
-  BladelistGG = 'bladelist.gg',
   BotListMe = 'botlist.me'
 }
 
@@ -62,12 +61,6 @@ export class PostStatsTask extends ScheduledTask {
           JSON.stringify({ server_count: guilds }),
           envParseString('DISCORDS_TOKEN'),
           Lists.Discords
-        ),
-        this.query(
-          `https://api.bladelist.gg/bots/${envParseString('CLIENT_ID')}`,
-          JSON.stringify({ server_count: guilds, shard_count: 1 }),
-          `Token ${envParseString('BLADELIST_GG_TOKEN')}`,
-          Lists.BladelistGG
         ),
         this.query(
           `https://api.botlist.me/api/v1/bots/${envParseString('CLIENT_ID')}/stats`,
