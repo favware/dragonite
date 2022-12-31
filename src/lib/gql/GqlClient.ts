@@ -2,7 +2,6 @@ import { getFuzzyAbility, getFuzzyItem, getFuzzyMove, getFuzzyPokemon } from '#g
 import { getAbility, getFlavorTexts, getItem, getLearnset, getMove, getPokemon, getPokemonSprites, getTypeMatchup } from '#lib/gql/queries';
 import { RedisKeys } from '#lib/redis-cache/RedisCacheClient';
 import { FavouredAbilities, FavouredItems, FavouredMoves, FavouredPokemon } from '#utils/favouredEntries';
-import { hideLinkEmbed } from '@discordjs/builders';
 import type {
   AbilitiesEnum,
   ItemsEnum,
@@ -24,6 +23,7 @@ import type {
 import { fetch, FetchMethods, FetchResultTypes } from '@sapphire/fetch';
 import { container, Result, UserError } from '@sapphire/framework';
 import { envParseString } from '@skyra/env-utilities';
+import { hideLinkEmbed } from 'discord.js';
 import os from 'node:os';
 
 export class GqlClient {

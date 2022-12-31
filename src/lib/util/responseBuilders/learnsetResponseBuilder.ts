@@ -1,12 +1,11 @@
 import { CdnUrls } from '#utils/constants';
 import { pokemonEnumToSpecies, resolveColour } from '#utils/functions/pokemonParsers';
 import type { PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
-import { bold, underscore } from '@discordjs/builders';
 import type { Learnset, LearnsetLevelUpMove, Maybe } from '@favware/graphql-pokemon';
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
 import { isNullish, toTitleCase } from '@sapphire/utilities';
-import { MessageEmbed } from 'discord.js';
+import { bold, EmbedBuilder, underscore } from 'discord.js';
 
 export function learnsetResponseBuilder(
   learnsetData: Omit<Learnset, '__typename'>,
@@ -15,7 +14,7 @@ export function learnsetResponseBuilder(
   spriteToGet: PokemonSpriteTypes
 ) {
   const display = new PaginatedMessage({
-    template: new MessageEmbed()
+    template: new EmbedBuilder()
       .setColor(resolveColour(learnsetData.color))
       .setAuthor({ name: `#${learnsetData.num} - ${pokemonEnumToSpecies(learnsetData.pokemonKey)}`, iconURL: CdnUrls.Pokedex })
       .setTitle(`Learnset data for ${pokemonEnumToSpecies(learnsetData.pokemonKey)} in generation ${generation}`)

@@ -1,15 +1,13 @@
 import { ModalCustomIds } from '#utils/constants';
 import { seconds } from '#utils/functions/time';
 import { clean } from '#utils/Sanitizer/clean';
-import { bold, hideLinkEmbed } from '@discordjs/builders';
 import { ApplyOptions } from '@sapphire/decorators';
 import { canSendMessages } from '@sapphire/discord.js-utilities';
 import { fetch, FetchMethods, FetchResultTypes } from '@sapphire/fetch';
 import { Stopwatch } from '@sapphire/stopwatch';
 import Type from '@sapphire/type';
 import { codeBlock, filterNullAndUndefinedAndEmpty, isNullish, isThenable } from '@sapphire/utilities';
-import type { APIMessage } from 'discord-api-types/v10';
-import type { Message, ModalSubmitInteraction } from 'discord.js';
+import { bold, hideLinkEmbed, type APIMessage, type Message, type ModalSubmitInteraction } from 'discord.js';
 import { setTimeout as sleep } from 'node:timers/promises';
 import { inspect } from 'node:util';
 

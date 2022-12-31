@@ -9,13 +9,13 @@ import { ApplyOptions } from '@sapphire/decorators';
 import type { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { InteractionHandler, InteractionHandlerTypes, UserError } from '@sapphire/framework';
 import { isNullish } from '@sapphire/utilities';
-import type { SelectMenuInteraction } from 'discord.js';
+import type { StringSelectMenuInteraction } from 'discord.js';
 
 @ApplyOptions<InteractionHandler.Options>({
   interactionHandlerType: InteractionHandlerTypes.SelectMenu
 })
 export class SelectMenuHandler extends InteractionHandler {
-  public override run(interaction: SelectMenuInteraction, result: InteractionHandler.ParseResult<this>) {
+  public override run(interaction: StringSelectMenuInteraction, result: InteractionHandler.ParseResult<this>) {
     if (isNullish(result.pokemonDetails)) {
       throw new UserError({
         identifier: 'PokemonQueryFail',
@@ -51,7 +51,7 @@ export class SelectMenuHandler extends InteractionHandler {
     return paginatedMessage.run(interaction, interaction.user);
   }
 
-  public override async parse(interaction: SelectMenuInteraction) {
+  public override async parse(interaction: StringSelectMenuInteraction) {
     if (!interaction.customId.startsWith(SelectMenuCustomIds.Pokemon)) return this.none();
 
     await interaction.deferReply();

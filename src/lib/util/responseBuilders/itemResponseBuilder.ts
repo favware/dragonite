@@ -3,7 +3,7 @@ import { parseBulbapediaURL } from '#utils/functions/pokemonParsers';
 import type { Item } from '@favware/graphql-pokemon';
 import { container } from '@sapphire/framework';
 import { filterNullish, toTitleCase } from '@sapphire/utilities';
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 export function itemResponseBuilder(item: Omit<Item, '__typename'>) {
   const externalResources = [
@@ -14,7 +14,7 @@ export function itemResponseBuilder(item: Omit<Item, '__typename'>) {
     .filter(filterNullish)
     .join(' | ');
 
-  const embed = new MessageEmbed()
+  const embed = new EmbedBuilder()
     .setColor(BrandingColors.Primary)
     .setAuthor({ name: `Item - ${toTitleCase(item.name)}`, iconURL: CdnUrls.Pokedex })
     .setThumbnail(item.sprite)

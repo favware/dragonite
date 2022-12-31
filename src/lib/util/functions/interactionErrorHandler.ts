@@ -1,7 +1,6 @@
 import { OWNERS } from '#root/config';
 import { Emojis, rootFolder } from '#utils/constants';
-import { bold, hideLinkEmbed, hyperlink, userMention } from '@discordjs/builders';
-import { isMessageInstance } from '@sapphire/discord.js-utilities';
+import { getErrorLine, getLinkLine, getMethodLine, getStatusLine, getWarnError } from '#utils/functions/errorHelpers';
 import {
   ArgumentError,
   container,
@@ -12,8 +11,7 @@ import {
   type InteractionHandlerParseError
 } from '@sapphire/framework';
 import { codeBlock, isNullish } from '@sapphire/utilities';
-import { RESTJSONErrorCodes, type APIMessage } from 'discord-api-types/v10';
-import { DiscordAPIError, HTTPError, Interaction, MessageEmbed, type Message } from 'discord.js';
+import { DiscordAPIError, EmbedBuilder, hideLinkEmbed, HTTPError, RESTJSONErrorCodes, userMention, type Interaction } from 'discord.js';
 import { fileURLToPath } from 'url';
 
 const ignoredCodes = [RESTJSONErrorCodes.UnknownChannel, RESTJSONErrorCodes.UnknownMessage];
@@ -33,7 +31,7 @@ export async function handleInteractionError(error: Error, { handler, interactio
 
   // Extract useful information about the DiscordAPIError
   if (error instanceof DiscordAPIError || error instanceof HTTPError) {
-    if (ignoredCodes.includes(error.code)) {
+    if (ignoredCodes.includes(error.status)) {
       return;
     }
 
@@ -114,12 +112,12 @@ async function sendErrorChannel(interaction: Interaction, handler: InteractionHa
 
   // If it's a DiscordAPIError or a HTTPError, add the HTTP path and code lines after the second one.
   if (error instanceof DiscordAPIError || error instanceof HTTPError) {
-    lines.splice(2, 0, getPathLine(error), getCodeLine(error));
+    lines.splice(2, 0, getMethodLine(error), getStatusLine(error));
   }
 
-  const embed = new MessageEmbed() //
+  const embed = new EmbedBuilder() //
     .setDescription(lines.join('\n'))
-    .setColor('RED')
+    .setColor('Red')
     .setTimestamp();
 
   try {
@@ -130,49 +128,9 @@ async function sendErrorChannel(interaction: Interaction, handler: InteractionHa
 }
 
 /**
- * Formats a message url line.
- * @param url The url to format.
- */
-function getLinkLine(message: APIMessage | Message): string {
-  if (isMessageInstance(message)) {
-    return bold(hyperlink('Jump to Message!', hideLinkEmbed(message.url)));
-  }
-
-  return '';
-}
-
-/**
  * Formats a handler line.
  * @param handler The handler to format.
  */
 function getHandlerLine(handler: InteractionHandler): string {
   return `**Handler**: ${handler.location.full.slice(fileURLToPath(rootFolder).length)}`;
-}
-
-/**
- * Formats an error path line.
- * @param error The error to format.
- */
-function getPathLine(error: DiscordAPIError | HTTPError): string {
-  return `**Path**: ${error.method.toUpperCase()} ${error.path}`;
-}
-
-/**
- * Formats an error code line.
- * @param error The error to format.
- */
-function getCodeLine(error: DiscordAPIError | HTTPError): string {
-  return `**Code**: ${error.code}`;
-}
-
-/**
- * Formats an error codeblock.
- * @param error The error to format.
- */
-function getErrorLine(error: Error): string {
-  return `**Error**: ${codeBlock('js', error.stack || error)}`;
-}
-
-function getWarnError(interaction: Interaction) {
-  return `ERROR: /${interaction.guild!.id}/${interaction.channel!.id}/${interaction.id}`;
 }

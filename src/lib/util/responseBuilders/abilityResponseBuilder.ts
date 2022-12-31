@@ -2,7 +2,7 @@ import { BrandingColors, CdnUrls } from '#utils/constants';
 import { parseBulbapediaURL } from '#utils/functions/pokemonParsers';
 import type { Ability } from '@favware/graphql-pokemon';
 import { toTitleCase } from '@sapphire/utilities';
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 export function abilityResponseBuilder(ability: Omit<Ability, '__typename'>) {
   const externalResources = [
@@ -11,7 +11,7 @@ export function abilityResponseBuilder(ability: Omit<Ability, '__typename'>) {
     `[Smogon](${ability.smogonPage})`
   ].join(' | ');
 
-  const embed = new MessageEmbed()
+  const embed = new EmbedBuilder()
     .setColor(BrandingColors.Primary)
     .setAuthor({ name: `Ability - ${toTitleCase(ability.name)}`, iconURL: CdnUrls.Pokedex })
     .setDescription(ability.desc || ability.shortDesc)

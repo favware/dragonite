@@ -1,12 +1,9 @@
 import { OWNERS } from '#root/config';
 import { Emojis, rootFolder, ZeroWidthSpace } from '#utils/constants';
-import { getCodeLine, getErrorLine, getPathLine } from '#utils/functions/errorHelpers';
-import { bold, hideLinkEmbed, hyperlink, userMention } from '@discordjs/builders';
-import { isMessageInstance } from '@sapphire/discord.js-utilities';
+import { getErrorLine, getLinkLine, getMethodLine, getStatusLine, getWarnError } from '#utils/functions/errorHelpers';
 import { ArgumentError, Events, Listener, UserError, type ChatInputCommandErrorPayload, type Command } from '@sapphire/framework';
 import { codeBlock, isNullish } from '@sapphire/utilities';
-import { RESTJSONErrorCodes, type APIMessage } from 'discord-api-types/v10';
-import { DiscordAPIError, HTTPError, MessageEmbed, type CommandInteraction, type Message } from 'discord.js';
+import { DiscordAPIError, EmbedBuilder, hideLinkEmbed, HTTPError, RESTJSONErrorCodes, userMention, type CommandInteraction } from 'discord.js';
 import { fileURLToPath } from 'node:url';
 
 const ignoredCodes = [RESTJSONErrorCodes.UnknownChannel, RESTJSONErrorCodes.UnknownMessage];
@@ -21,19 +18,19 @@ export class UserListener extends Listener<typeof Events.ChatInputCommandError> 
     const { client, logger } = this.container;
     // If the error was an AbortError or an Internal Server Error, tell the user to re-try:
     if (error.name === 'AbortError' || error.message === 'Internal Server Error') {
-      logger.warn(`${this.getWarnError(interaction)} (${interaction.user.id}) | ${error.constructor.name}`);
+      logger.warn(`${getWarnError(interaction)} (${interaction.user.id}) | ${error.constructor.name}`);
       return this.alert(interaction, 'I had a small network error when messaging Discord. Please run this command again!');
     }
 
     // Extract useful information about the DiscordAPIError
     if (error instanceof DiscordAPIError || error instanceof HTTPError) {
-      if (ignoredCodes.includes(error.code)) {
+      if (ignoredCodes.includes(error.status)) {
         return;
       }
 
       client.emit(Events.Error, error);
     } else {
-      logger.warn(`${this.getWarnError(interaction)} (${interaction.user.id}) | ${error.constructor.name}`);
+      logger.warn(`${getWarnError(interaction)} (${interaction.user.id}) | ${error.constructor.name}`);
     }
 
     // Send a detailed message:
@@ -103,7 +100,7 @@ export class UserListener extends Listener<typeof Events.ChatInputCommandError> 
     const interactionReply = await interaction.fetchReply();
 
     const lines = [
-      this.getLinkLine(interactionReply), //
+      getLinkLine(interactionReply), //
       this.getCommandLine(command),
       this.getOptionsLine(interaction.options),
       getErrorLine(error)
@@ -111,12 +108,12 @@ export class UserListener extends Listener<typeof Events.ChatInputCommandError> 
 
     // If it's a DiscordAPIError or a HTTPError, add the HTTP path and code lines after the second one.
     if (error instanceof DiscordAPIError || error instanceof HTTPError) {
-      lines.splice(2, 0, getPathLine(error), getCodeLine(error));
+      lines.splice(2, 0, getMethodLine(error), getStatusLine(error));
     }
 
-    const embed = new MessageEmbed() //
+    const embed = new EmbedBuilder() //
       .setDescription(lines.join('\n'))
-      .setColor('RED')
+      .setColor('Red')
       .setTimestamp();
 
     try {
@@ -124,18 +121,6 @@ export class UserListener extends Listener<typeof Events.ChatInputCommandError> 
     } catch (err) {
       this.container.client.emit(Events.Error, err as Error);
     }
-  }
-
-  /**
-   * Formats a message url line.
-   * @param url The url to format.
-   */
-  private getLinkLine(message: APIMessage | Message): string {
-    if (isMessageInstance(message)) {
-      return bold(hyperlink('Jump to Message!', hideLinkEmbed(message.url)));
-    }
-
-    return '';
   }
 
   /**
@@ -165,9 +150,5 @@ export class UserListener extends Listener<typeof Events.ChatInputCommandError> 
     if (mappedOptions.length === 0) return '**Options**: Not Supplied';
 
     return `**Options**: ${mappedOptions.join('\n')}`;
-  }
-
-  private getWarnError(interaction: CommandInteraction) {
-    return `ERROR: /${interaction.guildId}/${interaction.channelId}/${interaction.id}`;
   }
 }
