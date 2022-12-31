@@ -4,10 +4,6 @@
   "npm": {
     "packageRules": [
       {
-        "matchPackagePatterns": ["discord-api-types", "@discordjs/builders"],
-        "enabled": false
-      },
-      {
         "matchPackagePatterns": ["@influxdata"],
         "groupName": "InfluxDB Dependencies"
       }

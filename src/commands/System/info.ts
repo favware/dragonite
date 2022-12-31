@@ -1,12 +1,23 @@
 import { BrandingColors } from '#utils/constants';
 import { seconds } from '#utils/functions/time';
 import { getGuildIds } from '#utils/utils';
-import { hideLinkEmbed, hyperlink, time, TimestampStyles } from '@discordjs/builders';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command, version as sapphireVersion, type ChatInputCommand } from '@sapphire/framework';
 import { roundNumber } from '@sapphire/utilities';
-import { PermissionFlagsBits } from 'discord-api-types/v10';
-import { MessageActionRow, MessageButton, MessageEmbed, Permissions, version } from 'discord.js';
+import {
+  ActionRowBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  EmbedBuilder,
+  hideLinkEmbed,
+  hyperlink,
+  OAuth2Scopes,
+  PermissionFlagsBits,
+  PermissionsBitField,
+  time,
+  TimestampStyles,
+  version
+} from 'discord.js';
 import { cpus, uptime, type CpuInfo } from 'node:os';
 
 @ApplyOptions<ChatInputCommand.Options>({
@@ -42,39 +53,48 @@ export class UserCommand extends Command {
     });
   }
 
-  private get components(): MessageActionRow[] {
+  private get components(): ActionRowBuilder<ButtonBuilder>[] {
     return [
-      new MessageActionRow().addComponents(
-        new MessageButton() //
-          .setStyle('LINK')
+      new ActionRowBuilder<ButtonBuilder>().addComponents(
+        new ButtonBuilder() //
+          .setStyle(ButtonStyle.Link)
           .setURL(this.inviteLink)
           .setLabel('Add me to your server!')
-          .setEmoji('🎉'),
-        new MessageButton() //
-          .setStyle('LINK')
+          .setEmoji({
+            name: '🎉'
+          }),
+        new ButtonBuilder() //
+          .setStyle(ButtonStyle.Link)
           .setURL('https://discord.gg/sguypX8')
           .setLabel('Support server')
-          .setEmoji('🆘')
+          .setEmoji({
+            name: '🆘'
+          })
       ),
-      new MessageActionRow().addComponents(
-        new MessageButton()
-          .setStyle('LINK')
+      new ActionRowBuilder<ButtonBuilder>().addComponents(
+        new ButtonBuilder() //
+          .setStyle(ButtonStyle.Link)
           .setURL('https://github.com/favware/dragonite')
           .setLabel('GitHub Repository')
-          .setEmoji('<:github2:950888087188283422>'),
-        new MessageButton() //
-          .setStyle('LINK')
+          .setEmoji({
+            id: '950888087188283422',
+            name: 'github2'
+          }),
+        new ButtonBuilder() //
+          .setStyle(ButtonStyle.Link)
           .setURL('https://github.com/sponsors/favna')
           .setLabel('Donate')
-          .setEmoji('🧡')
+          .setEmoji({
+            name: '🧡'
+          })
       )
     ];
   }
 
   private get inviteLink() {
     return this.container.client.generateInvite({
-      scopes: ['bot', 'applications.commands'],
-      permissions: new Permissions([
+      scopes: [OAuth2Scopes.Bot, OAuth2Scopes.ApplicationsCommands],
+      permissions: new PermissionsBitField([
         PermissionFlagsBits.ViewChannel,
         PermissionFlagsBits.ReadMessageHistory,
         PermissionFlagsBits.SendMessages,
@@ -83,7 +103,7 @@ export class UserCommand extends Command {
     });
   }
 
-  private get embed(): MessageEmbed {
+  private get embed(): EmbedBuilder {
     const titles = {
       stats: 'Statistics',
       uptime: 'Uptime',
@@ -116,7 +136,7 @@ export class UserCommand extends Command {
       ].join('\n')
     };
 
-    return new MessageEmbed() //
+    return new EmbedBuilder() //
       .setColor(BrandingColors.Primary)
       .setDescription(this.#descriptionContent)
       .setFields(

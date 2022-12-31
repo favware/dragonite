@@ -6,7 +6,7 @@ import type { MovesEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { ChatInputCommand } from '@sapphire/framework';
 import { isNullish } from '@sapphire/utilities';
-import { MessageActionRow, MessageSelectMenu, type MessageSelectOptionData } from 'discord.js';
+import { ActionRowBuilder, StringSelectMenuBuilder, type APISelectMenuOption } from 'discord.js';
 
 @ApplyOptions<ChatInputCommand.Options>({
   description: 'Gets data for the chosen Pokémon move.'
@@ -38,11 +38,11 @@ export class SlashCommand extends DragoniteCommand {
 
     if (isNullish(moveDetails)) {
       const fuzzyMoves = await this.container.gqlClient.fuzzilySearchMoves(move, 25);
-      const options = fuzzyMoves.map<MessageSelectOptionData>((fuzzyMatch) => ({ label: fuzzyMatch.name, value: fuzzyMatch.key }));
+      const options = fuzzyMoves.map<APISelectMenuOption>((fuzzyMatch) => ({ label: fuzzyMatch.name, value: fuzzyMatch.key }));
 
-      const messageActionRow = new MessageActionRow() //
+      const messageActionRow = new ActionRowBuilder<StringSelectMenuBuilder>() //
         .setComponents(
-          new MessageSelectMenu() //
+          new StringSelectMenuBuilder() //
             .setCustomId(SelectMenuCustomIds.Move)
             .setPlaceholder('Choose the move you want to get information about.')
             .setOptions(options)

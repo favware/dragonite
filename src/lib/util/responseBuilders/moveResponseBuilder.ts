@@ -4,7 +4,7 @@ import type { Move } from '@favware/graphql-pokemon';
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
 import { toTitleCase } from '@sapphire/utilities';
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 const PageLabels = ['General', 'Categories', 'Boosted Power Information', 'Availability'];
 
@@ -16,7 +16,7 @@ export function moveResponseBuilder(move: Omit<Move, '__typename'>) {
   ].join(' | ');
 
   const paginatedMessage = new PaginatedMessage({
-    template: new MessageEmbed()
+    template: new EmbedBuilder()
       .setColor(BrandingColors.Primary)
       .setAuthor({ name: `Move - ${toTitleCase(move.name)}`, iconURL: CdnUrls.Pokedex })
       .setDescription(move.desc || move.shortDesc)

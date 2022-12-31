@@ -2,12 +2,11 @@ import { CdnUrls, Emojis } from '#utils/constants';
 import type { FavouredEntry } from '#utils/favouredEntries';
 import { parseBulbapediaURL, pokemonEnumToSpecies, resolveColour } from '#utils/functions/pokemonParsers';
 import type { KeysContaining } from '#utils/utils';
-import { bold, inlineCode, italic } from '@discordjs/builders';
 import type { Abilities, EvYields, Gender, Pokemon, PokemonEnum, Stats } from '@favware/graphql-pokemon';
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
 import { filterNullish, isNullish, isNullishOrEmpty } from '@sapphire/utilities';
-import { ApplicationCommandOptionChoiceData, MessageEmbed, MessageSelectOptionData } from 'discord.js';
+import { bold, EmbedBuilder, inlineCode, italic, type APISelectMenuOption, type ApplicationCommandOptionChoiceData } from 'discord.js';
 
 enum StatsEnum {
   hp = 'HP',
@@ -23,7 +22,7 @@ const PageLabels = ['General', 'Growth Information', 'Competitive Battling Infor
 export function fuzzyPokemonToSelectOption<L extends 'name' | 'label'>(
   fuzzyMatch: Pokemon | FavouredEntry<PokemonEnum>,
   labelLikeKey: L
-): L extends 'name' ? ApplicationCommandOptionChoiceData : MessageSelectOptionData {
+): L extends 'name' ? ApplicationCommandOptionChoiceData : APISelectMenuOption {
   const label = isFavouredEntry(fuzzyMatch) ? fuzzyMatch.name : pokemonEnumToSpecies(fuzzyMatch.key);
 
   // @ts-expect-error TS is not able to infer that `labelLikeKey` is 'name' | 'label'
@@ -57,7 +56,7 @@ function parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, s
     .join(' | ');
 
   const display = new PaginatedMessage({
-    template: new MessageEmbed()
+    template: new EmbedBuilder()
       .setColor(resolveColour(pokeDetails.color))
       .setAuthor({ name: `#${pokeDetails.num} - ${pokemonEnumToSpecies(pokeDetails.key)}`, iconURL: CdnUrls.Pokedex })
       .setThumbnail(pokeDetails[spriteToGet])

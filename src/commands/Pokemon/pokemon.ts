@@ -7,8 +7,7 @@ import type { PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { ChatInputCommand } from '@sapphire/framework';
 import { isNullish } from '@sapphire/utilities';
-import type { APIApplicationCommandOptionChoice } from 'discord-api-types/v10';
-import { MessageActionRow, MessageSelectMenu, type MessageSelectOptionData } from 'discord.js';
+import { ActionRowBuilder, StringSelectMenuBuilder, type APIApplicationCommandOptionChoice, type APISelectMenuOption } from 'discord.js';
 
 @ApplyOptions<ChatInputCommand.Options>({
   description: 'Gets data for the chosen Pokémon.'
@@ -54,7 +53,7 @@ export class SlashCommand extends DragoniteCommand {
 
     if (isNullish(pokemonDetails)) {
       const fuzzyPokemon = await this.container.gqlClient.fuzzilySearchPokemon(pokemon, 25);
-      const options = fuzzyPokemon.map<MessageSelectOptionData>((fuzzyEntry) => fuzzyPokemonToSelectOption(fuzzyEntry, 'label'));
+      const options = fuzzyPokemon.map<APISelectMenuOption>((fuzzyEntry) => fuzzyPokemonToSelectOption(fuzzyEntry, 'label'));
 
       const metadata = compressPokemonCustomIdMetadata({
         type: 'pokemon',
@@ -63,9 +62,9 @@ export class SlashCommand extends DragoniteCommand {
 
       const customIdStringified = `${SelectMenuCustomIds.Pokemon}|${metadata}`;
 
-      const messageActionRow = new MessageActionRow() //
+      const messageActionRow = new ActionRowBuilder<StringSelectMenuBuilder>() //
         .setComponents(
-          new MessageSelectMenu() //
+          new StringSelectMenuBuilder() //
             .setCustomId(customIdStringified)
             .setPlaceholder('Choose the Pokémon you want to get information about.')
             .setOptions(options)

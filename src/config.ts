@@ -2,14 +2,12 @@
 process.env.NODE_ENV ??= 'development';
 
 import { srcFolder } from '#utils/constants';
-import { minutes } from '#utils/functions/time';
 import { LogLevel } from '@sapphire/framework';
 import { ScheduledTaskRedisStrategy } from '@sapphire/plugin-scheduled-tasks/register-redis';
+import { cast } from '@sapphire/utilities';
 import { envParseInteger, envParseString, setup } from '@skyra/env-utilities';
 import type { RedisOptions } from 'bullmq';
-import { GatewayIntentBits } from 'discord-api-types/v10';
-import { ActivitiesOptions, ClientOptions, ExcludeEnum, Options, WebhookClientData } from 'discord.js';
-import type { ActivityTypes } from 'discord.js/typings/enums';
+import { ActivityType, GatewayIntentBits, Partials, type ActivitiesOptions, type ClientOptions, type WebhookClientData } from 'discord.js';
 
 setup(new URL('.env', srcFolder));
 
@@ -22,7 +20,7 @@ function parsePresenceActivity(): ActivitiesOptions[] {
   return [
     {
       name: CLIENT_PRESENCE_NAME,
-      type: envParseString('CLIENT_PRESENCE_TYPE', 'WATCHING') as ExcludeEnum<typeof ActivityTypes, 'CUSTOM'>
+      type: cast<Exclude<ActivityType, ActivityType.Custom>>(envParseString('CLIENT_PRESENCE_TYPE', 'WATCHING'))
     }
   ];
 }
@@ -60,14 +58,7 @@ export const CLIENT_OPTIONS: ClientOptions = {
     // Discord Labs
     '608711879858192479'
   ],
-  partials: ['CHANNEL'],
-  sweepers: {
-    ...Options.defaultSweeperSettings,
-    messages: {
-      interval: minutes.toSeconds(3),
-      lifetime: minutes.toSeconds(15)
-    }
-  },
+  partials: [Partials.Channel],
   tasks: {
     strategy: new ScheduledTaskRedisStrategy({
       bull: {

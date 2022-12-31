@@ -3,11 +3,11 @@ import { pokemonEnumToSpecies, resolveColour } from '#utils/functions/pokemonPar
 import type { PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
 import type { Pokemon } from '@favware/graphql-pokemon';
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 export function flavorResponseBuilder(pokemonData: Omit<Pokemon, '__typename'>, spriteToGet: PokemonSpriteTypes) {
   const display = new PaginatedMessage({
-    template: new MessageEmbed()
+    template: new EmbedBuilder()
       .setColor(resolveColour(pokemonData.color))
       .setAuthor({ name: `#${pokemonData.num} - ${pokemonEnumToSpecies(pokemonData.key)}`, iconURL: CdnUrls.Pokedex })
       .setThumbnail(pokemonData[spriteToGet])

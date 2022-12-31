@@ -6,7 +6,7 @@ import { ScheduledTask } from '@sapphire/plugin-scheduled-tasks';
 import { filterNullish, isNullishOrEmpty } from '@sapphire/utilities';
 import { envParseString } from '@skyra/env-utilities';
 import { blueBright, green, red } from 'colorette';
-import { Constants } from 'discord.js';
+import { Status } from 'discord.js';
 
 const header = blueBright('[POST STATS   ]');
 
@@ -26,7 +26,7 @@ enum Lists {
 export class PostStatsTask extends ScheduledTask {
   public override async run() {
     // If the websocket isn't ready, skip for now
-    if (this.container.client.ws.status !== Constants.Status.READY) {
+    if (this.container.client.ws.status !== Status.Ready) {
       return;
     }
 

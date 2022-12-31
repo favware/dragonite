@@ -6,7 +6,7 @@ import type { ItemsEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { ChatInputCommand } from '@sapphire/framework';
 import { isNullish } from '@sapphire/utilities';
-import { MessageActionRow, MessageSelectMenu, type MessageSelectOptionData } from 'discord.js';
+import { ActionRowBuilder, StringSelectMenuBuilder, type APISelectMenuOption } from 'discord.js';
 
 @ApplyOptions<ChatInputCommand.Options>({
   description: 'Gets data for the chosen Pokémon item.'
@@ -38,11 +38,11 @@ export class SlashCommand extends DragoniteCommand {
 
     if (isNullish(itemDetails)) {
       const fuzzyItems = await this.container.gqlClient.fuzzilySearchItems(item, 25);
-      const options = fuzzyItems.map<MessageSelectOptionData>((fuzzyMatch) => ({ label: fuzzyMatch.name, value: fuzzyMatch.key }));
+      const options = fuzzyItems.map<APISelectMenuOption>((fuzzyMatch) => ({ label: fuzzyMatch.name, value: fuzzyMatch.key }));
 
-      const messageActionRow = new MessageActionRow() //
+      const messageActionRow = new ActionRowBuilder<StringSelectMenuBuilder>() //
         .setComponents(
-          new MessageSelectMenu() //
+          new StringSelectMenuBuilder() //
             .setCustomId(SelectMenuCustomIds.Item)
             .setPlaceholder('Choose the item you want to get information about.')
             .setOptions(options)

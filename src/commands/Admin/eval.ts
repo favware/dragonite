@@ -5,8 +5,14 @@ import { getGuildIds } from '#utils/utils';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { ChatInputCommand } from '@sapphire/framework';
 import { Time } from '@sapphire/time-utilities';
-import { APIApplicationCommandOptionChoice, PermissionFlagsBits } from 'discord-api-types/v10';
-import { MessageActionRow, Modal, ModalActionRowComponent, TextInputComponent } from 'discord.js';
+import {
+  ActionRowBuilder,
+  ModalBuilder,
+  PermissionFlagsBits,
+  TextInputBuilder,
+  TextInputStyle,
+  type APIApplicationCommandOptionChoice
+} from 'discord.js';
 
 @ApplyOptions<ChatInputCommand.Options>({
   description: 'Evaluates any JavaScript code. Can only be used by the bot owner.',
@@ -102,15 +108,15 @@ export class SlashCommand extends DragoniteCommand {
 
     const customIdStringified = `${ModalCustomIds.Eval}|${metadata}`;
 
-    const modal = new Modal() //
+    const modal = new ModalBuilder() //
       .setCustomId(customIdStringified)
       .setTitle('Code to evaluate')
       .setComponents(
-        new MessageActionRow<ModalActionRowComponent>().addComponents(
-          new TextInputComponent() //
+        new ActionRowBuilder<TextInputBuilder>().addComponents(
+          new TextInputBuilder() //
             .setCustomId('code-input')
             .setLabel("What's the code to evaluate")
-            .setStyle('PARAGRAPH')
+            .setStyle(TextInputStyle.Paragraph)
         )
       );
 

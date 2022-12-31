@@ -1,9 +1,9 @@
-import { getCodeLine, getErrorLine, getPathLine } from '#utils/functions/errorHelpers';
+import { getErrorLine, getMethodLine, getStatusLine } from '#utils/functions/errorHelpers';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Listener } from '@sapphire/framework';
 import { ScheduledTaskEvents } from '@sapphire/plugin-scheduled-tasks';
 import { isNullish } from '@sapphire/utilities';
-import { DiscordAPIError, HTTPError, MessageEmbed } from 'discord.js';
+import { DiscordAPIError, EmbedBuilder, HTTPError } from 'discord.js';
 
 @ApplyOptions<Listener.Options>({ event: ScheduledTaskEvents.ScheduledTaskError })
 export class UserListener extends Listener {
@@ -22,12 +22,12 @@ export class UserListener extends Listener {
 
     // If it's a DiscordAPIError or a HTTPError, add the HTTP path and code lines after the second one.
     if (error instanceof DiscordAPIError || error instanceof HTTPError) {
-      lines.splice(2, 0, getPathLine(error), getCodeLine(error));
+      lines.splice(2, 0, getMethodLine(error), getStatusLine(error));
     }
 
-    const embed = new MessageEmbed() //
+    const embed = new EmbedBuilder() //
       .setDescription(lines.join('\n'))
-      .setColor('RED')
+      .setColor('Red')
       .setTimestamp();
 
     try {

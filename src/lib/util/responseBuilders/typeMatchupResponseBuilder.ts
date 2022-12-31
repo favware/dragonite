@@ -3,7 +3,7 @@ import { parseBulbapediaURL } from '#utils/functions/pokemonParsers';
 import type { TypeEffectiveness, TypeMatchup, TypesEnum } from '@favware/graphql-pokemon';
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 export function typeMatchupResponseBuilder(types: TypesEnum[], typeMatchups: TypeMatchup) {
   const externalResources = 'External Resources';
@@ -15,7 +15,7 @@ export function typeMatchupResponseBuilder(types: TypesEnum[], typeMatchups: Typ
   ].join(' | ');
 
   return new PaginatedMessage({
-    template: new MessageEmbed()
+    template: new EmbedBuilder()
       .setColor(BrandingColors.Primary) //
       .setAuthor({ name: `Type effectiveness for ${container.i18n.listAnd.format(types)}`, iconURL: CdnUrls.Pokedex }) //
   })

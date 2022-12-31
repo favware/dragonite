@@ -4,13 +4,13 @@ import type { MovesEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import { InteractionHandler, InteractionHandlerTypes, UserError } from '@sapphire/framework';
 import { isNullish } from '@sapphire/utilities';
-import type { SelectMenuInteraction } from 'discord.js';
+import type { StringSelectMenuInteraction } from 'discord.js';
 
 @ApplyOptions<InteractionHandler.Options>({
   interactionHandlerType: InteractionHandlerTypes.SelectMenu
 })
 export class SelectMenuHandler extends InteractionHandler {
-  public override run(interaction: SelectMenuInteraction, result: InteractionHandler.ParseResult<this>) {
+  public override run(interaction: StringSelectMenuInteraction, result: InteractionHandler.ParseResult<this>) {
     if (isNullish(result.moveDetails)) {
       throw new UserError({
         identifier: 'MoveQueryFail',
@@ -23,7 +23,7 @@ export class SelectMenuHandler extends InteractionHandler {
     return paginatedMessage.run(interaction, interaction.user);
   }
 
-  public override async parse(interaction: SelectMenuInteraction) {
+  public override async parse(interaction: StringSelectMenuInteraction) {
     if (interaction.customId !== SelectMenuCustomIds.Move) return this.none();
 
     await interaction.deferReply();

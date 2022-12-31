@@ -4,13 +4,13 @@ import type { AbilitiesEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import { InteractionHandler, InteractionHandlerTypes, UserError } from '@sapphire/framework';
 import { isNullish } from '@sapphire/utilities';
-import type { SelectMenuInteraction } from 'discord.js';
+import type { StringSelectMenuInteraction } from 'discord.js';
 
 @ApplyOptions<InteractionHandler.Options>({
   interactionHandlerType: InteractionHandlerTypes.SelectMenu
 })
 export class SelectMenuHandler extends InteractionHandler {
-  public override async run(interaction: SelectMenuInteraction, result: InteractionHandler.ParseResult<this>) {
+  public override async run(interaction: StringSelectMenuInteraction, result: InteractionHandler.ParseResult<this>) {
     if (isNullish(result.abilityDetails)) {
       throw new UserError({
         identifier: 'AbilityQueryFail',
@@ -21,7 +21,7 @@ export class SelectMenuHandler extends InteractionHandler {
     return interaction.editReply({ embeds: abilityResponseBuilder(result.abilityDetails) });
   }
 
-  public override async parse(interaction: SelectMenuInteraction) {
+  public override async parse(interaction: StringSelectMenuInteraction) {
     if (interaction.customId !== SelectMenuCustomIds.Ability) return this.none();
 
     await interaction.deferReply();
