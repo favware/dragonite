@@ -53,7 +53,7 @@
     "figlet": "^1.5.2",
     "gradient-string": "^2.0.2",
     "ioredis": "^5.2.4",
-    "utf-8-validate": "^5.0.10",
+    "utf-8-validate": "^6.0.0",
     "ws": "^8.11.0",
     "zlib-sync": "^0.1.7"
   },
