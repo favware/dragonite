@@ -17,7 +17,7 @@
   "scripts": {
     "start": "node --preserve-symlinks --enable-source-maps dist/dragonite.js",
     "lint": "eslint src --ext ts --fix",
-    "format": "prettier --write --loglevel=warn \"src/**/*.ts\"",
+    "format": "prettier --write .",
     "build": "tsup",
     "watch": "tsup --watch",
     "clean": "node scripts/clean.mjs",
