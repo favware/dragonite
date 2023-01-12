@@ -43,6 +43,7 @@
     "@sapphire/type": "^2.3.0",
     "@sapphire/utilities": "^3.11.0",
     "@skyra/env-utilities": "^1.1.0",
+    "@skyra/jaro-winkler": "^1.1.0",
     "@skyra/start-banner": "^1.0.2",
     "binarytf": "^2.1.2",
     "bufferutil": "^4.0.7",

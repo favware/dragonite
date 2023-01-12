@@ -1,5 +1,15 @@
 import { getFuzzyAbility, getFuzzyItem, getFuzzyMove, getFuzzyPokemon } from '#gql/fuzzyQueries';
-import { getAbility, getFlavorTexts, getItem, getLearnset, getMove, getPokemon, getPokemonSprites, getTypeMatchup } from '#lib/gql/queries';
+import {
+  getAbility,
+  getAllPokemonSpecies,
+  getFlavorTexts,
+  getItem,
+  getLearnset,
+  getMove,
+  getPokemon,
+  getPokemonSprites,
+  getTypeMatchup
+} from '#lib/gql/queries';
 import { RedisKeys } from '#lib/redis-cache/RedisCacheClient';
 import { FavouredAbilities, FavouredItems, FavouredMoves, FavouredPokemon } from '#utils/favouredEntries';
 import type {
@@ -17,6 +27,7 @@ import type {
   QueryGetLearnsetArgs,
   QueryGetMoveArgs,
   QueryGetPokemonArgs,
+  QueryGetAllPokemonArgs,
   QueryGetTypeMatchupArgs,
   TypesEnum
 } from '@favware/graphql-pokemon';
@@ -125,6 +136,26 @@ export class GqlClient {
     await container.gqlRedisCache.insert<RedisKeys.GetPokemon>(
       RedisKeys.GetPokemon, //
       pokemon,
+      result.unwrap()
+    );
+
+    return result.unwrap();
+  }
+
+  public async getAllSpecies() {
+    const result = await Result.fromAsync(async () => {
+      const pokemonFromCache = await container.gqlRedisCache.fetch<RedisKeys.GetAllSpecies>(RedisKeys.GetAllSpecies, null);
+      if (pokemonFromCache) return pokemonFromCache;
+
+      const apiResult = await this.fetchGraphQLPokemon<'getAllPokemon'>(getAllPokemonSpecies, { offset: 88 });
+      return apiResult.data.getAllPokemon;
+    });
+
+    if (result.isErr()) return;
+
+    await container.gqlRedisCache.insert<RedisKeys.GetAllSpecies>(
+      RedisKeys.GetAllSpecies, //
+      null,
       result.unwrap()
     );
 
@@ -310,6 +341,7 @@ type PokemonQueryReturnTypes = keyof Pick<
   | 'getPokemon'
   | 'getLearnset'
   | 'getTypeMatchup'
+  | 'getAllPokemon'
   | 'getFuzzyItem'
   | 'getFuzzyMove'
   | 'getFuzzyPokemon'
@@ -335,4 +367,6 @@ type PokemonQueryVariables<R extends PokemonQueryReturnTypes> = R extends 'getAb
   ? QueryGetLearnsetArgs
   : R extends 'getTypeMatchup'
   ? QueryGetTypeMatchupArgs
+  : R extends 'getAllPokemon'
+  ? QueryGetAllPokemonArgs
   : never;

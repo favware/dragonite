@@ -291,3 +291,11 @@ export const getPokemonSprites = gql`
     }
   }
 `;
+
+export const getAllPokemonSpecies = gql`
+  query GetAllPokemon($offset: Int) {
+    getAllPokemon(offset: $offset) {
+      species
+    }
+  }
+`;

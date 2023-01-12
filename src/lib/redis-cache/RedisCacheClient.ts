@@ -25,7 +25,8 @@ export const enum RedisKeys {
   GetPokemon = 'getPokemon',
   GetSprites = 'getSprites',
   GetLearnset = 'getLearnset',
-  GetTypeMatchup = 'getTypeMatchup'
+  GetTypeMatchup = 'getTypeMatchup',
+  GetAllSpecies = 'getAllSpecies'
 }
 
 export class RedisCacheClient extends Redis {
@@ -84,6 +85,8 @@ type RedisKeyQuery<K extends RedisKeys> = K extends 'getAbility'
   ? `${PokemonEnum}|${number}|${string}`
   : K extends 'getTypeMatchup'
   ? `${TypesEnum}` | `${TypesEnum},${TypesEnum}`
+  : K extends 'getAllSpecies'
+  ? null
   : never;
 
 type RedisData<K extends RedisKeys> = K extends 'getAbility'
@@ -102,4 +105,6 @@ type RedisData<K extends RedisKeys> = K extends 'getAbility'
   ? Learnset
   : K extends 'getTypeMatchup'
   ? TypeMatchup
+  : K extends 'getAllSpecies'
+  ? Omit<readonly Pokemon[], '__typename'>
   : never;

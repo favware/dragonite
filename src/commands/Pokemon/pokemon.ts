@@ -1,13 +1,21 @@
 import { DragoniteCommand } from '#lib/extensions/DragoniteCommand';
 import { SelectMenuCustomIds } from '#utils/constants';
+import { fuzzilyFindPokemonForMessageContent } from '#utils/fuzzilyFindPokemonForMessageContent';
 import { compressPokemonCustomIdMetadata } from '#utils/pokemonCustomIdCompression';
 import { fuzzyPokemonToSelectOption, pokemonResponseBuilder, PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
 import { getGuildIds } from '#utils/utils';
 import type { PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
-import type { ChatInputCommand } from '@sapphire/framework';
-import { isNullish } from '@sapphire/utilities';
-import { ActionRowBuilder, StringSelectMenuBuilder, type APIApplicationCommandOptionChoice, type APISelectMenuOption } from 'discord.js';
+import { ChatInputCommand, ContextMenuCommand, UserError } from '@sapphire/framework';
+import { isNullish, isNullishOrEmpty } from '@sapphire/utilities';
+import {
+  ActionRowBuilder,
+  ApplicationCommandType,
+  MessageContextMenuCommandInteraction,
+  StringSelectMenuBuilder,
+  type APIApplicationCommandOptionChoice,
+  type APISelectMenuOption
+} from 'discord.js';
 
 @ApplyOptions<ChatInputCommand.Options>({
   description: 'Gets data for the chosen Pokémon.'
@@ -39,8 +47,40 @@ export class SlashCommand extends DragoniteCommand {
               .setDescription('The sprite that you want the result to show.')
               .setChoices(...this.#spriteChoices)
           ),
-      { guildIds: getGuildIds(), idHints: ['970121244789866586', '942137488242262096'] }
+      { guildIds: getGuildIds() }
     );
+
+    registry.registerContextMenuCommand(
+      (builder) =>
+        builder //
+          .setName('Find Pokémon')
+          .setType(ApplicationCommandType.Message),
+      { guildIds: getGuildIds() }
+    );
+  }
+
+  public override async contextMenuRun(interaction: ContextMenuCommand.Interaction) {
+    if (interaction.isMessageContextMenuCommand()) {
+      await interaction.deferReply();
+
+      const messageContent = interaction.targetMessage.cleanContent;
+
+      const pokemon = await fuzzilyFindPokemonForMessageContent(messageContent);
+
+      if (isNullishOrEmpty(pokemon)) {
+        throw new UserError({
+          identifier: 'NoPokemonFoundInMessage',
+          message: 'Looks like I was unable to find any Pokémon in your message. Are you sure you used the name of one?'
+        });
+      }
+
+      return this.sendReply(pokemon, 'sprite', interaction);
+    }
+
+    throw new UserError({
+      identifier: 'FindPokemonTriggeredOnUserContextMenu',
+      message: 'Woaw, you somehow triggered this action from a User context menu, that should not be possible.'
+    });
   }
 
   public override async chatInputRun(interaction: ChatInputCommand.Interaction) {
@@ -49,6 +89,14 @@ export class SlashCommand extends DragoniteCommand {
     const pokemon = interaction.options.getString('pokemon', true);
     const spriteToGet: PokemonSpriteTypes = (interaction.options.getString('sprite') as PokemonSpriteTypes | null) ?? 'sprite';
 
+    return this.sendReply(pokemon, spriteToGet, interaction);
+  }
+
+  private async sendReply(
+    pokemon: string,
+    spriteToGet: PokemonSpriteTypes,
+    interaction: ChatInputCommand.Interaction | MessageContextMenuCommandInteraction
+  ) {
     const pokemonDetails = await this.container.gqlClient.getPokemon(pokemon as PokemonEnum);
 
     if (isNullish(pokemonDetails)) {
