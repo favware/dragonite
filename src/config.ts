@@ -49,6 +49,7 @@ export const CLIENT_OPTIONS: ClientOptions = {
   intents: [GatewayIntentBits.Guilds],
   allowedMentions: { users: [], roles: [] },
   presence: { activities: parsePresenceActivity() },
+  loadDefaultErrorListeners: false,
   logger: { level: envParseString('NODE_ENV') === 'production' ? LogLevel.Info : LogLevel.Debug },
   preventFailedToFetchLogForGuilds: [
     // Discord Bots
