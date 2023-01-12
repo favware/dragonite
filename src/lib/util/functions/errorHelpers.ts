@@ -12,6 +12,7 @@ import {
 } from '@sapphire/framework';
 import { codeBlock, isNullish } from '@sapphire/utilities';
 import {
+  BaseInteraction,
   bold,
   DiscordAPIError,
   EmbedBuilder,
@@ -21,9 +22,7 @@ import {
   RESTJSONErrorCodes,
   userMention,
   type APIMessage,
-  type ChatInputCommandInteraction,
   type CommandInteraction,
-  type ContextMenuCommandInteraction,
   type Message
 } from 'discord.js';
 import { fileURLToPath } from 'node:url';
@@ -180,7 +179,7 @@ function getOptionsLine(options: CommandInteraction['options']): string {
  * Formats a message url line.
  * @param url The url to format.
  */
-function getLinkLine(message: APIMessage | Message): string {
+export function getLinkLine(message: APIMessage | Message): string {
   if (isMessageInstance(message)) {
     return bold(hyperlink('Jump to Message!', hideLinkEmbed(message.url)));
   }
@@ -212,6 +211,6 @@ export function getErrorLine(error: Error): string {
   return `**Error**: ${codeBlock('js', error.stack || error)}`;
 }
 
-function getWarnError(interaction: ChatInputCommandInteraction | ContextMenuCommandInteraction) {
+export function getWarnError(interaction: BaseInteraction) {
   return `ERROR: /${interaction.guildId}/${interaction.channelId}/${interaction.id}`;
 }
