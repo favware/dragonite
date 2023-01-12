@@ -1,6 +1,11 @@
-import type { ChatInputCommandSuccessPayload, Command } from '@sapphire/framework';
+import { ChatInputCommandSuccessPayload, Command, container, ContextMenuCommandSuccessPayload } from '@sapphire/framework';
 import { cyan } from 'colorette';
 import type { APIUser, Guild, User } from 'discord.js';
+
+export function handleChatInputOrContextMenuCommandSuccess(payload: ChatInputCommandSuccessPayload | ContextMenuCommandSuccessPayload) {
+  const { author, commandName, sentAt, shard, runtime } = getSuccessLoggerData(payload);
+  return container.logger.debug(`${shard} - ${commandName} ${author} ${sentAt} (${runtime})`);
+}
 
 function getShardInfo(id: number) {
   return `[${cyan(id.toString())}]`;
@@ -24,7 +29,7 @@ function getDuration(duration: number) {
   return `${(duration * 1000).toFixed(2)}μs`;
 }
 
-export function getSuccessLoggerData({ interaction, command, duration }: ChatInputCommandSuccessPayload) {
+function getSuccessLoggerData({ interaction, command, duration }: ChatInputCommandSuccessPayload | ContextMenuCommandSuccessPayload) {
   const shard = getShardInfo(interaction.guild?.shardId ?? 0);
   const commandName = getCommandInfo(command);
   const author = getAuthorInfo(interaction.user);
