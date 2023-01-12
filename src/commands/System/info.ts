@@ -40,7 +40,7 @@ export class UserCommand extends Command {
         builder //
           .setName(this.name)
           .setDescription(this.description),
-      { guildIds: getGuildIds(), idHints: ['970121330504634418', '942137399180402770'] }
+      { guildIds: getGuildIds() }
     );
   }
 

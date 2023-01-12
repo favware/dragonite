@@ -81,7 +81,7 @@ export class SlashCommand extends DragoniteCommand {
               .setName('show-hidden')
               .setDescription('Whether to show hidden JSON properties when stringifying.')
           ),
-      { guildIds: getGuildIds(), idHints: ['970121156722053120', '942137574871420938'] }
+      { guildIds: getGuildIds() }
     );
   }
 
