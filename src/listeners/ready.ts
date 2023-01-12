@@ -1,6 +1,6 @@
 import { DragoniteEvents } from '#lib/types/Enums';
 import { ApplyOptions } from '@sapphire/decorators';
-import { Listener, type Store } from '@sapphire/framework';
+import { Events, Listener, type Store } from '@sapphire/framework';
 import { envParseBoolean, envParseString } from '@skyra/env-utilities';
 import { createBanner } from '@skyra/start-banner';
 import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
@@ -8,7 +8,7 @@ import figlet from 'figlet';
 import gradient from 'gradient-string';
 
 @ApplyOptions<Listener.Options>({ once: true })
-export class UserListener extends Listener {
+export class UserListener extends Listener<typeof Events.ClientReady> {
   private readonly style = this.isDev ? yellow : blue;
 
   public run() {

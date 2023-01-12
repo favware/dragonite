@@ -3,7 +3,7 @@ import { Listener, Logger, LogLevel } from '@sapphire/framework';
 import { ScheduledTaskEvents } from '@sapphire/plugin-scheduled-tasks';
 
 @ApplyOptions<Listener.Options>({ event: ScheduledTaskEvents.ScheduledTaskSuccess })
-export class UserListener extends Listener {
+export class UserListener extends Listener<typeof ScheduledTaskEvents.ScheduledTaskSuccess> {
   public override run(task: string, _payload: unknown, _taskRunResult: unknown, duration: number) {
     this.container.logger.debug(`[Scheduled-Task Plugin]: successfully ran task: ${task} in ${this.formatDuration(duration)}`);
   }

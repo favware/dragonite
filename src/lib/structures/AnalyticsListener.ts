@@ -2,8 +2,9 @@ import { Tags } from '#lib/types/AnalyticsSchema';
 import type { Point } from '@influxdata/influxdb-client';
 import { Listener } from '@sapphire/framework';
 import { envParseBoolean } from '@skyra/env-utilities';
+import type { ClientEvents } from 'discord.js';
 
-export abstract class AnalyticsListener extends Listener {
+export abstract class AnalyticsListener<E extends keyof ClientEvents | symbol = ''> extends Listener<E> {
   public tags: [Tags, string][] = [];
 
   public constructor(context: Listener.Context, options?: AnalyticsListener.Options) {

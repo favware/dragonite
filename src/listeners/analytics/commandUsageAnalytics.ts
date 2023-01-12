@@ -5,7 +5,7 @@ import { ApplyOptions } from '@sapphire/decorators';
 import { Events, type ChatInputCommandSuccessPayload } from '@sapphire/framework';
 
 @ApplyOptions<AnalyticsListener.Options>({ event: Events.ChatInputCommandSuccess })
-export class UserAnalyticsEvent extends AnalyticsListener {
+export class UserAnalyticsEvent extends AnalyticsListener<typeof Events.ChatInputCommandSuccess> {
   public run(payload: ChatInputCommandSuccessPayload) {
     const command = new Point(Points.Commands)
       .tag(Tags.Action, Actions.Addition)

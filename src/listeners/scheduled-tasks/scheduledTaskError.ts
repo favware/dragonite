@@ -6,7 +6,7 @@ import { isNullish } from '@sapphire/utilities';
 import { DiscordAPIError, EmbedBuilder, HTTPError } from 'discord.js';
 
 @ApplyOptions<Listener.Options>({ event: ScheduledTaskEvents.ScheduledTaskError })
-export class UserListener extends Listener {
+export class UserListener extends Listener<typeof ScheduledTaskEvents.ScheduledTaskError> {
   public override async run(error: Error, task: string) {
     this.container.logger.error(`[Scheduled-Task Plugin]: task: ${task} threw an error`, error);
 

@@ -6,7 +6,7 @@ import { Events } from '@sapphire/framework';
 import type { Guild } from 'discord.js';
 
 @ApplyOptions<AnalyticsListener.Options>({ event: Events.GuildDelete })
-export class UserAnalyticsEvent extends AnalyticsListener {
+export class UserAnalyticsEvent extends AnalyticsListener<typeof Events.GuildDelete> {
   public run(guild: Guild) {
     const guilds = new Point(Points.Guilds)
       .tag(Tags.Shard, guild.shardId.toString())
