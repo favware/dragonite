@@ -101,11 +101,13 @@ function userError(interaction: CommandInteraction, error: UserError) {
   );
 }
 
-function alert(interaction: CommandInteraction, content: string) {
+async function alert(interaction: CommandInteraction, content: string) {
   if (interaction.replied || interaction.deferred) {
-    return interaction.editReply({
+    await interaction.deleteReply();
+    return interaction.followUp({
       content,
-      allowedMentions: { users: [interaction.user.id], roles: [] }
+      allowedMentions: { users: [interaction.user.id], roles: [] },
+      ephemeral: true
     });
   }
 
