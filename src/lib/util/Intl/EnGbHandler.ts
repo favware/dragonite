@@ -1,5 +1,5 @@
 import { Handler } from '#utils/Intl/Handler';
-import { TimeTypes } from '@sapphire/time-utilities';
+import { TimeTypes } from '@sapphire/duration';
 
 export class EnGbHandler extends Handler {
   public constructor() {

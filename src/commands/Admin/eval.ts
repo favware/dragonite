@@ -3,8 +3,8 @@ import { ModalCustomIds } from '#utils/constants';
 import { compressEvalCustomIdMetadata } from '#utils/evalCustomIdCompression';
 import { getGuildIds } from '#utils/utils';
 import { ApplyOptions } from '@sapphire/decorators';
+import { Time } from '@sapphire/duration';
 import type { ChatInputCommand } from '@sapphire/framework';
-import { Time } from '@sapphire/time-utilities';
 import {
   ActionRowBuilder,
   ModalBuilder,
@@ -121,5 +121,10 @@ export class SlashCommand extends DragoniteCommand {
       );
 
     await interaction.showModal(modal);
+
+    return interaction.reply({
+      content: 'Code evaluation modal opened.',
+      ephemeral: true
+    });
   }
 }

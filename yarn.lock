@@ -516,15 +516,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/cron@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@sapphire/cron@npm:1.0.0"
-  dependencies:
-    "@sapphire/utilities": ^3.9.3
-  checksum: ce33466c52ec8ee9392e67116858643c963a19543f77ce56ca928c743e04f18cde2c793a15c7f0fe0db071f1399a95338f17a25ba746a877dea0918c8b13672e
-  languageName: node
-  linkType: hard
-
 "@sapphire/decorators@npm:^6.0.0":
   version: 6.0.0
   resolution: "@sapphire/decorators@npm:6.0.0"
@@ -680,7 +671,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/snowflake@npm:^3.2.2, @sapphire/snowflake@npm:^3.4.0":
+"@sapphire/snowflake@npm:^3.2.2":
   version: 3.4.0
   resolution: "@sapphire/snowflake@npm:3.4.0"
   checksum: 556b7001f33d6edbbbcbca46f6abfa56c732a29e78b693161e358688e688edcb012d2c1bc944e7ffb41bd6c9950d261bc73f95656dc01643361a218b4f5ab985
@@ -693,18 +684,6 @@ __metadata:
   dependencies:
     tslib: ^2.4.0
   checksum: 23c013598d87d2fcc797efe5d2409ae6836b9221d79eacc10b7c2a95f9d694b562b7ad027dc49e9e8125095417199385a15317520fec371bdb8cc7622085e3af
-  languageName: node
-  linkType: hard
-
-"@sapphire/time-utilities@npm:^1.7.8":
-  version: 1.7.8
-  resolution: "@sapphire/time-utilities@npm:1.7.8"
-  dependencies:
-    "@sapphire/cron": ^1.0.0
-    "@sapphire/duration": ^1.0.0
-    "@sapphire/timer-manager": ^1.0.0
-    "@sapphire/timestamp": ^1.0.0
-  checksum: 8867770bea845705a55d18e737366c089a27a87c52fb2e3900de2362c7460ff7cdf4adae0c23dd06db8c6427458c22c7ebc7fe553904a6027ca4ee94c7a9a949
   languageName: node
   linkType: hard
 
@@ -743,7 +722,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/utilities@npm:^3.11.0, @sapphire/utilities@npm:^3.9.3":
+"@sapphire/utilities@npm:^3.11.0":
   version: 3.11.0
   resolution: "@sapphire/utilities@npm:3.11.0"
   checksum: 3c8521038b8879524e8114f39eefc8b3b06cf825995f709684238b5cb14bd7df06d232a26a88f79160df290a66f9aa3133f5ce4ff8e2398033db9f301ad31e0d
@@ -2122,17 +2101,15 @@ __metadata:
     "@influxdata/influxdb-client": ^1.33.0
     "@influxdata/influxdb-client-apis": ^1.33.0
     "@sapphire/decorators": ^6.0.0
-    "@sapphire/discord-utilities": ^3.0.0
     "@sapphire/discord.js-utilities": ^6.0.0
+    "@sapphire/duration": ^1.0.0
     "@sapphire/eslint-config": ^4.3.8
     "@sapphire/fetch": ^2.4.1
     "@sapphire/framework": ^4.0.1
     "@sapphire/plugin-logger": ^3.0.1
     "@sapphire/plugin-scheduled-tasks": ^6.0.0
     "@sapphire/prettier-config": ^1.4.5
-    "@sapphire/snowflake": ^3.4.0
     "@sapphire/stopwatch": ^1.5.0
-    "@sapphire/time-utilities": ^1.7.8
     "@sapphire/ts-config": ^3.3.4
     "@sapphire/type": ^2.3.0
     "@sapphire/utilities": ^3.11.0

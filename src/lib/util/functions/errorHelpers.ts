@@ -103,11 +103,9 @@ function userError(interaction: CommandInteraction, error: UserError) {
 
 async function alert(interaction: CommandInteraction, content: string) {
   if (interaction.replied || interaction.deferred) {
-    await interaction.deleteReply();
-    return interaction.followUp({
+    return interaction.editReply({
       content,
-      allowedMentions: { users: [interaction.user.id], roles: [] },
-      ephemeral: true
+      allowedMentions: { users: [interaction.user.id], roles: [] }
     });
   }
 
