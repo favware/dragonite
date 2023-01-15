@@ -1442,9 +1442,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bullmq@npm:^3.5.5":
-  version: 3.5.5
-  resolution: "bullmq@npm:3.5.5"
+"bullmq@npm:^3.5.6":
+  version: 3.5.6
+  resolution: "bullmq@npm:3.5.6"
   dependencies:
     cron-parser: ^4.6.0
     glob: ^8.0.3
@@ -1454,7 +1454,7 @@ __metadata:
     semver: ^7.3.7
     tslib: ^2.0.0
     uuid: ^9.0.0
-  checksum: e0c4f610f222d56a3dc13428901f25683a7eec5e3d028fa739a10421e106ec88207d05eda2205056b0fbf02faddd7e9ba785a83ea1510819068429462fb9ada4
+  checksum: de4c0c2ee8cf6277a38796e7d808a92c8cf5dab80e4bbd87039a4099713ffce5571051ba336beb4671f56c36aac2776c681fd2623c26e67a64a06913e7aab058
   languageName: node
   linkType: hard
 
@@ -2137,20 +2137,20 @@ __metadata:
     "@typescript-eslint/parser": ^5.48.1
     binarytf: ^2.1.2
     bufferutil: ^4.0.7
-    bullmq: ^3.5.5
+    bullmq: ^3.5.6
     colorette: ^2.0.19
     cz-conventional-changelog: ^3.3.0
     discord-api-types: ^0.37.28
     discord.js: ^14.7.1
-    eslint: ^8.31.0
+    eslint: ^8.32.0
     eslint-config-prettier: ^8.6.0
     eslint-plugin-prettier: ^4.2.1
     figlet: ^1.5.2
     gradient-string: ^2.0.2
     husky: ^8.0.3
-    ioredis: ^5.2.4
+    ioredis: ^5.2.5
     lint-staged: ^13.1.0
-    prettier: ^2.8.2
+    prettier: ^2.8.3
     pretty-quick: ^3.1.3
     rimraf: ^4.0.5
     tsup: ^6.5.0
@@ -2532,7 +2532,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.22.0, eslint@npm:^8.31.0":
+"eslint@npm:^8.22.0":
   version: 8.31.0
   resolution: "eslint@npm:8.31.0"
   dependencies:
@@ -2578,6 +2578,55 @@ __metadata:
   bin:
     eslint: bin/eslint.js
   checksum: 5e5688bb864edc6b12d165849994812eefa67fb3fc44bb26f53659b63edcd8bcc68389d27cc6cc9e5b79ee22f24b6f311fa3ed047bddcafdec7d84c1b5561e4f
+  languageName: node
+  linkType: hard
+
+"eslint@npm:^8.32.0":
+  version: 8.32.0
+  resolution: "eslint@npm:8.32.0"
+  dependencies:
+    "@eslint/eslintrc": ^1.4.1
+    "@humanwhocodes/config-array": ^0.11.8
+    "@humanwhocodes/module-importer": ^1.0.1
+    "@nodelib/fs.walk": ^1.2.8
+    ajv: ^6.10.0
+    chalk: ^4.0.0
+    cross-spawn: ^7.0.2
+    debug: ^4.3.2
+    doctrine: ^3.0.0
+    escape-string-regexp: ^4.0.0
+    eslint-scope: ^7.1.1
+    eslint-utils: ^3.0.0
+    eslint-visitor-keys: ^3.3.0
+    espree: ^9.4.0
+    esquery: ^1.4.0
+    esutils: ^2.0.2
+    fast-deep-equal: ^3.1.3
+    file-entry-cache: ^6.0.1
+    find-up: ^5.0.0
+    glob-parent: ^6.0.2
+    globals: ^13.19.0
+    grapheme-splitter: ^1.0.4
+    ignore: ^5.2.0
+    import-fresh: ^3.0.0
+    imurmurhash: ^0.1.4
+    is-glob: ^4.0.0
+    is-path-inside: ^3.0.3
+    js-sdsl: ^4.1.4
+    js-yaml: ^4.1.0
+    json-stable-stringify-without-jsonify: ^1.0.1
+    levn: ^0.4.1
+    lodash.merge: ^4.6.2
+    minimatch: ^3.1.2
+    natural-compare: ^1.4.0
+    optionator: ^0.9.1
+    regexpp: ^3.2.0
+    strip-ansi: ^6.0.1
+    strip-json-comments: ^3.1.0
+    text-table: ^0.2.0
+  bin:
+    eslint: bin/eslint.js
+  checksum: 23c8fb3c57291eecd9c1448faf603226a8f885022a2cd96e303459bf72e39b7f54987c6fb948f0f9eecaf7085600e6eb0663482a35ea83da12e9f9141a22b91e
   languageName: node
   linkType: hard
 
@@ -3384,7 +3433,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ioredis@npm:^5.2.2, ioredis@npm:^5.2.4":
+"ioredis@npm:^5.2.2":
   version: 5.2.4
   resolution: "ioredis@npm:5.2.4"
   dependencies:
@@ -3398,6 +3447,23 @@ __metadata:
     redis-parser: ^3.0.0
     standard-as-callback: ^2.1.0
   checksum: c3a7df407a41ae516bede8b6db853c568198b13fe4a4785f66be5cd541087121b9d45fb9a6b1b6a5fb668c29ce52ab4685642b994803bdfa0a35f794ea8ef7ae
+  languageName: node
+  linkType: hard
+
+"ioredis@npm:^5.2.5":
+  version: 5.2.5
+  resolution: "ioredis@npm:5.2.5"
+  dependencies:
+    "@ioredis/commands": ^1.1.1
+    cluster-key-slot: ^1.1.0
+    debug: ^4.3.4
+    denque: ^2.0.1
+    lodash.defaults: ^4.2.0
+    lodash.isarguments: ^3.1.0
+    redis-errors: ^1.2.0
+    redis-parser: ^3.0.0
+    standard-as-callback: ^2.1.0
+  checksum: 3881c505b287f1277394fda78fa0239fe35ee0f88116ab0d4ad74d915bace68928afa802a455fa87a74009d68ac859becc820a8cb59ae2ffca95b84c8b575198
   languageName: node
   linkType: hard
 
@@ -4689,6 +4755,15 @@ __metadata:
   bin:
     prettier: bin-prettier.js
   checksum: 740c56c2128d587d656ea1dde9bc9c3503dfc94db4f3ac387259215eeb2e216680bdad9d18a0c9feecc6b42cfa188d6fa777df4c36c1d00cedd4199074fbfbd2
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^2.8.3":
+  version: 2.8.3
+  resolution: "prettier@npm:2.8.3"
+  bin:
+    prettier: bin-prettier.js
+  checksum: 92f2ceb522d454370e02082aa74ad27388672f7cee8975028b59517c069fe643bdc73e322675c8faf2ff173d7a626d1a6389f26b474000308e793aa25fff46e5
   languageName: node
   linkType: hard
 
