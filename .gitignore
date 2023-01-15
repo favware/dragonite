@@ -25,6 +25,5 @@ package-lock.json
 .env.test.local
 .env.production.local
 
-# File that I run locally to configure Permissions v1
-scripts/configure-command-permissions.mjs
-scripts/prune-global-commands.mjs
+# Command that I use locally to parse the old starboard
+src/commands/System/parse-starboard.ts
