@@ -28,8 +28,8 @@
   "dependencies": {
     "@discordjs/builders": "^1.4.0",
     "@favware/graphql-pokemon": "^7.1.2",
-    "@influxdata/influxdb-client": "^1.33.1",
-    "@influxdata/influxdb-client-apis": "^1.33.1",
+    "@influxdata/influxdb-client": "^1.33.2",
+    "@influxdata/influxdb-client-apis": "^1.33.2",
     "@sapphire/decorators": "^6.0.0",
     "@sapphire/discord.js-utilities": "^6.0.2",
     "@sapphire/duration": "^1.0.0",
