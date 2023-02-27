@@ -1,12 +1,21 @@
 import { CdnUrls, Emojis } from '#utils/constants';
 import type { FavouredEntry } from '#utils/favouredEntries';
-import { parseBulbapediaURL, pokemonEnumToSpecies, resolveColour } from '#utils/functions/pokemonParsers';
+import { isMissingNoOrM00, pokemonEnumToSpecies, resolveBulbapediaEmbeddedURL, resolveColour } from '#utils/functions/pokemonParsers';
 import type { KeysContaining } from '#utils/utils';
 import type { Abilities, EvYields, Gender, Pokemon, PokemonEnum, Stats } from '@favware/graphql-pokemon';
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
 import { filterNullish, isNullish, isNullishOrEmpty } from '@sapphire/utilities';
-import { bold, EmbedBuilder, inlineCode, italic, type APISelectMenuOption, type ApplicationCommandOptionChoiceData } from 'discord.js';
+import {
+  bold,
+  EmbedBuilder,
+  hideLinkEmbed,
+  hyperlink,
+  inlineCode,
+  italic,
+  type APISelectMenuOption,
+  type ApplicationCommandOptionChoiceData
+} from 'discord.js';
 
 enum StatsEnum {
   hp = 'HP',
@@ -46,11 +55,11 @@ function parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, s
   const externalResources = 'External Resources';
 
   const externalResourceData = [
-    isMissingno(pokeDetails)
-      ? '[Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/MissingNo.)'
-      : `[Bulbapedia](${parseBulbapediaURL(pokeDetails.bulbapediaPage)} )`,
-    isMissingno(pokeDetails) ? '[Serebii](https://www.serebii.net/pokedex/000.shtml)' : `[Serebii](${pokeDetails.serebiiPage})`,
-    isMissingno(pokeDetails) ? undefined : `[Smogon](${pokeDetails.smogonPage})`
+    resolveBulbapediaEmbeddedURL(pokeDetails),
+    isMissingNoOrM00(pokeDetails)
+      ? hyperlink('Serebii', hideLinkEmbed('https://www.serebii.net/pokedex/000.shtml'))
+      : hyperlink('Serebii', hideLinkEmbed(pokeDetails.serebiiPage)),
+    isMissingNoOrM00(pokeDetails) ? undefined : hyperlink('Smogon', pokeDetails.smogonPage)
   ]
     .filter(filterNullish)
     .join(' | ');
@@ -119,7 +128,7 @@ function parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, s
         }
       }
 
-      if (!isMissingno(pokeDetails)) {
+      if (!isMissingNoOrM00(pokeDetails)) {
         embed.addFields({
           name: 'Egg group(s)',
           value: pokeDetails.eggGroups?.join(', ') || '',
@@ -155,7 +164,7 @@ function parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, s
       return embed;
     });
 
-  if (!isMissingno(pokeDetails)) {
+  if (!isMissingNoOrM00(pokeDetails)) {
     display.addPageEmbed((embed) => {
       embed //
         .addFields(
@@ -189,7 +198,7 @@ function parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, s
     }
   }
 
-  if (!isMissingno(pokeDetails)) {
+  if (!isMissingNoOrM00(pokeDetails)) {
     // If there are any cosmetic formes or other formes then add a page for them
     // If the pokémon doesn't have the formes then the API will default them to `null`
     if (!isNullishOrEmpty(pokeDetails.otherFormes) || !isNullishOrEmpty(pokeDetails.cosmeticFormes)) {
@@ -334,10 +343,6 @@ function isCapPokemon(pokeDetails: Pokemon) {
 
 function isRegularPokemon(pokeDetails: Pokemon) {
   return pokeDetails.num > 0;
-}
-
-function isMissingno(pokeDetails: Pokemon) {
-  return pokeDetails.num === 0;
 }
 
 export type PokemonSpriteTypes = keyof Pick<Pokemon, KeysContaining<Pokemon, 'sprite'>>;

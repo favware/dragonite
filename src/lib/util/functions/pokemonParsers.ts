@@ -1,5 +1,6 @@
-import { PokemonEnum } from '@favware/graphql-pokemon';
+import { PokemonEnum, type Pokemon } from '@favware/graphql-pokemon';
 import { isNullishOrEmpty, toTitleCase } from '@sapphire/utilities';
+import { hideLinkEmbed, hyperlink } from 'discord.js';
 
 const megaRegex = /^(?<name>[a-z]+)(?:mega)$/;
 const gmaxRegex = /^(?<name>[a-z]+)(?:gmax)$/;
@@ -470,6 +471,28 @@ export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
  */
 export function parseBulbapediaURL(url: string) {
   return url.replace(/[ ]/g, '_').replace(/\(/g, '%28').replace(/\)/g, '%29');
+}
+
+export function isMissingNo(pokeDetails: Pokemon) {
+  return pokeDetails.key === PokemonEnum.Missingno;
+}
+
+export function isM00(pokeDetails: Pokemon) {
+  return pokeDetails.key === PokemonEnum.M00;
+}
+
+export function isMissingNoOrM00(pokeDetails: Pokemon) {
+  return isMissingNo(pokeDetails) || isM00(pokeDetails);
+}
+
+export function resolveBulbapediaEmbeddedURL(pokeDetails: Pokemon) {
+  const url = isMissingNo(pokeDetails)
+    ? 'https://bulbapedia.bulbagarden.net/wiki/MissingNo.'
+    : isM00(pokeDetails)
+    ? "https://bulbapedia.bulbagarden.net/wiki/'M_(00)"
+    : parseBulbapediaURL(pokeDetails.bulbapediaPage);
+
+  return hyperlink('Bulbapedia', hideLinkEmbed(url));
 }
 
 /**
