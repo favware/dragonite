@@ -4,15 +4,15 @@ import type { Move } from '@favware/graphql-pokemon';
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
 import { toTitleCase } from '@sapphire/utilities';
-import { EmbedBuilder } from 'discord.js';
+import { EmbedBuilder, hyperlink } from 'discord.js';
 
 const PageLabels = ['General', 'Categories', 'Boosted Power Information', 'Availability'];
 
 export function moveResponseBuilder(move: Omit<Move, '__typename'>) {
   const externalSources = [
-    `[Bulbapedia](${parseBulbapediaURL(move.bulbapediaPage)} )`,
-    `[Serebii](${move.serebiiPage})`,
-    `[Smogon](${move.smogonPage})`
+    hyperlink('Bulbapedia', parseBulbapediaURL(move.bulbapediaPage)),
+    hyperlink('Serebii', move.serebiiPage),
+    hyperlink('Smogon', move.smogonPage)
   ].join(' | ');
 
   const paginatedMessage = new PaginatedMessage({

@@ -3,12 +3,12 @@ import { parseBulbapediaURL } from '#utils/functions/pokemonParsers';
 import type { Item } from '@favware/graphql-pokemon';
 import { container } from '@sapphire/framework';
 import { filterNullish, toTitleCase } from '@sapphire/utilities';
-import { EmbedBuilder } from 'discord.js';
+import { EmbedBuilder, hyperlink } from 'discord.js';
 
 export function itemResponseBuilder(item: Omit<Item, '__typename'>) {
   const externalResources = [
-    `[Bulbapedia](${parseBulbapediaURL(item.bulbapediaPage)} )`,
-    `[Serebii](${item.serebiiPage})`,
+    hyperlink('Bulbapedia', parseBulbapediaURL(item.bulbapediaPage)),
+    hyperlink('Serebii', item.serebiiPage),
     item.smogonPage ? `[Smogon](${item.smogonPage})` : undefined
   ]
     .filter(filterNullish)

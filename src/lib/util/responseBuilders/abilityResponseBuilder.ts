@@ -2,13 +2,13 @@ import { BrandingColors, CdnUrls } from '#utils/constants';
 import { parseBulbapediaURL } from '#utils/functions/pokemonParsers';
 import type { Ability } from '@favware/graphql-pokemon';
 import { toTitleCase } from '@sapphire/utilities';
-import { EmbedBuilder } from 'discord.js';
+import { EmbedBuilder, hyperlink } from 'discord.js';
 
 export function abilityResponseBuilder(ability: Omit<Ability, '__typename'>) {
   const externalResources = [
-    `[Bulbapedia](${parseBulbapediaURL(ability.bulbapediaPage)} )`,
-    `[Serebii](${ability.serebiiPage})`,
-    `[Smogon](${ability.smogonPage})`
+    hyperlink('Bulbapedia', parseBulbapediaURL(ability.bulbapediaPage)),
+    hyperlink('Serebii', ability.serebiiPage),
+    hyperlink('Smogon', ability.smogonPage)
   ].join(' | ');
 
   const embed = new EmbedBuilder()
