@@ -12,7 +12,7 @@ services:
 
   redis:
     command: 'redis-server --requirepass redis'
-    container_name: redis
+    container_name: dragonite-redis
     image: 'redis:alpine'
     networks:
       - infi
@@ -62,7 +62,6 @@ services:
 
 volumes:
   influx-data:
-    external: true
 
 networks:
   infi:
