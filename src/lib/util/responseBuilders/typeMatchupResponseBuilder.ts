@@ -3,15 +3,15 @@ import { parseBulbapediaURL } from '#utils/functions/pokemonParsers';
 import type { TypeEffectiveness, TypeMatchup, TypesEnum } from '@favware/graphql-pokemon';
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
-import { EmbedBuilder } from 'discord.js';
+import { EmbedBuilder, hyperlink } from 'discord.js';
 
 export function typeMatchupResponseBuilder(types: TypesEnum[], typeMatchups: TypeMatchup) {
   const externalResources = 'External Resources';
 
   const externalSources = [
-    `[Bulbapedia](${parseBulbapediaURL(`https://bulbapedia.bulbagarden.net/wiki/${types[0]}_(type)`)} )`,
-    `[Serebii](https://www.serebii.net/pokedex-sm/${types[0].toLowerCase()}.shtml)`,
-    `[Smogon](http://www.smogon.com/dex/sm/types/${types[0]})`
+    hyperlink('Bulbapedia', parseBulbapediaURL(`https://bulbapedia.bulbagarden.net/wiki/${types[0]}_(type)`)),
+    hyperlink('Serebii', `https://www.serebii.net/pokedex-sv/${types[0].toLowerCase()}.shtml`),
+    hyperlink('Smogon', `http://www.smogon.com/dex/sv/types/${types[0]}`)
   ].join(' | ');
 
   return new PaginatedMessage({
