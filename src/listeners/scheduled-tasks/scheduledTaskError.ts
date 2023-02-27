@@ -1,6 +1,7 @@
 import { getErrorLine, getMethodLine, getStatusLine } from '#utils/functions/errorHelpers';
 import { ApplyOptions } from '@sapphire/decorators';
-import { Listener } from '@sapphire/framework';
+import { Listener, LogLevel } from '@sapphire/framework';
+import type { Logger } from '@sapphire/plugin-logger';
 import { ScheduledTaskEvents } from '@sapphire/plugin-scheduled-tasks';
 import { isNullish } from '@sapphire/utilities';
 import { DiscordAPIError, EmbedBuilder, HTTPError } from 'discord.js';
@@ -12,6 +13,11 @@ export class UserListener extends Listener<typeof ScheduledTaskEvents.ScheduledT
 
     // Send a detailed message:
     await this.sendErrorChannel(task, error);
+  }
+
+  public override onLoad() {
+    this.enabled = (this.container.logger as Logger).level <= LogLevel.Debug;
+    return super.onLoad();
   }
 
   private async sendErrorChannel(task: string, error: Error) {

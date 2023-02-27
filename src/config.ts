@@ -51,14 +51,6 @@ export const CLIENT_OPTIONS: ClientOptions = {
   presence: { activities: parsePresenceActivity() },
   loadDefaultErrorListeners: false,
   logger: { level: envParseString('NODE_ENV') === 'production' ? LogLevel.Info : LogLevel.Debug },
-  preventFailedToFetchLogForGuilds: [
-    // Discord Bots
-    '110373943822540800',
-    // Discords.com: Bots For Discord
-    '374071874222686211',
-    // Discord Labs
-    '608711879858192479'
-  ],
   partials: [Partials.Channel],
   tasks: {
     strategy: new ScheduledTaskRedisStrategy({
