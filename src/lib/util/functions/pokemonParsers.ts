@@ -19,9 +19,15 @@ export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
 
   switch (pokemon) {
     // Some exclusions that cannot be handled easily by the regex
+    case PokemonEnum.Missingno:
+      return 'MissingNo.';
+    case PokemonEnum.M00:
+      return "'M (00)";
+
     case PokemonEnum.Yanmega:
       return 'Yanmega';
 
+    // The double forme Mega Pokemon
     case PokemonEnum.Charizardmegax:
       return 'Mega Charizard X';
     case PokemonEnum.Charizardmegay:
@@ -35,6 +41,7 @@ export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
     case PokemonEnum.Venomiconepilogue:
       return 'Venomicon Epilogue';
 
+    // The mimes
     case PokemonEnum.Mimejr:
       return 'Mime Jr.';
     case PokemonEnum.Mrmime:
@@ -44,9 +51,11 @@ export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
     case PokemonEnum.Mrrime:
       return 'Mr. Rime';
 
+    // The bird that had to have a hyphen in its name
     case PokemonEnum.Hooh:
       return 'Ho-Oh';
 
+    // Castform
     case PokemonEnum.Castformrainy:
       return 'Castform Rainy';
     case PokemonEnum.Castformsunny:
@@ -54,11 +63,13 @@ export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
     case PokemonEnum.Castformsnowy:
       return 'Castform Snowy';
 
+    // Primals
     case PokemonEnum.Kyogreprimal:
       return 'Primal Kyogre';
     case PokemonEnum.Groudonprimal:
       return 'Primal Groudon';
 
+    // Deoxys
     case PokemonEnum.Deoxysattack:
       return 'Deoxys Attack';
     case PokemonEnum.Deoxysdefense:
@@ -66,17 +77,21 @@ export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
     case PokemonEnum.Deoxysspeed:
       return 'Deoxys Speed';
 
+    // Wormadam
     case PokemonEnum.Wormadamsandy:
       return 'Wormadam Sandy';
     case PokemonEnum.Wormadamtrash:
       return 'Wormadam Trash';
 
+    // Cherrim
     case PokemonEnum.Cherrimsunshine:
       return 'Cherrim Sunshine';
 
+    // Porygon hyphen z
     case PokemonEnum.Porygonz:
       return 'Porygon-Z';
 
+    // Rotom forms
     case PokemonEnum.Rotomheat:
       return 'Rotom Heat';
     case PokemonEnum.Rotomwash:
@@ -88,6 +103,7 @@ export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
     case PokemonEnum.Rotommow:
       return 'Rotom Mow';
 
+    // Origin forms
     case PokemonEnum.Giratinaorigin:
       return 'Giratina Origin';
     case PokemonEnum.Dialgaorigin:
@@ -95,20 +111,23 @@ export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
     case PokemonEnum.Palkiaorigin:
       return 'Palkia Origin';
 
+    // Shaymin
     case PokemonEnum.Shayminsky:
       return 'Shaymin Sky';
 
+    // The Basculins
     case PokemonEnum.Basculinbluestriped:
       return 'Basculin Blue-Striped';
-
     case PokemonEnum.Basculegionf:
       return 'basculegion (Female)';
 
+    // The Darmanitans
     case PokemonEnum.Darmanitanzen:
       return 'Darmanitan Zen';
     case PokemonEnum.Darmanitangalarzen:
       return 'Galarian Darmanitan Zen';
 
+    // The Frillishes
     case PokemonEnum.Frillishfemale:
       return 'Frillish (Female)';
     case PokemonEnum.Jellicentfemale:
