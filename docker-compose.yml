@@ -48,8 +48,8 @@ services:
       - redis
       - influx
     env_file:
-      - ../src/.env
-      - ../src/.env.development.local
+      - src/.env
+      - src/.env.development.local
     image: dragonite:latest
     logging:
       options:
