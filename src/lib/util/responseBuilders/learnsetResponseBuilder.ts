@@ -5,7 +5,7 @@ import type { Learnset, LearnsetLevelUpMove, Maybe } from '@favware/graphql-poke
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
 import { isNullish, toTitleCase } from '@sapphire/utilities';
-import { bold, EmbedBuilder, underscore } from 'discord.js';
+import { EmbedBuilder, bold, underscore } from 'discord.js';
 
 export function learnsetResponseBuilder(
   learnsetData: Omit<Learnset, '__typename'>,

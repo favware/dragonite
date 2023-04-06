@@ -7,8 +7,8 @@ import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
 import { filterNullish, isNullish, isNullishOrEmpty } from '@sapphire/utilities';
 import {
-  bold,
   EmbedBuilder,
+  bold,
   hideLinkEmbed,
   hyperlink,
   inlineCode,

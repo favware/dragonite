@@ -9,13 +9,13 @@ import {
   ButtonBuilder,
   ButtonStyle,
   EmbedBuilder,
-  hideLinkEmbed,
-  hyperlink,
   OAuth2Scopes,
   PermissionFlagsBits,
   PermissionsBitField,
-  time,
   TimestampStyles,
+  hideLinkEmbed,
+  hyperlink,
+  time,
   version
 } from 'discord.js';
 import { cpus, uptime, type CpuInfo } from 'node:os';
