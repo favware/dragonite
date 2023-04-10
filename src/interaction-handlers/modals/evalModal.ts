@@ -5,13 +5,13 @@ import { ApplyOptions } from '@sapphire/decorators';
 import { canSendMessages } from '@sapphire/discord.js-utilities';
 import { fetch, FetchMethods, FetchResultTypes } from '@sapphire/fetch';
 import { Stopwatch } from '@sapphire/stopwatch';
-import Type from '@sapphire/type';
+import { Type } from '@sapphire/type';
 import { codeBlock, filterNullAndUndefinedAndEmpty, isNullish, isThenable } from '@sapphire/utilities';
 import { bold, hideLinkEmbed, type APIMessage, type Message, type ModalSubmitInteraction } from 'discord.js';
 import { setTimeout as sleep } from 'node:timers/promises';
 import { inspect } from 'node:util';
 
-import { decompressEvalCustomIdMetadata, EvalModalData } from '#utils/evalCustomIdCompression';
+import { decompressEvalCustomIdMetadata, type EvalModalData } from '#utils/evalCustomIdCompression';
 import { InteractionHandler, InteractionHandlerTypes, UserError } from '@sapphire/framework';
 
 @ApplyOptions<InteractionHandler.Options>({
@@ -33,7 +33,7 @@ export class ModalHandler extends InteractionHandler {
       return null;
     }
 
-    const footer = codeBlock('ts', type);
+    const footer = codeBlock('ts', type as string);
 
     return this.handleReply(interaction, {
       hastebinUnavailable: false,

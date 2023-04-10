@@ -1,4 +1,4 @@
-import { ChatInputCommandSuccessPayload, Command, container, ContextMenuCommandSuccessPayload } from '@sapphire/framework';
+import { Command, container, type ChatInputCommandSuccessPayload, type ContextMenuCommandSuccessPayload } from '@sapphire/framework';
 import { cyan } from 'colorette';
 import type { APIUser, Guild, User } from 'discord.js';
 

@@ -2,7 +2,7 @@ import { DragoniteCommand } from '#lib/extensions/DragoniteCommand';
 import { SelectMenuCustomIds } from '#utils/constants';
 import { compressPokemonCustomIdMetadata } from '#utils/pokemonCustomIdCompression';
 import { flavorResponseBuilder } from '#utils/responseBuilders/flavorResponseBuilder';
-import { fuzzyPokemonToSelectOption, PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
+import { fuzzyPokemonToSelectOption, type PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
 import { getGuildIds } from '#utils/utils';
 import type { PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';

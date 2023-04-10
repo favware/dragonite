@@ -3,15 +3,15 @@ import { Emojis, rootFolder } from '#utils/constants';
 import { getErrorLine, getLinkLine, getMethodLine, getStatusLine, getWarnError } from '#utils/functions/errorHelpers';
 import {
   ArgumentError,
-  container,
   Events,
   UserError,
+  container,
   type InteractionHandler,
   type InteractionHandlerError,
   type InteractionHandlerParseError
 } from '@sapphire/framework';
 import { codeBlock, isNullish } from '@sapphire/utilities';
-import { DiscordAPIError, EmbedBuilder, hideLinkEmbed, HTTPError, RESTJSONErrorCodes, userMention, type Interaction } from 'discord.js';
+import { DiscordAPIError, EmbedBuilder, HTTPError, RESTJSONErrorCodes, hideLinkEmbed, userMention, type Interaction } from 'discord.js';
 import { fileURLToPath } from 'url';
 
 const ignoredCodes = [RESTJSONErrorCodes.UnknownChannel, RESTJSONErrorCodes.UnknownMessage];

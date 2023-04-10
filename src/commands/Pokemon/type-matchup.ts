@@ -3,7 +3,7 @@ import { typeMatchupResponseBuilder } from '#utils/responseBuilders/typeMatchupR
 import { getGuildIds } from '#utils/utils';
 import type { TypesEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
-import { ChatInputCommand, UserError } from '@sapphire/framework';
+import { UserError, type ChatInputCommand } from '@sapphire/framework';
 import { filterNullish, isNullish, toTitleCase } from '@sapphire/utilities';
 import type { APIApplicationCommandOptionChoice } from 'discord.js';
 

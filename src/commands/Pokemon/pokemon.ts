@@ -2,11 +2,11 @@ import { DragoniteCommand } from '#lib/extensions/DragoniteCommand';
 import { SelectMenuCustomIds } from '#utils/constants';
 import { fuzzilyFindPokemonForMessageContent } from '#utils/fuzzilyFindPokemonForMessageContent';
 import { compressPokemonCustomIdMetadata } from '#utils/pokemonCustomIdCompression';
-import { fuzzyPokemonToSelectOption, pokemonResponseBuilder, PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
+import { fuzzyPokemonToSelectOption, pokemonResponseBuilder, type PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
 import { getGuildIds } from '#utils/utils';
 import type { PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
-import { ChatInputCommand, ContextMenuCommand, UserError } from '@sapphire/framework';
+import { UserError, type ChatInputCommand, type ContextMenuCommand } from '@sapphire/framework';
 import { isNullish, isNullishOrEmpty } from '@sapphire/utilities';
 import {
   ActionRowBuilder,

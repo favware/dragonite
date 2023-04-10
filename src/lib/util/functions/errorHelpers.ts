@@ -208,7 +208,11 @@ export function getStatusLine(error: DiscordAPIError | HTTPError): string {
  * @param error The error to format.
  */
 export function getErrorLine(error: Error): string {
-  return `**Error**: ${codeBlock('js', error.stack || error)}`;
+  if (error instanceof Error) {
+    return `**Error**: ${codeBlock('js', error.stack || error.message)}`;
+  }
+
+  return `**Error**: ${codeBlock('js', error)}`;
 }
 
 export function getWarnError(interaction: BaseInteraction) {

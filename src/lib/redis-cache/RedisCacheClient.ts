@@ -15,7 +15,7 @@ import type {
 import { Result } from '@sapphire/framework';
 import { isNullish } from '@sapphire/utilities';
 import { envParseInteger } from '@skyra/env-utilities';
-import Redis from 'ioredis';
+import { Redis } from 'ioredis';
 
 export const enum RedisKeys {
   GetAbility = 'getAbility',

@@ -19,6 +19,7 @@ import type {
   PokemonEnum,
   Query,
   QueryGetAbilityArgs,
+  QueryGetAllPokemonArgs,
   QueryGetFuzzyAbilityArgs,
   QueryGetFuzzyItemArgs,
   QueryGetFuzzyMoveArgs,
@@ -27,12 +28,11 @@ import type {
   QueryGetLearnsetArgs,
   QueryGetMoveArgs,
   QueryGetPokemonArgs,
-  QueryGetAllPokemonArgs,
   QueryGetTypeMatchupArgs,
   TypesEnum
 } from '@favware/graphql-pokemon';
-import { fetch, FetchMethods, FetchResultTypes } from '@sapphire/fetch';
-import { container, Result, UserError } from '@sapphire/framework';
+import { FetchMethods, FetchResultTypes, fetch } from '@sapphire/fetch';
+import { Result, UserError, container } from '@sapphire/framework';
 import { envParseString } from '@skyra/env-utilities';
 import { hideLinkEmbed } from 'discord.js';
 import os from 'node:os';

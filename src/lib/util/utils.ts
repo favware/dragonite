@@ -1,4 +1,4 @@
-import { container, Events, InteractionHandler, UserError, Result } from '@sapphire/framework';
+import { Events, InteractionHandler, Result, UserError, container } from '@sapphire/framework';
 import { envParseArray } from '@skyra/env-utilities';
 import { deserialize, serialize } from 'binarytf';
 import type { Interaction } from 'discord.js';
