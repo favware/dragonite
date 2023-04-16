@@ -43,7 +43,7 @@
     "@skyra/env-utilities": "^1.2.0",
     "@skyra/jaro-winkler": "^1.1.0",
     "@skyra/start-banner": "^2.0.0",
-    "binarytf": "^2.1.3",
+    "binarytf": "^2.1.3-next",
     "bufferutil": "^4.0.7",
     "bullmq": "^3.10.4",
     "colorette": "^2.0.19",
