@@ -42,7 +42,7 @@
     "@sapphire/utilities": "^3.11.1",
     "@skyra/env-utilities": "^1.2.0",
     "@skyra/jaro-winkler": "^1.1.0",
-    "@skyra/start-banner": "^1.0.2",
+    "@skyra/start-banner": "^2.0.0",
     "binarytf": "^2.1.2",
     "bufferutil": "^4.0.7",
     "bullmq": "^3.10.4",
