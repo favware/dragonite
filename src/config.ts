@@ -1,15 +1,9 @@
-// Unless explicitly defined, set NODE_ENV as development:
-process.env.NODE_ENV ??= 'development';
-
-import { srcFolder } from '#utils/constants';
 import { LogLevel } from '@sapphire/framework';
 import { ScheduledTaskRedisStrategy } from '@sapphire/plugin-scheduled-tasks/register-redis';
 import { cast } from '@sapphire/utilities';
-import { envParseInteger, envParseString, setup } from '@skyra/env-utilities';
+import { envParseInteger, envParseString } from '@skyra/env-utilities';
 import type { RedisOptions } from 'bullmq';
 import { ActivityType, GatewayIntentBits, Partials, type ActivitiesOptions, type ClientOptions, type WebhookClientData } from 'discord.js';
-
-setup(new URL('.env', srcFolder));
 
 export const OWNERS = ['268792781713965056'];
 

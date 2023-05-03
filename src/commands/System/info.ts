@@ -1,5 +1,5 @@
 import { BrandingColors } from '#utils/constants';
-import { seconds } from '#utils/functions/time';
+import { secondsFromMilliseconds } from '#utils/functions/time';
 import { getGuildIds } from '#utils/utils';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command, version as sapphireVersion, type ChatInputCommand } from '@sapphire/framework';
@@ -172,7 +172,7 @@ export class UserCommand extends Command {
     const now = Date.now();
     const nowSeconds = roundNumber(now / 1000);
     return {
-      client: time(seconds.fromMilliseconds(now - this.container.client.uptime!), TimestampStyles.RelativeTime),
+      client: time(secondsFromMilliseconds(now - this.container.client.uptime!), TimestampStyles.RelativeTime),
       host: time(roundNumber(nowSeconds - uptime()), TimestampStyles.RelativeTime),
       total: time(roundNumber(nowSeconds - process.uptime()), TimestampStyles.RelativeTime)
     };

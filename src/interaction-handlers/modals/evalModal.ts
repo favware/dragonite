@@ -1,5 +1,5 @@
 import { ModalCustomIds } from '#utils/constants';
-import { seconds } from '#utils/functions/time';
+import { secondsFromMilliseconds } from '#utils/functions/time';
 import { clean } from '#utils/Sanitizer/clean';
 import { ApplyOptions } from '@sapphire/decorators';
 import { canSendMessages } from '@sapphire/discord.js-utilities';
@@ -72,7 +72,7 @@ export class ModalHandler extends InteractionHandler {
 
     return Promise.race([
       sleep(evalParameters.timeout).then(() => ({
-        result: `TIMEOUT: Took longer than ${seconds.fromMilliseconds(evalParameters.timeout)} seconds.`,
+        result: `TIMEOUT: Took longer than ${secondsFromMilliseconds(evalParameters.timeout)} seconds.`,
         success: false,
         time: '⏱ ...',
         type: 'EvalTimeoutError'
