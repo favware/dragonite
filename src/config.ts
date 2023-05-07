@@ -1,5 +1,4 @@
 import { LogLevel } from '@sapphire/framework';
-import { ScheduledTaskRedisStrategy } from '@sapphire/plugin-scheduled-tasks/register-redis';
 import { cast } from '@sapphire/utilities';
 import { envParseInteger, envParseString } from '@skyra/env-utilities';
 import type { RedisOptions } from 'bullmq';
@@ -47,13 +46,11 @@ export const CLIENT_OPTIONS: ClientOptions = {
   logger: { level: envParseString('NODE_ENV') === 'production' ? LogLevel.Info : LogLevel.Debug },
   partials: [Partials.Channel],
   tasks: {
-    strategy: new ScheduledTaskRedisStrategy({
-      bull: {
-        connection: {
-          ...parseRedisOption(),
-          db: envParseInteger('REDIS_TASK_DB')
-        }
+    bull: {
+      connection: {
+        ...parseRedisOption(),
+        db: envParseInteger('REDIS_TASK_DB')
       }
-    })
+    }
   }
 };
