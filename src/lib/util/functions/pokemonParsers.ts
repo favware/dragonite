@@ -379,6 +379,10 @@ export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
       return 'Roaring Moon';
     case PokemonEnum.Ironvaliant:
       return 'Iron Valiant';
+    case PokemonEnum.Walkingwake:
+      return 'Walking Wake';
+    case PokemonEnum.Ironleaves:
+      return 'Iron Leaves';
 
     // The Ruination Pokémon
     case PokemonEnum.Wochien:
@@ -391,11 +395,11 @@ export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
       return 'Chi-Yu';
 
     // Special Paldean Forms
-    case PokemonEnum.Taurospaldea:
+    case PokemonEnum.Taurospaldeacombat:
       return 'Paldean Tauros (Combat Breed)';
-    case PokemonEnum.Taurospaldeawater:
+    case PokemonEnum.Taurospaldeaaqua:
       return 'Paldean Tauros (Aqua Breed)';
-    case PokemonEnum.Taurospaldeafire:
+    case PokemonEnum.Taurospaldeablaze:
       return 'Paldean Tauros (Blaze Breed)';
 
     // All other cases
