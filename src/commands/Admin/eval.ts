@@ -19,16 +19,16 @@ import {
   preconditions: ['OwnerOnly']
 })
 export class SlashCommand extends DragoniteCommand {
-  readonly #timeout = Time.Minute;
+  private readonly timeout = Time.Minute;
 
-  readonly #languageChoices: APIApplicationCommandOptionChoice<string>[] = [
+  private readonly languageChoices: APIApplicationCommandOptionChoice<string>[] = [
     { name: 'JavaScript', value: 'js' },
     { name: 'TypeScript', value: 'ts' },
     { name: 'JSON', value: 'json' },
     { name: 'Raw text', value: 'txt' }
   ];
 
-  readonly #outputChoices: APIApplicationCommandOptionChoice<string>[] = [
+  private readonly outputChoices: APIApplicationCommandOptionChoice<string>[] = [
     { name: 'Reply', value: 'reply' },
     { name: 'File', value: 'file' },
     { name: 'Hastebin', value: 'hastebin' },
@@ -53,13 +53,13 @@ export class SlashCommand extends DragoniteCommand {
             builder //
               .setName('language')
               .setDescription('The language of the output codeblock.')
-              .setChoices(...this.#languageChoices)
+              .setChoices(...this.languageChoices)
           )
           .addStringOption((builder) =>
             builder //
               .setName('output-to')
               .setDescription('The location to send the output to.')
-              .setChoices(...this.#outputChoices)
+              .setChoices(...this.outputChoices)
           )
           .addBooleanOption((builder) =>
             builder //
@@ -94,7 +94,7 @@ export class SlashCommand extends DragoniteCommand {
     const silent = interaction.options.getBoolean('silent') ?? false;
     const showHidden = interaction.options.getBoolean('show-hidden') ?? false;
 
-    const timeout = noTimeout ? Time.Minute * 10 : this.#timeout;
+    const timeout = noTimeout ? Time.Minute * 10 : this.timeout;
 
     const metadata = compressEvalCustomIdMetadata({
       depth,

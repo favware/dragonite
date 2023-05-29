@@ -11,7 +11,7 @@ import type { APIApplicationCommandOptionChoice } from 'discord.js';
   description: 'Gets data for the chosen type matchup.'
 })
 export class SlashCommand extends DragoniteCommand {
-  readonly #pokemonTypes = [
+  private readonly pokemonTypes = [
     'bug',
     'dark',
     'dragon',
@@ -32,7 +32,7 @@ export class SlashCommand extends DragoniteCommand {
     'water'
   ];
 
-  readonly #choices = this.#pokemonTypes.map<APIApplicationCommandOptionChoice<string>>((type) => ({ name: toTitleCase(type), value: type }));
+  private readonly choices = this.pokemonTypes.map<APIApplicationCommandOptionChoice<string>>((type) => ({ name: toTitleCase(type), value: type }));
 
   public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
     registry.registerChatInputCommand(
@@ -45,13 +45,13 @@ export class SlashCommand extends DragoniteCommand {
               .setName('first-type')
               .setDescription('The first type to include in the type matchup.')
               .setRequired(true)
-              .setChoices(...this.#choices)
+              .setChoices(...this.choices)
           )
           .addStringOption((option) =>
             option //
               .setName('second-type')
               .setDescription('The second type to include in the type matchup.')
-              .setChoices(...this.#choices)
+              .setChoices(...this.choices)
           ),
       { guildIds: getGuildIds() }
     );

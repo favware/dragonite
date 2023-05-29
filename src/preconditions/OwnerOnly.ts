@@ -3,7 +3,7 @@ import { AllFlowsPrecondition } from '@sapphire/framework';
 import type { ChatInputCommandInteraction, ContextMenuCommandInteraction, Message, Snowflake } from 'discord.js';
 
 export class UserPrecondition extends AllFlowsPrecondition {
-  #message = 'This command can only be used by the owner.';
+  private readonly message = 'This command can only be used by the owner.';
 
   public override chatInputRun(interaction: ChatInputCommandInteraction) {
     return this.doOwnerCheck(interaction.user.id);
@@ -18,6 +18,6 @@ export class UserPrecondition extends AllFlowsPrecondition {
   }
 
   private doOwnerCheck(userId: Snowflake) {
-    return OWNERS.includes(userId) ? this.ok() : this.error({ message: this.#message });
+    return OWNERS.includes(userId) ? this.ok() : this.error({ message: this.message });
   }
 }

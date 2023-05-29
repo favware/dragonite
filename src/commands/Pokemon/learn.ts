@@ -14,14 +14,14 @@ import { ActionRowBuilder, StringSelectMenuBuilder, type APIApplicationCommandOp
   description: 'Tells you whether the chosen Pokémon can learn the chosen move or moves.'
 })
 export class SlashCommand extends DragoniteCommand {
-  readonly #spriteChoices: APIApplicationCommandOptionChoice<PokemonSpriteTypes>[] = [
+  private readonly spriteChoices: APIApplicationCommandOptionChoice<PokemonSpriteTypes>[] = [
     { name: 'Regular Sprite', value: 'sprite' },
     { name: 'Regular Back Sprite', value: 'backSprite' },
     { name: 'Shiny Sprite', value: 'shinySprite' },
     { name: 'Shiny Back Sprite', value: 'shinyBackSprite' }
   ];
 
-  readonly #generationChoices: APIApplicationCommandOptionChoice<number>[] = [
+  private readonly generationChoices: APIApplicationCommandOptionChoice<number>[] = [
     { name: 'Generation 1', value: 1 },
     { name: 'Generation 2', value: 2 },
     { name: 'Generation 3', value: 3 },
@@ -69,13 +69,13 @@ export class SlashCommand extends DragoniteCommand {
             option //
               .setName('generation')
               .setDescription('The Pokémon generation that you want to check in if the Pokémon learns the move.')
-              .setChoices(...this.#generationChoices)
+              .setChoices(...this.generationChoices)
           )
           .addStringOption((option) =>
             option //
               .setName('sprite')
               .setDescription('The sprite that you want the result to show.')
-              .setChoices(...this.#spriteChoices)
+              .setChoices(...this.spriteChoices)
           ),
       { guildIds: getGuildIds() }
     );
