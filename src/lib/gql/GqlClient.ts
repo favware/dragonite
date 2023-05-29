@@ -38,9 +38,9 @@ import { hideLinkEmbed } from 'discord.js';
 import os from 'node:os';
 
 export class GqlClient {
-  #uri = envParseString('POKEMON_API_URL');
+  private uri = envParseString('POKEMON_API_URL');
 
-  #userAgent = `Favware Dragonite/1.0.0 (apollo-client) ${os.platform()}/${os.release()}`;
+  private userAgent = `Favware Dragonite/1.0.0 (apollo-client) ${os.platform()}/${os.release()}`;
 
   public async getAbility(ability: AbilitiesEnum) {
     const result = await Result.fromAsync(async () => {
@@ -294,12 +294,12 @@ export class GqlClient {
   ): Promise<PokemonResponse<R>> {
     const result = await Result.fromAsync(async () =>
       fetch<PokemonResponse<R>>(
-        this.#uri,
+        this.uri,
         {
           method: FetchMethods.Post,
           headers: {
             'Content-Type': 'application/json',
-            'User-Agent': this.#userAgent
+            'User-Agent': this.userAgent
           },
           body: JSON.stringify({
             query,
