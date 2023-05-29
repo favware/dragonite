@@ -24,9 +24,7 @@ import { cpus, uptime, type CpuInfo } from 'node:os';
   description: 'Provides information about Dragonite, and links for adding the bot and joining the support server'
 })
 export class UserCommand extends Command {
-  readonly #sapphireNextVersionRegex = /-next\.[a-z0-9]+\.\d{1,}/i;
-
-  readonly #descriptionContent = [
+  private readonly descriptionContent = [
     `Dragonite is a Pokémon information Discord bot built around Discord Interactions.`,
     `This bot uses the ${hyperlink('Sapphire Framework', hideLinkEmbed('https://sapphirejs.dev'))} build on top of ${hyperlink(
       'discord.js',
@@ -138,7 +136,7 @@ export class UserCommand extends Command {
 
     return new EmbedBuilder() //
       .setColor(BrandingColors.Primary)
-      .setDescription(this.#descriptionContent)
+      .setDescription(this.descriptionContent)
       .setFields(
         {
           name: titles.stats,
@@ -164,7 +162,7 @@ export class UserCommand extends Command {
       nodeJs: process.version,
       users: client.guilds.cache.reduce((acc, val) => acc + (val.memberCount ?? 0), 0),
       version: `v${version}`,
-      sapphireVersion: `v${sapphireVersion.replace(this.#sapphireNextVersionRegex, '')}`
+      sapphireVersion: `v${sapphireVersion}`
     };
   }
 

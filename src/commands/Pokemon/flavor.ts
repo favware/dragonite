@@ -14,7 +14,7 @@ import { ActionRowBuilder, StringSelectMenuBuilder, type APIApplicationCommandOp
   description: 'Gets PokéDex entries for the chosen Pokémon.'
 })
 export class SlashCommand extends DragoniteCommand {
-  readonly #spriteChoices: APIApplicationCommandOptionChoice<PokemonSpriteTypes>[] = [
+  private readonly spriteChoices: APIApplicationCommandOptionChoice<PokemonSpriteTypes>[] = [
     { name: 'Regular Sprite', value: 'sprite' },
     { name: 'Regular Back Sprite', value: 'backSprite' },
     { name: 'Shiny Sprite', value: 'shinySprite' },
@@ -38,7 +38,7 @@ export class SlashCommand extends DragoniteCommand {
             option //
               .setName('sprite')
               .setDescription('The sprite that you want the result to show.')
-              .setChoices(...this.#spriteChoices)
+              .setChoices(...this.spriteChoices)
           ),
       { guildIds: getGuildIds() }
     );
