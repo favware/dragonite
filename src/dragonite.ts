@@ -11,6 +11,6 @@ try {
   client.logger.info(`${green('WS     ')} - Successfully logged in.`);
 } catch (error) {
   client.logger.error(error);
-  client.destroy();
+  await client.destroy();
   process.exit(1);
 }
