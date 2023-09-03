@@ -802,16 +802,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/discord-utilities@npm:^3.0.4, @sapphire/discord-utilities@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "@sapphire/discord-utilities@npm:3.1.0"
-  dependencies:
-    discord-api-types: ^0.37.51
-  checksum: a101c3c2a405ba81eae249c985aab3bbe90bfc4be8e34e44b806a064641a147289392026d52fed6fd8af2149f0674cc3b1fba94c2bf7754cb9b904883afa93cc
-  languageName: node
-  linkType: hard
-
-"@sapphire/discord-utilities@npm:^3.1.1":
+"@sapphire/discord-utilities@npm:^3.1.0, @sapphire/discord-utilities@npm:^3.1.1":
   version: 3.1.1
   resolution: "@sapphire/discord-utilities@npm:3.1.1"
   dependencies:
@@ -820,19 +811,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/discord.js-utilities@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "@sapphire/discord.js-utilities@npm:7.0.1"
-  dependencies:
-    "@sapphire/discord-utilities": ^3.0.4
-    "@sapphire/duration": ^1.1.0
-    "@sapphire/utilities": ^3.13.0
-    tslib: ^2.6.0
-  checksum: cbc46da56b32071ba7fd4e2376de8ccf34860fe54aed124791f8eca6a7b73f00c11d659f79f08c2853e6de97b45776e6a58271a45af795f95a20978781a0549c
-  languageName: node
-  linkType: hard
-
-"@sapphire/discord.js-utilities@npm:^7.0.2":
+"@sapphire/discord.js-utilities@npm:^7.0.1, @sapphire/discord.js-utilities@npm:^7.0.2":
   version: 7.0.2
   resolution: "@sapphire/discord.js-utilities@npm:7.0.2"
   dependencies:
@@ -1042,91 +1021,91 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-arm64@npm:1.3.80":
-  version: 1.3.80
-  resolution: "@swc/core-darwin-arm64@npm:1.3.80"
+"@swc/core-darwin-arm64@npm:1.3.82":
+  version: 1.3.82
+  resolution: "@swc/core-darwin-arm64@npm:1.3.82"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-x64@npm:1.3.80":
-  version: 1.3.80
-  resolution: "@swc/core-darwin-x64@npm:1.3.80"
+"@swc/core-darwin-x64@npm:1.3.82":
+  version: 1.3.82
+  resolution: "@swc/core-darwin-x64@npm:1.3.82"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm-gnueabihf@npm:1.3.80":
-  version: 1.3.80
-  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.80"
+"@swc/core-linux-arm-gnueabihf@npm:1.3.82":
+  version: 1.3.82
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.3.82"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-gnu@npm:1.3.80":
-  version: 1.3.80
-  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.80"
+"@swc/core-linux-arm64-gnu@npm:1.3.82":
+  version: 1.3.82
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.3.82"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-musl@npm:1.3.80":
-  version: 1.3.80
-  resolution: "@swc/core-linux-arm64-musl@npm:1.3.80"
+"@swc/core-linux-arm64-musl@npm:1.3.82":
+  version: 1.3.82
+  resolution: "@swc/core-linux-arm64-musl@npm:1.3.82"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-gnu@npm:1.3.80":
-  version: 1.3.80
-  resolution: "@swc/core-linux-x64-gnu@npm:1.3.80"
+"@swc/core-linux-x64-gnu@npm:1.3.82":
+  version: 1.3.82
+  resolution: "@swc/core-linux-x64-gnu@npm:1.3.82"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-musl@npm:1.3.80":
-  version: 1.3.80
-  resolution: "@swc/core-linux-x64-musl@npm:1.3.80"
+"@swc/core-linux-x64-musl@npm:1.3.82":
+  version: 1.3.82
+  resolution: "@swc/core-linux-x64-musl@npm:1.3.82"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-win32-arm64-msvc@npm:1.3.80":
-  version: 1.3.80
-  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.80"
+"@swc/core-win32-arm64-msvc@npm:1.3.82":
+  version: 1.3.82
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.3.82"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-win32-ia32-msvc@npm:1.3.80":
-  version: 1.3.80
-  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.80"
+"@swc/core-win32-ia32-msvc@npm:1.3.82":
+  version: 1.3.82
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.3.82"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@swc/core-win32-x64-msvc@npm:1.3.80":
-  version: 1.3.80
-  resolution: "@swc/core-win32-x64-msvc@npm:1.3.80"
+"@swc/core-win32-x64-msvc@npm:1.3.82":
+  version: 1.3.82
+  resolution: "@swc/core-win32-x64-msvc@npm:1.3.82"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core@npm:^1.3.80":
-  version: 1.3.80
-  resolution: "@swc/core@npm:1.3.80"
+"@swc/core@npm:^1.3.82":
+  version: 1.3.82
+  resolution: "@swc/core@npm:1.3.82"
   dependencies:
-    "@swc/core-darwin-arm64": 1.3.80
-    "@swc/core-darwin-x64": 1.3.80
-    "@swc/core-linux-arm-gnueabihf": 1.3.80
-    "@swc/core-linux-arm64-gnu": 1.3.80
-    "@swc/core-linux-arm64-musl": 1.3.80
-    "@swc/core-linux-x64-gnu": 1.3.80
-    "@swc/core-linux-x64-musl": 1.3.80
-    "@swc/core-win32-arm64-msvc": 1.3.80
-    "@swc/core-win32-ia32-msvc": 1.3.80
-    "@swc/core-win32-x64-msvc": 1.3.80
-    "@swc/types": ^0.1.3
+    "@swc/core-darwin-arm64": 1.3.82
+    "@swc/core-darwin-x64": 1.3.82
+    "@swc/core-linux-arm-gnueabihf": 1.3.82
+    "@swc/core-linux-arm64-gnu": 1.3.82
+    "@swc/core-linux-arm64-musl": 1.3.82
+    "@swc/core-linux-x64-gnu": 1.3.82
+    "@swc/core-linux-x64-musl": 1.3.82
+    "@swc/core-win32-arm64-msvc": 1.3.82
+    "@swc/core-win32-ia32-msvc": 1.3.82
+    "@swc/core-win32-x64-msvc": 1.3.82
+    "@swc/types": ^0.1.4
   peerDependencies:
     "@swc/helpers": ^0.5.0
   dependenciesMeta:
@@ -1153,11 +1132,11 @@ __metadata:
   peerDependenciesMeta:
     "@swc/helpers":
       optional: true
-  checksum: c23af8e43fe001fd211a36954372877515267ab4d019e63896160adc76d9271ce0301d9610d0220ccc4bf8c97c757fffa83d9ef358d5f1810d2ee4482eb3d2a9
+  checksum: 4c4adbed22071c0af935129a6fe7cc35d1688a5c1a069efdd8c97740930fa7eaf324e75dc88634a4ea0520330f6c88101d5aa5cf7ed6e02d336cc46ee7131ea3
   languageName: node
   linkType: hard
 
-"@swc/types@npm:^0.1.3":
+"@swc/types@npm:^0.1.4":
   version: 0.1.4
   resolution: "@swc/types@npm:0.1.4"
   checksum: 9b09de7dca8e4b19bfb43f9e332c771855158cb761d26000807fe858447ecbc5342a6c257b26d9aa5497f7138fc58913693e2bee222e5042e0e8f57c2979ae66
@@ -1236,10 +1215,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.17.12":
-  version: 18.17.12
-  resolution: "@types/node@npm:18.17.12"
-  checksum: 79f8bcca3067a3c529f30e172df8d14f25ab9e4cd6a05ed897a924ab1dec774e8ea172ef5c4a67ffec433d423a0c81778f17db22606d574bc83871b60aab298e
+"@types/node@npm:^18.17.14":
+  version: 18.17.14
+  resolution: "@types/node@npm:18.17.14"
+  checksum: f96ce1e588426a26cf82440193084f8bbab47bfb3c2e668cf174095f99ce808a20654b2137448c7e88cfd7b6c2b8521ffb6f714f521b3502ac595a0df0bff679
   languageName: node
   linkType: hard
 
@@ -2366,10 +2345,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:^0.37.51, discord-api-types@npm:^0.37.55":
-  version: 0.37.55
-  resolution: "discord-api-types@npm:0.37.55"
-  checksum: b0ad37ec52331431f1f4bc20c326b0618087ed0160cc35a5ec103d5c3f52d57ca9758aa07156cdb9430dbec7e14361ee88ac43a0aba1810b765fbd2b62e128e7
+"discord-api-types@npm:^0.37.55, discord-api-types@npm:^0.37.56":
+  version: 0.37.56
+  resolution: "discord-api-types@npm:0.37.56"
+  checksum: 797be690af70a846422f955d918a5713a2c8c37bea646e2120996522afbb47fc5893122c1ddcb8f57a285ace6e1fb0237d1e63105444ae52534f0570a2f87f34
   languageName: node
   linkType: hard
 
@@ -2453,10 +2432,10 @@ __metadata:
     "@skyra/env-utilities": ^1.2.1
     "@skyra/jaro-winkler": ^1.1.0
     "@skyra/start-banner": ^2.0.0
-    "@swc/core": ^1.3.80
+    "@swc/core": ^1.3.82
     "@types/figlet": ^1.5.6
     "@types/gradient-string": ^1.1.2
-    "@types/node": ^18.17.12
+    "@types/node": ^18.17.14
     "@types/ws": ^8.5.5
     "@typescript-eslint/eslint-plugin": ^6.5.0
     "@typescript-eslint/parser": ^6.5.0
@@ -2464,7 +2443,7 @@ __metadata:
     bufferutil: ^4.0.7
     colorette: ^2.0.20
     cz-conventional-changelog: ^3.3.0
-    discord-api-types: ^0.37.55
+    discord-api-types: ^0.37.56
     discord.js: ^14.13.0
     eslint: ^8.48.0
     eslint-config-prettier: ^9.0.0
@@ -4870,16 +4849,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.0.0, prettier@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "prettier@npm:3.0.2"
-  bin:
-    prettier: bin/prettier.cjs
-  checksum: 118b59ddb6c80abe2315ab6d0f4dd1b253be5cfdb20622fa5b65bb1573dcd362e6dd3dcf2711dd3ebfe64aecf7bdc75de8a69dc2422dcd35bdde7610586b677a
-  languageName: node
-  linkType: hard
-
-"prettier@npm:^3.0.3":
+"prettier@npm:^3.0.0, prettier@npm:^3.0.2, prettier@npm:^3.0.3":
   version: 3.0.3
   resolution: "prettier@npm:3.0.3"
   bin:
