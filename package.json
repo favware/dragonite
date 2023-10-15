@@ -23,8 +23,7 @@
     "watch": "tsup --watch",
     "clean": "rimraf dist/",
     "typecheck": "tsc -b src",
-    "dev": "tsup --watch --onSuccess \"yarn start\"",
-    "postinstall": "husky install .github/husky"
+    "dev": "tsup --watch --onSuccess \"yarn start\""
   },
   "dependencies": {
     "@discordjs/builders": "^1.6.5",
@@ -73,7 +72,6 @@
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "husky": "^8.0.3",
     "lint-staged": "^15.0.0",
     "prettier": "^3.0.3",
     "rimraf": "^5.0.5",
