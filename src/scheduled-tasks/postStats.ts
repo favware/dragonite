@@ -5,7 +5,7 @@ import { Status } from 'discord.js';
 
 @ApplyOptions<ScheduledTask.Options>({
   pattern: '*/10 * * * *',
-  bullJobsOptions: {
+  customJobOptions: {
     removeOnComplete: true
   }
 })
