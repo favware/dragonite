@@ -1,6 +1,5 @@
 import { DragoniteCommand } from '#lib/extensions/DragoniteCommand';
 import { typeMatchupResponseBuilder } from '#utils/responseBuilders/typeMatchupResponseBuilder';
-import { getGuildIds } from '#utils/utils';
 import type { TypesEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import { UserError, type ChatInputCommand } from '@sapphire/framework';
@@ -35,25 +34,23 @@ export class SlashCommand extends DragoniteCommand {
   private readonly choices = this.pokemonTypes.map<APIApplicationCommandOptionChoice<string>>((type) => ({ name: toTitleCase(type), value: type }));
 
   public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
-    registry.registerChatInputCommand(
-      (builder) =>
-        builder //
-          .setName(this.name)
-          .setDescription(this.description)
-          .addStringOption((option) =>
-            option //
-              .setName('first-type')
-              .setDescription('The first type to include in the type matchup.')
-              .setRequired(true)
-              .setChoices(...this.choices)
-          )
-          .addStringOption((option) =>
-            option //
-              .setName('second-type')
-              .setDescription('The second type to include in the type matchup.')
-              .setChoices(...this.choices)
-          ),
-      { guildIds: getGuildIds() }
+    registry.registerChatInputCommand((builder) =>
+      builder //
+        .setName(this.name)
+        .setDescription(this.description)
+        .addStringOption((option) =>
+          option //
+            .setName('first-type')
+            .setDescription('The first type to include in the type matchup.')
+            .setRequired(true)
+            .setChoices(...this.choices)
+        )
+        .addStringOption((option) =>
+          option //
+            .setName('second-type')
+            .setDescription('The second type to include in the type matchup.')
+            .setChoices(...this.choices)
+        )
     );
   }
 

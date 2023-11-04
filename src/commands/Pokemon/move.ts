@@ -1,7 +1,6 @@
 import { DragoniteCommand } from '#lib/extensions/DragoniteCommand';
 import { SelectMenuCustomIds } from '#utils/constants';
 import { moveResponseBuilder } from '#utils/responseBuilders/moveResponseBuilder';
-import { getGuildIds } from '#utils/utils';
 import type { MovesEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { ChatInputCommand } from '@sapphire/framework';
@@ -13,19 +12,17 @@ import { ActionRowBuilder, StringSelectMenuBuilder, type APISelectMenuOption } f
 })
 export class SlashCommand extends DragoniteCommand {
   public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
-    registry.registerChatInputCommand(
-      (builder) =>
-        builder //
-          .setName(this.name)
-          .setDescription(this.description)
-          .addStringOption((option) =>
-            option //
-              .setName('move')
-              .setDescription('The name of the move about which you want to get information.')
-              .setRequired(true)
-              .setAutocomplete(true)
-          ),
-      { guildIds: getGuildIds() }
+    registry.registerChatInputCommand((builder) =>
+      builder //
+        .setName(this.name)
+        .setDescription(this.description)
+        .addStringOption((option) =>
+          option //
+            .setName('move')
+            .setDescription('The name of the move about which you want to get information.')
+            .setRequired(true)
+            .setAutocomplete(true)
+        )
     );
   }
 

@@ -1,12 +1,7 @@
 import { Events, InteractionHandler, Result, UserError, container } from '@sapphire/framework';
-import { envParseArray } from '@skyra/env-utilities';
 import { deserialize, serialize } from 'binarytf';
 import type { Interaction } from 'discord.js';
 import { brotliCompressSync, brotliDecompressSync } from 'node:zlib';
-
-export function getGuildIds(): string[] {
-  return envParseArray('COMMAND_GUILD_IDS', []);
-}
 
 /**
  * Compresses customId metadata using a combination of {@link serialize}

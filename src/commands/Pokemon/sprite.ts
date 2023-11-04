@@ -3,7 +3,6 @@ import { SelectMenuCustomIds } from '#utils/constants';
 import { compressPokemonCustomIdMetadata } from '#utils/pokemonCustomIdCompression';
 import { fuzzyPokemonToSelectOption } from '#utils/responseBuilders/pokemonResponseBuilder';
 import { spriteResponseBuilder } from '#utils/responseBuilders/spriteResponseBuilder';
-import { getGuildIds } from '#utils/utils';
 import type { PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { ChatInputCommand } from '@sapphire/framework';
@@ -15,19 +14,17 @@ import { ActionRowBuilder, StringSelectMenuBuilder, type APISelectMenuOption } f
 })
 export class SlashCommand extends DragoniteCommand {
   public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
-    registry.registerChatInputCommand(
-      (builder) =>
-        builder //
-          .setName(this.name)
-          .setDescription(this.description)
-          .addStringOption((option) =>
-            option //
-              .setName('pokemon')
-              .setDescription('The name of the Pokémon for which you want to get the sprites.')
-              .setRequired(true)
-              .setAutocomplete(true)
-          ),
-      { guildIds: getGuildIds() }
+    registry.registerChatInputCommand((builder) =>
+      builder //
+        .setName(this.name)
+        .setDescription(this.description)
+        .addStringOption((option) =>
+          option //
+            .setName('pokemon')
+            .setDescription('The name of the Pokémon for which you want to get the sprites.')
+            .setRequired(true)
+            .setAutocomplete(true)
+        )
     );
   }
 

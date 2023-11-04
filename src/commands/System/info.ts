@@ -1,6 +1,5 @@
 import { BrandingColors } from '#utils/constants';
 import { secondsFromMilliseconds } from '#utils/functions/time';
-import { getGuildIds } from '#utils/utils';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command, version as sapphireVersion, type ChatInputCommand } from '@sapphire/framework';
 import { roundNumber } from '@sapphire/utilities';
@@ -33,12 +32,10 @@ export class UserCommand extends Command {
   ].join('\n');
 
   public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
-    registry.registerChatInputCommand(
-      (builder) =>
-        builder //
-          .setName(this.name)
-          .setDescription(this.description),
-      { guildIds: getGuildIds() }
+    registry.registerChatInputCommand((builder) =>
+      builder //
+        .setName(this.name)
+        .setDescription(this.description)
     );
   }
 

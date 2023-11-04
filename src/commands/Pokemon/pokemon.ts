@@ -3,7 +3,6 @@ import { SelectMenuCustomIds } from '#utils/constants';
 import { fuzzilyFindPokemonForMessageContent } from '#utils/fuzzilyFindPokemonForMessageContent';
 import { compressPokemonCustomIdMetadata } from '#utils/pokemonCustomIdCompression';
 import { fuzzyPokemonToSelectOption, pokemonResponseBuilder, type PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
-import { getGuildIds } from '#utils/utils';
 import type { PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import { UserError, type ChatInputCommand, type ContextMenuCommand } from '@sapphire/framework';
@@ -29,33 +28,29 @@ export class SlashCommand extends DragoniteCommand {
   ];
 
   public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
-    registry.registerChatInputCommand(
-      (builder) =>
-        builder //
-          .setName(this.name)
-          .setDescription(this.description)
-          .addStringOption((option) =>
-            option //
-              .setName('pokemon')
-              .setDescription('The name of the Pokémon about which you want to get information.')
-              .setRequired(true)
-              .setAutocomplete(true)
-          )
-          .addStringOption((option) =>
-            option //
-              .setName('sprite')
-              .setDescription('The sprite that you want the result to show.')
-              .setChoices(...this.spriteChoices)
-          ),
-      { guildIds: getGuildIds() }
+    registry.registerChatInputCommand((builder) =>
+      builder //
+        .setName(this.name)
+        .setDescription(this.description)
+        .addStringOption((option) =>
+          option //
+            .setName('pokemon')
+            .setDescription('The name of the Pokémon about which you want to get information.')
+            .setRequired(true)
+            .setAutocomplete(true)
+        )
+        .addStringOption((option) =>
+          option //
+            .setName('sprite')
+            .setDescription('The sprite that you want the result to show.')
+            .setChoices(...this.spriteChoices)
+        )
     );
 
-    registry.registerContextMenuCommand(
-      (builder) =>
-        builder //
-          .setName('Find Pokémon')
-          .setType(ApplicationCommandType.Message),
-      { guildIds: getGuildIds() }
+    registry.registerContextMenuCommand((builder) =>
+      builder //
+        .setName('Find Pokémon')
+        .setType(ApplicationCommandType.Message)
     );
   }
 

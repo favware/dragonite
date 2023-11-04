@@ -3,7 +3,6 @@ import { SelectMenuCustomIds } from '#utils/constants';
 import { compressPokemonCustomIdMetadata } from '#utils/pokemonCustomIdCompression';
 import { flavorResponseBuilder } from '#utils/responseBuilders/flavorResponseBuilder';
 import { fuzzyPokemonToSelectOption, type PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
-import { getGuildIds } from '#utils/utils';
 import type { PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { ChatInputCommand } from '@sapphire/framework';
@@ -22,25 +21,23 @@ export class SlashCommand extends DragoniteCommand {
   ];
 
   public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
-    registry.registerChatInputCommand(
-      (builder) =>
-        builder //
-          .setName(this.name)
-          .setDescription(this.description)
-          .addStringOption((option) =>
-            option //
-              .setName('pokemon')
-              .setDescription('The name of the Pokémon for which you want to get PokéDex entries.')
-              .setRequired(true)
-              .setAutocomplete(true)
-          )
-          .addStringOption((option) =>
-            option //
-              .setName('sprite')
-              .setDescription('The sprite that you want the result to show.')
-              .setChoices(...this.spriteChoices)
-          ),
-      { guildIds: getGuildIds() }
+    registry.registerChatInputCommand((builder) =>
+      builder //
+        .setName(this.name)
+        .setDescription(this.description)
+        .addStringOption((option) =>
+          option //
+            .setName('pokemon')
+            .setDescription('The name of the Pokémon for which you want to get PokéDex entries.')
+            .setRequired(true)
+            .setAutocomplete(true)
+        )
+        .addStringOption((option) =>
+          option //
+            .setName('sprite')
+            .setDescription('The sprite that you want the result to show.')
+            .setChoices(...this.spriteChoices)
+        )
     );
   }
 

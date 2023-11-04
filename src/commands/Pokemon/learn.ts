@@ -3,7 +3,6 @@ import { SelectMenuCustomIds } from '#utils/constants';
 import { compressPokemonCustomIdMetadata } from '#utils/pokemonCustomIdCompression';
 import { learnsetResponseBuilder } from '#utils/responseBuilders/learnsetResponseBuilder';
 import { fuzzyPokemonToSelectOption, type PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
-import { getGuildIds } from '#utils/utils';
 import type { MovesEnum, PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { ChatInputCommand } from '@sapphire/framework';
@@ -34,50 +33,48 @@ export class SlashCommand extends DragoniteCommand {
   ];
 
   public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
-    registry.registerChatInputCommand(
-      (builder) =>
-        builder //
-          .setName(this.name)
-          .setDescription(this.description)
-          .addStringOption((option) =>
-            option //
-              .setName('pokemon')
-              .setDescription('The name of the Pokémon for whom you want to check if they learn a move.')
-              .setRequired(true)
-              .setAutocomplete(true)
-          )
-          .addStringOption((option) =>
-            option //
-              .setName('move-1')
-              .setDescription('The name of the move that you want to check if the Pokémon learns.')
-              .setRequired(true)
-              .setAutocomplete(true)
-          )
-          .addStringOption((option) =>
-            option //
-              .setName('move-2')
-              .setDescription('An optional second move name that you want to check if the Pokémon learns.')
-              .setAutocomplete(true)
-          )
-          .addStringOption((option) =>
-            option //
-              .setName('move-3')
-              .setDescription('An optional third move name that you want to check if the Pokémon learns.')
-              .setAutocomplete(true)
-          )
-          .addIntegerOption((option) =>
-            option //
-              .setName('generation')
-              .setDescription('The Pokémon generation that you want to check in if the Pokémon learns the move.')
-              .setChoices(...this.generationChoices)
-          )
-          .addStringOption((option) =>
-            option //
-              .setName('sprite')
-              .setDescription('The sprite that you want the result to show.')
-              .setChoices(...this.spriteChoices)
-          ),
-      { guildIds: getGuildIds() }
+    registry.registerChatInputCommand((builder) =>
+      builder //
+        .setName(this.name)
+        .setDescription(this.description)
+        .addStringOption((option) =>
+          option //
+            .setName('pokemon')
+            .setDescription('The name of the Pokémon for whom you want to check if they learn a move.')
+            .setRequired(true)
+            .setAutocomplete(true)
+        )
+        .addStringOption((option) =>
+          option //
+            .setName('move-1')
+            .setDescription('The name of the move that you want to check if the Pokémon learns.')
+            .setRequired(true)
+            .setAutocomplete(true)
+        )
+        .addStringOption((option) =>
+          option //
+            .setName('move-2')
+            .setDescription('An optional second move name that you want to check if the Pokémon learns.')
+            .setAutocomplete(true)
+        )
+        .addStringOption((option) =>
+          option //
+            .setName('move-3')
+            .setDescription('An optional third move name that you want to check if the Pokémon learns.')
+            .setAutocomplete(true)
+        )
+        .addIntegerOption((option) =>
+          option //
+            .setName('generation')
+            .setDescription('The Pokémon generation that you want to check in if the Pokémon learns the move.')
+            .setChoices(...this.generationChoices)
+        )
+        .addStringOption((option) =>
+          option //
+            .setName('sprite')
+            .setDescription('The sprite that you want the result to show.')
+            .setChoices(...this.spriteChoices)
+        )
     );
   }
 

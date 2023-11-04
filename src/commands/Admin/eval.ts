@@ -1,7 +1,6 @@
 import { DragoniteCommand } from '#lib/extensions/DragoniteCommand';
 import { ModalCustomIds } from '#utils/constants';
 import { compressEvalCustomIdMetadata } from '#utils/evalCustomIdCompression';
-import { getGuildIds } from '#utils/utils';
 import { ApplyOptions } from '@sapphire/decorators';
 import { Time } from '@sapphire/duration';
 import type { ChatInputCommand } from '@sapphire/framework';
@@ -37,51 +36,49 @@ export class SlashCommand extends DragoniteCommand {
   ];
 
   public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
-    registry.registerChatInputCommand(
-      (builder) =>
-        builder //
-          .setName(this.name)
-          .setDescription(this.description)
-          .setDMPermission(false)
-          .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
-          .addIntegerOption((option) =>
-            option //
-              .setName('depth')
-              .setDescription('The inspection depth to apply.')
-          )
-          .addStringOption((builder) =>
-            builder //
-              .setName('language')
-              .setDescription('The language of the output codeblock.')
-              .setChoices(...this.languageChoices)
-          )
-          .addStringOption((builder) =>
-            builder //
-              .setName('output-to')
-              .setDescription('The location to send the output to.')
-              .setChoices(...this.outputChoices)
-          )
-          .addBooleanOption((builder) =>
-            builder //
-              .setName('async')
-              .setDescription('Whether this code should be evaluated asynchronously.')
-          )
-          .addBooleanOption((builder) =>
-            builder //
-              .setName('no-timeout')
-              .setDescription('Whether there should be no timeout for evaluating this code.')
-          )
-          .addBooleanOption((builder) =>
-            builder //
-              .setName('silent')
-              .setDescription('Whether the bot should not give a reply on the evaluation.')
-          )
-          .addBooleanOption((builder) =>
-            builder //
-              .setName('show-hidden')
-              .setDescription('Whether to show hidden JSON properties when stringifying.')
-          ),
-      { guildIds: getGuildIds() }
+    registry.registerChatInputCommand((builder) =>
+      builder //
+        .setName(this.name)
+        .setDescription(this.description)
+        .setDMPermission(false)
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
+        .addIntegerOption((option) =>
+          option //
+            .setName('depth')
+            .setDescription('The inspection depth to apply.')
+        )
+        .addStringOption((builder) =>
+          builder //
+            .setName('language')
+            .setDescription('The language of the output codeblock.')
+            .setChoices(...this.languageChoices)
+        )
+        .addStringOption((builder) =>
+          builder //
+            .setName('output-to')
+            .setDescription('The location to send the output to.')
+            .setChoices(...this.outputChoices)
+        )
+        .addBooleanOption((builder) =>
+          builder //
+            .setName('async')
+            .setDescription('Whether this code should be evaluated asynchronously.')
+        )
+        .addBooleanOption((builder) =>
+          builder //
+            .setName('no-timeout')
+            .setDescription('Whether there should be no timeout for evaluating this code.')
+        )
+        .addBooleanOption((builder) =>
+          builder //
+            .setName('silent')
+            .setDescription('Whether the bot should not give a reply on the evaluation.')
+        )
+        .addBooleanOption((builder) =>
+          builder //
+            .setName('show-hidden')
+            .setDescription('Whether to show hidden JSON properties when stringifying.')
+        )
     );
   }
 
