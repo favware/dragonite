@@ -61,7 +61,7 @@
     "@sapphire/eslint-config": "^5.0.2",
     "@sapphire/prettier-config": "^2.0.0",
     "@sapphire/ts-config": "^5.0.0",
-    "@swc/core": "^1.3.95",
+    "@swc/core": "^1.3.96",
     "@types/figlet": "^1.5.7",
     "@types/gradient-string": "^1.1.4",
     "@types/node": "^20.8.10",
