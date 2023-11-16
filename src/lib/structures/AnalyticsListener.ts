@@ -7,7 +7,7 @@ import type { ClientEvents } from 'discord.js';
 export abstract class AnalyticsListener<E extends keyof ClientEvents | symbol = ''> extends Listener<E> {
   public tags: [Tags, string][] = [];
 
-  public constructor(context: Listener.Context, options?: AnalyticsListener.Options) {
+  public constructor(context: Listener.LoaderContext, options?: AnalyticsListener.Options) {
     super(context, { ...options, enabled: envParseBoolean('INFLUX_ENABLED') });
   }
 
