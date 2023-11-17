@@ -34,7 +34,7 @@
     "@sapphire/discord.js-utilities": "^7.1.2",
     "@sapphire/duration": "^1.1.0",
     "@sapphire/fetch": "^2.4.1",
-    "@sapphire/framework": "^4.8.1",
+    "@sapphire/framework": "^4.8.2",
     "@sapphire/plugin-logger": "^3.0.7",
     "@sapphire/plugin-scheduled-tasks": "^8.1.0",
     "@sapphire/stopwatch": "^1.5.0",
