@@ -493,8 +493,8 @@ export function resolveBulbapediaEmbeddedURL(pokeDetails: Pokemon) {
   const url = isMissingNo(pokeDetails)
     ? 'https://bulbapedia.bulbagarden.net/wiki/MissingNo.'
     : isM00(pokeDetails)
-    ? "https://bulbapedia.bulbagarden.net/wiki/'M_(00)"
-    : parseBulbapediaURL(pokeDetails.bulbapediaPage);
+      ? "https://bulbapedia.bulbagarden.net/wiki/'M_(00)"
+      : parseBulbapediaURL(pokeDetails.bulbapediaPage);
 
   return hyperlink('Bulbapedia', hideLinkEmbed(url));
 }

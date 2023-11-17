@@ -72,39 +72,39 @@ export class RedisCacheClient extends Redis {
 type RedisKeyQuery<K extends RedisKeys> = K extends 'getAbility'
   ? AbilitiesEnum
   : K extends 'getItem'
-  ? ItemsEnum
-  : K extends 'getMove'
-  ? MovesEnum
-  : K extends 'getFlavors'
-  ? PokemonEnum
-  : K extends 'getPokemon'
-  ? PokemonEnum
-  : K extends 'getSprites'
-  ? PokemonEnum
-  : K extends 'getLearnset'
-  ? `${PokemonEnum}|${number}|${string}`
-  : K extends 'getTypeMatchup'
-  ? `${TypesEnum}` | `${TypesEnum},${TypesEnum}`
-  : K extends 'getAllSpecies'
-  ? null
-  : never;
+    ? ItemsEnum
+    : K extends 'getMove'
+      ? MovesEnum
+      : K extends 'getFlavors'
+        ? PokemonEnum
+        : K extends 'getPokemon'
+          ? PokemonEnum
+          : K extends 'getSprites'
+            ? PokemonEnum
+            : K extends 'getLearnset'
+              ? `${PokemonEnum}|${number}|${string}`
+              : K extends 'getTypeMatchup'
+                ? `${TypesEnum}` | `${TypesEnum},${TypesEnum}`
+                : K extends 'getAllSpecies'
+                  ? null
+                  : never;
 
 type RedisData<K extends RedisKeys> = K extends 'getAbility'
   ? Ability
   : K extends 'getItem'
-  ? Item
-  : K extends 'getMove'
-  ? Move
-  : K extends 'getFlavors'
-  ? Pokemon
-  : K extends 'getPokemon'
-  ? Pokemon
-  : K extends 'getSprites'
-  ? Pokemon
-  : K extends 'getLearnset'
-  ? Learnset
-  : K extends 'getTypeMatchup'
-  ? TypeMatchup
-  : K extends 'getAllSpecies'
-  ? Omit<readonly Pokemon[], '__typename'>
-  : never;
+    ? Item
+    : K extends 'getMove'
+      ? Move
+      : K extends 'getFlavors'
+        ? Pokemon
+        : K extends 'getPokemon'
+          ? Pokemon
+          : K extends 'getSprites'
+            ? Pokemon
+            : K extends 'getLearnset'
+              ? Learnset
+              : K extends 'getTypeMatchup'
+                ? TypeMatchup
+                : K extends 'getAllSpecies'
+                  ? Omit<readonly Pokemon[], '__typename'>
+                  : never;

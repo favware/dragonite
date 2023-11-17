@@ -350,23 +350,23 @@ type PokemonQueryReturnTypes = keyof Pick<
 type PokemonQueryVariables<R extends PokemonQueryReturnTypes> = R extends 'getAbility'
   ? QueryGetAbilityArgs
   : R extends 'getFuzzyAbility'
-  ? QueryGetFuzzyAbilityArgs
-  : R extends 'getItem'
-  ? QueryGetItemArgs
-  : R extends 'getFuzzyItem'
-  ? QueryGetFuzzyItemArgs
-  : R extends 'getMove'
-  ? QueryGetMoveArgs
-  : R extends 'getFuzzyMove'
-  ? QueryGetFuzzyMoveArgs
-  : R extends 'getPokemon'
-  ? QueryGetPokemonArgs
-  : R extends 'getFuzzyPokemon'
-  ? QueryGetFuzzyPokemonArgs
-  : R extends 'getLearnset'
-  ? QueryGetLearnsetArgs
-  : R extends 'getTypeMatchup'
-  ? QueryGetTypeMatchupArgs
-  : R extends 'getAllPokemon'
-  ? QueryGetAllPokemonArgs
-  : never;
+    ? QueryGetFuzzyAbilityArgs
+    : R extends 'getItem'
+      ? QueryGetItemArgs
+      : R extends 'getFuzzyItem'
+        ? QueryGetFuzzyItemArgs
+        : R extends 'getMove'
+          ? QueryGetMoveArgs
+          : R extends 'getFuzzyMove'
+            ? QueryGetFuzzyMoveArgs
+            : R extends 'getPokemon'
+              ? QueryGetPokemonArgs
+              : R extends 'getFuzzyPokemon'
+                ? QueryGetFuzzyPokemonArgs
+                : R extends 'getLearnset'
+                  ? QueryGetLearnsetArgs
+                  : R extends 'getTypeMatchup'
+                    ? QueryGetTypeMatchupArgs
+                    : R extends 'getAllPokemon'
+                      ? QueryGetAllPokemonArgs
+                      : never;
