@@ -402,6 +402,32 @@ export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
     case PokemonEnum.Taurospaldeablaze:
       return 'Paldean Tauros (Blaze Breed)';
 
+    // Ogerpon
+    case PokemonEnum.Ogerpon:
+      return 'Ogerpon (Teal Mask)';
+    case PokemonEnum.Ogerpontealtera:
+      return 'Ogerpon (Teal Mask - Tera)';
+    case PokemonEnum.Ogerponcornerstone:
+      return 'Ogerpon (Cornerstone Mask)';
+    case PokemonEnum.Ogerponcornerstonetera:
+      return 'Ogerpon (Cornerstone Mask - Tera)';
+    case PokemonEnum.Ogerponhearthflame:
+      return 'Ogerpon (Hearthflame Mask)';
+    case PokemonEnum.Ogerponhearthflametera:
+      return 'Ogerpon (Hearthflame Mask - Tera)';
+    case PokemonEnum.Ogerponwellspring:
+      return 'Ogerpon (Wellspring Mask)';
+    case PokemonEnum.Ogerponwellspringtera:
+      return 'Ogerpon (Wellspring Mask - Tera)';
+
+    // Other gen 9 special cases
+    case PokemonEnum.Ursalunabloodmoon:
+      return 'Ursaluna Bloodmoion';
+    case PokemonEnum.Poltchageistartisan:
+      return 'Poltchageist Artisan';
+    case PokemonEnum.Sinistchamasterpiece:
+      return 'Sinistcha Masterpiece';
+
     // All other cases
     default: {
       const megaResult = megaRegex.exec(pokemon);
