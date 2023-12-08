@@ -28,10 +28,6 @@ declare module '@sapphire/framework' {
   interface ScheduledTasks {
     postStats: never;
   }
-
-  interface Preconditions {
-    OwnerOnly: never;
-  }
 }
 
 declare module '@skyra/env-utilities' {

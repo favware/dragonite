@@ -1,7 +1,6 @@
 import '#lib/setup/env';
 
 import '#lib/setup/analytics';
-import '#lib/setup/clean-secrets';
 import '#lib/setup/colorette';
 import '#lib/setup/error-webhook';
 import '#lib/setup/gql-client';
