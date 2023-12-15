@@ -383,6 +383,14 @@ export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
       return 'Walking Wake';
     case PokemonEnum.Ironleaves:
       return 'Iron Leaves';
+    case PokemonEnum.Gougingfire:
+      return 'Gouging Fire';
+    case PokemonEnum.Ragingbolt:
+      return 'Raging Bolt';
+    case PokemonEnum.Ironboulder:
+      return 'Iron Boulder';
+    case PokemonEnum.Ironcrown:
+      return 'Iron Crown';
 
     // The Ruination Pokémon
     case PokemonEnum.Wochien:
@@ -419,6 +427,14 @@ export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
       return 'Ogerpon (Wellspring Mask)';
     case PokemonEnum.Ogerponwellspringtera:
       return 'Ogerpon (Wellspring Mask - Tera)';
+
+    // Terapagos
+    case PokemonEnum.Terapagos:
+      return 'Terapagos';
+    case PokemonEnum.Terapagosterastal:
+      return 'Terapagos Terastal';
+    case PokemonEnum.Terapagosstellar:
+      return 'Terapagos Stellar';
 
     // Other gen 9 special cases
     case PokemonEnum.Ursalunabloodmoon:
