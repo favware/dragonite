@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@discordjs/builders": "^1.7.0",
-    "@favware/graphql-pokemon": "^8.2.0",
+    "@favware/graphql-pokemon": "^8.2.1",
     "@influxdata/influxdb-client": "^1.33.2",
     "@influxdata/influxdb-client-apis": "^1.33.2",
     "@sapphire/decorators": "^6.0.3",
@@ -66,7 +66,7 @@
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.55.0",
+    "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.0.1",
     "lint-staged": "^15.2.0",
