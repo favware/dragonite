@@ -31,7 +31,7 @@
     "@influxdata/influxdb-client": "^1.33.2",
     "@influxdata/influxdb-client-apis": "^1.33.2",
     "@sapphire/decorators": "^6.0.3",
-    "@sapphire/discord.js-utilities": "^7.1.4",
+    "@sapphire/discord.js-utilities": "^7.1.5",
     "@sapphire/fetch": "^3.0.1",
     "@sapphire/framework": "^5.0.4",
     "@sapphire/plugin-logger": "^4.0.1",
