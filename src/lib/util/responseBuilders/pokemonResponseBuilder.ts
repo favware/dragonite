@@ -1,18 +1,19 @@
 import { CdnUrls, Emojis } from '#utils/constants';
 import type { FavouredEntry } from '#utils/favouredEntries';
-import { isMissingNoOrM00, pokemonEnumToSpecies, resolveBulbapediaEmbeddedURL, resolveColour } from '#utils/functions/pokemonParsers';
+import { isMissingNoOrM00, pokemonEnumToSpecies, resolveBulbapediaURL, resolveColour, resolveSerebiiUrl } from '#utils/functions/pokemonParsers';
 import type { KeysContaining } from '#utils/utils';
 import type { Abilities, EvYields, Gender, Pokemon, PokemonEnum, Stats } from '@favware/graphql-pokemon';
-import { PaginatedMessage } from '@sapphire/discord.js-utilities';
+import { PaginatedMessage, type PaginatedMessageAction } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
-import { filterNullish, isNullish, isNullishOrEmpty } from '@sapphire/utilities';
+import { isNullish, isNullishOrEmpty } from '@sapphire/utilities';
 import {
+  ButtonBuilder,
+  ButtonStyle,
   EmbedBuilder,
   bold,
-  hideLinkEmbed,
-  hyperlink,
   inlineCode,
   italic,
+  type APIButtonComponentWithURL,
   type APISelectMenuOption,
   type ApplicationCommandOptionChoiceData
 } from 'discord.js';
@@ -52,24 +53,13 @@ function isFavouredEntry(fuzzyMatch: Pokemon | FavouredEntry<PokemonEnum>): fuzz
 }
 
 function parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, spriteToGet }: PokemonToDisplayArgs): PaginatedMessage {
-  const externalResources = 'External Resources';
-
-  const externalResourceData = [
-    resolveBulbapediaEmbeddedURL(pokeDetails),
-    isMissingNoOrM00(pokeDetails)
-      ? hyperlink('Serebii', hideLinkEmbed('https://www.serebii.net/pokedex/000.shtml'))
-      : hyperlink('Serebii', hideLinkEmbed(pokeDetails.serebiiPage)),
-    isMissingNoOrM00(pokeDetails) ? undefined : hyperlink('Smogon', pokeDetails.smogonPage)
-  ]
-    .filter(filterNullish)
-    .join(' | ');
-
   const display = new PaginatedMessage({
     template: new EmbedBuilder()
       .setColor(resolveColour(pokeDetails.color))
       .setAuthor({ name: `#${pokeDetails.num} - ${pokemonEnumToSpecies(pokeDetails.key)}`, iconURL: CdnUrls.Pokedex })
       .setThumbnail(pokeDetails[spriteToGet])
   })
+    .addActions(parseExternalResources(pokeDetails))
     .setSelectMenuOptions((pageIndex) => ({ label: PageLabels[pageIndex - 1] }))
     .addPageEmbed((embed) => {
       embed.addFields(
@@ -97,10 +87,6 @@ function parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, s
           value: `${baseStats.join(', ')} (${italic('BST')}: ${bold(pokeDetails.baseStatsTotal.toString())})`
         }
       );
-
-      if (!isCapPokemon(pokeDetails)) {
-        embed.addFields({ name: externalResources, value: externalResourceData });
-      }
 
       return embed;
     })
@@ -157,8 +143,6 @@ function parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, s
             }
           );
         }
-
-        embed.addFields({ name: externalResources, value: externalResourceData });
       }
 
       return embed;
@@ -178,10 +162,6 @@ function parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, s
           }
         );
 
-      if (isRegularPokemon(pokeDetails)) {
-        embed.addFields({ name: externalResources, value: externalResourceData });
-      }
-
       return embed;
     });
   }
@@ -193,7 +173,7 @@ function parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, s
           embed.addFields({ name: 'Pokédex entry', value: `(${inlineCode(flavor.game)}) ${flavor.flavor}` });
         }
 
-        return embed.addFields({ name: externalResources, value: externalResourceData });
+        return embed;
       });
     }
   }
@@ -214,9 +194,6 @@ function parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, s
           const formes = pokeDetails.cosmeticFormes.map((forme) => inlineCode(pokemonEnumToSpecies(forme as PokemonEnum)));
           embed.addFields({ name: 'Cosmetic Formes', value: container.i18n.listAnd.format(formes) });
         }
-
-        // Add the external resource field
-        embed.addFields({ name: externalResources, value: externalResourceData });
 
         return embed;
       });
@@ -345,6 +322,38 @@ function isRegularPokemon(pokeDetails: Pokemon) {
   return pokeDetails.num > 0;
 }
 
+function parseExternalResources(pokeDetails: PokemonToDisplayArgs['pokeDetails']): PaginatedMessageAction[] {
+  const smogonButton = new ButtonBuilder()
+    .setStyle(ButtonStyle.Link)
+    .setLabel('Smogon')
+    .setEmoji({ id: Emojis.Smogon })
+    .setURL(pokeDetails.smogonPage)
+    .toJSON() as APIButtonComponentWithURL;
+
+  if (isCapPokemon(pokeDetails)) return [smogonButton];
+
+  const paginatedMessageActions = [
+    new ButtonBuilder()
+      .setStyle(ButtonStyle.Link)
+      .setLabel('Bulbapedia')
+      .setEmoji({ id: Emojis.Bulbapedia })
+      .setURL(resolveBulbapediaURL(pokeDetails))
+      .toJSON() as APIButtonComponentWithURL,
+    new ButtonBuilder()
+      .setStyle(ButtonStyle.Link)
+      .setLabel('Serebii')
+      .setEmoji({ id: Emojis.Serebii })
+      .setURL(resolveSerebiiUrl(pokeDetails))
+      .toJSON() as APIButtonComponentWithURL
+  ];
+
+  if (isRegularPokemon(pokeDetails)) {
+    paginatedMessageActions.push(smogonButton);
+  }
+
+  return paginatedMessageActions;
+}
+
 export type PokemonSpriteTypes = keyof Pick<Pokemon, KeysContaining<Pokemon, 'sprite'>>;
 
 export interface PokemonToDisplayArgs {
@@ -356,7 +365,7 @@ export interface PokemonToDisplayArgs {
 
   evYields: string[];
 
-  pokeDetails: Pokemon;
+  pokeDetails: Omit<Pokemon, '__typename'>;
 
   spriteToGet: PokemonSpriteTypes;
 }

@@ -1,6 +1,5 @@
 import { PokemonEnum, type Pokemon } from '@favware/graphql-pokemon';
 import { isNullishOrEmpty, toTitleCase } from '@sapphire/utilities';
-import { hideLinkEmbed, hyperlink } from 'discord.js';
 
 const megaRegex = /^(?<name>[a-z]+)(?:mega)$/;
 const gmaxRegex = /^(?<name>[a-z]+)(?:gmax)$/;
@@ -13,6 +12,11 @@ const totemRegex = /^(?<name>[a-z]+)(?:totem)$/;
 const typeLikeRegex = /^(?<name>(?:arceus|silvally|genesect))(?<type>[a-z]+)?$/;
 const pumpkinRegex = /^(?<name>(?:pumpkaboo|gourgeist))(?<size>(?:small|large|super))$/g;
 
+/**
+ * Converts a PokemonEnum value to its corresponding species name.
+ * @param pokemon The PokemonEnum value to convert.
+ * @returns The species name of the Pokemon.
+ */
 export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
   if (isNullishOrEmpty(pokemon)) {
     return pokemon;
@@ -512,37 +516,71 @@ export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
 }
 
 /**
- * Parses a Bulbapedia-like URL to be properly embeddable on Discord
- * @param url URL to parse
+ * Parses a Bulbapedia URL by replacing spaces with underscores and encoding parentheses.
+ * This ensures it is properly formatted for Discord.
+ * @param url - The Bulbapedia URL to parse.
+ * @returns The parsed Bulbapedia URL.
  */
 export function parseBulbapediaURL(url: string) {
   return url.replace(/[ ]/g, '_').replace(/\(/g, '%28').replace(/\)/g, '%29');
 }
 
+/**
+ * Checks if the given Pokemon is MissingNo.
+ * @param pokeDetails The details of the Pokemon to check.
+ * @returns True if the Pokemon is MissingNo, false otherwise.
+ */
 export function isMissingNo(pokeDetails: Pokemon) {
   return pokeDetails.key === PokemonEnum.Missingno;
 }
 
+/**
+ * Checks if the given Pokemon is M00.
+ * @param pokeDetails The details of the Pokemon.
+ * @returns A boolean indicating whether the Pokemon is M00 or not.
+ */
 export function isM00(pokeDetails: Pokemon) {
   return pokeDetails.key === PokemonEnum.M00;
 }
 
+/**
+ * Checks if the given Pokemon is either MissingNo or M00.
+ * @param pokeDetails The Pokemon details to check.
+ * @returns A boolean indicating if the Pokemon is MissingNo or M00.
+ */
 export function isMissingNoOrM00(pokeDetails: Pokemon) {
   return isMissingNo(pokeDetails) || isM00(pokeDetails);
 }
 
-export function resolveBulbapediaEmbeddedURL(pokeDetails: Pokemon) {
-  const url = isMissingNo(pokeDetails)
+/**
+ * Resolves the Bulbapedia URL for a given Pokemon.
+ * If the Pokemon is MissingNo, it returns the URL for MissingNo.
+ * If the Pokemon is M00, it returns the URL for 'M_(00).
+ * Otherwise, it parses the Bulbapedia URL from the Pokemon's bulbapediaPage property.
+ * @param pokeDetails The details of the Pokemon.
+ * @returns The Bulbapedia URL for the Pokemon.
+ */
+export function resolveBulbapediaURL(pokeDetails: Pokemon) {
+  return isMissingNo(pokeDetails)
     ? 'https://bulbapedia.bulbagarden.net/wiki/MissingNo.'
     : isM00(pokeDetails)
       ? "https://bulbapedia.bulbagarden.net/wiki/'M_(00)"
       : parseBulbapediaURL(pokeDetails.bulbapediaPage);
-
-  return hyperlink('Bulbapedia', hideLinkEmbed(url));
 }
 
 /**
- * Parses PokéDex colours to Discord MessageEmbed colours
+ * Resolves the Serebii URL for a given Pokemon.
+ * If the Pokemon is MissingNo or M00, it returns the URL for MissingNo's Serebii page.
+ * Otherwise, it returns the URL specified in the `serebiiPage` property of the Pokemon object.
+ * @param pokeDetails The details of the Pokemon.
+ * @returns The Serebii URL for the Pokemon.
+ */
+export function resolveSerebiiUrl(pokeDetails: Pokemon) {
+  return isMissingNoOrM00(pokeDetails) ? 'https://www.serebii.net/pokedex/000.shtml' : pokeDetails.serebiiPage;
+}
+
+/**
+ * Parses PokéDex colours to Discord Embed colours
  * @param colour The colour to parse
  */
 export function resolveColour(colour: string) {
