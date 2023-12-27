@@ -18,7 +18,7 @@ export class SelectMenuHandler extends InteractionHandler {
       });
     }
 
-    return interaction.editReply({ embeds: abilityResponseBuilder(result.abilityDetails) });
+    return interaction.editReply(abilityResponseBuilder(result.abilityDetails));
   }
 
   public override async parse(interaction: StringSelectMenuInteraction) {

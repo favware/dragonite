@@ -53,6 +53,6 @@ export class SlashCommand extends DragoniteCommand {
       });
     }
 
-    return interaction.editReply({ embeds: abilityResponseBuilder(abilityDetails) });
+    return interaction.editReply(abilityResponseBuilder(abilityDetails));
   }
 }
