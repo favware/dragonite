@@ -16,7 +16,13 @@ export const enum Emojis {
   /** This is the default Twemoji, uploaded as a custom emoji because iOS and Android do not render the emoji properly */
   MaleSignEmoji = '<:2642:845772713770614874>',
   /** This is the default Twemoji, uploaded as a custom emoji because iOS and Android do not render the emoji properly */
-  FemaleSignEmoji = '<:2640:845772713729720320>'
+  FemaleSignEmoji = '<:2640:845772713729720320>',
+  /** The logo of https://serebii.net */
+  Serebii = '1189631608773410837',
+  /** The logo of https://bulbapedia.bulbagarden.net */
+  Bulbapedia = '1189631610170130522',
+  /** The logo of https://www.smogon.com */
+  Smogon = '1189631606214905966'
 }
 
 export const enum BrandingColors {

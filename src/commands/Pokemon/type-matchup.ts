@@ -1,37 +1,19 @@
 import { DragoniteCommand } from '#lib/extensions/DragoniteCommand';
 import { typeMatchupResponseBuilder } from '#utils/responseBuilders/typeMatchupResponseBuilder';
-import type { TypesEnum } from '@favware/graphql-pokemon';
+import { TypesEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import { UserError, type ChatInputCommand } from '@sapphire/framework';
-import { filterNullish, isNullish, toTitleCase } from '@sapphire/utilities';
+import { filterNullish, isNullish, objectEntries } from '@sapphire/utilities';
 import type { APIApplicationCommandOptionChoice } from 'discord.js';
 
 @ApplyOptions<ChatInputCommand.Options>({
   description: 'Gets data for the chosen type matchup.'
 })
 export class SlashCommand extends DragoniteCommand {
-  private readonly pokemonTypes = [
-    'bug',
-    'dark',
-    'dragon',
-    'electric',
-    'fairy',
-    'fighting',
-    'fire',
-    'flying',
-    'ghost',
-    'grass',
-    'ground',
-    'ice',
-    'normal',
-    'poison',
-    'psychic',
-    'rock',
-    'steel',
-    'water'
-  ];
-
-  private readonly choices = this.pokemonTypes.map<APIApplicationCommandOptionChoice<string>>((type) => ({ name: toTitleCase(type), value: type }));
+  private readonly choices = objectEntries(TypesEnum).map<APIApplicationCommandOptionChoice<string>>(([key, type]) => ({
+    name: key,
+    value: type
+  }));
 
   public override registerApplicationCommands(registry: ChatInputCommand.Registry) {
     registry.registerChatInputCommand((builder) =>
@@ -70,8 +52,6 @@ export class SlashCommand extends DragoniteCommand {
       });
     }
 
-    const paginatedMessage = typeMatchupResponseBuilder(types, typeMatchup);
-
-    return paginatedMessage.run(interaction);
+    return interaction.editReply(typeMatchupResponseBuilder(types, typeMatchup));
   }
 }
