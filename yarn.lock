@@ -858,7 +858,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/discord.js-utilities@npm:^7.1.3, @sapphire/discord.js-utilities@npm:^7.1.5":
+"@sapphire/discord.js-utilities@npm:^7.1.5":
   version: 7.1.5
   resolution: "@sapphire/discord.js-utilities@npm:7.1.5"
   dependencies:
@@ -899,20 +899,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/framework@npm:^5.0.4":
-  version: 5.0.4
-  resolution: "@sapphire/framework@npm:5.0.4"
+"@sapphire/framework@npm:^5.0.5":
+  version: 5.0.5
+  resolution: "@sapphire/framework@npm:5.0.5"
   dependencies:
     "@discordjs/builders": "npm:^1.7.0"
     "@sapphire/discord-utilities": "npm:^3.2.1"
-    "@sapphire/discord.js-utilities": "npm:^7.1.3"
+    "@sapphire/discord.js-utilities": "npm:^7.1.5"
     "@sapphire/lexure": "npm:^1.1.6"
-    "@sapphire/pieces": "npm:^4.1.0"
+    "@sapphire/pieces": "npm:^4.2.0"
     "@sapphire/ratelimits": "npm:^2.4.8"
     "@sapphire/result": "npm:^2.6.5"
     "@sapphire/stopwatch": "npm:^1.5.1"
     "@sapphire/utilities": "npm:^3.14.0"
-  checksum: 489c0595e7e6aaaa82879708578d82170fb5e7a9d8ce675d5ee930d8cc59115e1d13d1dbc12f50b952a9c26a2261773c54e1a3ae336151ade3f413e39f6321ed
+  checksum: 11d7ae8c1cdcc2838d339350f28cb9b8566446871a9d36e2263b2c5348d29bdb3397873661ef89633856cb531a0de5cc9b0ebe91fd23e9403875704859cf11db
   languageName: node
   linkType: hard
 
@@ -925,14 +925,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/pieces@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "@sapphire/pieces@npm:4.1.0"
+"@sapphire/pieces@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "@sapphire/pieces@npm:4.2.0"
   dependencies:
     "@discordjs/collection": "npm:^1.5.3"
     "@sapphire/utilities": "npm:^3.14.0"
     tslib: "npm:^2.6.2"
-  checksum: fbca477af861bf215bac422b338d11b983ba5a7d9b63bcea260d82812b3c74c79882e556b31c0b0f0580fd028f3474c7c6ec649e93589787127d6c181b2c08d0
+  checksum: ca2d737198360bfb4293dc51216c206b2c0278d405431cd1810471ab0833a0e4533bd9395ddbeb37a39ea10dd61fbe4e7ae09abc06ebb95988aec21aa5145639
   languageName: node
   linkType: hard
 
@@ -946,15 +946,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/plugin-scheduled-tasks@npm:^9.1.0":
-  version: 9.1.0
-  resolution: "@sapphire/plugin-scheduled-tasks@npm:9.1.0"
+"@sapphire/plugin-scheduled-tasks@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "@sapphire/plugin-scheduled-tasks@npm:10.0.0"
   dependencies:
     "@sapphire/stopwatch": "npm:^1.5.1"
     "@sapphire/utilities": "npm:^3.14.0"
-    bullmq: "npm:3.15.8"
+    bullmq: "npm:5.1.0"
     tslib: "npm:^2.6.2"
-  checksum: 6dfac49927e6e0856abc27f4a243542a4f7025b191f89265704a01401bb1e289c40c5e3d7adb3090af1456b59016bbed9a520dd800732c9e13bf3408903ef67f
+  checksum: d6fa58501dc2d3f03beae99cc3f62bca8662b0767943cca724433252f8bcbf8bbe61791b13bf9d5c821b35043d81bd7d84450cae344abcfe6204e76301fb79c1
   languageName: node
   linkType: hard
 
@@ -1685,19 +1685,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bullmq@npm:3.15.8":
-  version: 3.15.8
-  resolution: "bullmq@npm:3.15.8"
+"bullmq@npm:5.1.0":
+  version: 5.1.0
+  resolution: "bullmq@npm:5.1.0"
   dependencies:
     cron-parser: "npm:^4.6.0"
     glob: "npm:^8.0.3"
     ioredis: "npm:^5.3.2"
     lodash: "npm:^4.17.21"
     msgpackr: "npm:^1.6.2"
-    semver: "npm:^7.3.7"
+    node-abort-controller: "npm:^3.1.1"
+    semver: "npm:^7.5.4"
     tslib: "npm:^2.0.0"
     uuid: "npm:^9.0.0"
-  checksum: 307ce70454fce96ddca271d375e1b2fb402c89c51a4b160979fbaf9777a8751e3145bb57f1a276db50f91be5f0f5cd95c4f54839863cb3c27a4bffff9770c8a6
+  checksum: dcbd4595747900e4ac243c31a8200daf0247013bf24ceb674bf24f75be78fce7033d878e3e3f46ea33ec8a22d6ae87e3e27181cb321dd772653c2021cb0b3ac3
   languageName: node
   linkType: hard
 
@@ -2280,9 +2281,9 @@ __metadata:
     "@sapphire/discord.js-utilities": "npm:^7.1.5"
     "@sapphire/eslint-config": "npm:^5.0.3"
     "@sapphire/fetch": "npm:^3.0.1"
-    "@sapphire/framework": "npm:^5.0.4"
+    "@sapphire/framework": "npm:^5.0.5"
     "@sapphire/plugin-logger": "npm:^4.0.1"
-    "@sapphire/plugin-scheduled-tasks": "npm:^9.1.0"
+    "@sapphire/plugin-scheduled-tasks": "npm:^10.0.0"
     "@sapphire/prettier-config": "npm:^2.0.0"
     "@sapphire/ts-config": "npm:^5.0.0"
     "@sapphire/utilities": "npm:^3.14.0"
@@ -4207,6 +4208,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"node-abort-controller@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "node-abort-controller@npm:3.1.1"
+  checksum: 0a2cdb7ec0aeaf3cb31e1ca0e192f5add48f1c5c9c9ed822129f9dddbd9432f69b7425982f94ce803c56a2104884530aa67cd57696e5774b2e5b8ec2f58de042
+  languageName: node
+  linkType: hard
+
 "node-gyp-build-optional-packages@npm:5.0.7":
   version: 5.0.7
   resolution: "node-gyp-build-optional-packages@npm:5.0.7"
@@ -4923,7 +4931,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:7.5.4, semver@npm:^7.3.4, semver@npm:^7.3.5, semver@npm:^7.3.7, semver@npm:^7.5.4":
+"semver@npm:7.5.4, semver@npm:^7.3.4, semver@npm:^7.3.5, semver@npm:^7.5.4":
   version: 7.5.4
   resolution: "semver@npm:7.5.4"
   dependencies:

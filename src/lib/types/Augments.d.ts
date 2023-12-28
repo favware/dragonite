@@ -32,8 +32,6 @@ declare module '@sapphire/framework' {
 
 declare module '@skyra/env-utilities' {
   interface Env {
-    NODE_ENV: 'test' | 'development' | 'production';
-
     CLIENT_ID: string;
     CLIENT_VERSION: string;
     CLIENT_PRESENCE_NAME: string;

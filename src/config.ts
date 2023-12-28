@@ -43,6 +43,7 @@ export const CLIENT_OPTIONS: ClientOptions = {
   allowedMentions: { users: [], roles: [] },
   presence: { activities: parsePresenceActivity() },
   loadDefaultErrorListeners: false,
+  loadScheduledTaskErrorListeners: false,
   logger: { level: envParseString('NODE_ENV') === 'production' ? LogLevel.Info : LogLevel.Debug },
   partials: [Partials.Channel],
   tasks: {

@@ -2,14 +2,14 @@ import { getErrorLine, getMethodLine, getStatusLine } from '#utils/functions/err
 import { ApplyOptions } from '@sapphire/decorators';
 import { Listener, LogLevel } from '@sapphire/framework';
 import type { Logger } from '@sapphire/plugin-logger';
-import { ScheduledTaskEvents } from '@sapphire/plugin-scheduled-tasks';
+import { ScheduledTask, ScheduledTaskEvents } from '@sapphire/plugin-scheduled-tasks';
 import { isNullish } from '@sapphire/utilities';
 import { DiscordAPIError, EmbedBuilder, HTTPError } from 'discord.js';
 
 @ApplyOptions<Listener.Options>({ event: ScheduledTaskEvents.ScheduledTaskError })
 export class UserListener extends Listener<typeof ScheduledTaskEvents.ScheduledTaskError> {
-  public override async run(error: Error, task: string) {
-    this.container.logger.error(`[Scheduled-Task Plugin]: task: ${task} threw an error`, error);
+  public override async run(error: Error, task: ScheduledTask) {
+    this.container.logger.error(`[Scheduled-Task Plugin]: task: ${task.name} threw an error`, error);
 
     // Send a detailed message:
     await this.sendErrorChannel(task, error);
@@ -20,7 +20,7 @@ export class UserListener extends Listener<typeof ScheduledTaskEvents.ScheduledT
     return super.onLoad();
   }
 
-  private async sendErrorChannel(task: string, error: Error) {
+  private async sendErrorChannel(task: ScheduledTask, error: Error) {
     const webhook = this.container.webhookError;
     if (isNullish(webhook)) return;
 
@@ -47,7 +47,7 @@ export class UserListener extends Listener<typeof ScheduledTaskEvents.ScheduledT
    * Formats a task line.
    * @param task The task to format.
    */
-  private getTaskLine(task: string): string {
-    return `**Task**: ${task}`;
+  private getTaskLine(task: ScheduledTask): string {
+    return `**Task**: ${task.name}`;
   }
 }
