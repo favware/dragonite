@@ -524,12 +524,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@favware/graphql-pokemon@npm:^8.3.2":
-  version: 8.3.2
-  resolution: "@favware/graphql-pokemon@npm:8.3.2"
+"@favware/graphql-pokemon@npm:^8.3.3":
+  version: 8.3.3
+  resolution: "@favware/graphql-pokemon@npm:8.3.3"
   dependencies:
     graphql: "npm:^16.8.1"
-  checksum: f5f21c2a9746dee9b6e7f4d1f621c1389fb3cba6d36c63931a2d3346537d1521b26bb2453f706b06cd97103ea3f5b0b4d511be0c5e6bb247b8e28397db337231
+  checksum: a4ad06be3daad5f91042973751d66ce3d9b2f3465dd9f6a877f0c52074163cf43ecc8ab8281c63caf895501363ee30de4e64b328b015c06211d2eb5ea15ba127
   languageName: node
   linkType: hard
 
@@ -1031,10 +1031,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/utilities@npm:^3.14.0":
-  version: 3.14.0
-  resolution: "@sapphire/utilities@npm:3.14.0"
-  checksum: 1176c3e7fecb73d4d2b3f2e626c57eb3168188bdf546363fcd07362d2320bca905733c19311d4ebe98968ac1d5669d32eda37afdb7bc4d7496cfeb3a06a750fb
+"@sapphire/utilities@npm:^3.14.0, @sapphire/utilities@npm:^3.15.1":
+  version: 3.15.1
+  resolution: "@sapphire/utilities@npm:3.15.1"
+  checksum: 0687ec42ce1b3fd94fb57aec6935a13e8bd62574d750fcb4e9d655f1c78bea909312a72e6491c12240fc0d715babb9162a8c9ddb511c74aaa701306f67d69c85
   languageName: node
   linkType: hard
 
@@ -2206,10 +2206,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:^0.37.65, discord-api-types@npm:^0.37.66":
-  version: 0.37.66
-  resolution: "discord-api-types@npm:0.37.66"
-  checksum: 5acb574e09796ead9dd43ffa9e18f577e33bd166d9805c184cceb919a9e54d0dad1e44d52d6dc7ef512a8c39df676ac3ac4eb3ea4c237443ad4095478e247f64
+"discord-api-types@npm:^0.37.65, discord-api-types@npm:^0.37.67":
+  version: 0.37.67
+  resolution: "discord-api-types@npm:0.37.67"
+  checksum: 5b474544a82148179e3d50f3092b9aa90b4142b470df397d3e6e211bd9c0b1f99724c618d7136fccdbe9cd931d8f48b1bdcd10599c7a08a92b76408c05829692
   languageName: node
   linkType: hard
 
@@ -2274,7 +2274,7 @@ __metadata:
     "@commitlint/cli": "npm:^18.4.3"
     "@commitlint/config-conventional": "npm:^18.4.3"
     "@discordjs/builders": "npm:^1.7.0"
-    "@favware/graphql-pokemon": "npm:^8.3.2"
+    "@favware/graphql-pokemon": "npm:^8.3.3"
     "@influxdata/influxdb-client": "npm:^1.33.2"
     "@influxdata/influxdb-client-apis": "npm:^1.33.2"
     "@sapphire/decorators": "npm:^6.0.3"
@@ -2286,7 +2286,7 @@ __metadata:
     "@sapphire/plugin-scheduled-tasks": "npm:^10.0.0"
     "@sapphire/prettier-config": "npm:^2.0.0"
     "@sapphire/ts-config": "npm:^5.0.0"
-    "@sapphire/utilities": "npm:^3.14.0"
+    "@sapphire/utilities": "npm:^3.15.1"
     "@skyra/env-utilities": "npm:^1.3.0"
     "@skyra/jaro-winkler": "npm:^1.1.1"
     "@skyra/start-banner": "npm:^2.0.1"
@@ -2301,7 +2301,7 @@ __metadata:
     bufferutil: "npm:^4.0.8"
     colorette: "npm:^2.0.20"
     cz-conventional-changelog: "npm:^3.3.0"
-    discord-api-types: "npm:^0.37.66"
+    discord-api-types: "npm:^0.37.67"
     discord.js: "npm:^14.14.1"
     eslint: "npm:^8.56.0"
     eslint-config-prettier: "npm:^9.1.0"
