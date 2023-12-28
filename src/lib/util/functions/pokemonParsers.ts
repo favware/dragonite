@@ -447,6 +447,8 @@ export function pokemonEnumToSpecies(pokemon: PokemonEnum): string {
       return 'Poltchageist Artisan';
     case PokemonEnum.Sinistchamasterpiece:
       return 'Sinistcha Masterpiece';
+    case PokemonEnum.Palafinhero:
+      return 'Palafin Hero';
 
     // All other cases
     default: {
