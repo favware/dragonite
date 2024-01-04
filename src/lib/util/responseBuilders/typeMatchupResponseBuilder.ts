@@ -1,7 +1,7 @@
 import { BrandingColors, Emojis } from '#utils/constants';
-import { parseBulbapediaURL } from '#utils/functions/pokemonParsers';
 import { ActionRowBuilder, ButtonBuilder } from '@discordjs/builders';
 import type { TypeEffectiveness, TypeMatchup, TypesEnum } from '@favware/graphql-pokemon';
+import { parseBulbapediaURL } from '@favware/graphql-pokemon/utilities';
 import { container } from '@sapphire/framework';
 import { toTitleCase } from '@sapphire/utilities';
 import { ButtonStyle, EmbedBuilder, HeadingLevel, heading, hideLinkEmbed, hyperlink, type InteractionReplyOptions } from 'discord.js';
