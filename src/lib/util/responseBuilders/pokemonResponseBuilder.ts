@@ -20,8 +20,6 @@ import {
   ButtonStyle,
   EmbedBuilder,
   bold,
-  hideLinkEmbed,
-  hyperlink,
   inlineCode,
   italic,
   type APIButtonComponentWithURL,
@@ -340,7 +338,7 @@ function parseExternalResources(pokeDetails: PokemonToDisplayArgs['pokeDetails']
       .setStyle(ButtonStyle.Link)
       .setLabel('Bulbapedia')
       .setEmoji({ id: Emojis.Bulbapedia })
-      .setURL(hyperlink('Bulbapedia', hideLinkEmbed(resolveBulbapediaURL(pokeDetails))))
+      .setURL(resolveBulbapediaURL(pokeDetails))
       .toJSON() as APIButtonComponentWithURL,
     new ButtonBuilder()
       .setStyle(ButtonStyle.Link)
