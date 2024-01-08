@@ -1,6 +1,6 @@
 import { BrandingColors, CdnUrls, Emojis } from '#utils/constants';
-import { parseBulbapediaURL } from '#utils/functions/pokemonParsers';
 import type { Move } from '@favware/graphql-pokemon';
+import { parseBulbapediaURL } from '@favware/graphql-pokemon/utilities';
 import { PaginatedMessage, type PaginatedMessageAction } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
 import { toTitleCase } from '@sapphire/utilities';

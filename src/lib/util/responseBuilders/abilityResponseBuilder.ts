@@ -1,6 +1,6 @@
 import { BrandingColors, CdnUrls, Emojis } from '#utils/constants';
-import { parseBulbapediaURL } from '#utils/functions/pokemonParsers';
 import type { Ability } from '@favware/graphql-pokemon';
+import { parseBulbapediaURL } from '@favware/graphql-pokemon/utilities';
 import { toTitleCase } from '@sapphire/utilities';
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, type InteractionEditReplyOptions } from 'discord.js';
 

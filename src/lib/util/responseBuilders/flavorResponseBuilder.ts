@@ -1,14 +1,14 @@
 import { CdnUrls } from '#utils/constants';
-import { pokemonEnumToSpecies, resolveColour } from '#utils/functions/pokemonParsers';
 import type { PokemonSpriteTypes } from '#utils/responseBuilders/pokemonResponseBuilder';
 import type { Pokemon } from '@favware/graphql-pokemon';
+import { pokemonEnumToSpecies, resolveColor } from '@favware/graphql-pokemon/utilities';
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
 import { EmbedBuilder } from 'discord.js';
 
 export function flavorResponseBuilder(pokemonData: Omit<Pokemon, '__typename'>, spriteToGet: PokemonSpriteTypes) {
   const display = new PaginatedMessage({
     template: new EmbedBuilder()
-      .setColor(resolveColour(pokemonData.color))
+      .setColor(resolveColor(pokemonData.color))
       .setAuthor({ name: `#${pokemonData.num} - ${pokemonEnumToSpecies(pokemonData.key)}`, iconURL: CdnUrls.Pokedex })
       .setThumbnail(pokemonData[spriteToGet])
   }) //

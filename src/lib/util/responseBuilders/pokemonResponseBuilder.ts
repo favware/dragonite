@@ -1,8 +1,17 @@
 import { CdnUrls, Emojis } from '#utils/constants';
 import type { FavouredEntry } from '#utils/favouredEntries';
-import { isMissingNoOrM00, pokemonEnumToSpecies, resolveBulbapediaURL, resolveColour, resolveSerebiiUrl } from '#utils/functions/pokemonParsers';
+
 import type { KeysContaining } from '#utils/utils';
 import type { Abilities, EvYields, Gender, Pokemon, PokemonEnum, Stats } from '@favware/graphql-pokemon';
+import {
+  isCapPokemon,
+  isMissingNoOrM00,
+  isRegularPokemon,
+  pokemonEnumToSpecies,
+  resolveBulbapediaURL,
+  resolveColor,
+  resolveSerebiiUrl
+} from '@favware/graphql-pokemon/utilities';
 import { PaginatedMessage, type PaginatedMessageAction } from '@sapphire/discord.js-utilities';
 import { container } from '@sapphire/framework';
 import { isNullish, isNullishOrEmpty } from '@sapphire/utilities';
@@ -11,6 +20,8 @@ import {
   ButtonStyle,
   EmbedBuilder,
   bold,
+  hideLinkEmbed,
+  hyperlink,
   inlineCode,
   italic,
   type APIButtonComponentWithURL,
@@ -55,7 +66,7 @@ function isFavouredEntry(fuzzyMatch: Pokemon | FavouredEntry<PokemonEnum>): fuzz
 function parsePokemon({ pokeDetails, abilities, baseStats, evYields, evoChain, spriteToGet }: PokemonToDisplayArgs): PaginatedMessage {
   const display = new PaginatedMessage({
     template: new EmbedBuilder()
-      .setColor(resolveColour(pokeDetails.color))
+      .setColor(resolveColor(pokeDetails.color))
       .setAuthor({ name: `#${pokeDetails.num} - ${pokemonEnumToSpecies(pokeDetails.key)}`, iconURL: CdnUrls.Pokedex })
       .setThumbnail(pokeDetails[spriteToGet])
   })
@@ -314,14 +325,6 @@ function getEvoChain(pokeDetails: Pokemon): string {
   return evoChain;
 }
 
-function isCapPokemon(pokeDetails: Pokemon) {
-  return pokeDetails.num < 0;
-}
-
-function isRegularPokemon(pokeDetails: Pokemon) {
-  return pokeDetails.num > 0;
-}
-
 function parseExternalResources(pokeDetails: PokemonToDisplayArgs['pokeDetails']): PaginatedMessageAction[] {
   const smogonButton = new ButtonBuilder()
     .setStyle(ButtonStyle.Link)
@@ -337,7 +340,7 @@ function parseExternalResources(pokeDetails: PokemonToDisplayArgs['pokeDetails']
       .setStyle(ButtonStyle.Link)
       .setLabel('Bulbapedia')
       .setEmoji({ id: Emojis.Bulbapedia })
-      .setURL(resolveBulbapediaURL(pokeDetails))
+      .setURL(hyperlink('Bulbapedia', hideLinkEmbed(resolveBulbapediaURL(pokeDetails))))
       .toJSON() as APIButtonComponentWithURL,
     new ButtonBuilder()
       .setStyle(ButtonStyle.Link)
