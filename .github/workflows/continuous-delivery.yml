@@ -32,3 +32,19 @@ jobs:
           context: ./
           file: Dockerfile
           tags: ghcr.io/favware/dragonite:latest
+
+  UpdateOnServer:
+    name: Update running container on server
+    runs-on: ubuntu-latest
+    needs: PublishDragonite
+    steps:
+      - name: Update container on server
+        uses: favware/ssh-remote-action@v1
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
+          username: ${{ secrets.SSH_USERNAME }}
+          command: ${{ secrets.SSH_COMMAND }}
+          silent: true
