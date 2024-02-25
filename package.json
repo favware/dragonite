@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@discordjs/builders": "^1.7.0",
-    "@favware/graphql-pokemon": "^8.4.1",
+    "@favware/graphql-pokemon": "^8.4.2",
     "@influxdata/influxdb-client": "^1.33.2",
     "@influxdata/influxdb-client-apis": "^1.33.2",
     "@sapphire/decorators": "^6.0.4",
