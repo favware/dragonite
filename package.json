@@ -30,10 +30,10 @@
     "@favware/graphql-pokemon": "^8.5.0",
     "@influxdata/influxdb-client": "^1.33.2",
     "@influxdata/influxdb-client-apis": "^1.33.2",
-    "@sapphire/decorators": "^6.0.4",
+    "@sapphire/decorators": "^6.1.0",
     "@sapphire/discord.js-utilities": "^7.1.6",
     "@sapphire/fetch": "^3.0.2",
-    "@sapphire/framework": "^5.0.7",
+    "@sapphire/framework": "^5.0.10",
     "@sapphire/plugin-logger": "^4.0.2",
     "@sapphire/plugin-scheduled-tasks": "^10.0.1",
     "@sapphire/utilities": "^3.15.3",
@@ -43,7 +43,7 @@
     "binarytf": "^2.1.3",
     "bufferutil": "^4.0.8",
     "colorette": "^2.0.20",
-    "discord-api-types": "^0.37.74",
+    "discord-api-types": "^0.37.76",
     "discord.js": "^14.14.1",
     "figlet": "^1.7.0",
     "gradient-string": "^2.0.2",
@@ -53,7 +53,7 @@
     "zlib-sync": "^0.1.9"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.2.0",
+    "@commitlint/cli": "^19.2.1",
     "@commitlint/config-conventional": "^19.1.0",
     "@sapphire/eslint-config": "^5.0.4",
     "@sapphire/prettier-config": "^2.0.0",
@@ -61,10 +61,10 @@
     "@swc/core": "^1.4.8",
     "@types/figlet": "^1.5.8",
     "@types/gradient-string": "^1.1.5",
-    "@types/node": "^20.11.28",
+    "@types/node": "^20.11.30",
     "@types/ws": "^8.5.10",
-    "@typescript-eslint/eslint-plugin": "^7.2.0",
-    "@typescript-eslint/parser": "^7.2.0",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
@@ -73,7 +73,7 @@
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "tsup": "^8.0.2",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.3"
   },
   "resolutions": {
     "ansi-regex": "^5.0.1",
