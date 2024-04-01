@@ -1,4 +1,5 @@
 import { parseRedisOption } from '#root/config';
+import { secondsFromMilliseconds } from '#utils/functions/time';
 import type {
   AbilitiesEnum,
   Ability,
@@ -17,7 +18,6 @@ import { Time } from '@sapphire/timestamp';
 import { isNullish } from '@sapphire/utilities';
 import { envParseInteger } from '@skyra/env-utilities';
 import { Redis } from 'ioredis';
-import { secondsFromMilliseconds } from '../util/functions/time';
 
 export const enum RedisKeys {
   GetAbility = 'getAbility',
