@@ -13,9 +13,11 @@ import type {
   TypesEnum
 } from '@favware/graphql-pokemon';
 import { Result } from '@sapphire/framework';
+import { Time } from '@sapphire/timestamp';
 import { isNullish } from '@sapphire/utilities';
 import { envParseInteger } from '@skyra/env-utilities';
 import { Redis } from 'ioredis';
+import { secondsFromMilliseconds } from '../util/functions/time';
 
 export const enum RedisKeys {
   GetAbility = 'getAbility',
@@ -53,19 +55,7 @@ export class RedisCacheClient extends Redis {
   }
 
   public insert<K extends RedisKeys>(key: K, query: RedisKeyQuery<K>, data: RedisData<K>) {
-    return this.set(`${key}:${query}`, JSON.stringify(data));
-  }
-
-  public async clearLearnsetKeys() {
-    const keys = await this.keys(`${RedisKeys.GetLearnset}:*`);
-
-    return this.del(keys);
-  }
-
-  public async clearPokemonKeys() {
-    const keys = await this.keys(`${RedisKeys.GetPokemon}:*`);
-
-    return this.del(keys);
+    return this.setex(`${key}:${query}`, secondsFromMilliseconds(Time.Minute * 5), JSON.stringify(data));
   }
 }
 
