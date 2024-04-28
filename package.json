@@ -49,7 +49,7 @@
     "gradient-string": "^2.0.2",
     "ioredis": "^5.4.1",
     "utf-8-validate": "^6.0.3",
-    "ws": "^8.16.0",
+    "ws": "^8.17.0",
     "zlib-sync": "^0.1.9"
   },
   "devDependencies": {
