@@ -514,12 +514,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@favware/graphql-pokemon@npm:^8.5.2":
-  version: 8.5.2
-  resolution: "@favware/graphql-pokemon@npm:8.5.2"
+"@favware/graphql-pokemon@npm:^8.5.3":
+  version: 8.5.3
+  resolution: "@favware/graphql-pokemon@npm:8.5.3"
   dependencies:
     graphql: "npm:^16.8.1"
-  checksum: 10/6a12c25294c34d95c42d457ada9a8c3f47424fb155d382042504b5986df5fa84d8091a9d6332acb4c7745bdd302dc77c3945a40d5f79303cc3b6c3a22c9ae697
+  checksum: 10/c56b1099bf27b9488d4465ccef0e7a22498d72be150ea3cacd2a0873e28a5747231e77a1ea7ce3cd993fd2bde856b283ba640967dc408957865e2b00703a60f9
   languageName: node
   linkType: hard
 
@@ -2180,7 +2180,7 @@ __metadata:
     "@commitlint/cli": "npm:^19.3.0"
     "@commitlint/config-conventional": "npm:^19.2.2"
     "@discordjs/builders": "npm:^1.8.1"
-    "@favware/graphql-pokemon": "npm:^8.5.2"
+    "@favware/graphql-pokemon": "npm:^8.5.3"
     "@influxdata/influxdb-client": "npm:^1.33.2"
     "@influxdata/influxdb-client-apis": "npm:^1.33.2"
     "@sapphire/decorators": "npm:^6.1.0"
