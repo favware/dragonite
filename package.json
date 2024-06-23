@@ -61,7 +61,7 @@
     "@swc/core": "^1.6.5",
     "@types/figlet": "^1.5.8",
     "@types/gradient-string": "^1.1.6",
-    "@types/node": "^20.14.2",
+    "@types/node": "20.14.8",
     "@types/ws": "^8.5.10",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",
@@ -73,7 +73,7 @@
     "prettier": "^3.3.2",
     "rimraf": "^5.0.7",
     "tsup": "^8.1.0",
-    "typescript": "^5.5.2"
+    "typescript": "~5.4.5"
   },
   "resolutions": {
     "ansi-regex": "^5.0.1",
