@@ -53,15 +53,15 @@
     "zlib-sync": "^0.1.9"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.3.0",
+    "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@sapphire/eslint-config": "^5.0.5",
     "@sapphire/prettier-config": "^2.0.0",
     "@sapphire/ts-config": "^5.0.1",
-    "@swc/core": "^1.7.6",
+    "@swc/core": "^1.7.10",
     "@types/figlet": "^1.5.8",
     "@types/gradient-string": "^1.1.6",
-    "@types/node": "20.14.14",
+    "@types/node": "20.14.15",
     "@types/ws": "^8.5.12",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",
