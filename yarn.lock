@@ -549,19 +549,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@influxdata/influxdb-client-apis@npm:^1.34.0":
-  version: 1.34.0
-  resolution: "@influxdata/influxdb-client-apis@npm:1.34.0"
+"@influxdata/influxdb-client-apis@npm:^1.35.0":
+  version: 1.35.0
+  resolution: "@influxdata/influxdb-client-apis@npm:1.35.0"
   peerDependencies:
     "@influxdata/influxdb-client": "*"
-  checksum: 10/d2e09154e92d0fc97c76b15260b0a599e52fd2e350ae973216b4a7165fc691298fafc6f9bc411f1c9d3fa5ff0298eb9519f90e6540a16ca75651358d1e4f319d
+  checksum: 10/d21446bc8a8ab4c1d8026e9b50a7cf57a1ef893373da2473c5bcae2e0d502595d5b9f4890b477d17ea3053556070141705548c669da335bb47741f98260144d2
   languageName: node
   linkType: hard
 
-"@influxdata/influxdb-client@npm:^1.34.0":
-  version: 1.34.0
-  resolution: "@influxdata/influxdb-client@npm:1.34.0"
-  checksum: 10/68eff08c41e45a7432d938ff51e12de3aa056f857d81b9c7436b09bbcf7a8826720a1755e45686cd330edc7f20f0b44eda3948d2642ebcc69e67f6a98aa48e67
+"@influxdata/influxdb-client@npm:^1.35.0":
+  version: 1.35.0
+  resolution: "@influxdata/influxdb-client@npm:1.35.0"
+  checksum: 10/9d9ea3bb50b5843070bc85bc75d5a86ce63eede0ac5eceac87041ea79e0e2277eacc2635a4f73f402ab2c25ba5fbebc0c6a53298b5597aa4c014a8d2f2d0a9da
   languageName: node
   linkType: hard
 
@@ -904,10 +904,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/fetch@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "@sapphire/fetch@npm:3.0.2"
-  checksum: 10/535e0ed47930349d91593609392047dea9a92d8f0b3047bef51fdd7c52f3356f0d86a97245c693e4608dec7831e347812813bdfd52e687d562b3e9ed4005848e
+"@sapphire/fetch@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "@sapphire/fetch@npm:3.0.3"
+  checksum: 10/4eed77aeb72d9a2fb4671b88e1e6d960c838ebd23d22735f78a385b295ed2938e348722b8b93da00aa8c9b1ec9a2e545b20d2f0100b5bd490c8f34734ae9831c
   languageName: node
   linkType: hard
 
@@ -1067,90 +1067,90 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-arm64@npm:1.7.10":
-  version: 1.7.10
-  resolution: "@swc/core-darwin-arm64@npm:1.7.10"
+"@swc/core-darwin-arm64@npm:1.7.11":
+  version: 1.7.11
+  resolution: "@swc/core-darwin-arm64@npm:1.7.11"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-x64@npm:1.7.10":
-  version: 1.7.10
-  resolution: "@swc/core-darwin-x64@npm:1.7.10"
+"@swc/core-darwin-x64@npm:1.7.11":
+  version: 1.7.11
+  resolution: "@swc/core-darwin-x64@npm:1.7.11"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm-gnueabihf@npm:1.7.10":
-  version: 1.7.10
-  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.7.10"
+"@swc/core-linux-arm-gnueabihf@npm:1.7.11":
+  version: 1.7.11
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.7.11"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-gnu@npm:1.7.10":
-  version: 1.7.10
-  resolution: "@swc/core-linux-arm64-gnu@npm:1.7.10"
+"@swc/core-linux-arm64-gnu@npm:1.7.11":
+  version: 1.7.11
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.7.11"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-musl@npm:1.7.10":
-  version: 1.7.10
-  resolution: "@swc/core-linux-arm64-musl@npm:1.7.10"
+"@swc/core-linux-arm64-musl@npm:1.7.11":
+  version: 1.7.11
+  resolution: "@swc/core-linux-arm64-musl@npm:1.7.11"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-gnu@npm:1.7.10":
-  version: 1.7.10
-  resolution: "@swc/core-linux-x64-gnu@npm:1.7.10"
+"@swc/core-linux-x64-gnu@npm:1.7.11":
+  version: 1.7.11
+  resolution: "@swc/core-linux-x64-gnu@npm:1.7.11"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-musl@npm:1.7.10":
-  version: 1.7.10
-  resolution: "@swc/core-linux-x64-musl@npm:1.7.10"
+"@swc/core-linux-x64-musl@npm:1.7.11":
+  version: 1.7.11
+  resolution: "@swc/core-linux-x64-musl@npm:1.7.11"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-win32-arm64-msvc@npm:1.7.10":
-  version: 1.7.10
-  resolution: "@swc/core-win32-arm64-msvc@npm:1.7.10"
+"@swc/core-win32-arm64-msvc@npm:1.7.11":
+  version: 1.7.11
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.7.11"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-win32-ia32-msvc@npm:1.7.10":
-  version: 1.7.10
-  resolution: "@swc/core-win32-ia32-msvc@npm:1.7.10"
+"@swc/core-win32-ia32-msvc@npm:1.7.11":
+  version: 1.7.11
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.7.11"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@swc/core-win32-x64-msvc@npm:1.7.10":
-  version: 1.7.10
-  resolution: "@swc/core-win32-x64-msvc@npm:1.7.10"
+"@swc/core-win32-x64-msvc@npm:1.7.11":
+  version: 1.7.11
+  resolution: "@swc/core-win32-x64-msvc@npm:1.7.11"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core@npm:^1.7.10":
-  version: 1.7.10
-  resolution: "@swc/core@npm:1.7.10"
+"@swc/core@npm:^1.7.11":
+  version: 1.7.11
+  resolution: "@swc/core@npm:1.7.11"
   dependencies:
-    "@swc/core-darwin-arm64": "npm:1.7.10"
-    "@swc/core-darwin-x64": "npm:1.7.10"
-    "@swc/core-linux-arm-gnueabihf": "npm:1.7.10"
-    "@swc/core-linux-arm64-gnu": "npm:1.7.10"
-    "@swc/core-linux-arm64-musl": "npm:1.7.10"
-    "@swc/core-linux-x64-gnu": "npm:1.7.10"
-    "@swc/core-linux-x64-musl": "npm:1.7.10"
-    "@swc/core-win32-arm64-msvc": "npm:1.7.10"
-    "@swc/core-win32-ia32-msvc": "npm:1.7.10"
-    "@swc/core-win32-x64-msvc": "npm:1.7.10"
+    "@swc/core-darwin-arm64": "npm:1.7.11"
+    "@swc/core-darwin-x64": "npm:1.7.11"
+    "@swc/core-linux-arm-gnueabihf": "npm:1.7.11"
+    "@swc/core-linux-arm64-gnu": "npm:1.7.11"
+    "@swc/core-linux-arm64-musl": "npm:1.7.11"
+    "@swc/core-linux-x64-gnu": "npm:1.7.11"
+    "@swc/core-linux-x64-musl": "npm:1.7.11"
+    "@swc/core-win32-arm64-msvc": "npm:1.7.11"
+    "@swc/core-win32-ia32-msvc": "npm:1.7.11"
+    "@swc/core-win32-x64-msvc": "npm:1.7.11"
     "@swc/counter": "npm:^0.1.3"
     "@swc/types": "npm:^0.1.12"
   peerDependencies:
@@ -1179,7 +1179,7 @@ __metadata:
   peerDependenciesMeta:
     "@swc/helpers":
       optional: true
-  checksum: 10/bff2fdfeea535bb5db7b0892fd1d3cc1dc68477d5ed4a23491106180f3f3cccddd1f0a8309a02f483732127c9b3afbbb46fb689a6dc56b584cae3b398a7cb445
+  checksum: 10/5ffb3333b4cb76366095cbd0ffd84bdcb8e2ff338ebeb203ae1af007cff95ca24741347da378ea2030ae7ef52fb5dc19a9b317c92cbc8c412d526f07a4a470c6
   languageName: node
   linkType: hard
 
@@ -1231,12 +1231,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:20.14.15":
-  version: 20.14.15
-  resolution: "@types/node@npm:20.14.15"
+"@types/node@npm:*, @types/node@npm:20.16.0":
+  version: 20.16.0
+  resolution: "@types/node@npm:20.16.0"
   dependencies:
-    undici-types: "npm:~5.26.4"
-  checksum: 10/87a4a4313e886c1db1c8042004956095477e040f67df993fd16a2d50488c750bda81e85bf702c2e629e964605034e8dfe0cb91b65ce22b6b8eec37ece61c6b6c
+    undici-types: "npm:~6.19.2"
+  checksum: 10/ad6d50982d1ced0f29ed1fc01b6ed24b03dac15f11f0ff0806af0c74d658be95ea4faef9b1b05c04e7d112c562126449326f44f9819875a6e45036b929a1bc94
   languageName: node
   linkType: hard
 
@@ -2150,10 +2150,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:^0.37.84, discord-api-types@npm:^0.37.93":
-  version: 0.37.93
-  resolution: "discord-api-types@npm:0.37.93"
-  checksum: 10/2e7e10806cd497e502df7eed9d23dca0b1dce0a95d993fbcebf7e3c0248a795c5816ca6b326bb15bbb9a1c119f941e0866c8858ea17912c19a72b4af8e82cd99
+"discord-api-types@npm:^0.37.84, discord-api-types@npm:^0.37.94":
+  version: 0.37.94
+  resolution: "discord-api-types@npm:0.37.94"
+  checksum: 10/dc3a15a4dd345c1da84e9ec5f4bb29ff4757b9fd9a27395719b99bd3bed0ad8186fc07ff72dbf2de219ae807ddebf1b085a26f1b953492652a009b8102f9561f
   languageName: node
   linkType: hard
 
@@ -2217,12 +2217,12 @@ __metadata:
     "@commitlint/config-conventional": "npm:^19.2.2"
     "@discordjs/builders": "npm:^1.8.2"
     "@favware/graphql-pokemon": "npm:^8.6.0"
-    "@influxdata/influxdb-client": "npm:^1.34.0"
-    "@influxdata/influxdb-client-apis": "npm:^1.34.0"
+    "@influxdata/influxdb-client": "npm:^1.35.0"
+    "@influxdata/influxdb-client-apis": "npm:^1.35.0"
     "@sapphire/decorators": "npm:^6.1.0"
     "@sapphire/discord.js-utilities": "npm:^7.3.0"
     "@sapphire/eslint-config": "npm:^5.0.5"
-    "@sapphire/fetch": "npm:^3.0.2"
+    "@sapphire/fetch": "npm:^3.0.3"
     "@sapphire/framework": "npm:^5.2.1"
     "@sapphire/plugin-logger": "npm:^4.0.2"
     "@sapphire/plugin-scheduled-tasks": "npm:^10.0.1"
@@ -2232,10 +2232,10 @@ __metadata:
     "@skyra/env-utilities": "npm:^1.3.0"
     "@skyra/jaro-winkler": "npm:^1.1.1"
     "@skyra/start-banner": "npm:^2.0.1"
-    "@swc/core": "npm:^1.7.10"
+    "@swc/core": "npm:^1.7.11"
     "@types/figlet": "npm:^1.5.8"
     "@types/gradient-string": "npm:^1.1.6"
-    "@types/node": "npm:20.14.15"
+    "@types/node": "npm:20.16.0"
     "@types/ws": "npm:^8.5.12"
     "@typescript-eslint/eslint-plugin": "npm:^7.13.1"
     "@typescript-eslint/parser": "npm:^7.13.1"
@@ -2243,7 +2243,7 @@ __metadata:
     bufferutil: "npm:^4.0.8"
     colorette: "npm:^2.0.20"
     cz-conventional-changelog: "npm:^3.3.0"
-    discord-api-types: "npm:^0.37.93"
+    discord-api-types: "npm:^0.37.94"
     discord.js: "npm:^14.15.3"
     eslint: "npm:^8.57.0"
     eslint-config-prettier: "npm:^9.1.0"
@@ -2251,7 +2251,7 @@ __metadata:
     figlet: "npm:^1.7.0"
     gradient-string: "npm:^2.0.2"
     ioredis: "npm:^5.4.1"
-    lint-staged: "npm:^15.2.8"
+    lint-staged: "npm:^15.2.9"
     prettier: "npm:^3.3.3"
     rimraf: "npm:^6.0.1"
     tsup: "npm:^8.2.4"
@@ -3576,9 +3576,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:^15.2.8":
-  version: 15.2.8
-  resolution: "lint-staged@npm:15.2.8"
+"lint-staged@npm:^15.2.9":
+  version: 15.2.9
+  resolution: "lint-staged@npm:15.2.9"
   dependencies:
     chalk: "npm:~5.3.0"
     commander: "npm:~12.1.0"
@@ -3592,7 +3592,7 @@ __metadata:
     yaml: "npm:~2.5.0"
   bin:
     lint-staged: bin/lint-staged.js
-  checksum: 10/cabeb0540775cafa71d8d55be74b6854f65f083efa43886a5b47bfad36d23bc302c70c67dc952303ffa646e5563cfb92005a5d5ea3944c71f7ee3ff5b7bdcd71
+  checksum: 10/2f7342ca3fc7e2a8a0cc3db79ca8d2ad0269b98b13220f3a6745a514aacf1f83487a23a550569081ea962f9a576af7df8d687a8330a9c3c2c27348d5a4d5440e
   languageName: node
   linkType: hard
 
@@ -5284,10 +5284,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~5.26.4":
-  version: 5.26.5
-  resolution: "undici-types@npm:5.26.5"
-  checksum: 10/0097779d94bc0fd26f0418b3a05472410408877279141ded2bd449167be1aed7ea5b76f756562cb3586a07f251b90799bab22d9019ceba49c037c76445f7cddd
+"undici-types@npm:~6.19.2":
+  version: 6.19.6
+  resolution: "undici-types@npm:6.19.6"
+  checksum: 10/0ea9bc25762a86597d095b3772f6cec0bcabb796c339f7dfa2bd601c745a480289eb2939848dc285a56d4f94f50c475868160d8d6d3f54e823f1faf7ea9e9468
   languageName: node
   linkType: hard
 
