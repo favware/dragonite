@@ -1729,7 +1729,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.1, chalk@npm:^4.1.2":
+"chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.1":
   version: 4.1.2
   resolution: "chalk@npm:4.1.2"
   dependencies:
@@ -2255,7 +2255,7 @@ __metadata:
     eslint-config-prettier: "npm:^9.1.0"
     eslint-plugin-prettier: "npm:^5.2.1"
     figlet: "npm:^1.7.0"
-    gradient-string: "npm:^2.0.2"
+    gradient-string: "npm:^3.0.0"
     ioredis: "npm:^5.4.1"
     lint-staged: "npm:^15.2.10"
     prettier: "npm:^3.3.3"
@@ -3059,13 +3059,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gradient-string@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "gradient-string@npm:2.0.2"
+"gradient-string@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "gradient-string@npm:3.0.0"
   dependencies:
-    chalk: "npm:^4.1.2"
+    chalk: "npm:^5.3.0"
     tinygradient: "npm:^1.1.5"
-  checksum: 10/3abca99686f9b0747264a34e8fb3b30b3d5bb54230ddbfa000ae1fa4bd386bdf4163284b9f740dbba36f04cf4a366b05b2f6591490b3e63ae120ec4c6ac4b958
+  checksum: 10/b8fc1bec2e974a81e9d38443dfcd4e8b80fd7b3422a347421c901c9fa555a3edd17aa2714d2c0c49f82cffaa14f98dab923850a41e04fb1e3ac8d50d2e94207b
   languageName: node
   linkType: hard
 
