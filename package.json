@@ -46,7 +46,7 @@
     "discord-api-types": "^0.37.102",
     "discord.js": "^14.16.3",
     "figlet": "^1.8.0",
-    "gradient-string": "^2.0.2",
+    "gradient-string": "^3.0.0",
     "ioredis": "^5.4.1",
     "utf-8-validate": "^6.0.4",
     "ws": "^8.18.0",
