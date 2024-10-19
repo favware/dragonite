@@ -5,7 +5,7 @@ import { envParseBoolean, envParseString } from '@skyra/env-utilities';
 import { createBanner } from '@skyra/start-banner';
 import { blue, gray, green, magenta, magentaBright, white, yellow } from 'colorette';
 import figlet from 'figlet';
-import gradient from 'gradient-string';
+import { pastel } from 'gradient-string';
 
 @ApplyOptions<Listener.Options>({ once: true })
 export class UserListener extends Listener<typeof Events.ClientReady> {
@@ -34,7 +34,7 @@ export class UserListener extends Listener<typeof Events.ClientReady> {
 
     console.log(
       createBanner({
-        name: [gradient.pastel.multiline(figlet.textSync('Dragonite'))],
+        name: [pastel.multiline(figlet.textSync('Dragonite'))],
         extra: [
           blc(envParseString('CLIENT_VERSION')), //
           `[${success}] Gateway`,
