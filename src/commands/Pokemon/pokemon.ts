@@ -10,6 +10,8 @@ import { isNullish, isNullishOrEmpty } from '@sapphire/utilities';
 import {
   ActionRowBuilder,
   ApplicationCommandType,
+  ApplicationIntegrationType,
+  InteractionContextType,
   MessageContextMenuCommandInteraction,
   StringSelectMenuBuilder,
   type APIApplicationCommandOptionChoice,
@@ -45,6 +47,8 @@ export class SlashCommand extends DragoniteCommand {
             .setDescription('The sprite that you want the result to show.')
             .setChoices(...this.spriteChoices)
         )
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall, ApplicationIntegrationType.UserInstall)
+        .setContexts(InteractionContextType.Guild, InteractionContextType.BotDM, InteractionContextType.PrivateChannel)
     );
 
     registry.registerContextMenuCommand((builder) =>
@@ -52,6 +56,8 @@ export class SlashCommand extends DragoniteCommand {
         .setName('Find Pokémon')
         // @ts-expect-error temporarily ignore the error because discord.js broke types
         .setType(ApplicationCommandType.Message)
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall, ApplicationIntegrationType.UserInstall)
+        .setContexts(InteractionContextType.Guild, InteractionContextType.BotDM, InteractionContextType.PrivateChannel)
     );
   }
 

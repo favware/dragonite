@@ -4,7 +4,7 @@ import { TypesEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import { UserError, type ChatInputCommand } from '@sapphire/framework';
 import { filterNullish, isNullish, objectEntries } from '@sapphire/utilities';
-import type { APIApplicationCommandOptionChoice } from 'discord.js';
+import { ApplicationIntegrationType, InteractionContextType, type APIApplicationCommandOptionChoice } from 'discord.js';
 
 @ApplyOptions<ChatInputCommand.Options>({
   description: 'Gets data for the chosen type matchup.'
@@ -33,6 +33,8 @@ export class SlashCommand extends DragoniteCommand {
             .setDescription('The second type to include in the type matchup.')
             .setChoices(...this.choices)
         )
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall, ApplicationIntegrationType.UserInstall)
+        .setContexts(InteractionContextType.Guild, InteractionContextType.BotDM, InteractionContextType.PrivateChannel)
     );
   }
 

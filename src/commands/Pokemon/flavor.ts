@@ -7,7 +7,14 @@ import type { PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { ChatInputCommand } from '@sapphire/framework';
 import { isNullish } from '@sapphire/utilities';
-import { ActionRowBuilder, StringSelectMenuBuilder, type APIApplicationCommandOptionChoice, type APISelectMenuOption } from 'discord.js';
+import {
+  ActionRowBuilder,
+  ApplicationIntegrationType,
+  InteractionContextType,
+  StringSelectMenuBuilder,
+  type APIApplicationCommandOptionChoice,
+  type APISelectMenuOption
+} from 'discord.js';
 
 @ApplyOptions<ChatInputCommand.Options>({
   description: 'Gets PokéDex entries for the chosen Pokémon.'
@@ -38,6 +45,8 @@ export class SlashCommand extends DragoniteCommand {
             .setDescription('The sprite that you want the result to show.')
             .setChoices(...this.spriteChoices)
         )
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall, ApplicationIntegrationType.UserInstall)
+        .setContexts(InteractionContextType.Guild, InteractionContextType.BotDM, InteractionContextType.PrivateChannel)
     );
   }
 

@@ -7,7 +7,7 @@ import type { PokemonEnum } from '@favware/graphql-pokemon';
 import { ApplyOptions } from '@sapphire/decorators';
 import type { ChatInputCommand } from '@sapphire/framework';
 import { isNullish } from '@sapphire/utilities';
-import { ActionRowBuilder, StringSelectMenuBuilder, type APISelectMenuOption } from 'discord.js';
+import { ActionRowBuilder, ApplicationIntegrationType, InteractionContextType, StringSelectMenuBuilder, type APISelectMenuOption } from 'discord.js';
 
 @ApplyOptions<ChatInputCommand.Options>({
   description: 'Gets sprites for the chosen Pokémon.'
@@ -25,6 +25,8 @@ export class SlashCommand extends DragoniteCommand {
             .setRequired(true)
             .setAutocomplete(true)
         )
+        .setIntegrationTypes(ApplicationIntegrationType.GuildInstall, ApplicationIntegrationType.UserInstall)
+        .setContexts(InteractionContextType.Guild, InteractionContextType.BotDM, InteractionContextType.PrivateChannel)
     );
   }
 
