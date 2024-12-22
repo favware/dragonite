@@ -46,13 +46,13 @@
     "discord.js": "^14.16.3",
     "figlet": "^1.8.0",
     "gradient-string": "^3.0.0",
-    "ioredis": "^5.4.1",
+    "ioredis": "^5.4.2",
     "utf-8-validate": "^6.0.5",
     "ws": "^8.18.0",
     "zlib-sync": "^0.1.9"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.6.0",
+    "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
     "@sapphire/eslint-config": "^5.0.5",
     "@sapphire/prettier-config": "^2.0.0",
