@@ -55,7 +55,6 @@ declare module '@skyra/env-utilities' {
     REDIS_CACHE_DB: IntegerString;
     REDIS_TASK_DB: IntegerString;
 
-    WEBHOOK_ERROR_ENABLED: BooleanString;
     WEBHOOK_ERROR_ID: string;
     WEBHOOK_ERROR_TOKEN: string;
 
