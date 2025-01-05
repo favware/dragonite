@@ -54,7 +54,6 @@ export class SlashCommand extends DragoniteCommand {
     registry.registerContextMenuCommand((builder) =>
       builder //
         .setName('Find Pokémon')
-        // @ts-expect-error temporarily ignore the error because discord.js broke types
         .setType(ApplicationCommandType.Message)
         .setIntegrationTypes(ApplicationIntegrationType.GuildInstall, ApplicationIntegrationType.UserInstall)
         .setContexts(InteractionContextType.Guild, InteractionContextType.BotDM, InteractionContextType.PrivateChannel)
