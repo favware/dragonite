@@ -54,6 +54,7 @@ export class SlashCommand extends DragoniteCommand {
       });
     }
 
+    // @ts-expect-error discord-api-types wonky with flags field, which is unused anyway so screw the check for that here
     return interaction.editReply(typeMatchupResponseBuilder(types, typeMatchup));
   }
 }
