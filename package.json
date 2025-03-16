@@ -37,7 +37,7 @@
     "@sapphire/plugin-logger": "^4.0.2",
     "@sapphire/plugin-scheduled-tasks": "^10.0.2",
     "@sapphire/utilities": "^3.18.2",
-    "@skyra/env-utilities": "^1.3.0",
+    "@skyra/env-utilities": "^2.0.0",
     "@skyra/jaro-winkler": "^1.1.1",
     "@skyra/start-banner": "^2.0.1",
     "binarytf": "^2.1.3",
