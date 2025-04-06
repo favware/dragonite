@@ -175,6 +175,19 @@ export const getItem = gql`
   }
 `;
 
+export const getNature = gql`
+  query getNature($nature: NaturesEnum!) {
+    getNature(nature: $nature) {
+      key
+      name
+      increasedStat
+      decreasedStat
+      preferredFlavor
+      dislikedFlavor
+    }
+  }
+`;
+
 export const getLearnset = gql`
   fragment learnsetLevelupMove on LearnsetLevelUpMove {
     move {

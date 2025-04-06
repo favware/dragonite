@@ -8,6 +8,8 @@ import type {
   Learnset,
   Move,
   MovesEnum,
+  Nature,
+  NaturesEnum,
   Pokemon,
   PokemonEnum,
   TypeMatchup,
@@ -22,6 +24,7 @@ import { Redis } from 'ioredis';
 export const enum RedisKeys {
   GetAbility = 'getAbility',
   GetItem = 'getItem',
+  GetNature = 'getNature',
   GetMove = 'getMove',
   GetFlavors = 'getFlavors',
   GetPokemon = 'getPokemon',
@@ -65,19 +68,21 @@ type RedisKeyQuery<K extends RedisKeys> = K extends 'getAbility'
     ? ItemsEnum
     : K extends 'getMove'
       ? MovesEnum
-      : K extends 'getFlavors'
-        ? PokemonEnum
-        : K extends 'getPokemon'
+      : K extends 'getNature'
+        ? NaturesEnum
+        : K extends 'getFlavors'
           ? PokemonEnum
-          : K extends 'getSprites'
+          : K extends 'getPokemon'
             ? PokemonEnum
-            : K extends 'getLearnset'
-              ? `${PokemonEnum}|${number}|${string}`
-              : K extends 'getTypeMatchup'
-                ? `${TypesEnum}` | `${TypesEnum},${TypesEnum}`
-                : K extends 'getAllSpecies'
-                  ? null
-                  : never;
+            : K extends 'getSprites'
+              ? PokemonEnum
+              : K extends 'getLearnset'
+                ? `${PokemonEnum}|${number}|${string}`
+                : K extends 'getTypeMatchup'
+                  ? `${TypesEnum}` | `${TypesEnum},${TypesEnum}`
+                  : K extends 'getAllSpecies'
+                    ? null
+                    : never;
 
 type RedisData<K extends RedisKeys> = K extends 'getAbility'
   ? Ability
@@ -85,16 +90,18 @@ type RedisData<K extends RedisKeys> = K extends 'getAbility'
     ? Item
     : K extends 'getMove'
       ? Move
-      : K extends 'getFlavors'
-        ? Pokemon
-        : K extends 'getPokemon'
+      : K extends 'getNature'
+        ? Nature
+        : K extends 'getFlavors'
           ? Pokemon
-          : K extends 'getSprites'
+          : K extends 'getPokemon'
             ? Pokemon
-            : K extends 'getLearnset'
-              ? Learnset
-              : K extends 'getTypeMatchup'
-                ? TypeMatchup
-                : K extends 'getAllSpecies'
-                  ? Omit<readonly Pokemon[], '__typename'>
-                  : never;
+            : K extends 'getSprites'
+              ? Pokemon
+              : K extends 'getLearnset'
+                ? Learnset
+                : K extends 'getTypeMatchup'
+                  ? TypeMatchup
+                  : K extends 'getAllSpecies'
+                    ? Omit<readonly Pokemon[], '__typename'>
+                    : never;

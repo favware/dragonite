@@ -6,6 +6,7 @@ import {
   getItem,
   getLearnset,
   getMove,
+  getNature,
   getPokemon,
   getPokemonSprites,
   getTypeMatchup
@@ -16,6 +17,7 @@ import type {
   AbilitiesEnum,
   ItemsEnum,
   MovesEnum,
+  NaturesEnum,
   PokemonEnum,
   Query,
   QueryGetAbilityArgs,
@@ -27,6 +29,7 @@ import type {
   QueryGetItemArgs,
   QueryGetLearnsetArgs,
   QueryGetMoveArgs,
+  QueryGetNatureArgs,
   QueryGetPokemonArgs,
   QueryGetTypeMatchupArgs,
   TypesEnum
@@ -38,9 +41,9 @@ import { hideLinkEmbed } from 'discord.js';
 import os from 'node:os';
 
 export class GqlClient {
-  private uri = envParseString('POKEMON_API_URL');
+  private readonly uri = envParseString('POKEMON_API_URL');
 
-  private userAgent = `Favware Dragonite/1.0.0 (apollo-client) ${os.platform()}/${os.release()}`;
+  private readonly userAgent = `Favware Dragonite/1.0.0 (apollo-client) ${os.platform()}/${os.release()}`;
 
   public async getAbility(ability: AbilitiesEnum) {
     const result = await Result.fromAsync(async () => {
@@ -76,6 +79,26 @@ export class GqlClient {
     await container.gqlRedisCache.insert<RedisKeys.GetItem>(
       RedisKeys.GetItem, //
       item,
+      result.unwrap()
+    );
+
+    return result.unwrap();
+  }
+
+  public async getNature(nature: NaturesEnum) {
+    const result = await Result.fromAsync(async () => {
+      const itemFromCache = await container.gqlRedisCache.fetch<RedisKeys.GetNature>(RedisKeys.GetNature, nature);
+      if (itemFromCache) return itemFromCache;
+
+      const apiResult = await this.fetchGraphQLPokemon<'getNature'>(getNature, { nature });
+      return apiResult.data.getNature;
+    });
+
+    if (result.isErr()) return;
+
+    await container.gqlRedisCache.insert<RedisKeys.GetNature>(
+      RedisKeys.GetNature, //
+      nature,
       result.unwrap()
     );
 
@@ -323,11 +346,6 @@ export class GqlClient {
   }
 }
 
-export namespace DragoniteGqlClient {
-  export type Response<K extends keyof Omit<Query, '__typename'>> = PokemonResponse<K>;
-  export type QueryReturnTypes = PokemonQueryReturnTypes;
-}
-
 interface PokemonResponse<K extends keyof Omit<Query, '__typename'>> {
   data: Record<K, Omit<Query[K], '__typename'>>;
 }
@@ -337,6 +355,7 @@ type PokemonQueryReturnTypes = keyof Pick<
   | 'getAbility'
   | 'getFuzzyAbility'
   | 'getItem'
+  | 'getNature'
   | 'getMove'
   | 'getPokemon'
   | 'getLearnset'
@@ -353,20 +372,22 @@ type PokemonQueryVariables<R extends PokemonQueryReturnTypes> = R extends 'getAb
     ? QueryGetFuzzyAbilityArgs
     : R extends 'getItem'
       ? QueryGetItemArgs
-      : R extends 'getFuzzyItem'
-        ? QueryGetFuzzyItemArgs
-        : R extends 'getMove'
-          ? QueryGetMoveArgs
-          : R extends 'getFuzzyMove'
-            ? QueryGetFuzzyMoveArgs
-            : R extends 'getPokemon'
-              ? QueryGetPokemonArgs
-              : R extends 'getFuzzyPokemon'
-                ? QueryGetFuzzyPokemonArgs
-                : R extends 'getLearnset'
-                  ? QueryGetLearnsetArgs
-                  : R extends 'getTypeMatchup'
-                    ? QueryGetTypeMatchupArgs
-                    : R extends 'getAllPokemon'
-                      ? QueryGetAllPokemonArgs
-                      : never;
+      : R extends 'getNature'
+        ? QueryGetNatureArgs
+        : R extends 'getFuzzyItem'
+          ? QueryGetFuzzyItemArgs
+          : R extends 'getMove'
+            ? QueryGetMoveArgs
+            : R extends 'getFuzzyMove'
+              ? QueryGetFuzzyMoveArgs
+              : R extends 'getPokemon'
+                ? QueryGetPokemonArgs
+                : R extends 'getFuzzyPokemon'
+                  ? QueryGetFuzzyPokemonArgs
+                  : R extends 'getLearnset'
+                    ? QueryGetLearnsetArgs
+                    : R extends 'getTypeMatchup'
+                      ? QueryGetTypeMatchupArgs
+                      : R extends 'getAllPokemon'
+                        ? QueryGetAllPokemonArgs
+                        : never;
