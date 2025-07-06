@@ -2,10 +2,10 @@ import { container } from '@sapphire/framework';
 import { isNullish, isNullishOrEmpty } from '@sapphire/utilities';
 import { jaroWinkler } from '@skyra/jaro-winkler';
 
-export async function fuzzilyFindPokemonForMessageContent(messageContent: string): Promise<string | null> {
+export async function fuzzilyFindPokemonForMessageContent(messageContent: string | undefined): Promise<string | null> {
   const allPokemon = await container.gqlClient.getAllSpecies();
 
-  if (isNullish(allPokemon)) {
+  if (isNullish(allPokemon) || isNullishOrEmpty(messageContent)) {
     return null;
   }
 
