@@ -46,7 +46,7 @@
     "discord.js": "^14.21.0",
     "figlet": "^1.8.2",
     "gradient-string": "^3.0.0",
-    "ioredis": "^5.6.1",
+    "ioredis": "^5.7.0",
     "utf-8-validate": "^6.0.5",
     "ws": "^8.18.3",
     "zlib-sync": "^0.1.10"
@@ -57,7 +57,7 @@
     "@sapphire/eslint-config": "^5.0.6",
     "@sapphire/prettier-config": "^2.0.0",
     "@sapphire/ts-config": "^5.0.1",
-    "@swc/core": "^1.13.2",
+    "@swc/core": "^1.13.3",
     "@types/figlet": "^1.7.0",
     "@types/gradient-string": "^1.1.6",
     "@types/node": "24.1.0",
