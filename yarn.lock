@@ -521,12 +521,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@favware/graphql-pokemon@npm:^8.7.1":
-  version: 8.7.1
-  resolution: "@favware/graphql-pokemon@npm:8.7.1"
+"@favware/graphql-pokemon@npm:^8.7.2":
+  version: 8.7.2
+  resolution: "@favware/graphql-pokemon@npm:8.7.2"
   dependencies:
-    graphql: "npm:^16.10.0"
-  checksum: 10/438d2afb647a5d82d74db42b359b3c763db75c74f1bfd1d96bfadc3774968673838c24d1d94cc3a68c93b470001814e10c645af346ef7c171f0b2daba3f571c1
+    graphql: "npm:16.11.0"
+  checksum: 10/3fbeb36da44a4cf0b7ae02e1a5b0b654c65428e9acf549d9deeae200d6dd79c20e4d56eab8c25f7ec02158fdc575075f853d37c3637d4c8dd5c44abfd32c5a09
   languageName: node
   linkType: hard
 
@@ -1257,12 +1257,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:24.2.1":
-  version: 24.2.1
-  resolution: "@types/node@npm:24.2.1"
+"@types/node@npm:*, @types/node@npm:24.3.0":
+  version: 24.3.0
+  resolution: "@types/node@npm:24.3.0"
   dependencies:
     undici-types: "npm:~7.10.0"
-  checksum: 10/cdfa7b30b2f1de71c4cf0b66ee05c71c8f39819a817bb78b4ba10545d4ca1ea9988a3614885806e90401e92938aa08e08489b1b920ba5c1406a028295019734f
+  checksum: 10/1331c2d0e9a512ac27a016b4df3eff92317e4603dbbbab31731275dff14d3a04847a50c5776cbf94f99ff4dedac0ba5f721dce8cea020d8eea5e21711fd964b0
   languageName: node
   linkType: hard
 
@@ -2216,7 +2216,7 @@ __metadata:
     "@commitlint/cli": "npm:^19.8.1"
     "@commitlint/config-conventional": "npm:^19.8.1"
     "@discordjs/builders": "npm:^1.11.3"
-    "@favware/graphql-pokemon": "npm:^8.7.1"
+    "@favware/graphql-pokemon": "npm:^8.7.2"
     "@influxdata/influxdb-client": "npm:^1.35.0"
     "@influxdata/influxdb-client-apis": "npm:^1.35.0"
     "@sapphire/decorators": "npm:^6.2.0"
@@ -2235,7 +2235,7 @@ __metadata:
     "@swc/core": "npm:^1.13.3"
     "@types/figlet": "npm:^1.7.0"
     "@types/gradient-string": "npm:^1.1.6"
-    "@types/node": "npm:24.2.1"
+    "@types/node": "npm:24.3.0"
     "@types/ws": "npm:^8.18.1"
     "@typescript-eslint/eslint-plugin": "npm:^7.18.0"
     "@typescript-eslint/parser": "npm:^7.18.0"
@@ -3022,10 +3022,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql@npm:^16.10.0":
-  version: 16.10.0
-  resolution: "graphql@npm:16.10.0"
-  checksum: 10/d42cf81ddcf3a61dfb213217576bf33c326f15b02c4cee369b373dc74100cbdcdc4479b3b797e79b654dabd8fddf50ef65ff75420e9ce5596c02e21f24c9126a
+"graphql@npm:16.11.0":
+  version: 16.11.0
+  resolution: "graphql@npm:16.11.0"
+  checksum: 10/e3e1633d0b464bbb3fa41283fae938bd3bac801c350555b3f1a129d99fb3cfe157fa69c1389229dba902731942eb08bdea4b29f1271965feee8779576b26ef01
   languageName: node
   linkType: hard
 
