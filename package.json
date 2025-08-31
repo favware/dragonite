@@ -57,7 +57,7 @@
     "@sapphire/eslint-config": "^5.0.6",
     "@sapphire/prettier-config": "^2.0.0",
     "@sapphire/ts-config": "^5.0.1",
-    "@swc/core": "^1.13.4",
+    "@swc/core": "^1.13.5",
     "@types/figlet": "^1.7.0",
     "@types/gradient-string": "^1.1.6",
     "@types/node": "24.3.0",
@@ -99,5 +99,5 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "packageManager": "yarn@4.9.3"
+  "packageManager": "yarn@4.9.4"
 }
