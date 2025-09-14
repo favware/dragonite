@@ -1257,12 +1257,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:24.3.1":
-  version: 24.3.1
-  resolution: "@types/node@npm:24.3.1"
+"@types/node@npm:*, @types/node@npm:24.3.3":
+  version: 24.3.3
+  resolution: "@types/node@npm:24.3.3"
   dependencies:
     undici-types: "npm:~7.10.0"
-  checksum: 10/b9a52ed8f2fb1fa764ce988828b8d579761f944f1bb0492adbdeaa676a161086bad1a807b590799681ad93b3d272468b5c5ddccf5678735d487d1b65e481bc07
+  checksum: 10/6e6614a0f0fad14aa79094fd0372a70adce61f2c196c26220460d99e27c18ff52ed0ac2b446b552a98b5d5a60e0502a0d9bf8c793800fefb29426eebf661d9a3
   languageName: node
   linkType: hard
 
@@ -2235,7 +2235,7 @@ __metadata:
     "@swc/core": "npm:^1.13.5"
     "@types/figlet": "npm:^1.7.0"
     "@types/gradient-string": "npm:^1.1.6"
-    "@types/node": "npm:24.3.1"
+    "@types/node": "npm:24.3.3"
     "@types/ws": "npm:^8.18.1"
     "@typescript-eslint/eslint-plugin": "npm:^7.18.0"
     "@typescript-eslint/parser": "npm:^7.18.0"
@@ -2247,7 +2247,7 @@ __metadata:
     eslint: "npm:^8.57.1"
     eslint-config-prettier: "npm:^10.1.8"
     eslint-plugin-prettier: "npm:^5.5.4"
-    figlet: "npm:^1.8.2"
+    figlet: "npm:^1.9.1"
     gradient-string: "npm:^3.0.0"
     ioredis: "npm:^5.7.0"
     lint-staged: "npm:^16.1.6"
@@ -2670,12 +2670,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"figlet@npm:^1.8.2":
-  version: 1.8.2
-  resolution: "figlet@npm:1.8.2"
+"figlet@npm:^1.9.1":
+  version: 1.9.1
+  resolution: "figlet@npm:1.9.1"
+  dependencies:
+    commander: "npm:^14.0.0"
   bin:
     figlet: bin/index.js
-  checksum: 10/9feb93b65e51d49105b3da0084289c102e70d533da20df739f8430291c678f02f2b53ba3fc2540c0a2789dfbd47391da5f2191372d70ba428127f96e34d13331
+  checksum: 10/b1d3d00d228e34945dec560af9e15998eb926d5aa44d80ff308d2a006c41e5d0ff5583ea33f1d6e42a3020f87178dc6a00cb3c153b26dbd626743ce2e5386dfe
   languageName: node
   linkType: hard
 
