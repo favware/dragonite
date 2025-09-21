@@ -44,7 +44,7 @@
     "bufferutil": "^4.0.9",
     "colorette": "^2.0.20",
     "discord.js": "^14.22.1",
-    "figlet": "^1.9.1",
+    "figlet": "^1.9.3",
     "gradient-string": "^3.0.0",
     "ioredis": "^5.7.0",
     "utf-8-validate": "^6.0.5",
@@ -60,7 +60,7 @@
     "@swc/core": "^1.13.5",
     "@types/figlet": "^1.7.0",
     "@types/gradient-string": "^1.1.6",
-    "@types/node": "24.3.3",
+    "@types/node": "24.5.2",
     "@types/ws": "^8.18.1",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
@@ -99,5 +99,5 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "packageManager": "yarn@4.9.4"
+  "packageManager": "yarn@4.10.0"
 }
