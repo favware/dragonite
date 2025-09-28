@@ -33,9 +33,9 @@
     "@sapphire/decorators": "^6.2.0",
     "@sapphire/discord.js-utilities": "^7.3.3",
     "@sapphire/fetch": "^3.0.5",
-    "@sapphire/framework": "^5.3.6",
+    "@sapphire/framework": "^5.3.7",
     "@sapphire/plugin-logger": "^4.1.0",
-    "@sapphire/plugin-scheduled-tasks": "^10.0.3",
+    "@sapphire/plugin-scheduled-tasks": "^10.0.4",
     "@sapphire/utilities": "^3.18.2",
     "@skyra/env-utilities": "^2.0.1",
     "@skyra/jaro-winkler": "^1.1.1",
@@ -46,7 +46,7 @@
     "discord.js": "^14.22.1",
     "figlet": "^1.9.3",
     "gradient-string": "^3.0.0",
-    "ioredis": "^5.7.0",
+    "ioredis": "^5.8.0",
     "utf-8-validate": "^6.0.5",
     "ws": "^8.18.3",
     "zlib-sync": "^0.1.10"
@@ -57,7 +57,7 @@
     "@sapphire/eslint-config": "^5.0.6",
     "@sapphire/prettier-config": "^2.0.0",
     "@sapphire/ts-config": "^5.0.1",
-    "@swc/core": "^1.13.5",
+    "@swc/core": "^1.13.20",
     "@types/figlet": "^1.7.0",
     "@types/gradient-string": "^1.1.6",
     "@types/node": "24.5.2",
@@ -68,7 +68,7 @@
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
-    "lint-staged": "^16.1.6",
+    "lint-staged": "^16.2.1",
     "prettier": "^3.6.2",
     "rimraf": "^6.0.1",
     "tsup": "^8.5.0",
@@ -99,5 +99,5 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "packageManager": "yarn@4.10.0"
+  "packageManager": "yarn@4.10.3"
 }
