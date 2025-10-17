@@ -225,18 +225,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@discordjs/builders@npm:^1.11.2, @discordjs/builders@npm:^1.11.3":
-  version: 1.11.3
-  resolution: "@discordjs/builders@npm:1.11.3"
+"@discordjs/builders@npm:^1.11.3, @discordjs/builders@npm:^1.12.1, @discordjs/builders@npm:^1.12.2":
+  version: 1.12.2
+  resolution: "@discordjs/builders@npm:1.12.2"
   dependencies:
     "@discordjs/formatters": "npm:^0.6.1"
     "@discordjs/util": "npm:^1.1.1"
     "@sapphire/shapeshift": "npm:^4.0.0"
-    discord-api-types: "npm:^0.38.16"
+    discord-api-types: "npm:^0.38.26"
     fast-deep-equal: "npm:^3.1.3"
     ts-mixer: "npm:^6.0.4"
     tslib: "npm:^2.6.3"
-  checksum: 10/0e653d9722d3726916fcbeae42b0bb88211274be7b0f9550db0d7421d66cf061d7314ce4b225869898b783dbda5c88076e8518f697c3184e03a23a9784d0f6c3
+  checksum: 10/861da3526dc02d0897af493da44c61e1213eb3268b76b2ab842996907c9f34add1505ec560d997cabf9dab856cbcb7d09c85d0727e6c235b2d4b8a962db64761
   languageName: node
   linkType: hard
 
@@ -1257,12 +1257,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:24.5.2":
-  version: 24.5.2
-  resolution: "@types/node@npm:24.5.2"
+"@types/node@npm:*, @types/node@npm:24.8.1":
+  version: 24.8.1
+  resolution: "@types/node@npm:24.8.1"
   dependencies:
-    undici-types: "npm:~7.12.0"
-  checksum: 10/a497aea88a12131b03382d933690b71c131ee890232596b8d5b73f0a20c90874001800b2bfc267bd37df8285bef911729b4773426be7d2dc13ef4c760904e47d
+    undici-types: "npm:~7.14.0"
+  checksum: 10/4f944466766ca8cc0d635386e2b9b42b1948723ca0ec7d24624e80513e5816d6e96197db7c05f8f67b544a228a06a1c0598d66a5526aa4c1f5919db0d3c5bf8c
   languageName: node
   linkType: hard
 
@@ -2147,31 +2147,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:^0.38.1, discord-api-types@npm:^0.38.16":
-  version: 0.38.18
-  resolution: "discord-api-types@npm:0.38.18"
-  checksum: 10/9faa7f433c393e97ae5c24c0ceca3b6ff3be38e80216c5565d72876f7bf37fe90692e7c0460d584c4e39ed27e6271eaa7ddccce4f671f6411a10f0e34d795411
+"discord-api-types@npm:^0.38.1, discord-api-types@npm:^0.38.16, discord-api-types@npm:^0.38.26, discord-api-types@npm:^0.38.29":
+  version: 0.38.30
+  resolution: "discord-api-types@npm:0.38.30"
+  checksum: 10/78e1f9b071e0a6cc243de0e4e168fac0b16f3086286ec9b3d30e8b6d9f60759e22f10544607f2b2e5af954bebdaec7dba248f8c9d8d8584cf4b8c9ad26900f7e
   languageName: node
   linkType: hard
 
-"discord.js@npm:^14.22.1":
-  version: 14.22.1
-  resolution: "discord.js@npm:14.22.1"
+"discord.js@npm:^14.23.2":
+  version: 14.23.2
+  resolution: "discord.js@npm:14.23.2"
   dependencies:
-    "@discordjs/builders": "npm:^1.11.2"
+    "@discordjs/builders": "npm:^1.12.1"
     "@discordjs/collection": "npm:1.5.3"
     "@discordjs/formatters": "npm:^0.6.1"
     "@discordjs/rest": "npm:^2.6.0"
     "@discordjs/util": "npm:^1.1.1"
     "@discordjs/ws": "npm:^1.2.3"
     "@sapphire/snowflake": "npm:3.5.3"
-    discord-api-types: "npm:^0.38.16"
+    discord-api-types: "npm:^0.38.29"
     fast-deep-equal: "npm:3.1.3"
     lodash.snakecase: "npm:4.1.1"
     magic-bytes.js: "npm:^1.10.0"
     tslib: "npm:^2.6.3"
     undici: "npm:6.21.3"
-  checksum: 10/16d9273bf55c34ac45e59dcd678bb2ab7bc8a2813a2f90c85ac3e722cd03339e8bd96904e9d06a0bdeaa6157d250bb05f64bedb4a3858c000c776f0f326c4b44
+  checksum: 10/cbe0a13b677e81d38969ca07b7028e1ac3c4add615ba4f0051113bd93a6d56796745dbba64e9e43c3a805914556a7031f347946347103fd37b3bdb9af9a41002
   languageName: node
   linkType: hard
 
@@ -2215,7 +2215,7 @@ __metadata:
   dependencies:
     "@commitlint/cli": "npm:^19.8.1"
     "@commitlint/config-conventional": "npm:^19.8.1"
-    "@discordjs/builders": "npm:^1.11.3"
+    "@discordjs/builders": "npm:^1.12.2"
     "@favware/graphql-pokemon": "npm:^8.7.2"
     "@influxdata/influxdb-client": "npm:^1.35.0"
     "@influxdata/influxdb-client-apis": "npm:^1.35.0"
@@ -2235,7 +2235,7 @@ __metadata:
     "@swc/core": "npm:^1.13.20"
     "@types/figlet": "npm:^1.7.0"
     "@types/gradient-string": "npm:^1.1.6"
-    "@types/node": "npm:24.5.2"
+    "@types/node": "npm:24.8.1"
     "@types/ws": "npm:^8.18.1"
     "@typescript-eslint/eslint-plugin": "npm:^7.18.0"
     "@typescript-eslint/parser": "npm:^7.18.0"
@@ -2243,14 +2243,14 @@ __metadata:
     bufferutil: "npm:^4.0.9"
     colorette: "npm:^2.0.20"
     cz-conventional-changelog: "npm:^3.3.0"
-    discord.js: "npm:^14.22.1"
+    discord.js: "npm:^14.23.2"
     eslint: "npm:^8.57.1"
     eslint-config-prettier: "npm:^10.1.8"
     eslint-plugin-prettier: "npm:^5.5.4"
     figlet: "npm:^1.9.3"
     gradient-string: "npm:^3.0.0"
-    ioredis: "npm:^5.8.0"
-    lint-staged: "npm:^16.2.1"
+    ioredis: "npm:^5.8.1"
+    lint-staged: "npm:^16.2.4"
     prettier: "npm:^3.6.2"
     rimraf: "npm:^6.0.1"
     tsup: "npm:^8.5.0"
@@ -3198,9 +3198,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ioredis@npm:^5.4.1, ioredis@npm:^5.8.0":
-  version: 5.8.0
-  resolution: "ioredis@npm:5.8.0"
+"ioredis@npm:^5.4.1, ioredis@npm:^5.8.1":
+  version: 5.8.1
+  resolution: "ioredis@npm:5.8.1"
   dependencies:
     "@ioredis/commands": "npm:1.4.0"
     cluster-key-slot: "npm:^1.1.0"
@@ -3211,7 +3211,7 @@ __metadata:
     redis-errors: "npm:^1.2.0"
     redis-parser: "npm:^3.0.0"
     standard-as-callback: "npm:^2.1.0"
-  checksum: 10/cf28889012e18d83b1e1762801426a653ac2f958cd3d79afb71005659a5b3e850acc18cf9315e0525a48c0f6cc948198b26b1339491309c71e62c3f2c47f2f20
+  checksum: 10/f1e328e9ceedde9d9c3ba8b8b844908302852006150601e6918f384d5f9d507cd5e4a9fcfb3bdb6c96cbb5477b89b837b3d38b0d62e1f173408fef46f15734df
   languageName: node
   linkType: hard
 
@@ -3498,20 +3498,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:^16.2.1":
-  version: 16.2.1
-  resolution: "lint-staged@npm:16.2.1"
+"lint-staged@npm:^16.2.4":
+  version: 16.2.4
+  resolution: "lint-staged@npm:16.2.4"
   dependencies:
     commander: "npm:^14.0.1"
     listr2: "npm:^9.0.4"
     micromatch: "npm:^4.0.8"
-    nano-spawn: "npm:^1.0.3"
+    nano-spawn: "npm:^2.0.0"
     pidtree: "npm:^0.6.0"
     string-argv: "npm:^0.3.2"
     yaml: "npm:^2.8.1"
   bin:
     lint-staged: bin/lint-staged.js
-  checksum: 10/b604de3ca27a067e45c5f0e0780ca46f5617e9f6ac3895297dee087d62742bbcd9f9e910300c15c599e1f06900666469b73e036e3fe3153ccedef314ce791dd5
+  checksum: 10/e4ce8e6b07fc2c1d96962dafaab483271b2359b6f22f74324ba0f827ad6383caa2800651379f36b2570cfa74b27354e0db9316be69795636a0c53fa3fd599b79
   languageName: node
   linkType: hard
 
@@ -4000,10 +4000,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nano-spawn@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "nano-spawn@npm:1.0.3"
-  checksum: 10/72c56e68ae733c81c459a338fd51e2aa3be06b1cca746c2abe83df7acfac7eee008b01833f5a8781f4ac9fc1eafd23036a44755257a669dfcc2ff2453850822a
+"nano-spawn@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "nano-spawn@npm:2.0.0"
+  checksum: 10/117d35d7bd85b146908de5d3d1177d2b2ee3174e5d884d6bc9555583bf6e50a265f4038b5c134b7cdd768a10d53598ccde5c00d6f55e25e7eed31b86b8d29646
   languageName: node
   linkType: hard
 
@@ -5209,10 +5209,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~7.12.0":
-  version: 7.12.0
-  resolution: "undici-types@npm:7.12.0"
-  checksum: 10/4a0f927c98828f76fb0d64f356e36e5ac6e074ae4c7bec08d6de8bc36b7cf08ae27a3518fa8eb703f51c1a675241e2d07359bbce63f5575299148a270cea7e43
+"undici-types@npm:~7.14.0":
+  version: 7.14.0
+  resolution: "undici-types@npm:7.14.0"
+  checksum: 10/0f8709b21437697af35801e33bddbe9992e0cf1771959c41850b1946f63822b825e03ce99f44bf19e4f5c3ccc5166e0be59f541565c36ce86163dc2c5870bc62
   languageName: node
   linkType: hard
 
