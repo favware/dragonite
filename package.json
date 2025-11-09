@@ -33,7 +33,7 @@
     "@sapphire/decorators": "^6.2.0",
     "@sapphire/discord.js-utilities": "^7.3.3",
     "@sapphire/fetch": "^3.0.5",
-    "@sapphire/framework": "^5.3.7",
+    "@sapphire/framework": "^5.4.0",
     "@sapphire/plugin-logger": "^4.1.0",
     "@sapphire/plugin-scheduled-tasks": "^10.0.4",
     "@sapphire/utilities": "^3.18.2",
@@ -57,10 +57,10 @@
     "@sapphire/eslint-config": "^5.0.6",
     "@sapphire/prettier-config": "^2.0.0",
     "@sapphire/ts-config": "^5.0.1",
-    "@swc/core": "^1.14.0",
+    "@swc/core": "^1.15.1",
     "@types/figlet": "^1.7.0",
     "@types/gradient-string": "^1.1.6",
-    "@types/node": "24.9.2",
+    "@types/node": "24.10.0",
     "@types/ws": "^8.18.1",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
@@ -99,5 +99,5 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "packageManager": "yarn@4.10.3"
+  "packageManager": "yarn@4.11.0"
 }
