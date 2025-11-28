@@ -1,17 +1,15 @@
-import { defineConfig } from 'tsup';
+import { defineConfig } from 'tsdown';
 
 export default defineConfig({
   clean: true,
-  dts: false,
   entry: ['src/**'],
-  format: ['esm'],
+  dts: false,
+  unbundle: true,
   minify: false,
   skipNodeModulesBundle: true,
   sourcemap: true,
-  target: 'esnext',
+  target: 'es2024',
   tsconfig: 'src/tsconfig.json',
-  bundle: false,
-  shims: false,
-  keepNames: true,
-  splitting: false
+  treeshake: true,
+  format: 'esm'
 });
