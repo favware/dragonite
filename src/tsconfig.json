@@ -2,7 +2,14 @@
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "../dist",
-    "rootDir": "."
+    "rootDir": ".",
+    "paths": {
+      "#lib/*": ["./lib/*.js"],
+      "#root/*": ["./*.js"],
+      "#utils/*": ["./lib/util/*.js"],
+      "#gql/*": ["./lib/gql/*.js"],
+      "#lib/env": ["./lib/env/index.js"]
+    }
   },
   "include": ["."]
 }
