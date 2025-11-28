@@ -4,18 +4,18 @@
   "description": "A Pokémon information Discord bot built around Discord Interactions.",
   "author": "Jeroen Claassens <support@favware.tech>",
   "license": "Apache-2.0",
-  "module": "dist/dragonite.js",
+  "module": "dist/dragonite.mjs",
   "private": true,
   "type": "module",
   "imports": {
-    "#lib/*": "./dist/lib/*.js",
-    "#root/*": "./dist/*.js",
-    "#utils/*": "./dist/lib/util/*.js",
-    "#gql/*": "./dist/lib/gql/*.js",
-    "#lib/env": "./dist/lib/env/index.js"
+    "#lib/*": "./dist/lib/*.mjs",
+    "#root/*": "./dist/*.mjs",
+    "#utils/*": "./dist/lib/util/*.mjs",
+    "#gql/*": "./dist/lib/gql/*.mjs",
+    "#lib/env": "./dist/lib/env/index.mjs"
   },
   "scripts": {
-    "start": "node --preserve-symlinks --enable-source-maps dist/dragonite.js",
+    "start": "node --preserve-symlinks --enable-source-maps dist/dragonite.mjs",
     "lint": "eslint src --ext ts --fix",
     "prettier": "prettier --ignore-path=.prettierignore",
     "format": "prettier --write .",

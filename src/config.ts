@@ -1,3 +1,4 @@
+import '#lib/setup/env';
 import { LogLevel } from '@sapphire/framework';
 import { cast } from '@sapphire/utilities';
 import { envParseInteger, envParseString } from '@skyra/env-utilities';
