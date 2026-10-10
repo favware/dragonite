@@ -2526,13 +2526,13 @@ __metadata:
   linkType: hard
 
 "figlet@npm:^1.9.4":
-  version: 1.9.4
-  resolution: "figlet@npm:1.9.4"
+  version: 1.12.0
+  resolution: "figlet@npm:1.12.0"
   dependencies:
     commander: "npm:^14.0.0"
   bin:
     figlet: bin/index.js
-  checksum: 10/78dce84595c7627d506b8f4e957b01bfb0b18b2ea80f0dbb4f4d46974a881096eb708eb1acc725d0ec4b05337dfc565afd0e8e60fb97f9405f7f9207ab7afebd
+  checksum: 10/1f2805189f243d5e04ea42132c37e6ac41f7b2cf5f9970fae0950041f7cd91e5948c0b7e87e9c908b274b5c0df1b6e12fd6f1e6b7609db7a6ee390f8b88ec3dd
   languageName: node
   linkType: hard
 
