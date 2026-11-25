@@ -324,14 +324,15 @@ function getEvoChain(pokeDetails: Pokemon): string {
 }
 
 function parseExternalResources(pokeDetails: PokemonToDisplayArgs['pokeDetails']): PaginatedMessageAction[] {
-  const smogonButton = new ButtonBuilder()
-    .setStyle(ButtonStyle.Link)
-    .setLabel('Smogon')
-    .setEmoji({ id: Emojis.Smogon })
-    .setURL(pokeDetails.smogonPage)
-    .toJSON() as APIButtonComponentWithURL;
+  const smogonButton = new ButtonBuilder().setStyle(ButtonStyle.Link).setLabel('Smogon').setEmoji({ id: Emojis.Smogon });
 
-  if (isCapPokemon(pokeDetails)) return [smogonButton];
+  if (pokeDetails.smogonPage) {
+    smogonButton.setURL(pokeDetails.smogonPage);
+  }
+
+  const smogonButtonJSON = smogonButton.toJSON() as APIButtonComponentWithURL;
+
+  if (isCapPokemon(pokeDetails)) return [smogonButtonJSON];
 
   const paginatedMessageActions = [
     new ButtonBuilder()
@@ -349,7 +350,7 @@ function parseExternalResources(pokeDetails: PokemonToDisplayArgs['pokeDetails']
   ];
 
   if (isRegularPokemon(pokeDetails)) {
-    paginatedMessageActions.push(smogonButton);
+    paginatedMessageActions.push(smogonButtonJSON);
   }
 
   return paginatedMessageActions;
